@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySQL Triggers Tutorias</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+    </a>
+    <h1 class="title_template">MySQL - TRIGGERS TUTORIAS</h1>
+    <h4>Links</h4>
+    <ul>
+        <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+    </ul>
+
+        
+<div class= "code_container">
+
+<!-- MySQL -->
+<pre class="prettyprint">
+<code class="language-mysql" spellcheck="false">
+    // TRIGGERS TUTORIAS
+
+
+    -- modificar !!
+    create trigger trNoModificarMunicipio on Alumno for update
+    as
+    -- preguntamos el grupo
+         declare  @codigoGrupo varchar(6)
+         declare @texto varchar(300)
+         declare @idAlumno int
+         declare @nuevoMunicipio varchar(20)
+         set @idAlumno = (select idAlumno from INSERTED)
+         set @nuevoMunicipio = (select Municipio from INSERTED)
+   
+         set @codigoGrupo = (select idGrupo from Alumno)
+       if ( @codigoGrupo) = '811NMA' 
+       begin
+          set @texto = 'El municipio del grupo 811NMA no se puede cambiar'
+          raiserror (@texto,16,1)
+          rollback transaction
+          return
+       end
+   
+     update Alumno set Municipio = @nuevoMunicipio where @idAlumno = @idAlumno
+   
+   
+    go
+   
+    -- corregido por FERMÍN
+   
+     create trigger trNoModificarMunicipioFermin on Alumno for update
+    as
+    -- preguntamos el grupo
+         declare  @codigoGrupo varchar(6)
+          set @codigoGrupo = (select idGrupo from inserted)
+       if ( @codigoGrupo) = '811NMA' AND UPDATE (Municipio) -- poner el update es lo mismo que haber puesto: 
+       begin
+    
+          raiserror ('El municipio del grupo 811NMA no se puede cambiar',16,1)
+          rollback transaction
+       end
+   
+   go
+   -- otra forma
+   
+   create trigger trNoModificarMunicipioFermin2 on Alumno for update
+    as
+    -- preguntamos el grupo
+         declare  @codigoGrupo varchar(6)
+   
+   
+         set @codigoGrupo = (select idGrupo from inserted)
+       if ( @codigoGrupo = '811NMA' ) AND (select Municipio from inserted) &lt;> (select Municipio from deleted)
+       begin
+       
+          raiserror ('El municipio del grupo 811NMA no se puede cambiar',16,1)
+          rollback transaction
+       end
+   
+    -- EJERCICIO 2: CREAR UNA COLUMNA QUE SEA NOTA MEDIA EN LA TABLA DE ASIGNATURA
+    -- HACER QUE CADA VEZ QUE SE MODIFICA UNA NOTA SE ACTULICE LA NOTA MEDIA EN ESA ASIGNATURA
+   
+    -- EL TRIGGER NO DEBE DEJAR CAMBIAR EL IDASIGNATURA CUANDO MODIFICAS
+    go
+   
+    create or alter trigger trActualizarNotaMediaAsignatura on nota for update
+   as
+       declare @notaMediaAsg float
+       declare @idAsignaturaOLD int
+       declare @idAsignaturaNEW int
+       set @idAsignaturaNEW = (select idAsignatura from inserted)
+       set @idAsignaturaOLD = (select idAsignatura from deleted)
+   
+   
+       if ( @idAsignaturaNEW &lt;> @idAsignaturaOLD)
+       BEGIN
+           raiserror ('El código de la asignatura no se puede cambiar',16,1)
+           rollback transaction
+           return
+       END
+       set @notaMediaAsg = (Select AVG(nota * 1.0) from Nota where idAsignatura = @idAsignaturaOLD ) 
+       update Asignatura set notaMedia = @notaMediaAsg where idAsignatura = (select idAsignatura from INSERTED)
+   go
+   
+   -- REVISADO POR FERMÍN
+   
+   
+   /*alter table asignatura add Notamedia float */
+   
+   create or alter trigger trActualizarNotaMediaAsignatura on NOTA for update
+   as
+       declare @notaMediaAsg FLOAT
+       declare @idAsignaturaOLD int
+       declare @idAsignaturaNEW int
+       set @idAsignaturaNEW = (select idAsignatura from inserted)
+       set @idAsignaturaOLD = (select idAsignatura from deleted)
+       
+   
+       if ( @idAsignaturaNEW &lt;>@idAsignaturaOLD)
+       BEGIN
+           raiserror ('El código de la asignatura no se puede cambiar',16,1)
+           rollback transaction
+           return
+   
+       END
+       set @notaMediaAsg = (Select AVG(nota * 1.0) from Nota  where idAsignatura=@idAsignaturaOLD ) 
+       update Asignatura set notaMedia = @notaMediaAsg where idAsignatura = (select idAsignatura from INSERTED)
+   go
+   
+   -- EJERCICIO 3-- TRIGGER QUE NO DEJE ASIGNAR UN TUTOR A UN GRUPO AL QUE NO DA CLASE
+   
+   
+   -- CORRECCIÓN FERMÍN
+   
+   create trigger trNoValeComoTutor on grupo for insert, update
+   as
+       -- quien es el tutor que vas a poner (idprofesor)
+       -- no dejarlo grabar si no es profesor de ese grupo = no da clase a ese grupo = no está en la tabla asignaturagrupo
+   
+       -- lo primero: quien es el tutor que vas a poner (idprofesor)
+       DECLARE @idProfesor int
+       SET @idProfesor = (select idProfesorTutor from inserted) -- que profesor está poniendo como tutor
+   
+       -- ahora tenemos que ver si puede o no, si lo dejamos o no
+       -- no dejarle grabar si no es profesor de ese grupo = no da clase a ese grupo = no esta en la tabla asignaturagrupo
+       -- para el grupo al que intentas ponerlo como tutor
+   
+   
+       
+       --if (@idProfesor exists (select @idProfesor from AsignaturasGrupo where idGrupo = AsignaturasGrupo.idGrupo)
+       --	BEGIN
+       --	raiserror ('Este profesor no da clase a este grupo',16,1)
+       --	rollback transaction
+       --	return
+   
+       --END
+       -- para la segunda parte
+       declare @idgrupo int
+       set @idgrupo = (select idgrupo from inserted)  -- a que grupo le pongo este profesor como tutor
+   
+       IF not exists (SELECT COUNT(*) FROM ASIGNATURASGRUPO WHERE IDPROFESOR =@IDPROFESOR and idGrupo = @idgrupo)  
+   
+           raiserror ('NO SE PUEDE PONER ESTE PROFESOR COMO TUTOR',16,1)
+           rollback transaction
+           return
+       END
+    
+   go
+   
+   
+   -- CORRECCIÓN ENTERA DE FERMIN
+   
+   -- trigger que no deje asignar un tutor a un grupo al que no da clase!!
+   create trigger trNoValeComoTutor  on GRUPO  FOR INSERT, UPDATE 
+   AS
+   
+     DECLARE @idProfesor int 
+     DECLARE @idGrupo char(6)
+   
+     set @idProfesor=( select idProfesorTutor from inserted) -- QUE PROFESOR ESTAS PONIENDO COMO TUTOR!!
+     set @idGrupo =(select idGrupo from inserted) -- a que grupo le pongo este profesor como tutor.
+   
+     -- QUIEN ES EL TUTOR QUE VAS A PONER (IDPROFESOR) 
+   
+     -- NO DEJARLO GRABAR SI NO ES PROFESOR DE ESE GRUPO = NO DA CLASE A ESE GRUPO = NO ESTA EN LA TABLA ASIGANTURASGRUPO
+       -- PARA EL GRUPO AL QUE INTENTAS PONERLO COMO TUTOR
+   
+       IF  not exists(SELECT * FROM ASIGNATURASGRUPO WHERE IDPROFESOR =@IDPROFESOR and idGrupo =@idGrupo )
+        begin
+            raiserror ('NO SE PUEDE PONER ESTE PROFESOR COMO TUTOR',16,1)
+           rollback transaction
+       end
+   END
+   
+   GO
+   
+   -- CREAR TRIGGER QUE NO DEJE QUE UN PROFESOR DE MÁS DE TRES ASIGNATURAS AL MISMO GRUPO
+    
+   
+   
+   -- CORRECCIÓN FERMIN
+   
+   create or alter trigger trnomasde3asignaturas on asignaturasgrupo for insert,update
+   
+   as
+   declare @idprofesor int
+   declare @idgrupo char (6)
+   
+   set @idprofesor=(select idprofesor from inserted)
+   set @idgrupo =(select idgrupo from inserted)
+   
+   if (select count(*) from asignaturasgrupo where idprofesor=@idprofesor and idgrupo=@idgrupo)>3 
+   
+       begin
+        raiserror ('EL PROFESOR NO PUEDE DAR CLASE A MÁS DE TRES ASIGNATURAS',16,1)
+        rollback transaction
+       end
+   
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

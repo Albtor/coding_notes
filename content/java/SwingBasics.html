@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Sweing Basics</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVA SWING BASICS</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //SWING BASICS 
+    
+    import java.awt.Color;
+    import java.awt.Dimension;
+    import java.awt.Font;
+    import java.awt.Frame;
+    import java.awt.Graphics;
+    import java.awt.Graphics2D;
+    import java.awt.Image;
+    import java.awt.Toolkit;
+    import java.io.File;
+    import java.io.IOException;
+    import java.util.logging.Level;
+    import java.util.logging.Logger;
+    import javax.swing.JFrame;
+    import javax.swing.JPanel;
+    import javax.imageio.*;
+
+    /**
+    *
+    * @author Alberto
+    */
+    public class E01_SwingBasics {
+        
+    //    public static void main(String[] args) {
+    //        Swing();
+    //    }
+    //    
+        public static void Swing(){
+            //MARCO BASICO
+            Marco marco = new Marco();
+        
+        //MARCO CENTRADO CON LAMINA
+            MarcoCentrado marcoC = new MarcoCentrado();
+            Lamina miLamina = new Lamina();
+            marcoC.add(miLamina);
+            
+            //MARCO CON IMAGEN
+            MarcoImagen marcoImg = new MarcoImagen();
+            LaminaImagen LI = new LaminaImagen();
+            marcoImg.add(LI);
+    
+        }
+        }
+        
+        
+    //MARCO BASICO Y METODOS BASICOS
+        class Marco extends JFrame{
+            
+            public Marco(){
+                setTitle("Titulo Ventana");
+                setSize(500,300); //TAMAÑO
+                setVisible(true); //NECESARIO PARA QUE SE VEA
+                setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //ACCION AL CERRAR
+                setLocation(500,300); //POSICION EN LA PANTALLA
+                setBounds(1500,300, 250, 250);
+                setResizable(false); //SI SE PUEDE AGRANDAR O NO
+    //            setExtendedState(Frame.MAXIMIZED_BOTH); //Marco a tamaño completo
+            }
+        }
+        
+        
+
+
+    //MARCO CENTRADO CON LAMINA
+        class MarcoCentrado extends JFrame{
+
+            public MarcoCentrado(){
+                Toolkit mipantalla = Toolkit.getDefaultToolkit(); //IMPORT
+                Dimension tamanoPantalla = mipantalla.getScreenSize(); //IMPORT
+                int altura = tamanoPantalla.height;
+                int anchura = tamanoPantalla.width;
+                setSize(anchura/2, altura/2);
+                setLocation(anchura/4, altura/4);
+                setVisible(true); //NECESARIO PARA QUE SE VEA
+                setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //ACCION AL CERRAR
+                setTitle("Marco Centrado");
+                Image miIcono = mipantalla.getImage("img/homer.jpg"); //tiene que ser jpeg, gif o png
+                setIconImage(miIcono);
+                
+
+            }
+        }
+
+    class Lamina extends JPanel{
+
+        public void paintComponent(Graphics g){
+            super.paintComponent(g);
+            Graphics2D g2 = (Graphics2D) g;
+            Font miFuente = new Font("Arial", Font.BOLD, 26);
+            g2.setFont(miFuente);
+            g2.setColor(Color.blue);
+            g2.drawString("Aprendiendo Swing", 100,100);
+            
+        
+        }
+    }
+
+
+    //MARCO CON IMAGEN
+
+    class MarcoImagen extends JFrame{
+        public MarcoImagen(){
+            setTitle("Marco con Imagen");
+            setBounds(750,300, 300, 200);
+            setVisible(true);
+        LaminaImagen laminaImg = new LaminaImagen();
+        add(laminaImg);
+        
+        }
+
+    }
+
+    class LaminaImagen extends JPanel{
+
+        public void paintComponent(Graphics g){
+            super.paintComponent(g);
+            File miImagen = new File("img/homer.jpg");
+            try {
+                imagen = ImageIO.read(miImagen);
+            } catch (IOException ex) {
+                System.out.println("Error con imagen");
+            }
+            g.drawImage(imagen, 5, 5, null);   
+        
+        }
+        
+        private Image imagen;
+    }
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="styles.css">
+  <title>Advanced Selectors</title>
+</head>
+<body>
+  <h1>Advanced Selectors</h1>
+  <ul>
+    <li>> direct child, not second child</li>
+    <li>Sibling: h2 ~ p every single sibling that is p and AFTER the h2</li>
+    <li>+ The direct sibling, the one after</li>
+    <li>Not selector. p:not(.green):not(.red). Good for input:not(:checked) </li>
+    <li>input[type="text"]{
+      background-color: red;
+    }</li>
+    <li>input:not(:checked){
+      margin: 50px;
+    }</li>
+    <li>input[data-margin]{
+      margin: 100px;
+    } or input[data-margin="ffasdasd"]{
+      margin: 100px;
+    }</li>
+    <li>*: anything that contains - Ex: input[data-margin*="ffasdasd"]{
+      margin: 100px;
+    } </li>
+    <li>$: anything that ends with - Ex: input[data-margin$="ffasdasd"]{
+      margin: 100px;
+    } </li>
+    <li>^: anything that starts with - Ex:  input[data-margin^="ffasdasd"]{
+      margin: 100px;
+    } </li>
+  </ul>
+  <input type="checkbox">
+  <input type="text">
+  <input data-margin type="text">
+  <h2>Heading</h2>
+  <p class="red">Paragraph 1</p>
+  <p class="green">Paragraph 2</p>
+  <div>
+    <span>
+      OuterSpan 
+      <span>Inner Span</span>
+    </span>
+  </div>
+  <p class="red">Paragraph 3</p>
+  <p>Paragraph 4</p>
+  <div>Div 2</div>
+  <p>Paragraph 5</p>
+  
+</body>
+</html>

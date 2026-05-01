@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySQL Unions</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+    </a>
+    <h1 class="title_template">MySQL - UNIONS</h1>
+    <h4>Links</h4>
+    <ul>
+        <li class="link_list"><a href="CREATE_INSERT_BDAlumnos.sql" class="link_file" target="_Blank">DB SQL ALUMNOS</a></li>
+    </ul>
+
+        
+<div class= "code_container">
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-sql" spellcheck="false">
+    // UNIONS
+
+    //--C1- Utilizando una fila para cada profesor: hacer número de asignaturas que imparten los profesores 'ANACLETO PI' y el profesor con casillero 78 Deben aparecer en cada linea los nombres de los profesores..2 filas
+    SELECT 'Anacleto Pi' AS 'Profesor' , COUNT(AG.idAsignatura) FROM Profesor P
+    RIGHT JOIN AsignaturasGrupo AG ON P.idProfesor = AG.idProfesor
+    WHERE P.Nombre = 'ANACLETO PI' 
+    UNION ALL
+    SELECT 'Casillero 78' , COUNT(AG.idAsignatura) FROM Profesor P
+    RIGHT JOIN AsignaturasGrupo AG ON P.idProfesor = AG.idProfesor
+    WHERE P.Nombre like '%casillero 78%'
+    
+    
+    //--C1- Con Group BY
+    SELECT P.Nombre , COUNT(AG.idAsignatura) FROM Profesor P
+    RIGHT JOIN AsignaturasGrupo AG ON P.idProfesor = AG.idProfesor
+    WHERE P.Nombre = 'ANACLETO PI' OR P.Nombre like '%casillero 78%'
+    GROUP BY P.Nombre;
+    
+    
+    //--C2- Nota media de los alumnos del SAUZAL y nota media de los alumnos de TACORONTE - 2filas
+    SELECT 'El Sauzal' AS 'Municipio', AVG(CAST(N.Nota AS FLOAT)) AS 'Nota media' FROM Nota N
+    INNER JOIN Alumno A  ON N.idAlumno = A.idAlumno
+    WHERE A.Municipio = 'EL SAUZAL'
+    UNION ALL
+    SELECT 'Tacoronte', AVG(CAST(N.Nota AS FLOAT)) AS 'Nota media' FROM Nota N
+    INNER JOIN Alumno A ON N.idAlumno = A.idAlumno
+    WHERE A.Municipio = 'TACORONTE'
+    
+    
+    //--C2-Con Group By
+    SELECT A.Municipio, AVG(CAST(N.Nota AS FLOAT)) AS 'Nota media' FROM Nota N
+    INNER JOIN Alumno A ON N.idAlumno = A.idAlumno
+    WHERE A.Municipio = 'EL SAUZAL' OR A.Municipio = 'TACORONTE'
+    GROUP BY A.Municipio
+    ORDER BY A.Municipio;
+
+        
+
+    //--CAST(AVG(N.Nota*1.0) AS DECIMAL(5,3)) 
+
+
+    //--C3-Relación de notas del curso actual y del curso pasado (tabla CursoPasadoNotas) del alumno FEDERICO CARPANTA APOSTOL. 26 filas
+    SELECT 'Curso Actual' AS "Año Academico", ASG.Denominacion AS 'Asignatura', N.idAsignatura, N.Nota FROM Alumno A
+    JOIN nota N ON A.idAlumno = N.idAlumno
+    JOIN Asignatura ASG ON N.idAsignatura = ASG.idAsignatura	
+    WHERE A.Nombre = 'FEDERICO' AND A.Apellidos = 'CARPANTA APOSTOL'
+    UNION ALL
+    SELECT 'Curso Pasado', ASG.Denominacion, CPN.CodAsignatura,  CPN.Nota FROM Alumno A
+    JOIN CursoPasadoNotas CPN ON A.idAlumno = CPN.CodigoAlumno
+    JOIN Asignatura ASG ON CPN.CodAsignatura = ASG.idAsignatura	
+    WHERE A.Nombre = 'FEDERICO' AND A.Apellidos = 'CARPANTA APOSTOL'
+    ORDER BY ASG.Denominacion;
+
+
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

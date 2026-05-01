@@ -1,0 +1,93 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+
+}
+
+.btn{
+    color: white;
+    background-color: hsl(200, 100%, 50%);
+    border: none;
+    outline: none;
+    padding: .5em 1em;
+    border-radius: .3em;
+    cursor: pointer;
+    position: relative;
+}
+
+.btn:focus {
+ 
+}
+
+.btn-load:focus::after {
+    font-size: .5rem;
+    --default-transform: translateY(200%);
+    content: 'Loading';
+    position: absolute;
+    color: black;
+    transform: var(--default-transform);
+    transform-origin: center;
+    left: 0;
+    bottom: 0;
+    animation: loading 3s linear forwards;
+}
+
+@keyframes loading {
+    0% {
+        opacity: 1;
+    }
+    10% {
+        content: 'loading.';
+    }
+
+    20% {
+        content: 'loading..';
+    }
+
+    25%{
+        transform: var(--default-transform) rotate(30deg);
+    }
+    30% {
+        content: 'loading...';
+    }
+    40% {
+        content: 'loading..';
+    }   
+   
+    50% {
+        content: 'loading.';
+        opacity: .6;
+        transform: var(--default-transform) rotate(0);
+    }
+
+    60% {
+        content: 'loading';
+    }
+    70% {
+        content: 'loading.';
+    }
+
+    75%{
+        transform: var(--default-transform) rotate(-30deg);
+    }
+
+    80% {
+        content: 'loading..';
+    }
+    90% {
+        content: 'loading...';
+    }
+
+    100% {
+        content: 'Loaded';
+        opacity: 1;
+        transform: var(--default-transform) rotate(0);
+    }
+}

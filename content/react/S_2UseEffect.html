@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Use Effect</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+        </a>
+        <h1 class="title_template">REACT - Use Effect</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="https://www.youtube.com/watch?v=iZhV0bILFb0&list=PLnHJACx3NwAdT_8forzXYvx0o4A2VnoHX&index=5&ab_channel=CodingAddict" class="link_file" target="_Blank">Youtube Tutorial</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // USE EFFECT BASICS
+    import React, { useState, useEffect } from "react";
+    // by default runs after every re-render
+    // cleanup function
+    // second parameter
+    const UseEffectBasics = () => {
+    const [value, setValue] = useState(0);
+    useEffect(() => {
+    console.log("call useEffect");
+    if (value > 0) {
+    document.title = `New Messages(${value})`;
+    }
+    });
+    
+    console.log("render component");
+    return (
+    &lt;>
+        &lt;h1>{value}&lt;/h1>
+        &lt;button className="btn" onClick={()=> setValue(value + 1)}>
+            click me
+        &lt;/button>
+    &lt;/>
+    );
+    };
+    
+    export default UseEffectBasics;
+
+
+    
+</code>
+</pre>
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // &lt; USE EFECTS CLEANUP
+    import React, { useState, useEffect } from "react";
+    
+    // cleanup function
+    // second argument
+    
+    const UseEffectCleanup = () => {
+    const [size, setSize] = useState(window.innerWidth);
+    console.log(size);
+    const checkSize = () => {
+    setSize(window.innerWidth);
+    };
+    
+    useEffect(() => {
+    window.addEventListener("resize", checkSize);
+    return () => {
+    window.removeEventListener("resize", checkSize);
+    };
+    });
+    console.log("render");
+    return (
+    &lt;>
+        &lt;h1>Window&lt;/h1>
+        &lt;h2>{size} px&lt;/h2>;
+    &lt;/>
+    );
+    };
+    
+    export default UseEffectCleanup;
+
+
+    
+</code>
+</pre>
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // &lt;
+
+    
+</code>
+</pre>
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // &lt;
+
+    
+</code>
+</pre>
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // &lt;
+
+    
+</code>
+</pre>
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // &lt;
+
+    
+</code>
+</pre>
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // &lt;
+
+    
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

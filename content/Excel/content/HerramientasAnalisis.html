@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel Herramientas Análisis</title>
+    <link rel="stylesheet" href="../../../css/file.css">
+   
+</head>
+<body class="excel-bkg">
+<div class="main_container">
+
+    <a href="../Excel.html" class="menu_link">
+        <img src="../img/excel.png" alt="Excel Icon" class="menu_img">
+    </a>
+    <h1 class="title_template">EXCEL HERRAMIENTAS ANÁLISIS</h1>
+
+<div class= "code_container ">
+
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //TABLAS DE DATOS
+    Funcion Pago() 5 parámetros
+    Herramientas de Analisis: Datos > Análisis de Hipótesis> Tabla de datos
+    se coge el dato de la tabla principal y se selecciona en fila o columna, en este caso en columna
+
+    Tablas de datos de dos variables:
+    se ponen datos tanto en la variable columna como en la de fila, de las celdas  de la columna con dato para la fila y la columna
+    <img src="../img/tablaDatos.PNG" alt="td3" width="300" class="imgFormat">
+</code>
+</pre>
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //ESCENARIOS
+    Mas potentes, se pueden ver resultados cambiando muchas celdas
+    Crear:
+    Datos > análisis de hipótesis > Administrador de escenarios
+    Se pone un nombre cualquiera, y luego se establecen las celdas cambiantes
+    Se pueden crear varios estableciendo los distintos valores
+    Visualizar los escenarios: Datos > análisis de hipótesis > Administrador de escenarios
+    Elegimos el que queramos y le damos a mostrar
+
+    Recomendable darle nombre a las celdas, para crear un informe / resumen de escenarios
+    Simplemente seleccionar celda y arriba a la izquierda donde está el nombre lo añadimos
+    <img src="../img/escenarios1.PNG" alt="td3" width="300" class="imgFormat">
+    <img src="../img/escenarios2.PNG" alt="td3" width="300" class="imgFormat">
+
+    Boton Resumen:
+    Crea hoja aparte con el resumen /informe con todas las opciones
+    Tabla dinámica
+    <img src="../img/escenarios3.PNG" alt="td3" width="300" class="imgFormat">
+
+    Aplicar escenarios de una hoja a otra 
+    copiar tabla de una hoja y ponerla en la misma celda de otra
+    Administrador de escenarios -> Combinar
+
+    Casillas de proteccion: 
+    Evitar cambios Revisar > Proteger hoja > Establecer contraseña de proteccion
+    Ocultar: para que no los vean otras personas
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //BUSCAR OBJETIVO
+    Datos > análisis de hipótesis > BuscarObjetivo
+    Da resultado si es posible
+    1.Definir la celda: el resultado, exige que tenga una fórmula
+    2.Con el valor:  el valor que quiero
+    3.Cambiando la celda: el valor total
+
+    Problema: si no se pueden encontrar ciertas tablas, quizás no obtenga resultados. Para eso se usa solver
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    // SOLVER
+    Hay que descargarlo  Archivo > Opciones > Complementos > Administrar Complementos Excel / Ir a > Click en Solver y aceptar
+    Datos > Solver
+    Valor De 
+    Max
+    Min
+
+    Guardar escenario
+    Puedes crear uno para el coste minimo el coste máximo, etc.
+
+    <img src="../img/solver.png" alt="td3" width="300" class="imgFormat">
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //
+</code>
+</pre>
+    
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

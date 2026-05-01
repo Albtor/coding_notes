@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Imports</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVASCRIPT IMPORTS</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="#" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // 92 - DIFFERENCE BETWEEN IMPORT AND REQUIRE
+
+    // import {capitalizeString} from "./string_function.js";
+    // const cap = capitalizeString("hello!");
+    // console.log(cap);
+
+    console.log("Import");
+    // 93 - USE EXPORT TO REUSE A CODE BLOCK
+
+    const capitalizeString2 = (string) => {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+        // export { capitalizeString};
+        // export const foo = "bar";
+        // export const bar = "foo";
+    }
+    console.log("Export");
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // 94 - USE * TO IMPORT EVERYTHING FROM A FILE
+    // import * as capitalizeStrings from "./string_function";
+    console.log('import * as capitalizeStrings from "./string_function";');
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // 95 - CREATE AN EXPORT FALLBACK WITH EXPORT DEFAULT
+    // export default function substract(x,y) {return x - y};
+    console.log("export default function substract(x,y) {return x - y};");
+        
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // 96 - IMPORT A DEFAULT EXPORT
+
+    // import subtract from "math_functions";
+    // subtract(7,4);
+    console.log('import subtract from "math_functions";');
+    
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

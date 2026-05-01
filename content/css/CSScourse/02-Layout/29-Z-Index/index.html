@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>29-Position</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="">
+  <h1>Z-Index</h1>
+  <ul>
+    <li>Numbers</li>
+    <li>z-index: -1; the child is behind the parent</li>
+    <li>Stacking context concept: Hierarchy. If a parent div has 4 z-index, that's the absolute value for its children in relation to other elements. Inside the parent, you can set individually any range of numbers to position the children (for example child 1  z-index: 10). But outside the parent, they all will have z:index: 4 </li>
+  </ul>
+
+  <div class="parent">
+    <h2>Parent. Div with zindex: -3</h2> 
+    <div class="child1">One: z-index: -1;</div>
+    <div class="child2">Two z-index: 2;</div>
+    <div class="child3">Three: z-index: -20; even if next parent has a -10 z-index, it stays above, because its parent has a z-index of -3 (higher than -10 of the next one)</div>
+  </div>
+
+  <div class="parent parent2">
+    <h2>Parent 2. Div with zindex: -10</h2> 
+    <div class="child1">One: z-index: -1;</div>
+    <div class="child2">Two z-index: 2;</div>
+    <div class="child3">Three</div>
+  </div>
+
+  
+  
+
+</body>
+</html>

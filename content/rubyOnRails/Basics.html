@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RubyOnRails Basics</title>
+    <link rel="stylesheet" href="../../css/file.css"> 
+    <link rel="shortcut icon" type="image/png" href="../../img/api2.png">
+   
+</head>
+<body class="apis-bkg">
+<div class="main_container">
+
+    <a href="../../Solutions.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code Icon" class="menu_img">
+    </a>
+    <h1 class="title_template">RUBY ON RAILS Basics</h1>
+    <h4>Links </h4>
+        <ul>
+            <li class="link_list"> <a href="https://www.youtube.com/watch?v=fmyvWz5TUWg" class="link_file" target="_Blank">Course</a></li>
+            <li class="link_list"> <a href="https://rubygems.org/" class="link_file" target="_Blank">RubyGems</a></li>
+        </ul>
+
+<div class= "code_container ">
+
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    // RUBY ON RAILS
+    It's a framework, like react, it creates folders and files
+    MVC Architecture
+    Models: Databases
+    View: Webpages
+    Controller: The brains behind the scenes
+</code>
+</pre>
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    // DIFFERENT FOLDERS CREATED TO USE
+    APP, CONFIG
+    Routes
+    Database
+    Gemfile
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    // GENERATE
+    rails g controller home index
+    erb = embeeded ruby
+
+    // RUN
+    From console:  rails s
+    Localhost:3000 : Opens the web
+    
+    Ctrl + C breaks
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    // To make a site as default for localhost:3000
+    Go to: Config routes.rb
+    comment: # get 'home/index'
+    add:  root 'home#index' 
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    // LAYOUTS
+    Go to folder views > layouts > application: This is the main template side  &lt;%=yield%>
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    // To create a new page
+    about.html.erb
+    controller 
+    class HomeController &lt; Application 
+        def index
+        end
+        def about
+        end
+    end
+
+    
+    route: go to config and
+    get 'home/about'
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    // BOotstrap
+    Starter template
+    Copy the template and add the meta or ruby thigs
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    // PARTIALS
+    Create a Navbar > create new file with this format: 
+    _header.html.erb
+    Add in the page:  &lt;%= render 'home/header' %>
+
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    // LINKS
+    &lt;%= link_to 'Friend App', root_path, class:"navbar-brand" %> 
+    &lt;%= link_to 'About Us', home_about_path, class:"nav-link" %> #
+
+    Check in console: rails routes, it tells you the different pages {name}_path
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    // 
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    // 
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    // 
+</code>
+</pre>
+
+    
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

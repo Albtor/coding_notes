@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solidity Basics2</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">SOLIDITY BASICS2</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Remix Ethereum</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+
+
+<!-- SOLIDITY -->
+<pre class="prettyprint">
+<code class="language-solidity" spellcheck="false">
+    //Solidity Buy ETH
+    pragma solidity 0.5.1;
+
+    contract MyContract {
+        mapping(address = > uint256) public balances; //associative array
+        address payable wallet;
+
+        constructor(address payable _wallet) public {
+            wallet = _wallet;
+        }
+
+        function buyToken() public payable{ //payable makes the function able to accept eth 
+            //buy a buy Ethereum
+            balances[msg.sender] += 1;
+            //sent ether to the wallet
+            wallets.transfer(msg.value); //msg.value tells you how much eth is sent
+            
+        }
+    }
+</code>
+</pre>
+
+
+<!-- SOLIDITY -->
+<pre class="prettyprint">
+<code class="language-solidity" spellcheck="false">
+    //Solidity Fallback function
+    pragma solidity 0.5.1;
+
+    contract MyContract {
+        mapping(address = > uint256) public balances; //associative array
+        address payable wallet;
+
+        constructor(address payable _wallet) public {
+            wallet = _wallet;
+        }
+
+        function() external payable{
+            buyToken();
+        }
+
+        function buyToken() public payable{ //payable makes the function able to accept eth 
+            //buy a buy Ethereum
+            balances[msg.sender] += 1;
+            //sent ether to the wallet
+            wallets.transfer(msg.value); //msg.value tells you how much eth is sent
+            
+        }
+    }
+</code>
+</pre>
+
+<!-- SOLIDITY -->
+<pre class="prettyprint">
+<code class="language-solidity" spellcheck="false">
+    //Solidity  Events
+    pragma solidity 0.5.1;
+
+    contract MyContract {
+        mapping(address = > uint256) public balances; //associative array
+        address payable wallet;ç
+        
+        event Purchase(address indexed _buyer, uint256 amount;
+
+        constructor(address payable _wallet) public {
+            wallet = _wallet;
+        }
+
+        function() external payable{
+            buyToken();
+        }
+
+        function buyToken() public payable{ //payable makes the function able to accept eth 
+            //buy a buy Ethereum
+            balances[msg.sender] += 1;
+            //sent ether to the wallet
+            wallets.transfer(msg.value); //msg.value tells you how much eth is sent
+            emit Purchase(msg.sender, 1);
+        }
+    }
+</code>
+</pre>
+
+<!-- SOLIDITY -->
+<pre class="prettyprint">
+<code class="language-solidity" spellcheck="false">
+    //Solidity   Mint tokens from another contract
+    //we need contrac address 
+    //we need to instantiate contract
+    pragma solidity 0.5.1;
+
+    contract ERC20Token{
+        string public name;
+        mapping(address = > uint256) public balances; //associative array
+
+        function mint() public{
+            balances[tx.origin] ++; //tx.origin always the person who originated the transaction. Tricky !
+        }
+    }
+
+
+    contract MyContract {
+        address payable wallet;ç
+
+        constructor(address payable _wallet, address _token) public {
+            wallet = _wallet;
+            token = _token;
+        }
+
+        function() external payable{
+            buyToken();
+        }
+
+        function buyToken() public payable{ //payable makes the function able to accept eth 
+            ERC20Token _token = ERC20Token(address(token));
+            //ERC20Token(address(token)).mint(); //another option as above, cleaner
+            _token.mint();
+            wallets.transfer(msg.value); //msg.value tells you how much eth is sent
+        }
+    }
+</code>
+</pre>
+<!-- SOLIDITY -->
+<pre class="prettyprint">
+<code class="language-solidity" spellcheck="false">
+    //Solidity  INHERIT SMART CONTRACTS
+
+    pragma solidity 0.5.1;
+
+    contract ERC20Token{
+        string public name;
+        mapping(address = > uint256) public balances; //associative array
+
+        constructor(string memory _name) public{
+            name = _name;
+        }
+        function mint() public{
+            balances[tx.origin] ++; //tx.origin always the person who originated the transaction. Tricky !
+        }
+    }
+
+
+    contract MyToken is ERC20Token {
+        //string public name = "My Token";
+        string public symbol;
+        address[] public owners;
+        uint256 ownerCount;
+
+        constructor(string memory _name, string memory _symbol) ERC20Token(_name) public {
+            symbol = _symbol;
+        }
+
+        function mint() public{
+            super.mint();
+            ownerCount ++;
+            owners.push(msg.sender);
+        }
+    }
+</code>
+</pre>
+
+
+<!-- SOLIDITY -->
+<pre class="prettyprint">
+<code class="language-solidity" spellcheck="false">
+    //Solidity  Common library SafeMath
+    //libraries organize code that can be reused //DRY : DOn't repeat yourself
+    
+
+    library Math{
+        function divide(uint256 a, uint256 b) internal pure returns(uint256) {
+            require(b>0); //avoid problem if value 2 is 0
+            uint c = a/b;
+            return c;
+        }
+    }
+    
+    contract MyContract{
+        uint 256 public value;
+
+        function calculate(uint _value1, uint value2) public{
+            value = Math.divide(_value1, _value2);
+        }
+    }
+
+    //import from another file instead:
+    import "./Math.sol";
+</code>
+</pre>
+
+
+<!-- SOLIDITY -->
+<pre class="prettyprint">
+<code class="language-solidity" spellcheck="false">
+    //Solidity  Libraries and Math
+    //libraries organize code that can be reused //DRY : DOn't repeat yourself
+    
+
+    library Math{
+        function divide(uint256 a, uint256 b) internal pure returns(uint256) {
+            require(b>0); //avoid problem if value 2 is 0
+            uint c = a/b;
+            return c;
+        }
+    }
+    
+    contract MyContract{
+        uint 256 public value;
+
+        function calculate(uint _value1, uint value2) public{
+            value = Math.divide(_value1, _value2);
+        }
+    }
+
+    //import from another file instead:
+    import "./Math.sol";
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

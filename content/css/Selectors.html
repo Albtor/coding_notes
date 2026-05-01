@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Selectors</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+    </a>
+    <h1 class="title_template">CSS - SELECTORS</h1>
+    <h4>Links</h4>
+    <ul>
+        <li class="link_list"><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference" class="link_file">Ver otros tipos de selectores</a></li>
+    </ul>
+
+        
+<div class= "code_container">
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+    // SELECTORS
+    * {padding: 0;} //all
+    p, h1, span{color: blue;} //group several
+    #number1 {text-align: center;} //id
+    p.center {text-align: center;} //paragraph with class="center"
+    .center {color: red;} //class
+    [attr=value] //attribute value
+    [class*="bg-"] //all classes that start with 'bg-'
+    .class1.class2  .name1.name2 Selects all elements with both name1 and name2 set within its class attribute
+    .class1 .class2  name1 .name2  Selects all elements with name2 that is a descendant of an element with name1
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+    // ADVANCED
+    A + B // Adjacent sibling from same parent, A is followed inmediately by B
+    A ~ B // elements share same parent, A comes before
+    A > B // B is direct child of A 
+    A   B  // B is descendant of A, not necessarily direct
+
+    > direct child, not second child
+    Sibling: h2 ~ p every single sibling that is p and AFTER the h2
+    + The direct sibling, the one after
+    Not selector. p:not(.green):not(.red). Good for input:not(:checked)
+    input[type="text"]{ background-color: red; }
+    input:not(:checked){ margin: 50px; }
+    input[data-margin]{ margin: 100px; } or input[data-margin="ffasdasd"]{ margin: 100px; }
+    *: anything that contains - Ex: input[data-margin*="ffasdasd"]{ margin: 100px; }
+    $: anything that ends with - Ex: input[data-margin$="ffasdasd"]{ margin: 100px; }
+    ^: anything that starts with - Ex: input[data-margin^="ffasdasd"]{ margin: 100px; }
+</code>
+</pre>
+    
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

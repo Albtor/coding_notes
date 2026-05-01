@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP Json</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">PHP JSON</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="https://www.php.net/manual/es/function.json-decode.php" class="link_file" target="_Blank">JSON Decode</a></li>
+            <li class="link_list"><a href="https://www.php.net/manual/es/function.json-encode.php" class="link_file" target="_Blank">JSON Encode</a></li>
+        </ul>
+    
+<div class= "code_container">
+
+<!-- PHP -->
+<pre class="prettyprint">
+<code class="language-json" spellcheck="false">
+    //PHP JSON &lt;
+
+    json_encode();
+    json_decode();
+
+    $age = array("Peter"=>35, "Ben"=>37, "Joe"=>43);
+    echo json_encode($age);
+
+    {
+        "Crypto": [
+            {
+                "nombre": "BTC",
+                "descripcion": "Bitcoin"
+            },
+            {
+                "nombre": "XRP",
+                "descripcion": "Ripple"
+            },
+            {
+                "nombre": "ETH",
+                "descripcion": "Ethereum"
+            }
+        
+        ]
+    }
+
+
+</code>
+</pre>
+
+<!-- PHP -->
+<pre class="prettyprint">
+<code class="language-php" spellcheck="false">
+    //PHP JSON &lt;
+    $data1 = file_get_contents("datos.json");
+    $cryptos2 = json_decode($data, true); //devuelve un objeto si no se pone true, con true se devuelve array
+
+    //INICIO HTML 
+    require "e8_controller.php";
+    error_reporting(E_ALL ^ E_NOTICE);
+
+    // VIEW
+    &lt;?php 
+        //print_r($cryptos);
+    
+        foreach($cryptos as $crypto):
+
+    ?&gt;
+        &lt;div class=&quot;coches_active&quot;&gt;
+            &lt;a href=&quot;&lt;?php echo $crypto[&quot;enlace&quot;]?&gt;&quot;&gt;&lt;?php $n?&gt;&lt;strong&gt;&lt;?php echo $crypto[&quot;nombre&quot;]?&gt;&lt;/strong&gt; &lt;?php echo $crypto[&quot;descripcion&quot;]?&gt;&lt;/a&gt;
+        &lt;/div&gt;
+        
+    &lt;?php
+        $n++;
+        endforeach;
+    ?&gt;
+    &lt;/div&gt;
+
+</code>
+</pre>
+    
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

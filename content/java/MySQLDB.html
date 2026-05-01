@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java MySQL DB</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVA MySQL DB</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //JAVA BASE DE DATOS
+    /*
+ * ESTA CLASE SIRVE PARA CREARNOS NUESTRO
+   OBJETO DE CONEXION CON LA BASE DE DATOS
+   ASI SIEMPRE USAMOS ESTE OBJETO, Y SI CAMBIAMOS 
+   DE BASE DE DATOS SOLO TENEMOS QUE CAMBIAR COMO ES POR DENTRO
+   EL OBJETO, PERO NO EL PROGRAMA QUE ACCEDE A LA BASE DE DATOS.
+ 
+ */
+package MiLibreria;
+
+import ejercicioclase9marzo.BorraCliente;
+import ejercicioclase9marzo.Cliente;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+/**
+ *
+ * @author administrador
+ */
+public class BaseDeDatos extends Object {
+
+    /**
+     *
+     * @author fermin PARA QUE FUNCIONE LA CONEXION A LA BASE DE DATOS. 1)
+     * instalar la base de datos y arracarla. ( el servicio ) 2) Ir a el
+     * proyecto ...>-> boton derecho -> propiedades -> librerias -> pinchar
+     * el boton ADD FOLDER/JAR
+     * y selecionar el siguiente fichero .jar
+     * DONDE ESTE EL PROYECTO/BASE_
+     * DATOS/Jaybird-2.2.6-JDK_1.8/jaybird-full-2.26.jar
+     *
+     */
+    public Connection conexion; // conexion con la base de datos. Este objeto representa mi base de datos.
+    private java.sql.Statement comandoSql; // comando para dar ordenes sql. Se usa para enviar comandos de consulta (Query) y de modificacion (Update)
+    private String mensajeError; // aqui guardamos el mensaje de error
+    private boolean hayError; // true cuando hay error
+
+    // private String puertoServidor="3306";
+//la url de conexión  es  “jdbc:motor:servidor:puerto/basededatos”+parametros según la BD.
+    public BaseDeDatos(String servidor, String puertoServidor, String baseDatos, String usuario, String password) {
+
+        try {   // nos conectamos a la base de datos..
+
+            String bd = "//" + servidor + ":" + puertoServidor + "/" + baseDatos;
+
+            Class.forName("com.mysql.cj.jdbc.Driver"); // cargar el driver "com.mysql.jdbc.Driver" deprecated --- this one com.mysql.cj.jdbc.Driver
+
+            this.conexion = DriverManager.getConnection("jdbc:mysql:" + bd, "root", ""); //password hay que quitarlo para mi conexion
+
+            this.comandoSql = this.conexion.createStatement(); // creamos el objeto para dar ordendes SQL a la base de datos.
+
+            this.hayError = false;
+        } catch (SQLException | ClassNotFoundException ex) {
+            this.hayError = true;
+            this.mensajeError = ex.getMessage();
+        }
+    }
+
+    public boolean HuboError() {
+        return this.hayError;
+    }
+
+    public String getMensajeError() {
+        return this.mensajeError;
+    }
+
+    @Override
+    public void finalize() throws Throwable {
+        this.close();  // asi al destruir el objeto nos aseguramos cerrar la base de datos..
+        super.finalize();
+    }
+
+    public void close() // cerrar conexion con la base de datos.
+    {
+        try {
+            this.conexion.close();
+            this.hayError = false;
+        } catch (SQLException ex) {
+            this.hayError = true;
+            this.mensajeError = ex.getMessage();
+        }
+    }
+
+    ;
+
+public ResultSet executeQuery(String sentenciaSELECT) {
+
+        try {
+            this.hayError = false;
+            return this.comandoSql.executeQuery(sentenciaSELECT); // devolvemos las filas encontradas!!
+        } catch (SQLException ex) {
+            this.hayError = true;
+            this.mensajeError = ex.getMessage();
+            return null; // no hay nada
+        }
+    }
+
+    public int executeUpdate(String sentenciaMODIFICAR) // puede ser cualquiera : UPDATE, INSERT , DELETE , CREATE TABLE ...
+    {
+        try {
+            this.hayError = false;
+            return this.comandoSql.executeUpdate(sentenciaMODIFICAR); // devolvemos:
+            //  para sentencia INSERT, UPDATE Y DELETE el número de filas afectadas, para el resto (create, drop ..) return void,
+
+        } catch (SQLException ex) {
+            this.hayError = true;
+            this.mensajeError = ex.getMessage();
+            return 0; // no hay nada
+        }
+
+    }
+
+    public boolean insert(Cliente c) {
+        String s = "insert into cliente (id,nombre,saldo) values "
+                + "(" + c.getId() + ",'" + c.getNombre() + "'," + c.getSaldo() + ")";
+        executeUpdate(s);
+
+        return !this.HuboError();
+    }
+
+    public boolean delete(BorraCliente c) {
+        String s = "delete from cliente where id=" + c.id;
+        this.executeUpdate(s);
+
+        return !this.HuboError();
+    }
+
+    public Cliente load(int id, Class clase) throws SQLException {
+        Cliente c = null;
+        String s = "select id,nombre,saldo from cliente where id=" + id;
+        ResultSet leido = this.executeQuery(s);
+        if (leido.next()) // hay algo 
+        {
+            c = new Cliente(leido.getInt("id"), leido.getString("nombre"), leido.getDouble("saldo"));
+        }
+        leido.close();// liberamos recursos de la consulta..
+        return c; // va el objeto cliente o nulo si no existía.
+    }
+
+    /**
+     * Actualizar cliente en la base de datos.
+     *
+     * @param c
+     * @return
+     */
+    public boolean update(Cliente c) {
+        String s = "update cliente set nombre='" + c.getNombre() + "', saldo= " + c.getSaldo()
+                + " where id=" + c.getId();
+
+        this.executeUpdate(s);
+
+        return !this.HuboError();
+
+    }
+    
+    public boolean Consulta(String consulta) throws SQLException{
+        ResultSet resultados = this.executeQuery(consulta);
+        Cliente client;
+        while (resultados.next()){ // hay algo 
+//            client = new Cliente(resultados.getInt("id"), resultados.getString("nombre"), resultados.getDouble("saldo"));
+            System.out.println("Cliente: "+resultados.getInt("id")+resultados.getString("nombre")+resultados.getDouble("saldo"));
+      
+        }
+        resultados.close();
+        return !this.HuboError();
+    }
+
+    // hacer un select ...
+    /* while(oFilasEncontradas.next())
+       System.out.println(
+             oFilasEncontradas.getString("codigo") + " / "+ // getInt ..
+             oFilasEncontradas.getString("nombre"));
+        
+     */
+}
+
+</code>
+</pre>
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //JAVA BASE DE DATOS DE MI PROYECTO (Extiende de la anterior)
+    
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+/**
+ *
+ * @author fer
+ */
+public class BaseDeDatosDeMiProyecto extends BaseDeDatos{ //Hereda de Base de Datos 
+    
+    public BaseDeDatosDeMiProyecto(){
+         super("localhost","3306","MISCLIENTES","root","root");
+    }
+    
+    public boolean insert (Cliente c){
+        String s="insert into cliente2 (id,nombre,saldo) values "+
+                 "("+c.getId()+",'"+c.getNombre()+"',"+c.getSaldo()+")";
+       this.executeUpdate(s);
+       
+       return !this.HuboError();                                
+    }
+    
+    public boolean delete (BorraCliente c){
+        String s= "delete from cliente2 where id="+c.id;
+        this.executeUpdate(s);
+       
+       return !this.HuboError(); 
+    }
+    
+    public Cliente load (int id, Class clase) throws SQLException {
+        Cliente c=null;
+        String s="select id,nombre,saldo from cliente2 where id="+id;
+        ResultSet leido=this.executeQuery(s);
+        if (leido.next()) // hay algo 
+        {
+            c=new Cliente( leido.getInt("id"),leido.getString("nombre"),leido.getDouble("saldo"));
+        }
+        leido.close();// liberamos recursos de la consulta..
+        return c; // va el objeto cliente o nulo si no existía.
+    }
+    
+    /**
+     *  Actualizar cliente en la base de datos.
+     * @param c
+     * @return 
+     */
+    
+    public boolean update (Cliente c){
+         String s="update cliente2 set nombre='"+c.getNombre()+"', saldo= "+c.getSaldo()
+                  +" where id="+c.getId();
+                
+       this.executeUpdate(s);
+       
+       return !this.HuboError();      
+
+    }
+}
+</code>
+</pre>
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //TRATAR DATOS
+    /*
+    * To change this license header, choose License Headers in Project Properties.
+    * To change this template file, choose Tools | Templates
+    * and open the template in the editor.
+    */
+    package ejercicioclase9marzo;
+
+    import MiLibreria.BaseDeDatos;
+    import com.google.gson.Gson;
+    import java.io.BufferedReader;
+    import java.io.FileNotFoundException;
+    import java.io.FileReader;
+    import java.io.IOException;
+    import java.sql.ResultSet;
+    import java.sql.SQLException;
+
+    /**
+    *
+    * @author Alberto
+    */
+    public class Hacer {
+        LeerJSON hacerJSON;
+        BaseDeDatosDeMiProyecto BD2;
+        BaseDeDatos BD;
+        public boolean error;
+        public String mensajeError;
+        
+        /**
+        *  constructor :  cargo JSON y me conecto a la base de datos..
+        * @throws FileNotFoundException
+        * @throws IOException 
+        */
+        public Hacer() throws FileNotFoundException, IOException {
+            cargaJSON();
+            conectaConBD();
+        }
+        
+        private void conectaConBD()
+        {
+    //         this.BD=new BaseDeDatosDeMiProyecto();
+            this.BD = new BaseDeDatos("localhost","3306","misclientes", "root", "");
+            if (this.BD.HuboError()) 
+            {
+            this.error=true;
+            this.mensajeError=this.BD.getMensajeError();          
+            };
+        }
+        
+
+    private void cargaJSON() throws FileNotFoundException, IOException {
+        Gson g = new Gson();
+        BufferedReader f = new BufferedReader ( new FileReader("ordenes.json"));
+        this.hacerJSON = g.fromJson(f, LeerJSON.class);  //Carga todos los objetos en los campos declarados
+    //    System.out.println (this.hacerJSON.toString());
+        f.close();
+
+    }
+
+    public void addClientesNuevos() {
+        for (int i =0; i&lt; this.hacerJSON.nuevosClientes.size(); i++)       
+            this.BD.insert( this.hacerJSON.nuevosClientes.get(i)); 
+        }
+
+    void deleteClientes() {
+        for (int i =0; i&lt; this.hacerJSON.borrarClientes.size(); i++)       
+            this.BD.delete( this.hacerJSON.borrarClientes.get(i));
+        }
+
+
+    void modificaSaldo() throws SQLException {
+        Operacion ope; //Necesitamos crear el objeto Clase Operacion para cargar cada objeto del array list operaciones que incluyen
+        Cliente client;
+        for (int i =0; i &lt; this.hacerJSON.operaciones.size(); i++){
+            ope=this.hacerJSON.operaciones.get(i);// obtenemos cada objeto del array 
+            
+            // obtener el objeto Cliente una vez obtenido el array de operaciones, usamos al método load a partir del id
+            client= load(ope.id, Cliente.class); 
+                
+            // modificar el saldo en memoria. Cogemos el cliente y
+            if ( ope.hacer.equals("SUMA")){  
+                client.setSaldo( client.getSaldo()+ ope.cantidad);
+            }
+            else  if ( ope.hacer.equals("RESTA")) { 
+                client.setSaldo( client.getSaldo()- ope.cantidad);
+            }       
+            
+            // modifica el objeto en disco..
+            this.BD.update(client);
+        }
+        }
+
+    public Cliente load (int id, Class clase) throws SQLException
+        {
+            Cliente c=null;
+            String s="select id,nombre,saldo from cliente where id="+id;
+            ResultSet leido=this.BD.executeQuery(s);
+            if (leido.next()) { // hay algo 
+                c=new Cliente( leido.getInt("id"),leido.getString("nombre"),leido.getDouble("saldo"));
+            }
+            leido.close();// liberamos recursos de la consulta..
+            return c; // va el objeto cliente o nulo si no existía.
+        }
+
+    void visualiza() throws SQLException {
+        String visualizar = this.hacerJSON.visualizar;
+        System.out.println(visualizar);
+        String consulta = "SELECT * FROM cliente WHERE "+visualizar;
+        System.out.println(consulta);
+        this.BD.Consulta(consulta);
+        }
+
+
+
+        public void closeBD(){ this.BD.close();}
+
+        
+
+    }
+
+</code>
+</pre>
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

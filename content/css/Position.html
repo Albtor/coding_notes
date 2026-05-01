@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Position</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+    </a>
+    <h1 class="title_template">CSS - POSITION</h1>
+    <h4>Links</h4>
+    <ul>
+        <li class="link_list"><a href="https://developer.mozilla.org/es/docs/Web/CSS/position" class="link_file">Mozilla</a></li>
+        <li class="link_list"><a href="https://www.w3schools.com/css/css_positioning.asp" class="link_file">W3Schools</a></li>
+    </ul>
+
+        
+<div class= "code_container">
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+    // POSITION
+    position: static; //normal position according to the normal flow of the page, is the default. Doesn't admit top, left, right
+    position: absolute; //Move freely in the parent container, or the one before, if there is none, the body element
+    position: relative; //Relative to its normal position, takes values (top, left...) makes the children with absolute position value, move only within the parent
+    position: sticky; //Stays in the same spot after scrolling
+    position: fixed; Similar to absolute, but container is the viewport always
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+    // UNITS
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    
+</code>
+</pre>
+
+
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+// Relación entre display, float y Position
+Cuando se establecen las propiedades display, float y position sobre una misma caja, su interpretación es la siguiente:
+Si display vale none, se ignoran las propiedades float y position y la caja no se muestra en la página.
+Si position vale absolute o fixed, la caja se posiciona de forma absoluta, se considera que float vale none y la propiedad display vale block tanto para los elementos en línea como para los elementos de bloque. La posición de la caja se determina mediante el valor de las propiedades top, right, bottom y left.
+En cualquier otro caso, si float tiene un valor distinto de none, la caja se posiciona de forma flotante y la propiedad display vale block tanto para los elementos en línea como para los elementos de bloque.
+    
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

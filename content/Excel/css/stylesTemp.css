@@ -1,0 +1,147 @@
+/* https://fonts.google.com/specimen/New+Tegomin#standard-styles */
+@import url('https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    position: absolute;
+    height: 100%;
+    font-family: 'New Tegomin', serif;   
+    color: black; 
+    background: rgba(134, 134, 134, 0.1);
+    /* background: url(../img/background.png) no-repeat center center fixed;  */
+    /* background: linear-gradient(to top right, #fff, rgb(182, 181, 181)) */
+    /* background: linear-gradient(to top right, #fff, rgb(182, 181, 181), rgb(24, 150, 172), grey); */
+}
+
+h3{
+    margin-left: 1rem;
+    padding: 1rem 0 0 0rem;   
+}
+
+.wrapper{
+    padding: 1rem;
+}
+
+.box{
+    display: flex;
+    height: 20vh;
+    margin-bottom: .2rem;
+}
+
+.box_1{
+    height: 40px;
+    margin-bottom: .2rem;
+}
+
+img{
+    height: 30px;
+    width: 30px;
+    display: block;
+}
+
+a .menu_img{
+    height: 60px;
+    width: 60px;
+    margin-left: 1rem;
+}
+
+textarea{
+    height: 100%;
+    padding: 0.3rem;
+    resize: none;
+    border: none;
+    border-radius: 5px;
+}
+
+input{
+    margin-bottom: .2rem;
+    height: 40px;
+    width: 60%;
+    background-color: hsla(53, 4%, 55%, 0.2);
+    border: none;
+    padding: 0.3rem;
+    border-radius: 5px;
+}
+
+.textarea_ES{
+    background-color: hsla(54, 56%, 55%, 0.2);
+}
+
+.textarea_UK{
+    background: hsla(192, 71%, 70%, 0.2);
+}
+
+.textarea_FR{
+    background: hsla(17, 56%, 59%, 0.2);
+}
+
+button:hover{
+    background-color: rgb(79, 179, 192);
+    cursor: pointer;
+}
+
+
+button{
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    padding: .1rem 1.6rem;
+    margin-left: .2rem;
+    font-weight: 800;
+    background-color: rgb(151, 146, 146);
+    transition: background-color .1s ease-in-out;
+    border: none;
+    border-radius: 5px;
+}
+
+
+
+/* TOOLTIP */
+.tooltip {
+position: relative;
+display: inline-block;
+height: 100%;
+}
+
+.tooltip .tooltiptext {
+visibility: hidden;
+width: 90px;
+background-color: #555;
+color: #fff;
+text-align: center;
+border-radius: 5px;
+padding: 5px;
+position: absolute;
+z-index: 1;
+bottom: 80%;
+left: 84%;
+margin-left: -75px;
+opacity: 0;
+transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+content: "";
+position: absolute;
+top: 100%;
+left: 48%;
+margin-left: -5px;
+border-width: 5px;
+border-style: solid;
+border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+visibility: visible;
+opacity: 1;
+}

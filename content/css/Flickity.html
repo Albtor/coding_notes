@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Flickity</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+
+</head>
+<body>
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+    </a>
+    <h1 class="title_template">CSS - FLICKITY</h1>
+    <h4>Links</h4>
+    <ul>
+        <li class="link_list"><a href="https://flickity.metafizzy.co/" class="link_file" target="_Blank">Flickity</a></li>
+        <li class="link_list"><a href="https://flickity.metafizzy.co/style.html" class="link_file" target="_Blank">Cell Style</a></li>
+        <li class="link_list"><a href="https://flickity.metafizzy.co/options.html" class="link_file" target="_Blank">Options</a></li>
+    </ul>
+  
+        
+<div class= "code_container">
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    // FLICKITY
+    Install / download https://flickity.metafizzy.co/
+    &lt;!-- CSS --&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://unpkg.com/flickity@2/dist/flickity.min.css&quot;&gt;
+    &lt;!-- JavaScript --&gt;
+    &lt;script src=&quot;https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js&quot;&gt;&lt;/script&gt;
+
+    CDN
+    &lt;!-- CSS --&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://unpkg.com/flickity@2/dist/flickity.min.css&quot;&gt;
+    &lt;!-- JavaScript --&gt;
+    &lt;script src=&quot;https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js&quot;&gt;&lt;/script&gt;
+</code>
+</pre>
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    // USE
+    &lt;div class=&quot;main-carousel&quot;&gt;
+    &lt;div class=&quot;carousel-cell&quot;&gt;...&lt;/div&gt;
+    &lt;div class=&quot;carousel-cell&quot;&gt;...&lt;/div&gt;
+    &lt;div class=&quot;carousel-cell&quot;&gt;...&lt;/div&gt;
+    ...
+    &lt;/div&gt;
+</code>
+</pre>
+
+<!-- JS -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // INITIALIZE JAVASCRIPT
+    var elem = document.querySelector('.main-carousel');
+    var flkty = new Flickity( elem, {
+    // options
+    cellAlign: 'left',
+    contain: true
+    });
+
+    // element argument can be a selector string
+    //   for an individual element
+    var flkty = new Flickity( '.main-carousel', {
+    // options
+    });
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

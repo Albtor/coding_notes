@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Accessing Arrays</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVASCRIPT ACCESSING ARRAYS</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="#" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //ACCESING NESTED OBJECTS
+    var myStorage = {
+        "car": {
+            "inside": {
+                "glove box": "maps",
+                "passenger seat": "crumbs"
+            },
+            "outside": {
+                "trunk": "jack"
+            }
+        }
+    };
+    var gloveBoxContents = myStorage.car.inside["glove box"];
+    console.log("Accesing nested objects: var gloveBoxContentes = myStorage.car.inside['glove box']; ");
+    console.log(gloveBoxContents);
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //ACCESING NESTED ARRAYS
+    var myPlants = [
+        {
+            type: "flowers",
+            list: [
+                "rose",
+                "tulip",
+                "dandelion"
+            ]
+        },
+        {
+            type: "trees",
+            list: [
+                "fir",
+                "pine",
+                "birch"
+            ]
+        }
+
+    ];
+
+    var secondTree = myPlants[1].list[2];
+    console.log("Accesing nested arrays: var secondTree = myPlants[1].list[2]; ");
+    console.log(secondTree);
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //EXAMPLE RECORD COLLECTION
+    var collection = {
+        "2548": {
+            "album": "Slipepery Weh Wet",
+            "artist": "Bon Jovi",
+            "tracks": [
+                "Let it Rock",
+                "You give love a Bad name"
+            ]
+        },
+        "2568": {
+            "album": "1999",
+            "artist": "Prince",
+            "tracks": [
+                "1999",
+                "Little Red Corvette"
+            ]
+        },
+        "1245": {
+            "artist": "Robert Palmer",
+            "tracks": []
+        },
+        "5439": {
+            "album": "Abba Gold"
+        }
+    }
+
+    var collectionCopy = JSON.parse(JSON.stringify(collection));
+    console.log("var collectionCopy = JSON.parse(JSON.stringify(collection));");
+
+    function updateRecords(id, prop, value) {
+        if (value === ""){
+            delete collection[id][prop];
+        } else if (prop === "tracks"){
+            collection[id][prop] = collection[id][prop] || [];
+            collection[id][prop].push(value);
+        }else {
+            collection[id][prop] = value;
+        }
+
+        return collection;
+    }
+    console.log("Update records:")
+    console.log(updateRecords(5439, "artist","Abba"));
+    console.log(updateRecords(2568, "tracks","Nothing Compares 2U"));
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //ITERATE WITH WHILE LOOPS 2:10:15
+
+    var myArray = [];
+    var i = 0;
+    while(i &lt; 5){
+        myArray.push(i);
+        i++;
+    };
+    console.log("Iterate with While Loops");
+    console.log(myArray);
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //ITERATE WITH FOR LOOPS 
+    var forArray = [];
+
+    for(var i = 0; i &lt; 5; i++){
+        forArray.push(i);
+    };
+    console.log("Iterate with For Loops");
+    console.log(forArray);
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //ITERATE WITH FOR LOOPS 
+    var oddArray = [];
+
+    for(var i = 0; i &lt; 10; i += 2){ //can be backwards i -= 2 i--
+        oddArray.push(i);
+    };
+    console.log("Iterate with For Loops incrementing by 2");
+    console.log(oddArray);
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //  64 - ITERATE THROUGH AN ARRAY WITH A FOR LOOP
+    var ourArray = [9, 10, 11, 12];
+    var ourTotal = 0;
+
+    for (var i = 1; i &lt; ourArray.length; i++){
+        ourTotal += ourArray[i];
+    };
+    console.log("Iterate through an array with a for loop:");
+    console.log(ourTotal);
+
+    //  65 - NESTING FOR LOOPS
+    function multiplyAll(arr){
+        var product = 1;
+        for (var i = 0; i &lt; arr.length; i++){
+            for (var j = 0; j &lt; arr[i].length; j++){
+                product *= arr[i][j];
+            }
+        }
+        return product;
+    }
+
+    var product = multiplyAll([[1,2],[3,4],[5,6,7]]);
+    console.log("Nesting For Loops:");
+    console.log(product);
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //  66 - ITERATING WITH DO...WHILE LOOPS
+    var myArray = [];
+    var i = 10;
+
+    do {
+        myArray.push(i);
+        i++;
+    } while (i &lt; 5);
+
+    console.log(i, myArray);
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // PROFILE LOOKUP
+
+    var contacts = [
+        {
+            "firstName": "Akira",
+            "lastName": "Laine",
+            "number": "054342343234",
+            "likes": ["Pizza", "Coding", "Brownie Points"]
+        },
+        {
+            "firstName": "Harry",
+            "lastName": "Potter",
+            "number": "054312323234",
+            "likes": ["Hogwarts", "Magic", "Hagrid"]
+        },
+        {
+            "firstName": "Sherlock",
+            "lastName": "Holmes",
+            "number": "0543423843234",
+            "likes": ["Intriguing Cases", "Violin"]
+        }
+    ]
+
+    function lookUpProfile(name, prop) {
+        for (var i = 0; i &lt;contacts.length; i++){
+            if (contacts[i].firstName === name) {
+                return contacts[i][prop] || "No such property";
+            }
+        }
+        return "No such contact";
+    }
+    var data = lookUpProfile("Sherlock", "likes");
+    console.log("Profile Lookup Exercise");
+    console.log(data);
+
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //
+    
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solidity Basics</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">SOLIDITY BASICS</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Remix Ethereum</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+
+<!-- SOLIDITY -->
+<pre class="prettyprint">
+<code class="language-solidity" spellcheck="false">
+    //Solidity 
+    Web, deploy, Run
+
+    pragma solidity 0.5.1;
+
+    contract MyContract {
+        string public stringValue = "myString";
+        bool public myBool = true;
+        int public myInt = 1; //can put a sign - +
+        uint public myUint = 1;// can't put a sign in front
+        uint8 public myUint8 = 8;
+    }
+</code>
+</pre>
+    
+<div class= "code_container">
+
+
+<!-- SOLIDITY -->
+<pre class="prettyprint">
+<code class="language-solidity" spellcheck="false">
+    //Solidity 
+    pragma solidity 0.5.1;
+
+    contract MyContract {
+        string value;
+
+        constructor() public {
+            value = "myValue";
+        }
+
+        function get() public view returns(string memory){
+            return value;
+        }
+
+        function set(string memory _value) public {
+            value = _value;
+        }
+    }
+</code>
+</pre>
+
+
+<!-- SOLIDITY -->
+<pre class="prettyprint">
+<code class="language-solidity" spellcheck="false">
+    //Solidity  Enum
+
+    contract MyContract {
+        enum State {Waiting, Ready, Active}
+        State public state; 
+        constructor() public {
+            state = State.Waiting;
+        }
+        function activate() public{
+            state = State.Active;
+        }
+
+        function isActive() public view returns(bool){
+            return state == State.Active;
+        }
+    }
+</code>
+</pre>
+
+<!-- SOLIDITY -->
+<pre class="prettyprint">
+<code class="language-solidity" spellcheck="false">
+    //Solidity  Struct
+
+    contract MyContract {
+        Person[] public people;
+
+        uint256 public peopleCount;
+
+        //create a new person and keep track inside a people array
+        struct Person {
+            string _firstName;
+            string _lastName;
+        }
+
+        function addPerson(string memory _firstName, string memory _lastName){
+            people.push(Person(_firstName, _lastName));
+            peopleCount += 1;
+        }
+    }
+</code>
+</pre>
+
+<!-- SOLIDITY -->
+<pre class="prettyprint">
+<code class="language-solidity" spellcheck="false">
+    //Solidity  Struct
+
+    contract MyContract {
+        uint256 public peopleCount = 0;
+        mapping(uint => Person) public people;
+
+        //create a new person and keep track inside a people array
+        struct Person {
+            uint _id; 
+            string _firstName;
+            string _lastName;
+        }
+
+        function addPerson(string memory _firstName, string memory _lastName){
+            people[peopleCount] = Person(peopleCount, _firstName, _lastName);
+            peopleCount += 1;
+        }
+    }
+</code>
+</pre>
+
+
+<!-- SOLIDITY -->
+<pre class="prettyprint">
+<code class="language-solidity" spellcheck="false">
+    //Solidity  Modifiers
+
+    contract MyContract {
+        uint256 public peopleCount = 0;
+        mapping(uint => Person) public people;
+
+        address owner; //datatype account/address
+
+        modifier onlyOwner(){ //modifier, checks if the person calling the function is the owner
+            require(msg.sender == owner);        //metadata, tells us the address who called the function
+            _;
+        }
+
+        //create a new person and keep track inside a people array
+        struct Person {
+            uint _id; 
+            string _firstName;
+            string _lastName;
+        }
+
+        constructor() public{
+            owner = msg.sender;
+        }
+
+        function addPerson(string memory _firstName, string memory _lastName) public onlyOwner{
+            people[peopleCount] = Person(peopleCount, _firstName, _lastName);
+            incrementCount();
+        }
+
+        function incrementCount() internal {
+            peopleCount += 1;
+        }
+
+        //Owners
+    }
+</code>
+</pre>
+
+<!-- SOLIDITY -->
+<pre class="prettyprint">
+<code class="language-solidity" spellcheck="false">
+    //Solidity  Time
+
+    contract MyContract {
+        uint256 public peopleCount = 0;
+        mapping(uint => Person) public people;
+
+        uint256 openingTime = 1544669573; //Seconds
+
+        address owner; //datatype account/address
+
+        modifier onlyWhileOpen(){ //modifier, checks if the person calling the function is the owner
+            require(block.timestamp >= openingTime);        //metadata, tells us the address who called the function
+            _;
+        }
+
+        //create a new person and keep track inside a people array
+        struct Person {
+            uint _id; 
+            string _firstName;
+            string _lastName;
+        }
+
+        constructor() public{
+            owner = msg.sender;
+        }
+
+        function addPerson(string memory _firstName, string memory _lastName) public onlyWhileOpen{
+            people[peopleCount] = Person(peopleCount, _firstName, _lastName);
+            incrementCount();
+        }
+
+        function incrementCount() internal {
+            peopleCount += 1;
+        }
+
+        
+    }
+</code>
+</pre>
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

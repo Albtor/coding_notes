@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Basics</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVASCRIPT BASICS</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="FreeCodeCampjavascript/index.html" class="link_file" target="_Blank">FreeCodeCamp</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //THEORY
+    window
+    document doctype
+    dom document object model
+</code>
+</pre>
+
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //
+    CASE SENSITIVE AND CAMEL CASE
+    // studyLaterAtHome = true;
+
+    OPERATIONS
+    // + - / * % 
+    // INCREMENT DECREMENT a++ a--
+
+    AUGMENTED
+    var a = 3; 
+    a += 10;
+    a -= 12;
+    a*= 15;
+    console.log(a);
+</code>
+</pre>
+
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //COMMENTS
+    // 
+    /**/
+    
+</code>
+</pre>
+
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //SHOW DATA
+    console.log();
+    alert();
+    prompt(); //requerir info
+    document.write();
+    
+</code>
+</pre>
+
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //DATA TYPES
+    // undefined, null, boolean, string, symbol, number and object
+    
+</code>
+</pre>
+
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //VARIABLES
+    // var, let, const
+
+    var a;// Declaration
+    var b = 2; //Assignment  
+    
+</code>
+</pre>
+
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //QUOTES
+    var myStr = "I am a \"double quoted\" string inside double quotes with a backlash (\\)";
+    var myStr2 = "I am a 'single quoted' string inside double quotes";
+    console.log("Quotes: " + myStr + ' \n'+myStr2);
+
+    ESCAPE SEQUENCES
+    \'  single quote
+    \"  double quoute
+    \\  backslash
+    \n  new line
+    \r  carriage return
+    \t  tab
+    \b  backspace
+    \f  form feed
+
+    var mensaje = "Hola Mundo! \n Qué facil es incluir \'comillas simples\' \n y \"comillas dobles\" ";
+    Para incluir...       Se debe incluir...
+    Una nueva línea           \n
+    Un tabulador              \t
+    Una comilla simple        \'
+    Una comilla doble         \"
+    Una barra inclinada       \\
+    
+    var backSlash = "FirstLine\n\t\\Second Line\nThirdLine";
+    console.log("Escape Sequences: " +backSlash);
+</code>
+</pre>
+
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //CONCATENATE
+    var concatenate1 = "Hello";
+    var concatenate2 = ", how are you Mike?";
+    var concatenate3 = "I thought";
+    concatenate3 += " you were on holidays !";
+    console.log("Concatenate: + and also += \n" + concatenate1 + ' ' + concatenate2 +"\n" + concatenate3);
+</code>
+</pre>
+
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //FUNCTIONS
+    //LENGHT
+    var longitud = "Hola como estas?";
+    console.log(longitud + ' .lenght: ' + longitud.length);
+
+    FIND LAST CHARACTER
+    var lastCharacterName = "Alberto";
+    var lastCharacter = lastCharacterName[lastCharacterName.length - 1];
+    console.log("last character of Alberto: " + lastCharacter + "\n lastCharacterName[lastCharacterName.lenght-1]");
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //FUNCTIONS string
+    // Tipo String
+    var txt = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";		// crea una cadena de caracteres
+    var sln = txt.length;						// largo de la cadena
+    "Candy".length;
+    "Estoy escribiendo código como un genio".length > 10;  	// Devuelve true
+    
+    //Cada caracter en la cadena está numerado comenzando desde 0, substring devuelve una subcadena
+    "milanesas".substring(3,7);             //"anes"
+    console.log("Enero".substring(0,3));	
+    String(true);               			//convierte a string el contenido del parentesis
+    var text2 = text1.toUpperCase(); 		//convierte a string a mayúsculas
+    var text2 = text1.toLowerCase(); 		 //convierte a string a minúsculas
+    var str="Hola";
+    str.charAt(0);             				//devuelve el carácter en la posición especificada
+    str.charCodeAt(0);         				//devuelve el unicode del caracter en un índice especificado en una cadena
+   
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //FUNCTIONS NUMERIC
+    Number()   
+    parseFloat()   
+    parseInt()   
+</code>
+</pre>
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Svg</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+    </a>
+    <h1 class="title_template">CSS - SVG</h1>
+    <h4>Links</h4>
+    <ul>
+        <li class="link_list"><a href="https://css-tricks.com/using-svg/" class="link_file" target="_Blank">CSS Tricks</a></li>
+        <li class="link_list"><a href="https://www.w3schools.com/graphics/svg_intro.asp" class="link_file" target="_Blank">SVG Tutorial W3Schools</a></li>
+    </ul>
+
+        
+<div class= "code_container">
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+    // SVG
+    &lt;img src=&quot;kiwi.svg&quot; alt=&quot;Kiwi standing on oval&quot;&gt;
+
+    background: url(kiwi.svg); /*As Background*/
+
+    body {
+        background: url(fallback.png);
+        background-image: url(image.svg), none;
+      }
+
+    &lt;svg ...&gt;
+    &lt;ellipse class=&quot;ground&quot; .../&gt;
+    &lt;path class=&quot;kiwi&quot; .../&gt;
+    &lt;/svg&gt;
+    .kiwi {
+    fill: #94d31b; 
+    }
+    .kiwi:hover {
+    fill: #ace63c; 
+    }
+
+    php echo file_get_contents("kiwi.svg");
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    // EXAMPLES
+    &lt;svg width=&quot;100&quot; height=&quot;100&quot;&gt;
+    &lt;circle cx=&quot;50&quot; cy=&quot;50&quot; r=&quot;40&quot; stroke=&quot;green&quot; stroke-width=&quot;4&quot; fill=&quot;yellow&quot; /&gt;
+    &lt;/svg&gt;
+
+    &lt;svg width=&quot;300&quot; height=&quot;200&quot;&gt;
+    &lt;polygon points=&quot;100,10 40,198 190,78 10,78 160,198&quot;
+    style=&quot;fill:lime;stroke:purple;stroke-width:5;fill-rule:evenodd;&quot; /&gt;
+    &lt;/svg&gt;
+
+
+    &lt;svg height=&quot;130&quot; width=&quot;500&quot;&gt;
+    &lt;defs&gt;
+        &lt;linearGradient id=&quot;grad1&quot; x1=&quot;0%&quot; y1=&quot;0%&quot; x2=&quot;100%&quot; y2=&quot;0%&quot;&gt;
+        &lt;stop offset=&quot;0%&quot; style=&quot;stop-color:rgb(255,255,0);stop-opacity:1&quot; /&gt;
+        &lt;stop offset=&quot;100%&quot; style=&quot;stop-color:rgb(255,0,0);stop-opacity:1&quot; /&gt;
+        &lt;/linearGradient&gt;
+    &lt;/defs&gt;
+    &lt;ellipse cx=&quot;100&quot; cy=&quot;70&quot; rx=&quot;85&quot; ry=&quot;55&quot; fill=&quot;url(#grad1)&quot; /&gt;
+    &lt;text fill=&quot;#ffffff&quot; font-size=&quot;45&quot; font-family=&quot;Verdana&quot; x=&quot;50&quot; y=&quot;86&quot;&gt;SVG&lt;/text&gt;
+    Sorry, your browser does not support inline SVG.
+    &lt;/svg&gt;
+</code>
+</pre>
+
+</div>
+</div>
+
+    <svg width="100" height="100">
+    <circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
+    </svg>
+
+    <svg width="400" height="100">
+    <rect width="400" height="100" style="fill:rgb(0,0,255);stroke-width:10;stroke:rgb(0,0,0)" />
+    </svg>
+
+    <svg width="400" height="180">
+    <rect x="50" y="20" rx="20" ry="20" width="150" height="150"
+    style="fill:red;stroke:black;stroke-width:5;opacity:0.5" />
+    </svg>
+
+    <svg width="300" height="200">
+    <polygon points="100,10 40,198 190,78 10,78 160,198"
+    style="fill:lime;stroke:purple;stroke-width:5;fill-rule:evenodd;" />
+    </svg>
+
+    <svg height="130" width="500">
+    <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" style="stop-color:rgb(255,255,0);stop-opacity:1" />
+        <stop offset="100%" style="stop-color:rgb(255,0,0);stop-opacity:1" />
+    </linearGradient>
+    </defs>
+    <ellipse cx="100" cy="70" rx="85" ry="55" fill="url(#grad1)" />
+    <text fill="#ffffff" font-size="45" font-family="Verdana" x="50" y="86">SVG</text>
+    <!-- Sorry, your browser does not support inline SVG. -->
+    </svg>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

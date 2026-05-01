@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySQL Insert/Update</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+    </a>
+    <h1 class="title_template">MySQL - INSERT/UPDATE</h1>
+    <h4>Links</h4>
+    <ul>
+        <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+    </ul>
+
+        
+<div class= "code_container">
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-sql" spellcheck="false">
+    // INSERT 
+    INSERT INTO Alumnos VALUES(1, "Antonio"); //Si vamos a insertar datos en todas las columnas de la tabla en el orden correcto
+    INSERT INTO Alumnos (id, Nombre) VALUES(1, "Antonio"); //Si solo ponemos datos en ciertas columnas
+
+</code>
+</pre>
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-sql" spellcheck="false">
+    // UPDATE USAR EL WHERE !  Si no, se cambia a todos los elementos de la tabla !
+    UPDATE Alumno SET  nombre ='Jose' , apellidos = 'CAMBIADO', notamedia = (SELECT AVG(nota*1.0) FROM Nota WHERE nota.idAlumno = alumno.idAlumno)
+    WHERE idAlumno  = 1;
+
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

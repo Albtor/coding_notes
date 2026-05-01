@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Inner Classes</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVA INNER CLASSES</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //INNER CLASES
+    /*
+    * INNER CLASES
+    * In Java, it is also possible to nest classes (a class within a class). 
+    * The purpose of nested classes is to group classes that belong together, 
+    * which makes your code more readable and maintainable.
+    */
+
+    public class InnerClasses {
+
+        public InnerClasses() {
+            OuterClass myOuter = new OuterClass();
+            OuterClass.InnerClass myInner = myOuter.new InnerClass();
+            System.out.println(myInner.y + myOuter.x);
+        }
+
+    }
+
+    //CLASS WITH INNER CLASS
+    class OuterClass {
+        int x = 10;
+
+        class InnerClass {
+            int y = 5;
+        }
+    }
+
+    //PRIVATE OR PROTECTED INNER CLASSES
+    class OuterClass2 {
+    int x = 10;
+
+    private class PrivateInnerClass {
+        int y = 5;
+    }
+    
+    protected class ProtectedInnerClass {
+        int y = 5;
+    }
+    }
+
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

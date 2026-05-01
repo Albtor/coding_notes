@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP Navigate Data</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">PHP NAVIGATE DATA</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="https://stackoverflow.com/questions/871858/php-pass-variable-to-next-page" class="link_file" target="_Blank">Stack Overflow</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+
+<!-- PHP -->
+<pre class="prettyprint">
+<code class="language-php" spellcheck="false">
+    //PHP &lt;
+    &lt;a href=&quot;&lt;?php echo URL_BASE ?&gt;/productos/unproducto.php?id=&lt;?php echo $producto['id_producto'] ?&gt;&quot; class=&quot;btn-verProducto&quot;&gt;Ver&lt;/a&gt;
+
+    href="productos/unproducto.php?id=2323" (Por ej: incluyendo con un php echo: $producto['id_producto']  ) . Se debe establecer dinámicamente
+</code>
+</pre>
+
+
+<!-- PHP -->
+<pre class="prettyprint">
+<code class="language-php" spellcheck="false">
+    //PHP SESSION &lt;
+    //On page 1
+    $_SESSION['varname'] = $var_value;
+
+    //On page 2
+    $var_value = $_SESSION['varname'];
+</code>
+</pre>
+
+<!-- PHP -->
+<pre class="prettyprint">
+<code class="language-php" spellcheck="false">
+    //PHP COOKIES &lt;
+    //One page 1
+    $_COOKIE['varname'] = $var_value;
+
+    //On page 2
+    $var_value = $_COOKIE['varname'];
+</code>
+</pre>
+
+<!-- PHP -->
+<pre class="prettyprint">
+<code class="language-php" spellcheck="false">
+    //PHP GET AND POST &lt;
+    &lt;a href=&quot;page2.php?varname=&lt;?php echo $var_value ?&gt;&quot;&gt;Page2&lt;/a&gt;
+    //Using GET
+    $var_value = $_GET['varname'];
+
+    //Using POST
+    &lt;form method=&quot;get&quot; action=&quot;page2.php&quot;&gt;
+    &lt;input type=&quot;hidden&quot; name=&quot;varname&quot; value=&quot;var_value&quot;&gt;
+    &lt;input type=&quot;submit&quot;&gt;
+    &lt;/form&gt;
+    $var_value = $_POST['varname'];
+</code>
+</pre>
+
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

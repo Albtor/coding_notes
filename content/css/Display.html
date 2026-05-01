@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Display</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+    </a>
+    <h1 class="title_template">CSS - DISPLAY</h1>
+    <h4>Links</h4>
+    <ul>
+        <li class="link_list"><a href="#" class="link_file"></a></li>
+    </ul>
+
+        
+<div class= "code_container">
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+    // DISPLAY
+    display: block; //div, p, h1 . It Takes the whole line OF ITS PARENT ! doesn't have elements right or left
+    By default takes 100% widht of parent and height of content. 
+    display: inline; //a, span, img - No toma widht o height. Minimum space necessary. don't accept height values
+    display: inline-block; //Si acepta width o height, can have elements  right or left. Width content, better height? margin and padding
+    display: none; //dissapears but doesnt leave empty space, other elements take the space
+    display: flex; inline-flex;
+    display: grid; subgrid
+    display: flot; flow-root;
+    display: contents; table; inline-table; list-item, run-in,table-cell
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+    // UNITS
+    In forms, label {display: blocK;} para evitar que se pongan al lado unos de otros
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+    // DIFFERENCE BETWEEN DISPLAY NONE AND VISIBILITY HIDDEN
+    display:none means that the tag in question will not appear on the page at all (although you can still interact with it through the dom). There will be no space allocated for it between the other tags.
+    visibility:hidden means that unlike display:none, the tag is not visible, but space is allocated for it on the page. The tag is rendered, it just isn't seen on the page.
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

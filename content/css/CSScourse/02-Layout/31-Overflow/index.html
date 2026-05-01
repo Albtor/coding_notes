@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>31-Overflow</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  
+  <h1>Overflow</h1>
+  <ul>
+    <li>overflow: default is visible</li>
+    <li>hidden, auto, scroll</li>
+    <li>auto hides the scroll bars if not needed</li>
+    <li>overflow-x & overflow-y hidden if you want to hide specific scroll bar</li>
+    <li>if it is in auto and you have a long string</li>
+  </ul>
+
+  <div class="container">
+
+  <div class="block">
+    <h3>Overflow: visible</h3>
+  <div class="parent parent-default">
+    
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam, minima quos? In cum sint cupiditate reiciendis aperiam officia magni cumque.
+  </div>
+</div>
+
+  <div class="block">
+  <h3>Overflow: hidden</h3>
+  <div class="parent parent-hidden">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam, minima quos? In cum sint cupiditate reiciendis aperiam officia magni cumque.
+  </div>
+</div>
+
+  <div class="block">
+    <h3>Overflow: scroll.</h3>
+  <div class="parent parent-scroll">
+    
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam, minima quos? In cum sint cupiditate reiciendis aperiam officia magni cumque.
+  </div>
+</div>
+
+<div class="block">
+  <h3>Overflow: scroll. overflow-x: hidden</h3>
+<div class="parent parent-scroll2">
+  
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam, minima quos? In cum sint cupiditate reiciendis aperiam officia magni cumque.
+</div>
+</div>
+
+<div class="block">
+  <h3 class="title">Overflow: auto.</h3> <span>Scroll bar dissapears if not needed. in this case the x bar</span> 
+<div class="parent parent-scroll_auto">
+  
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam, minima quos? In cum sint cupiditate reiciendis aperiam officia magni cumque.
+</div>
+</div>
+
+</div>
+</body>
+</html>

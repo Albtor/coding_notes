@@ -1,0 +1,57 @@
+/* GENERAL TRANSITION */
+
+* {
+    box-sizing: border-box;
+}
+
+.body {
+    min-height: 100vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.btn {
+    border: none;
+    outline: none;
+    background-color: hsl(200,100%,50%);
+    padding: .5rem 1rem;
+    width: 40%;
+    margin: 1rem;
+    color: white;
+    border-radius: .3em;
+    cursor: pointer;
+}
+
+.btn-hide {
+    opacity: .7;
+    transition: opacity .5s ease-out;
+}
+
+.btn-hide:hover {
+    opacity: 1;
+}
+
+.btn-hide:focus {
+    opacity: 0;
+}
+
+.btn-color {
+    transition: background-color .5s ease-in,
+                color .5s ease-in-out;
+}
+
+
+
+.btn-color:focus {
+    background-color: hsl(20,100%, 50%);
+    color: black;
+    outline: 1px solid transparent;
+    
+}
+

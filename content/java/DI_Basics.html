@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java DI Basics</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVA DI BASICS</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //Make other Screens visible after pressing a button
+    Agregar agregar = new Agregar();
+    agregar.setVisible(true);
+</code>
+</pre>
+    
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //Modify elements
+    jTextFieldDni.setText(dni);
+    jTextFieldDni.setFocusable(false);
+    jTextFieldSalarioAnual.requestFocus();
+    jComboBoxConversor.addActionListener(new Listener());
+    jTextFieldDolares.setEditable(false);
+
+    jTextFieldEuros.getText()
+</code>
+</pre>
+
+
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //MODAL
+    Modal mo = new Modal();
+    mo.setVisible(true);
+    frameModal();
+
+    //NO MODAL
+    NoModal mo = new NoModal();
+    mo.setVisible(true);
+</code>
+</pre>
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //JTABLE
+    private void inicializarTabla(){
+        DefaultTableModel dtm = new DefaultTableModel();
+        dtm.setColumnIdentifiers(new String[]{"Nombre","Tipo","Cantidad","Tienda"});
+        jTableStock.setModel(dtm);
+    }
+</code>
+</pre>
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //JSPINNER
+    private void inicializarJSpinner(ArrayList data){
+        SpinnerModel model = new SpinnerListModel(data);
+        jSpinnerAlumnos.setModel(model);
+        jSpinnerAlumnos.setValue(primero());
+    }
+</code>
+</pre>
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

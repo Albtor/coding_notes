@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Media</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+        </a>
+        <h1 class="title_template">HTML - Media</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- HTML -->
+
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //IMAGES
+    &lt;img src=&quot;img/ballon.jpg&quot; srcset=&quot;img/big.jpg 2x, img/small.jpg 1x&quot; /&gt; 
+    &lt;img src=&quot;img/ballon.jpg&quot; srcset=&quot;img/big.jpg 2000w , img/small.jpg 1000w&quot; sizes=&quot;(min-width:960px) 960px,100vw&quot; /&gt;
+
+    //srcset: 
+    &lt;img srcset=&quot;
+    examples/images/image-384.jpg 1x, 
+    examples/images/image-768.jpg 2x
+    &quot; alt=&quot;&hellip;&quot;&gt;
+
+    &lt;img
+    sizes=&quot;(min-width: 400px) 80vw, 100vw&quot;
+    srcset=&quot;examples/images/small.jpg 375w,
+    examples/images/big.jpg 1500w&quot;
+    alt=&quot;&hellip;&quot;&gt;
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //PICTURE 
+    &lt;picture&gt;
+    &lt;source srcset=&quot;extralarge.jpg&quot; media=&quot;(min-width: 1000px)&quot;&gt;
+    &lt;source srcset=&quot;large.jpg&quot; media=&quot;(min-width: 800px)&quot;&gt;
+    &lt;img srcset=&quot;medium.jpg&quot; alt=&quot;&hellip;&quot;&gt;
+    &lt;/picture&gt;
+
+    SrcSet: change img source depending on your page width
+    &lt;picture&gt;
+    &lt;source media=&quot;(max-width: 799px)&quot; srcset=&quot;elva-480w.jpg&quot;&gt;
+    &lt;source media=&quot;(min-width: 800px)&quot; srcset=&quot;elva-800w.jpg&quot;&gt;
+    &lt;img src=&quot;elva-800w.jpg&quot;&gt;
+    &lt;/picture&gt;
+</code>
+</pre>
+
+
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //CANVAS
+    &lt;canvas id=&quot;myCanvas&quot; width=&quot;200&quot; height=&quot;100&quot; style=&quot;border:1px solid #000000;&quot;&gt;
+    &lt;/canvas&gt; //Create Graphics via Javascript
+</code>
+</pre>
+
+
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //VIDEO
+    &lt;video width=&quot;320&quot; height=&quot;240&quot; controls autoplay muted&gt;
+    &lt;source src=&quot;movie.mp4&quot; type=&quot;video/mp4&quot;&gt;
+    &lt;source src=&quot;movie.ogg&quot; type=&quot;video/ogg&quot;&gt;
+    Your browser does not support the video tag.
+    &lt;/video&gt;
+    
+</code>
+</pre>
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+    //iFRAME
+    &lt;div class=&quot;videoWrapper&quot;&gt;
+    &lt;iframe width=&quot;560&quot; height=&quot;349&quot; src=&quot;http://www.youtube.com/embed/n_dZNLr2cME?rel=0&amp;hd=1&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+    &lt;/div&gt;
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //IFRAME YOUTUBE
+    &lt;iframe width=&quot;420&quot; height=&quot;315&quot;
+    src=&quot;https://www.youtube.com/embed/tgbNymZ7vqY&quot;&gt;
+    &lt;/iframe&gt;
+    &lt;iframe width=&quot;420&quot; height=&quot;315&quot;
+    src=&quot;https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1&amp;mute=1&quot;&gt;
+    &lt;/iframe&gt;
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //AUDIO
+    &lt;audio controls autoplay muted&gt;
+    &lt;source src=&quot;horse.ogg&quot; type=&quot;audio/ogg&quot;&gt;
+    &lt;source src=&quot;horse.mp3&quot; type=&quot;audio/mpeg&quot;&gt;
+    Your browser does not support the audio element.
+    &lt;/audio&gt;
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

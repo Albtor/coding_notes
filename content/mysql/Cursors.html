@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySQL Cursors</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+    </a>
+    <h1 class="title_template">MySQL - CURSORS</h1>
+    <h4>Links</h4>
+    <ul>
+        <li class="link_list"><a href="#" class="link_file" target="_Blank">Link</a></li>
+    </ul>
+
+        
+<div class= "code_container">
+
+<!-- MYSQL -->
+<pre class="prettyprint">
+<code class="language-sql" spellcheck="false">
+    // CURSORES 
+
+    CREATE PROCEDURE SP_FILA_A_FILA 
+    AS
+    set nocount on /* No sale mensaje de numero de filas afectadas */
+    
+        Declare @nom varchar(50)
+        Declare @ape varchar(50)
+    
+    declare Mi_Cursor CURSOR /* Declaracion del cursor */
+    
+    FOR select nombre,apellidos FROM alumno FOR READ ONLY
+    
+    OPEN Mi_Cursor /* abrimos el cursor para trabajar con él */
+    /* trabajamos con el cursor fila a fila */
+    /* 1º obtener la 1ª fila */
+    FETCH NEXT FROM Mi_cursor INTO @nom,@ape
+    
+    WHILE @@FETCH_STATUS = 0 /* Todo va bien */
+    
+    begin
+        print @ape
+        FETCH NEXT FROM Mi_Cursor INTO @nom,@Ape
+    end
+    
+    CLOSE Mi_Cursor
+    
+    open Mi_Cursor /* Abro y cierro tantas veces quiera, hasta que lo liquido con
+    Deallocate */
+    
+    close Mi_cursor
+    
+    DEALLOCATE Mi_cursor
+    
+    
+    EXECUTE SP_FILA_A_FILA
+
+</code>
+</pre>
+
+
+<!-- MYSQL -->
+<pre class="prettyprint">
+<code class="language-sql" spellcheck="false">
+    // CURSORES II SUBIDAS PRECIOS
+    CREATE TABLE producto 
+    (
+        idProducto int primary key,
+        nombre varchar(100)
+    )
+    go
+    insert into producto values (1,'Manzana')
+    insert into producto values (2,'Plantano')
+    insert into producto values (3,'Pera')
+    go
+    
+    create table precios
+    (
+        idPrecio bigint identity,
+        idProducto int references producto(idProducto), -- foreign key
+        fecha date,
+        precio money
+    )
+    go
+    delete from precios
+    insert into precios(idProducto,fecha,precio) values ( 1,'20191030',$5.6)
+    insert into precios(idProducto,fecha,precio) values ( 1,'20191115',$4.6)
+    insert into precios(idProducto,fecha,precio) values ( 1,'20201230',$5.8)
+    insert into precios(idProducto,fecha,precio) values ( 1,'20210103',$5.7)
+    go
+    /*
+        Nos da los incrementos/decrementos de precios del producto que le digamos.
+    */
+    alter  procedure spEvolucionPrecios  @idProducto int
+    as
+        declare @fecha date
+        declare @valor money
+        declare @valorAnterior money
+        declare @incremento decimal(6,2)
+    
+        set @valorAnterior=null
+        set @incremento=null
+    
+        create table #tmpPrecios 
+        (
+        id bigint identity primary key,
+        fecha date,
+        precioAnterior money,
+        precioNuevo money, 
+        incremento decimal(6,2)
+        )
+    
+    
+        declare  crRecorrerPrecios cursor for select fecha,precio from precios where idProducto=@idProducto 
+                                                order by fecha
+        open crRecorrerPrecios
+        fetch crRecorrerPrecios into @fecha,@valor -- intentamos leer la primera fila
+        while @@FETCH_STATUS = 0 -- mientras hayamos leido algo...
+        begin
+            -- usamos los valores obtenidos
+            if @valorAnterior is not null
+                begin		    	   
+                    set @incremento= 100* (@valor - @valorAnterior) /@valorAnterior   -- falta el caso de valoranterior = 0
+                end
+            insert into #tmpPrecios (fecha,precioAnterior,precioNuevo,incremento) values 
+                                    (@fecha,@valorAnterior,@valor,@incremento)
+    
+            set @valorAnterior=@valor
+    
+            fetch crRecorrerPrecios into @fecha,@valor -- vamos a por la siguiente fila
+        end
+        select fecha,precioAnterior,PrecioNuevo,Incremento from #tmpPrecios
+        drop table #tmpPrecios
+    
+    
+        close crRecorrerPrecios
+        deallocate crRecorrerPrecios
+    go
+    
+        execute spEvolucionPrecios 1
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySQL FUNCTIONS</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+    </a>
+    <h1 class="title_template">MySQL - FUNCTIONS</h1>
+    <h4>Links</h4>
+    <ul>
+        <li class="link_list"><a href="#" class="link_file" target="_Blank">Link</a></li>
+    </ul>
+
+        
+<div class= "code_container">
+
+<!-- MySQL -->
+<pre class="prettyprint">
+<code class="language-sql" spellcheck="false">
+    // FUNCTIONS
+
+    //--Se encuentra en Programacion Funciones, Escalares (solo un valor, no tabla)
+    CREATE FUNCTION dameLaMedia(@id int) returns flota
+    AS
+        BEGIN
+        declare @media float;
+        set @media = (SELECT AVG(nota*1.0) FROM Nota WHERE idAlumno = @id)
+        END
+    GO
+    
+    SELECT nombre, apellidos, dbo.dameLaMedia (idAlumno) from Alumno;
+    
+    
+    GO
+    //--hacer consulta sql que me de la relacion de alumnos del 811ma con su nota media calculada mediante una función
+    CREATE FUNCTION nMedia (@id INT) RETURNS float
+    AS
+    
+    BEGIN
+        DECLARE @nmedia float 
+        set @nMedia= (SELECT AVG(Nota*1.0) FROM Nota WHERE idAlumno = @id)
+        return @nmedia
+    END
+    
+    GO
+    
+    SELECT nombre, apellidos, dbo.nMedia (idAlumno) AS 'Nota Media' FROM ALUMNO A WHERE idGrupo = '811nma'
+    
+    SELECT nombre, apellidos, dbo.nMedia (idAlumno) AS 'Nota Media' FROM alumno WHERE dbo.nMedia(idAlumno) between 5 and 8
+    
+    
+    //--FUNCIONES TABLA
+    //--vista con parámetros
+    
+    GO
+    
+    create FUNCTION AlumnosDeUnGrupo (@codGrupo char(6)) returns TABLE -- // DEVUELVE TABLA
+    as
+    
+    RETURN select idGrupo,apellidos,nombre from alumno where idgrupo = @codGrupo
+    
+    go
+    
+    SELECT * from AlumnosDeUnGrupo('913nma')
+    
+    //--SELECT * FROM ALUMNOSDeUnGrupo('811nma'),alumnonota where alumnosDeUngrupo.codigo=alumnonota.codigoalumno
+    
+    GO
+    
+    DECLARE @tabla TABLE( id INT, nombre varchar(100))
+    
+    INSERT INTO @tabla values (1, 'hola')
+    INSERT INTO @tabla values (2, 'adios')
+    
+    SELECT * FROM @tabla
+    
+    GO
+    
+    
+    
+    create function AlumnosDeBonitos( @codGrupo char(6)) returns @NombreTabla TABLE ( campo1 int, campo2 varchar(100) )--- se especifica la tabla que va a devolver 
+    
+    as
+    
+    BEGIN
+        insert into @NombreTabla select top 3 idAlumno,apellidos+' '+nombre from alumno where idgrupo = @codGrupo
+        insert into @nombretabla values (999,'ULTIMO***') -- Debemos insertar en ella
+        return
+    END
+    go
+    
+    SELECT * FROM AlumnosDeBonitos('811nma')
+    
+    
+    
+    //--EJERCICIOS
+    //--Listado de grupos con sus tutores. (escalar) Funcion que da tutor de un grupo
+    GO
+    CREATE OR ALTER FUNCTION GruposYTutores (@idGrupo VARCHAR(10)) RETURNS varchar(50)
+    AS
+    
+    BEGIN
+        DECLARE @tutor VARCHAR(50) 
+        set @tutor = (SELECT P.Nombre FROM Profesor P INNER JOIN Grupo G on P.idProfesor = G.idProfesorTutor WHERE G.idGrupo = @idGrupo)
+        if (@tutor is null)
+        BEGIN	
+            SET @tutor = 'No hay profesor'
+        END
+        return @tutor
+    END
+    
+    GO
+    
+    SELECT idGrupo, idProfesorTutor, dbo.GruposYTutores(idGrupo) AS 'Nombre Profesor' FROM Grupo 
+    
+    
+    //--Listado de profesores con numero de asignaturas distintas que imparte. Hacer 2 versiones:
+    create function fTablaAsg ( @idProfe tinyint) returns table 
+    as
+       return select distinct idAsignatura from AsignaturasGrupo where idProfesor=@idProfe
+    
+    go
+    
+    select idProfesor,nombre , (select COUNT(*) from dbo.fTablaAsg(profesor.idProfesor) AG) 
+    from profesor
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

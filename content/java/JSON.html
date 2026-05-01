@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Json</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVA JSON</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //LEER JSON VARIOS OBJETOS Se crea una clase con listas
+    public class LeerJSONVariosObjetos {
+
+        public ArrayList&lt;ClienteJson2> nuevosClientes; //clientes a insertar, OJO Clase ClienteJson2 !!!
+        public String visualizar; //consulta para SQL
+    
+        public LeerJSONVariosObjetos() {
+        }
+    
+        void show() {
+            for (int i = 0; i &lt; nuevosClientes.size(); i++) {
+                mostrarCliente((ClienteJson2) nuevosClientes.get(i)); //llamo al metodo para cada objeto persona de la lista
+            }
+            System.out.println("Visualizar: " + visualizar);
+        }
+    
+        //Metodo para mostrar un objeto Cliente
+        private void mostrarCliente(ClienteJson2 cliente) {
+            System.out.println("Nombre: " + cliente.getNombre() + "\tId: " + cliente.getId() + "\tSaldo: " + cliente.getSaldo());
+    
+        }
+    
+    }
+    
+</code>
+</pre>
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //CLIENTE PARA JSON
+    public class ClienteJson2  implements java.io.Serializable {
+
+        private int id;
+        private String nombre;
+        private Double saldo;
+   
+       public ClienteJson2() {
+       }
+   
+       
+       public ClienteJson2(int id) {
+           this.id = id;
+       }
+       public ClienteJson2(int id, String nombre, Double saldo) {
+          this.id = id;
+          this.nombre = nombre;
+          this.saldo = saldo;
+       }
+      
+       public int getId() {
+           return this.id;
+       }
+       
+       public void setId(int id) {
+           this.id = id;
+       }
+       public String getNombre() {
+           return this.nombre;
+       }
+       
+       public void setNombre(String nombre) {
+           this.nombre = nombre;
+       }
+       public Double getSaldo() {
+           return this.saldo;
+       }
+       
+       public void setSaldo(Double saldo) {
+           this.saldo = saldo;
+       }
+   
+   
+   
+   
+   }
+   
+   
+   
+</code>
+</pre>
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //JAVA &lt;
+    
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

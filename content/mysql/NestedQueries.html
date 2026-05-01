@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySQL Nested Queries</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+    </a>
+    <h1 class="title_template">MySQL - NESTED QUERIES</h1>
+    <h4>Links</h4>
+    <ul>
+        <li class="link_list"><a href="CREATE_INSERT_BDAlumnos.sql" class="link_file" target="_Blank">DB SQL ALUMNOS</a></li>
+    </ul>
+
+        
+<div class= "code_container">
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-sql" spellcheck="false">
+    // NESTED QUERIES 
+
+    //--E0-EJEMPLOS
+    SELECT * FROM ALUMNO
+    WHERE 0 = (SELECT COUNT(*) FROM NOTA WHERE NOTA.idAlumno = Alumno.idAlumno);
+    
+    //--EXISTS NOT EXISTS
+    SELECT * FROM ALUMNO
+    WHERE EXISTS (SELECT COUNT(*) FROM NOTA WHERE NOTA.idAlumno = Alumno.idAlumno);
+    
+    --(SELECT algo... ) > (select...) * (Select...)
+    
+    //--ALL ANY SAME
+    SELECT * FROM ALUMNO
+    WHERE 5 > all(SELECT Nota FROM Nota WHERE alumno.idAlumno= nota.idAlumno)
+    
+    //--alumnos que suspenden todo
+    SELECT * FROM ALUMNO 
+    WHERE (SELECT max(nota) FROM Nota WHERE Nota.idAlumno = alumno.idAlumno) < 5
+    --aprueba todo()
+    --5 >= all (todas sus notas)
+    --5 &lt;= (el minimo de las notas)
+    
+    //--Suspenden =?=
+    SELECT Nombre, Apellidos, (SELECT COUNT(*) FROM NOTA WHERE NOTA.idAlumno = Alumno.idAlumno)
+    FROM ALUMNO
+    WHERE (SELECT AVG(Nota) FROM NOTA WHERE NOTA.idAlumno = Alumno.idAlumno) > (SELECT COUNT(*) FROM NOTA WHERE NOTA.idAlumno = Alumno.idAlumno);
+    
+    
+    //--EXPLICACION SUBCONSULTAS
+    /*
+    SELECT (SELEC FROM TABLADECONSULTA) FROM TABLA PRINCIPAL
+    WHERE (SELECT COUNT(*) FRM SUBTABLA WHERE SUBTABLA.IDPRINCIPAL = TABLAPRINCIPAL.IDPRINCIPAL) > 2
+    DENTRO DE UN WHERE PARA CADA FILA
+    DENTRO DE UN HAVING PARA CADA GRUPO
+    
+    SELEC * FROM ALUMNO
+    WHERE (SELECT COUNT(*) FROM NOTA WHERE ALumno.idAlumno = Nota.IdAlumno) > 0
+    
+    SELEC * FROM ALUMNO
+    WHERE EXISTS (SELECT COUNT(*) FROM NOTA WHERE ALumno.idAlumno = Nota.IdAlumno)
+    
+    5>= ALL (SELECT Nota FROM Nota WHERE Alumno.idAlumno = Nota.idAlumno)
+    */
+    
+    //--Alumnos con nota
+    SELECT * FROM Alumno
+    WHERE exists (SELECT * FROM Nota inner join Alumno ON nota.idAlumno = alumno.idAlumno)
+    
+    //--------- EJERCICIOS
+
+    //--E1-Relación de alumnos del 811NMA que tiene al menos una asignatura suspendida 33 filas
+    SELECT * FROM Alumno A
+    WHERE A.idGrupo = '811NMA' AND A.idAlumno IN (SELECT N.idAlumno FROM Nota N WHERE N.Nota &lt; 5);
+    
+    SELECT * FROM Alumno A
+    WHERE A.idGrupo = '811NMA' 
+    AND (SELECT count(*) FROM Nota N WHERE N.idAlumno = A.idAlumno AND Nota &lt; 5) >=1;
+    
+    SELECT * FROM Alumno A
+    WHERE A.idGrupo = '811NMA' AND
+    EXISTS (SELECT * FROM Nota N WHERE N.idAlumno = A.idAlumno AND Nota > 5)
+    
+    SELECT Nombre, Apellidos FROM ALUMNO A
+    INNER JOIN Nota N ON A.idAlumno = N.idAlumno
+    WHERE NOTA &lt; 5
+    GROUP BY nombre, apellidos, N.idAlumno
+    HAVING COUNT(*) > 0
+    
+    SELECT DISTINCT Nombre, Apellidos FROM Alumno A
+    INNER JOIN Nota N ON A.idAlumno = N.idAlumno
+    WHERE Nota &lt; 5 AND idGrupo = '811nma'
+    GROUP BY nombre, apellidos, n.idAlumno
+    
+    SELECT A.idAlumno FROM Alumno A
+    INNER JOIN Nota N ON A.idAlumno = N.idAlumno
+    WHERE A.idGrupo = '811NMA'
+    GROUP BY A.idAlumno
+    HAVING N.Nota &lt; 5
+    
+    
+    //--E2-Relación de alumnos del grupo 811NMA que tiene nota media mayor que la media del grupo.16 filas
+    //--Nota:Por cada nota media de un alumno del 811nma ver que es mayor que la nota media de todas las notas puestas a los alumnos del 811nma.
+    SELECT A.idAlumno, AVG(N.Nota*1.0)  FROM Nota N
+    INNER JOIN Alumno A ON N.idAlumno = A.idAlumno
+    WHERE A.idGrupo = '811NMA'
+    GROUP BY A.idAlumno
+    HAVING AVG(N.Nota*1.0) > (SELECT AVG(Nota*1.0) FROM Nota N INNER JOIN Alumno A ON N.idAlumno = A.idAlumno WHERE A.idGrupo = '811NMA')
+    
+    SELECT * FROM Alumno
+    WHERE 
+    (SELECT AVG(NOTA*1.0) FROM NOTA WHERE NOTA.idAlumno = Alumno.idAlumno)
+    >
+    (SELECT AVG(Nota*1.0) FROM Nota N INNER JOIN Alumno A ON N.idAlumno = A.idAlumno WHERE A.idGrupo = '811NMA')
+    
+    //--E3-Relación de alumnos del 811NMA que tiene al menos una asignatura con un 9 o más. 28 filas
+    SELECT A.idAlumno FROM Nota N
+    INNER JOIN Alumno A ON N.idAlumno = A.idAlumno
+    WHERE A.idGrupo = '811NMA' AND N.idAlumno IN (SELECT idAlumno FROM Nota where Nota >= 9 GROUP BY idAlumno)
+    GROUP BY A.idAlumno;
+    
+    
+    //--E4-Relación de alumnos del grupo 913NMA que no tienen asignaturas. 24 filas
+    SELECT * FROM Alumno A
+    WHERE A.idGrupo = '913NMA' AND A.idAlumno NOT IN (SELECT N.idAlumno FROM Nota N GROUP BY idAlumno)
+    
+    SELECT A.idAlumno, N.idAsignatura FROM Nota N
+    FULL JOIN Alumno A ON N.idAlumno = A.idAlumno
+    WHERE A.idGrupo = '913NMA' AND idAsignatura IS NULL
+    GROUP BY A.idAlumno,  N.idAsignatura
+    
+    SELECT A.idAlumno FROM Nota N
+    FULL JOIN Alumno A ON N.idAlumno = A.idAlumno
+    WHERE A.idGrupo = '913NMA'
+    GROUP BY A.idAlumno
+    HAVING COUNT(N.idAsignatura) &lt;= 0;
+    
+    
+    //--E5-Relación de alumnos del centro cuya nota media sea menor que la media del centro. 454 filas
+    SELECT * FROM ALumno
+    WHERE (SELECT AVG(Nota*1.0) FROM Nota N WHERE Alumno.idAlumno = N.idAlumno) &lt; (SELECT AVG(Nota*1.0) FROM Nota)
+    
+    SELECT A.idAlumno, AVG(N.Nota*1.0) 
+    FROM Nota N
+    INNER JOIN Alumno A
+    ON N.idAlumno = A.idAlumno
+    GROUP BY A.idAlumno
+    HAVING AVG(N.Nota*1.0) &lt; (SELECT AVG(Nota*1.0) FROM Nota N INNER JOIN Alumno A ON N.idAlumno = A.idAlumno)
+    
+    //--E6-Relación de alumnos del centro que no aprueban ninguna asignatura. 4 filas
+    //--Nota: debe tener asignatura y nota suspendida. Los que NO tienen asignaturas no entran en la relación.
+    SELECT * FROM Alumno
+    WHERE --(NO APRUEBA NINGUNA)
+    --A todas sus notas &lt; 5 y tiene nota!!
+    --(not existen >= 5 y existen notas para este alumno)
+    NOT EXISTS (SELECT * FROM Nota WHERE Alumno.idAlumno = Nota.idAlumno AND Nota >= 5)
+    AND EXISTS (SELECT * FROM Nota WHERE Alumno.idAlumno = Nota.idAlumno)
+
+    //--B todas sus notas &lt; 5
+    --(su nota maxima) &lt; 5
+    --(SELECT MAX(Nota) FROM Nota WHERE Alumno.idAlumno = Nota.idAlumno &lt; 5)
+    
+    
+    //--E7-Relación de alumnos del centro que aprueban todas las asignaturas. 7 filas
+    //--Nota: debe tener asignatura y nota aprobada . Los que NO tienen asignaturas no entran en la relación.
+    SELECT * FROM ALUMNO A
+    WHERE EXISTS (SELECT * FROM NOTA N WHERE A.idAlumno = N.idAlumno)
+    AND NOT EXISTS (SELECT * FROM NOTA N WHERE A.idAlumno = N.idAlumno AND Nota &lt; 5)
+    
+    
+    //--E8-Relación de profesores del centro que aprueban a todos los alumnos. 5 Filas
+    SELECT p.nombre FROM Profesor p
+    WHERE exists	(SELECT * FROM AsignaturasGrupo AG   -- tenga notas puestas
+                    inner join alumno A ON AG.idGrupo=A.idGrupo
+                    inner join Nota N ON A.idAlumno = N.idAlumno  and AG.idAsignatura=N.idAsignatura
+                    WHERE AG.idProfesor  = P.idProfesor) 
+          AND Not exists
+             (SELECT * FROM AsignaturasGrupo AG   -- tenga notas puestas
+             inner join alumno A ON AG.idGrupo=A.idGrupo
+             inner join Nota N ON A.idAlumno = N.idAlumno  and AG.idAsignatura=N.idAsignatura
+             WHERE AG.idProfesor  = P.idProfesor and Nota &lt; 5)     
+             
+    //--Con GROUP BY
+    SELECT p.nombre,COUNT(*) [Cantidad notas puestas]  FROM Profesor p
+    inner join  AsignaturasGrupo AG on AG.idProfesor=p.idProfesor
+    inner join alumno A on AG.idGrupo=A.idGrupo
+    inner join Nota N on A.idAlumno = N.idAlumno  and AG.idAsignatura=N.idAsignatura
+    GROUP BY p.Nombre,p.idProfesor     
+    HAVING count(*) =  (SELECT COUNT(*) FROM AsignaturasGrupo AG 
+                        inner join alumno A ON ( AG.idGrupo=A.idGrupo)
+                        inner join Nota N ON ( A.idAlumno = N.idAlumno  and AG.idAsignatura=N.idAsignatura)
+                        WHERE AG.idProfesor  = P.idProfesor and Nota >= 5  )
+     
+     
+    
+    
+    //--E9-Relación de profesores del centro que suspenden a más del 50% de sus alumnos. NOTA más del 50% = más de la mitad. 25 filas
+    //--(Suspenede a mas de la mitad de sus alumnos, (el numero de notas puestas suspendidas > (la mitad de todas las notas que ha puesto)
+    select * from profesor p
+    where  
+    //-- (suspende a mas de la mitad de sus alumnos)
+    // --(el numero de notas puestas suspendidas) > (la mitad de todas las notas que ha puesto)
+    //--(el numero de notas puestas suspendidas) > (todas las notas que ha puesto)/2.0
+     (select count(*) from AsignaturasGrupo ag
+      inner join alumno a on ag.idGrupo=a.idGrupo 
+      inner join nota n on a.idAlumno=n.idAlumno and n.idAsignatura=ag.idAsignatura
+      where ag.idProfesor=p.idProfesor and nota &lt; 5) 
+      >
+    
+      (select count(*) from AsignaturasGrupo ag
+      inner join alumno a on ag.idGrupo=a.idGrupo 
+      inner join nota n on a.idAlumno=n.idAlumno and n.idAsignatura=ag.idAsignatura
+      where ag.idProfesor=p.idProfesor ) /2.0
+    
+    
+    //--E10-Relación de alumnos del grupo 811NMA que suspenden más de 2 asignaturas.  23 filas
+    select apellidos,nombre from Alumno A
+    where   a.idGrupo = '811NMA'  and
+         2 &lt; (  select COUNT(*) from Nota n where a.idAlumno = N.idAlumno and Nota &lt; 5)
+    
+    
+    SELECT N.idAlumno FROM Nota N 
+    INNER JOIN Alumno A ON N.idAlumno = A.idAlumno 
+    WHERE Nota &lt; 5 AND A.idGrupo = '811NMA' 
+    GROUP BY N.idAlumno 
+    HAVING COUNT(N.Nota) >2
+    
+    
+    //--E11-Relación de profesores que no imparten clase.23 filas
+    SELECT * FROM PROFESOR P
+    WHERE NOT EXISTS (SELECT * FROM AsignaturasGrupo WHERE P.idProfesor = AsignaturasGrupo.idProfesor) 
+    
+    //-- usando left join
+    select  p.idProfesor ,p.Nombre
+     from profesor p
+    left join AsignaturasGrupo ag on ( p.idProfesor= ag.idProfesor)
+    where ag.idAsignatura is null
+    
+    
+    
+    -------------------------------------------
+    ------TAREA--------------------------------
+    //--E12-Relación de grupos cuyos alumnos no superen la media del centro. Todos los alumnos del grupo tienen media menor o igual que la media del centro. 16 filas
+    //--RESUELTO PROFE
+    SELECT g.idGrupo FROM grupo g 
+    WHERE Not exists -- no hay 
+        ( SELECT a.idAlumno FROM Alumno a
+            INNER JOIN Nota n ON (a.idAlumno=n.idAlumno)  -- alumno del grupo
+            WHERE   a.idGrupo= g.idGrupo 
+            GROUP BY a.idAlumno 
+            HAVING AVG(cast( Nota as float)) -- su nota media
+                     >     -- sea mayor         
+                    ( SELECT AVG( cast( Nota as float)) FROM Nota ) -- media del centro
+        ) 
+    
+    //--MIO
+    SELECT A.idGrupo, A.totalAlumnos AS TotalAlumnosConNota, B.totalAlumnosQueNoSuperan 
+    
+    FROM (	SELECT idGrupo, totalAlumnos FROM (SELECT A.idGrupo, COUNT(A.idAlumno) AS totalAlumnos FROM Alumno A  
+            WHERE EXISTS (SELECT * FROM Nota WHERE A.idAlumno = Nota.idAlumno)
+            GROUP BY A.idGrupo) AlumnosGrupo) A //--Total alumnos por grupo que tienen nota	
+    INNER JOIN 
+            (SELECT idGrupo, COUNT(idAlumno) AS totalAlumnosQueNoSuperan FROM --Número alumnos del grupo que no superan nota media del centro
+            (SELECT N.idAlumno, A.idGrupo, CAST(AVG(N.Nota*1.0) AS DECIMAL (5,2)) as Nota FROM Nota N INNER JOIN Alumno A ON N.idAlumno = A.idAlumno  //--Listado de alumnos que no superan la media
+            GROUP BY idGrupo, N.idAlumno
+            HAVING CAST(AVG(N.Nota*1.0) AS DECIMAL (5,2)) &lt;= (SELECT CAST(AVG(N.Nota*1.0) AS DECIMAL (5,2)) FROM Nota N)) Malos 
+            GROUP BY idGrupo) B 					
+    ON A.idGrupo = B.idGrupo
+    //--SI SE HACE EL SELECT SIN ESTE ULTIMO "WHERE" DA LA COMPARACIÓN DE TODOS LOS GRUPOS !
+    WHERE A.totalAlumnos = B.totalAlumnosQueNoSuperan;
+    
+    
+    //--E13-¿Cuantos alumnos tienen todo aprobado? 7 filas
+    SELECT count(*) FROM ALUMNO A
+    WHERE EXISTS (SELECT * FROM NOTA N WHERE A.idAlumno = N.idAlumno)
+    AND NOT EXISTS (SELECT * FROM NOTA N WHERE A.idAlumno = N.idAlumno AND Nota &lt; 5)
+    //--tienen notas y todas estan aprobadas
+    
+    SELECT count(*) FROM ALUMNO A
+    WHERE  5 &lt;= (SELECT min(nota) FROM Nota N WHERE A.idAlumno = N.idAlumno);
+    
+    
+    //--ESTA OPCION NO ES MUY ESTANDAR
+    SELECT count(*) FROM
+    (SELECT idAlumno FROM Nota N
+    GROUP BY idAlumno
+    HAVING min(nota) >= 5) TABLA
+    
+
+
+
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git Advanced</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">GIT - ADVANCED</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="https://www.youtube.com/watch?v=6ldPabaV2Xo&ab_channel=GabrielCoding" class="link_file" target="_Blank">Subir a github desde Netbeans</a></li>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- GIT -->
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //GIT 
+    Visual Code con solo una carpeta
+    Abrir Terminal ctrl + ñ
+    git init
+    git add . (Arcihivos pasan de U Unfollow a A added , M Modificaciones)
+    git commit
+    git push origin main // to send to github/gitlab cambiando origin/main si necesario
+    git branch -d branchName 
+    git checkout branchName
+
+    git remote add origin https://github.com/XXXXXXXX
+    git remote add origin2 https://github.com/XXXXXXXX
+
+    git pull: recibir info from github
+
+    git merge nameBranch // git merge test
+    after merge git push origin main // **     and delete the other branch
+</code>
+</pre>
+
+    
+<!-- GIT -->
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //VISUAL CODE VIDEO - GITHUB
+    Asociar repositorio de Github a carpeta en local:
+    Saber la url
+    View > Command palette ctrl shift p
+    Git Clone 
+    introducir URL > autorizar
+    Seleccionar carpeta donde va a estar
+
+    Crear archivo o hacer cambios y subir a github:
+    Ir al menu de source control, introducir mensaje y ctrl + enter o luego commit
+    Ir a 3 puntos Push o abajo a sincronizar
+
+    Tambien en terminal git push
+
+    Cambiar algo en github y que se modifique en local: 
+    Sincronizar: abajo a la izquierda
+
+    Sincronizar:
+    vale tanto si hay cambios en github y se quieren actualizar en local o viceversa
+
+</code>
+</pre>
+
+<!-- GIT -->
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    // MULTIPLE REMOTES
+    Crear repositorio > Opciones quick setup > "push an existing repository from the command line"
+    git remote add origin https://github.com/XXXXXXXX
+    git push origin main
+    
+    git remote add origin2 https://gitlab.com/XXXXX
+    git push origin2 main
+</code>
+</pre>
+<!-- GIT -->
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    // AUTHENTICATION
+    password vs ssh
+
+    git remote -v
+
+    PASSWD - origin https://github.com/Albtor/3dsocialmediaicons.git (fetch) (push) 
+    SSH - origin git@github.com:Albtor/3dsocialmediaicons.git (fetch) (push)
+    
+    CHANGE: git remote set-url origin git@github.com:Albtor/3dsocialmediaicons.git
+    
+</code>
+</pre>
+<!-- GIT -->
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //BRANCHES DESDE GITHUB
+    Github: En Master > Nombre y enter
+    Hacer modificaciones en files y luego eligiendo la rama master
+
+    Merge
+    Open & Pull request
+
+    Despues del merge se puede borrar la rama, se suele hacer desde github
+</code>
+</pre>
+
+<!-- GIT -->
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //GIT FORK
+    Nuevo repositorio
+    Pull Request: Peticion o sugerencia para que vea tu modificación en el proyecto
+    El programador original puede rechazar el pull request de la otra persona, pero también lo puede aceptar e incorporar
+
+    Go to any proyect and click on Fork
+
+    Lo crea en tu perfil, puedes hacer cambios y subirlos.
+
+    Si quieres avisar al programador original, solicitamos pull request
+</code>
+</pre>
+
+<!-- GIT -->
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //GIT NETBEANS
+    versioning
+    realizar cambios y git > commit
+    git > remote > Push
+</code>
+</pre>
+
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

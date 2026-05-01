@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java DI universidad</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVA DI Universidad</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //CONEXION
+    public class Conexion {
+        public Connection con;
+        
+        public  Conexion(){
+            con=null;
+            try{
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/universidad?useSSL=false&useTimezone=true&serverTimezone=UTC","xxxx","xxxx");
+                if (con != null){
+                    System.out.println("Conectado a la BBDD");
+                }
+                
+            }catch (Exception e){
+                System.out.println("Error de conexión");
+                System.err.println("Error:" + e);
+            }
+        }
+        
+    }
+</code>
+</pre>
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //CONTROL
+    public class control {
+
+        public static ArrayList&lt;Integer> insertarIds(){
+            ArrayList&lt;Integer> data = new ArrayList&lt;>();
+            Conexion cn = new Conexion();
+            Statement st;
+            ResultSet rs;
+            Integer count = 0;
+            try{
+                st = cn.con.createStatement();
+                rs = st.executeQuery("SELECT idAlumno FROM alumnos");
+                while (rs.next()) {
+                    Integer ids = rs.getInt("idAlumno");
+                    count += ids;
+                    data.add(ids);
+                }
+                data.add(count);
+               
+                cn.con.close();
+           }catch (SQLException e){
+                System.out.println("Error");
+            }
+         
+            return data;
+        }
+    
+          
+        
+        
+        public static Alumno cargarAlumno(Integer id){
+            Alumno alumno = null;
+            Conexion cn = new Conexion();
+            Statement st;
+            ResultSet rs;
+            try{
+                st = cn.con.createStatement();
+                rs = st.executeQuery("SELECT * from alumnos WHERE idAlumno = "+id+"");
+                
+                while (rs.next()){
+                    alumno = new Alumno(id, rs.getString("dni"), rs.getString("nombre"), rs.getString("apellidos"), Integer.valueOf(rs.getString("edad")));
+                }
+                cn.con.close();
+           }catch (SQLException e){
+                System.out.println("Error");
+            }
+            return alumno;
+        }
+        
+        
+        public static void introducirAlumno(String dni, String nombre, String apellidos, Integer edad){
+            Conexion cn = new Conexion();
+            Statement st;
+            ResultSet rs;
+            try{
+                st = cn.con.createStatement();
+                st.executeUpdate("INSERT into alumnos (dni, nombre, apellidos, edad) VALUES ('"+dni+"','"+nombre+"','"+apellidos+"',"+edad+")");
+                JOptionPane.showMessageDialog(null, "Alumno introducido con éxito");
+                cn.con.close();
+            }catch (SQLException e){
+                System.out.println("Error");
+                JOptionPane.showMessageDialog(null, "No se ha podido introducir el alumno");
+            }
+     
+        }
+        
+        public static void borrarAlumno(Integer id){
+            Conexion cn = new Conexion();
+            Statement st;
+            ResultSet rs;
+            try{
+                st = cn.con.createStatement();
+                st.executeUpdate("DELETE FROM alumnos WHERE idAlumno = "+id+"");
+                JOptionPane.showMessageDialog(null, "Alumno borrado con éxito");
+                cn.con.close();
+            }catch (SQLException e){
+                System.out.println("Error");
+                JOptionPane.showMessageDialog(null, "No se ha podido borrar el alumno");
+            }
+     
+        }
+        
+        public static void modificarAlumno(Integer id, String dni, String nombre, String apellidos, Integer edad){
+            Conexion cn = new Conexion();
+            Statement st;
+            ResultSet rs;
+            try{
+                st = cn.con.createStatement();
+                st.executeUpdate("UPDATE alumnos SET dni = '"+dni+"', nombre = '"+nombre+"', apellidos = '"+apellidos+"', edad = "+edad+" WHERE idAlumno = "+id+"");
+                cn.con.close();
+            }catch (SQLException e){
+                System.out.println("Error");
+                JOptionPane.showMessageDialog(null, "No se ha podido modificar el alumno");
+            }
+     
+        }
+        
+        public static boolean isNumeric(String number){
+            try {
+                Integer years = Integer.parseInt(number);
+                if(years > 0){
+                    System.out.println("True");
+                return true;
+                }else {
+                    System.out.println("False");
+                return false;
+                    
+                }
+                
+        } catch (NumberFormatException e){
+                return false;
+        }
+    
+        }
+        
+        //Con este metodo verificamos si los campos de dni, nombre y apellidos están vacios
+        public static boolean verificarCampos(String dni, String nombre, String apellidos){
+                if (dni.isEmpty() || nombre.isEmpty() || apellidos.isEmpty()){
+                return false;
+                }else {
+                return true;
+                }
+            
+        }
+        
+        
+        
+    }
+    
+</code>
+</pre>
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //JAVA &lt;
+    Agregar
+    Listar
+    modificar
+    Borrar
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

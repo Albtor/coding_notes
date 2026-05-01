@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP DB Connection</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">PHP DB CONNECTION</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+
+<!-- PHP -->
+<pre class="prettyprint">
+<code class="language-php" spellcheck="false">
+    //PHP DB CONNECTION LOCAL
+
+    function conecta(){
+        $host_name = 'localhost';
+        $database = 'baseDatos';
+        $user_name = 'root';
+        $password = '';
+        $connect = mysqli_connect($host_name, $user_name, $password, $database); //funcion que permite conectar con DDBB
+
+        if(mysqli_connect_errno()){
+            die('&lt;p&gt;Error al conectar al servidor de MySQL: '.mysqli_connect_error().'&lt;/p&gt;');
+        }else{
+            //echo '&lt;p class=&quot;conexion&quot;&gt;Se ha establecido la conexi&oacute;n al servidor MySQL !!&lt;/p&gt;';
+            return $connect;
+        }
+    }
+
+</code>
+</pre>
+
+<!-- PHP -->
+<pre class="prettyprint">
+<code class="language-php" spellcheck="false">
+    //PHP  &lt;
+
+    // Conectar con una Base de datos
+// Definir las variables de conexión
+	$servidorBD = "localhost";  
+    $usuarioBD = "root";                     
+    $passwordBD = "";                             
+    $nombreBD = "Espana";                      
+ // Crear la conexión exclusivamente sin el nombre de la BD
+    $conexion = mysqli_connect($servidorBD, $usuarioBD, $passwordBD);
+
+    //Otra forma
+    if (mysqli_connect_errno()){
+        echo "Error de conexión con la Base de Datos";
+        exit();
+    }
+
+    mysqli_select_db($conexion, $nombreBD) or die ("No se encuentra la basede datos");
+
+    mysqli_set_charset($conexion, "utf8");		// Permite que se vean loas acentos y otros caracteres especiales
+ //  crea una consulta
+    $consulta= "SELECT * FROM COMUNIDADES";
+    $resultado= mysqli_query($conexion, $consulta);
+
+    $fila= mysqli_fetch_row($resultado);
+    foreach ($fila as $key ) {
+    		echo $key;
+    }
+// Cierra la conexion
+    mysqli_close($conexion);
+?>
+
+    //Poner en cada página
+    $conexion=conectaBD();
+    if (!$conexion):
+        header("Location:../vistas/error.php?id=6");
+    endif;
+
+    
+
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

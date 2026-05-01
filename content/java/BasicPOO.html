@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Basic Poo</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVA BASIC POO</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //JAVA &lt;
+    public class Basic_poo {
+
+    private String nombre;
+    private int edad;
+    //1-OBJETOS
+    //un objeto es una instancia de una clase
+
+    //2-CONSTRUCTORES: sirven para crear objetos
+    //A constructor in Java is a special method that is used to initialize objects.
+    //The constructor is called when an object of a class is created. It can be used to set initial values for object attributes:
+    //Note that the constructor name must match the class name,and it cannot have a return type (like void).
+    //Also note that the constructor is called when the object is created.
+    //All classes have constructors by default: if you do not create a class constructor yourself, 
+    //Java creates one for you. However, then you are not able to set initial values for object attributes.
+    //basico
+    public Basic_poo() {
+    }
+
+    //con paráametros
+    public Basic_poo(String nombre, int edad) {
+        this.nombre = nombre;
+        this.edad = edad;
+    }
+
+    //3-GETTER : Deben tener un RETURN
+    public String getNombre() {
+        return nombre;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    //3-SETTER: son void, no devuelven nada. Establecen el valor
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    //4-METHODS
+    static void myMethod(String fname) {
+        System.out.println(fname + " Refsnes");
+    }
+    //    public String Devuelve2Valores(){
+    //    return (nombre, edad);
+    //    }
+
+    //MULTIPLE PARAMETERS
+    static void myMethod(String fname, int age) {
+        System.out.println(fname + " is " + age);
+    }
+
+    //DEVOLVIENDO RETURN VARIABLES
+    public int DevuelveInt() {
+        return 1;
+    }
+    
+    
+    //5-Listados
+    }
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

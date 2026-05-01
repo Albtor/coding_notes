@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Conditional Rendering</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+        </a>
+        <h1 class="title_template">REACT - CONDITIONAL RENDERING</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // APP JS
+    //CONDITIONAL RENDERING
+    //Load something on the screen if a condition is true
+
+    import React from 'react'
+    import Conditional from './components/Conditional'
+
+
+    class App extends React.Component { 
+    constructor(){
+        super()
+        this.state ={
+            isLoading: true
+        }
+    }
+
+    //Do something before the component is loaded, fake way to pretend that we are having an API call
+    //Sends isLoading to the props 3:06
+    componentDidMount(){
+        setTimeout(() => {
+        this.setState({
+            isLoading: false
+        })
+        }, 1500)
+    }
+
+    render(){
+        return (
+            &lt;div>
+            {this.state.isLoading ? &lt;h1>Loading...&lt;/h1> :
+            &lt;Conditional isLoading={this.state.isLoading}/>}
+            &lt;/div>
+        )
+    }
+    }
+
+
+    export default App;
+
+    
+</code>
+</pre>
+
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // CONDITIONAL.JS&lt;
+    import React from 'react'
+
+    function Conditional(props){
+        //condition ? statement if true : statement if false
+        
+        //final version
+        return (
+                &lt;h1>Some cool stuff about conditional Rendering&lt;/h1>
+                )
+        
+        //third version
+        // return (
+        //     &lt;div>
+        //         {props.isLoading ? &lt;h1>Loading...&lt;/h1> :  &lt;h1>Some cool stuff about conditional Rendering&lt;/h1>}
+        //     &lt;/div>
+        //     )
+
+        //Second version
+        // return (props.isLoading === true ? &lt;h1>Loading...&lt;/h1> :  &lt;h1>Some cool stuff about conditional Rendering&lt;/h1>)
+
+        //Initial version
+        // if(props.isLoading === true){
+        // return (
+        //     &lt;h1>Loading...&lt;/h1>
+        // )
+        // }else {
+        //     return (
+        //         &lt;h1>Some cool stuff about conditional Rendering&lt;/h1>
+        //     ) 
+        // }
+    }
+
+    export default Conditional
+        
+</code>
+</pre>
+
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // && Method  &lt;
+    //CONDITIONAL RENDERING
+    //Load something on the screen if a condition is true
+
+    import React from 'react'
+    import Conditional from './components/Conditional'
+
+
+    class App extends React.Component { 
+    constructor(){
+        super()
+        this.state ={
+            unreadMessages: [
+                "Call your mom",
+                "New spam email available. All links are definitely safe to click"
+            ]
+        }
+    }
+
+    //&&
+    // True && False
+    componentDidMount(){
+        setTimeout(() => {
+        this.setState({
+            isLoading: false
+        })
+        }, 1500)
+    }
+
+    render(){
+        return (
+            &lt;div>
+            {this.state.unreadMessages.length > 0 ? 
+            &lt;h2>You have {this.state.unreadMessages.length} unread messages!&lt;/h2> :
+            null}
+            //ANOTHER FORM
+            {/* {this.state.unreadMessages.length > 0 && 
+            &lt;h2>You have {this.state.unreadMessages.length} unread messages!&lt;/h2>} */}
+
+
+            &lt;/div>
+        )
+    }
+    }
+
+
+    export default App;
+
+    
+</code>
+</pre>
+
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // PRACTICE &lt;
+
+    //CONDITIONAL RENDERING
+    //Load something on the screen if a condition is true
+    import React from 'react'
+
+    class App extends React.Component { 
+    constructor(){
+        super()
+        this.state ={
+            isLoggedIn: false
+        }
+        this.handleClick = this.handleClick.bind(this)
+    }
+
+    handleClick(){
+        console.log("I'm working")
+        this.setState(prevState => {
+        return {
+            isLoggedIn: !prevState.isLoggedIn
+        }
+        
+        })
+        
+    }
+
+    render(){
+        let buttonText = this.state.isLoggedIn ? "LOG OUT" : "LOG IN"
+        let displayText = this.state.isLoggedIn ? "Logged In" : "Logged Out"
+        return (
+            &lt;div>
+            &lt;button onClick={this.handleClick}>{buttonText}&lt;/button>
+            &lt;h2>Status: {displayText}&lt;/h2>
+
+            &lt;/div>
+        )
+    }
+    }
+
+
+    export default App;
+    
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

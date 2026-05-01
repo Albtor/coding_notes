@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Android STUDIO </title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">ANDROID STUDIO</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- ANDROID STUDIO -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //  ATAJOS BUSQUEDA
+    ctl + f
+    2 times same shift: find everyawhere
+    ctrl + shift + f
+    crl + r // reemplazar
+    ctrl + s // save
+    alt F7 donde ha sido utilizado algo
+    ctrl + click
+
+    //ATAJOS PARA ESCRITURA DE CODIGO
+    alt + may + flecha arriba / Abajo // mover linea
+    ctrl + Mayusculas + flecha arriba / Abajo mover bloque de codigo
+    ctrl + Y borrar linea
+    ctrl + d duplicar
+    alt + may
+    ctrl + - cierra
+    alt +  flecha izq o derecha : mover entre pestañas
+    ctrl + tab al final
+    ctrl + may + 12 Abrir cerrar todos
+    ctrl + alt + t // agrupar un bloque de codigo en algo: if, if else, while, try... etc
+    ctrl + may + supr unwrap block of code: remove ifelse, trycatch etc
+    alt + j seleccionar elementos iguales (bueno para cambiar nombres)
+
+    Ctrl + u : documentación 
+    
+</code>
+</pre>
+<!-- ANDROID STUDIO -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //  ACTUALIZACIONES
+    Gradle pluging upgrade
+
+    SETTINGS
+    plugins: instalar plugins fiables solo. Python, php? Instalacion desde marketplace y desde archivo
+    File > Settings > Plugins > Config/Settings icon > Install from Disk
+
+
+    
+</code>
+</pre>
+<!-- ANDROID STUDIO -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //  ESTRUCTURA
+    Directorios
+    Gradle
+    Manifest
+    Java
+    Res: layouts, strings, colors, themes, dimens, drawable, raw (audio), xml. Recursos, no es codigo fuente
+        Imagenes mipmaps para los distintos dispositivos y que las imagenes no se pixelen o pierdan calidad al hacer zoom
+
+    
+</code>
+</pre>
+<!-- ANDROID STUDIO -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //  FUENTES
+    crear carpeta en res como Android Resource Directory = font (no cambiar el nombre)
+    Llevar la fuente a la carpeta. Recursos deben tener letras minúsculas.
+    android:fontFamily="@font/roboto"
+    Mejor pocas fuentes porque tienen peso
+
+    
+</code>
+</pre>
+<!-- ANDROID STUDIO -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // ICONOS MATERIAL DESIGN (ya no es tan facil copiar el code)
+    Guardar como View Vector Drawable. Download xml
+    Crear nuevo Resource File en Drawable. ic_xxxx Pegar el vector
+    &lt;ImageView ... android:src="@drawable/search_24" />
+    &lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        &lt;title>abacus&lt;/title>
+        &lt;path
+            d="M5 5H7V11H5V5M10 5H8V11H10V5M5 19H7V13H5V19M10 13H8V19H10V17H15V15H10V13M2 21H4V3H2V21M20 3V7H13V5H11V11H13V9H20V15H18V13H16V19H18V17H20V21H22V3H20Z" />
+    &lt;/svg>
+
+    
+</code>
+</pre>
+<!-- ANDROID STUDIO -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // COMPONENTES
+    //ACTIVITIES
+    //FRAGMENT    Ciclo de vida propio en una activity. Es una subactividad, modular
+    //VIEW:     Objetos visuales: botones, etc
+    //SERVICIOS    Ejecutan en segundo plano, hilo. Independientes del hilo principal. Threads.
+    //BROADCAST RECEIVERS / TRANSMISORES    llamada teléfono, alarma, etc
+    //INTENTS    Transmitir info mediante un objeto entre componentes
+    // WIDGETS
+    Vistas en miniatura, ejecutar algunas funciones de la aplicación sin abrirla.
+    Para recibir actualizaciones periódicas
+    // ANIMACIONES    Aplicaciones estáticas no son atractivas.    Animaciones son atractivas
+</code>
+</pre>
+<!-- ANDROID STUDIO -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // PALETTE TEXTS
+    xml
+    textStyle:"Bold|italic"
+    textSize (numeros pares). uso de sp
+    layout width y height: obligatorio. Wrap content. match parent
+    textAppearance: conjunto de atributos.
+    hint: texto guia para escribir
+    textColorHint
+    textColor
+    ems="10" Espacio visible que permite visualizar el texto
+    inpuType="textCapSentences|textAutoCorrect" Fuerza a empezar con mayúcula
+
+    CODE
+    id  android:id="@+id/tv_"
+    var tvEjemplo: TextView = findViewByID&lt;TextView>()&lt;/TextView>(R.id.tvEjemplo)
+    Tvejemplo.setText
+
+    // EVENTS
+    Tvejemplo.setOn
+    Editora, click
+    
+</code>
+</pre>
+<!-- ANDROID STUDIO -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // EDITAR UN EDIT TEXT y añadir iconos Section8
+    Autocomplete TextView: fill options
+    Multiautocomplete Textview
+    
+</code>
+</pre>
+<!-- ANDROID STUDIO -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // &lt;?xml version="1.0" encoding="utf-8"?>
+    &lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical"
+        tools:context=".MainActivity">
+    
+        &lt;TextView android:id="@+id/tvEjemplo" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="Texto manipulable grande" android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+            android:textSize="10sp" android:typeface="serif" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0" app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.004" />
+    
+        &lt;EditText android:id="@+id/etEjemplo" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:background="@drawable/style_etbg" android:digits="0123456789 "
+            android:drawableStart="@drawable/ic_email" android:drawablePadding="10dp" android:ems="10" android:gravity=""
+            android:hint="Name" android:inputType="textCapSentences|textAutoCorrect" android:paddingStart="10dp"
+            android:paddingTop="10dp" android:paddingBottom="10dp" android:text="891354651" android:textColor="@color/green"
+            android:textColorHighlight="@color/orange" android:textColorHint="@color/orange" />
+    
+        &lt;EditText android:id="@+id/editTextTextPassword" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:ems="10" android:hint="textPassword"
+            android:inputType="textPassword" />
+    
+        &lt;EditText android:id="@+id/editTextNumberPassword" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:ems="10" android:hint="numberPassword"
+            android:inputType="numberPassword" />
+    
+        &lt;EditText android:id="@+id/editTextTextEmailAddress" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:ems="10" android:hint="textEmailAddress"
+            android:inputType="textEmailAddress" />
+    
+        &lt;EditText android:id="@+id/editTextPhone" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:ems="10" android:hint="phone" android:inputType="phone" />
+    
+        &lt;EditText android:id="@+id/editTextTextPostalAddress" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:ems="10" android:hint="textPostalAddress"
+            android:inputType="textPostalAddress" />
+    
+        &lt;EditText android:id="@+id/editTextTextMultiLine" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:ems="10" android:hint="textMultiLine" android:gravity="start|top"
+            android:inputType="textMultiLine" />
+    
+        &lt;EditText android:id="@+id/editTextTime" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:ems="10" android:hint="time" android:inputType="time" />
+    
+        &lt;EditText android:id="@+id/editTextDate" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:ems="10" android:hint="date" android:inputType="date" />
+    
+        &lt;EditText android:id="@+id/editTextNumber" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:ems="10" android:hint="number" android:inputType="number" />
+    
+        &lt;EditText android:id="@+id/editTextNumberSigned" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:ems="10" android:hint="numberSigned"
+            android:inputType="numberSigned" />
+    
+        &lt;EditText android:id="@+id/editTextNumberDecimal" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:ems="10" android:hint="numberDecimal"
+            android:inputType="numberDecimal" />
+    
+        &lt;AutoCompleteTextView android:id="@+id/autoCompleteTextView" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:hint="AutoCompleteTextView" />
+    
+        &lt;MultiAutoCompleteTextView android:id="@+id/multiAutoCompleteTextView" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:hint="MultiAutoCompleteTextView" />
+    
+    &lt;/LinearLayout>
+    
+    
+    style_etbg.xml
+    
+    &lt;?xml version="1.0" encoding="utf-8"?>
+    &lt;selector xmlns:android="http://schemas.android.com/apk/res/android">
+    
+        &lt;item android:state_enabled="true" android:state_focused="true">
+            &lt;shape android:shape="rectangle">
+                &lt;solid android:color="@android:color/white" />
+                &lt;corners android:radius="10dp" />
+                &lt;stroke android:color="@color/teal_700" android:width="2dp" />
+            &lt;/shape>
+        &lt;/item>
+        &lt;item android:state_enabled="true">
+            &lt;shape android:shape="rectangle">
+                &lt;solid android:color="@android:color/white" />
+                &lt;corners android:radius="10dp" />
+                &lt;stroke android:color="@color/teal_200" android:width="1dp" />
+            &lt;/shape>
+        &lt;/item>
+    &lt;/selector>
+    MainActivity.kt
+    
+    var tvEjemplo: TextView = findViewById(R.id.tvEjemplo)
+    tvEjemplo.apply{
+    text = "Text cambiado desde código"
+    setTextColor(Color.RED)
+    setTypeface(Typeface.MONOSPACE, Typeface.BOLD)
+    setOnClickListener {
+    tvEjemplo.setTextColor(Color.GREEN)
+    }
+    }
+    
+    
+    
+    var etEjemplo = findViewById&lt;EditText>(R.id.etEjemplo)
+        etEjemplo.addTextChangedListener {
+        if (etEjemplo.text.length == 0) etEjemplo.setError("Campo vacío")
+        }
+        etEjemplo.setSelection(3)
+        var inicio = etEjemplo.selectionStart
+        var fin = etEjemplo.selectionEnd
+    
+        etEjemplo.setSelection(inicio, fin)
+        etEjemplo.selectAll()
+    
+        /*
+        tipos de inputType
+    
+        text Recibe texto plano simple
+        textPersonName Texto correspondiente al nombre de una persona
+        textPassword Protege los caracteres que se van escribiendo con puntos
+        numberPassword Contraseña de solo números enmascarada con puntos
+        textEmailAddress Texto que será usado en un campo para emails
+        phone Texto asociado a un número de teléfono
+        textPostalAddress Para ingresar textos asociados a una dirección postal
+        textMultiLine Permite múltiples líneas en el campo de texto
+        time Texto para determinar la hora
+        date Texto para determinar la fecha
+        number Texto con caracteres numéricos
+        numberSigned Permite números con signo
+        numberDecimal Para ingresar números decimales
+        */
+    
+        var autoCompleteTextView = findViewById&lt;AutoCompleteTextView>(R.id.autoCompleteTextView)
+            var countries : Array&lt;String> = resources.getStringArray(R.array.countries_array)
+    
+                var adapter : ArrayAdapter&lt;String> = ArrayAdapter&lt;String>(this,
+                        android.R.layout.simple_dropdown_item_1line, countries)
+    
+                        autoCompleteTextView.setAdapter(adapter)
+    
+                        var multiAutoCompleteTextView = findViewById&lt;MultiAutoCompleteTextView>
+                            (R.id.multiAutoCompleteTextView)
+                            multiAutoCompleteTextView.setAdapter(adapter)
+                            multiAutoCompleteTextView.setTokenizer(MultiAutoCompleteTextView.CommaTokenizer())
+
+    
+</code>
+</pre>
+<!-- ANDROID STUDIO -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // PALETTE BUTTONS
+    No muy personalizables a menos que Button vs android.widget.Button
+    Button: background
+    textColor
+    text mayusculars
+    backgroundTint
+    background
+    icon: drawaleStart
+    gravity: center
+
+    Image button
+
+    // CHIP & CHIPGROUP: for instruments: bass, guitar, 
+
+
+    // RADIO BUTTON & RADIO BUTTON GROUP
+    Necesitan ID para que solo se pueda marcar 1, para que sean excluyentes, si no siempre se pueden marcar todos
+    getChildAt(1) - get radio boxes
+    Se pueden customizar radio button y usar iconos. Radio button personalizado
+    layerlist
+
+    //CHECKBOX Y PERSONALIZAR
+    //TOGGLEBUTTON PERSONALIZABLE 
+    //SWITCH
+    //FLOATING ACTION BUTTON
+    Depende del layout
+
+    
+</code>
+</pre>
+<!-- ANDROID STUDIO -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // STYLEs inside themes
+    style="@style/chEntry"
+    &lt;style >
+        &lt;item name="android:textColor">@color/white&lt;/item>
+        &lt;item name="android:textColor">@drawable/ch_selectorColor&lt;/item>
+        &lt;item name="android:textStyle">bold&lt;/item>
+        &lt;item name="android:backgroundColor">bold&lt;/item>
+        &lt;item name="android:textColor">bold&lt;/item>
+    &lt;/style>
+
+    crear un selector en drawable
+    &lt;selector>
+        &lt;item android:color="@color/white android:state_checked="false"/>
+        &lt;item android:color="@color/black android:state_checked="true"/>
+        
+    &lt;/selector>
+    
+</code>
+</pre>
+<!-- ANDROID STUDIO -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //  PALETTE WIDGETS
+    ImageView, WebView, VideoView, CalendarView, ProgressBar, Seekbar, RatingBar, SearchView, Dividers
+    Image View. Plugins. Install Plugin from Disk
+    Plugin. Genera automáticamente todos los tamaños. Convertir a webp c 
+    Web View
+    VideoView: local y Web. 
+        var McWeb = MediaControler(this)
+        mcWeb.setAnchorView(vvWeb)
+        vvWeb.setVideoPath("url")
+        vvWeb.setMediaControler(mcWeb)
+
+    CalendarView var date = "$day+${month+1}+$year" Calendar.timeInMillis. Cambiar a lunes primer día de la semana del calendario
+
+    Views Ocultos
+    Chronometer, DatePicker, TimePicker
+    
+</code>
+</pre>
+<!-- ANDROID STUDIO -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // ACCESO A INTERNET
+    En Android MAnifest.xml
+    &lt;uses-permission android:name="android.permission.INTERNET" />
+    webView = findViewbyID...
+    
+    wevSettings = webView.getSettings() 
+    webSettings.javaScriptEnabled = true
+    webView.setWebViewClient(WebViewClient())
+    webView.loadUrl("") ultimate guitar,
+
+    
+</code>
+</pre>
+<!-- ANDROID STUDIO -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //  SEARCH VIEW
+    Uso de recyclerview (anterior es listview)
+    hint -> iconicbydefault: false
+    id en SearchView y en listview
+
+    val arrayOf("1", "2")
+    val adapterUsers: ArrayAdapter&lt;String> = ArrayAdapter(this, android.R.Layout.simple_list_item1, users)
+    var svUSers = findViewById&lt;SearchView>(R.id.svUsers)
+    var lvUSers = findViewById&lt;ListView>(R.id.lvUsers)
+    lvUsers.adapter = adapterUsers
+    svUsers.setOnQueryTextlistener(object: SearchView.setOnQueryTextlistene{
+        override fun onQueryTextSubmit(p0: String?): Boolean{
+            svUsers.clearFocus()
+            if (users.contains(query)) adapterUsers.filter.filter(query)
+            return false
+        }
+        override fun onQueryTextChange(p0: String?): Boolean{
+            adapterUsers.filter.filter(query)
+            return false
+        }
+
+    })
+    
+
+    
+</code>
+</pre>
+<!-- ANDROID STUDIO -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //  UNIDADES DE MEDIDA
+    SP (FUENTES) y DP
+    No usar pixeles.
+    
+    El tamaño de la pantalla no marca la resolución de la pantalla. Dos pantallas de igual tamaño pueden tener diferente densidad.
+    las pantallas de alta densidad tienen más pixeles por pulgada que los de baja intesnsidad
+    Los pixeles tienen sus subpixeles: RGB points mix
+    Indicar tamaños por pixeles es un problema, ya que el tamaño dependerá de la resolución de pantallas.
+
+    DP / dip: Pixeles de densidad independiente (dp densidad de pixeles en una pulgada)
+    Unidades flexibles que se escalan de manera uniforme según la pantalla
+    El cálculo del tamaño es 1 pixel.  dp = (ancho en pixels * 160) / densidad de la pantalla
+
+    SP:     Pixeles de escala independiente ()
+    Se usan para fuentes y respetar la configuración de tamaño de cada usuario.
+    Misma función que los dp, se utilizan para las fuentes.
+    El valor por defecto de un sp es el mismo que el valor por defecto de un dp. 
+
+    mm (milimetros), in (pulgadas), pt (points): según el tamaño de la pantalla.
+
+    android:textSize="16sp"  (PARA FUENTES)
+    android:textSize="16dp"
+    
+
+
+
+    
+</code>
+</pre>
+<!-- ANDROID STUDIO -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // 
+
+    
+</code>
+</pre>
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

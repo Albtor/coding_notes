@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Forms</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+        </a>
+        <h1 class="title_template">REACT - FORMS</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="https://es.reactjs.org/docs/forms.html" class="link_file" target="_Blank">React.js forms</a></li>
+            <li class="link_list"><a href="https://formik.org/" class="link_file" target="_Blank">Formik</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    //FORMS
+    //We check inputs as the states changes, with every key stroke
+    import React from 'react'
+
+    class App extends React.Component { 
+    constructor(){
+        super()
+        this.state ={
+            firstName: "",
+            lastName: ""
+        }
+        this.handleChange = this.handleChange.bind(this)
+    }
+
+    handleChange(event){
+        // const {name, value} = event.target
+        this.setState({
+        [event.target.name]: event.target.value
+        // [name]: value //si se activa arriba:   const {name, value} = event.target
+        })
+    }
+
+
+    //Importance of "name, it matches the this.state in constructor"
+    render(){
+        return (
+            &lt;form>
+            &lt;input type="text" value={this.state.firstName} name="firstName" placeholder="First Name" onChange={this.handleChange}>&lt;/input>
+            &lt;input type="text" value={this.state.lastName} name="lastName" placeholder="Last Name" onChange={this.handleChange}>&lt;/input>
+            &lt;h1>{this.state.firstName} {this.state.lastName}&lt;/h1>
+            &lt;/form>
+        )
+    }
+    }
+
+    export default App;
+
+    
+</code>
+</pre>
+
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    //FORMS 2
+    //We check inputs as the states changes, with every key stroke
+    import React from 'react'
+
+    class App extends React.Component { 
+    constructor(){
+        super()
+        this.state ={
+            firstName: "",
+            lastName: "",
+            isFriendly: true,
+            gender: "",
+            favColor: "blue"
+        }
+        this.handleChange = this.handleChange.bind(this)
+    }
+
+    handleChange(event){
+        const {name, value, type, checked} = event.target
+        type == "checkbox" ? this.setState({[name]:checked}) : this.setState({[name]: value})
+    }
+
+
+    //Importance of "name, it matches the this.state in constructor"
+    render(){
+        return (
+            &lt;form onSumbit="">
+            &lt;input type="text" value={this.state.firstName} name="firstName" placeholder="First Name" onChange={this.handleChange}>&lt;/input>
+            &lt;input type="text" value={this.state.lastName} name="lastName" placeholder="Last Name" onChange={this.handleChange}>&lt;/input>
+            
+            &lt;br/>
+        
+            &lt;textarea value={"Default value"} onChange={this.handleChange}/>
+            &lt;br/>
+            &lt;label>
+            &lt;input type="checkbox" name="isFriendly" checked={this.state.isFriendly} onChange={this.handleChange}/> isFriendly?
+            &lt;/label>
+            &lt;br/>
+            &lt;label>
+            &lt;input type="radio" name="gender" value="male" checked={this.state.gender === "male"} onChange={this.handleChange}/> Male
+            &lt;/label>
+            &lt;br/>
+            &lt;label>
+            &lt;input type="radio" name="gender" value="female" checked={this.state.gender === "female"} onChange={this.handleChange}/> Female
+            &lt;/label>
+            &lt;br/>
+            &lt;label>&lt;/label>
+            &lt;select value={this.state.favColor} onChange={this.handleChange} name="favColor">
+                &lt;option value="blue">blue&lt;/option>
+                &lt;option value="red">red&lt;/option>
+                &lt;option value="yellow">yellow&lt;/option>
+                &lt;option value="white">white&lt;/option>
+
+            &lt;/select>
+
+            &lt;h1>{this.state.firstName} {this.state.lastName}&lt;/h1>
+            &lt;h1>{this.state.isFriendly}&lt;/h1>
+            &lt;h1>{this.state.gender}&lt;/h1>
+            &lt;h1>Favorite color {this.state.favColor}&lt;/h1>
+            &lt;button onClick="">Submit&lt;/button>
+            {/* &lt;input type="submit">Submit&lt;/input> */}
+        
+            &lt;/form>
+        )
+    }
+    }
+
+    export default App;
+
+    
+</code>
+</pre>
+
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // FORMS PRACTICE
+
+    //FORMS
+    //We check inputs as the states changes, with every key stroke
+    import React from 'react'
+
+    class App extends React.Component { 
+    constructor(){
+        super()
+        this.state ={
+            firstName: "",
+            lastName: "",
+            age: "",
+            gender: "",
+            destination: "",
+            isVegan: false,
+            isKosher: false,
+            isLactoseFree: false
+        
+        }
+        this.handleChange = this.handleChange.bind(this)
+    }
+
+    handleChange(event){
+        const {name, value, type, checked} = event.target
+        type === "checkbox" ? 
+        this.setState({
+            [name]:checked     
+        })       
+        : 
+        this.setState({[name]: value})
+    }
+
+
+    //Importance of "name, it matches the this.state in constructor"
+    render(){
+        return (
+        &lt;main>
+            &lt;form onSumbit="">
+            &lt;input type="text" value={this.state.firstName} name="firstName" placeholder="First Name" onChange={this.handleChange}>&lt;/input>&lt;br/>
+            &lt;input type="text" value={this.state.lastName} name="lastName" placeholder="Last Name" onChange={this.handleChange}>&lt;/input>&lt;br/>
+            &lt;input type="text" value={this.state.age} name="age" placeholder="Age" onChange={this.handleChange}>&lt;/input>&lt;br/>
+
+            &lt;label>
+                Gender:
+                &lt;input type="radio" name="gender" value="male" checked={this.state.gender === "male"} onChange={this.handleChange}/> Male
+                &lt;input type="radio" name="gender" value="female" checked={this.state.gender === "female"} onChange={this.handleChange}/> Female
+            &lt;/label>
+            &lt;br/>
+
+            &lt;label>Destination:&lt;/label>  
+            &lt;select value={this.state.destination} onChange={this.handleChange} name="destination">
+                &lt;option value="Berlin">Berlin&lt;/option>
+                &lt;option value="Tokyo">Tokyo&lt;/option>
+                &lt;option value="San Francisco">San Francisco&lt;/option>
+                &lt;option value="Rome">Rome&lt;/option>
+                &lt;/select>   &lt;br/>
+
+            &lt;label>Dietary restrictions&lt;/label>    &lt;br/>
+            &lt;label>
+            &lt;input type="checkbox" name="isVegan" checked={this.state.isVegan} onChange={this.handleChange}/>Vegan
+            &lt;/label>
+            &lt;label>
+            &lt;input type="checkbox" name="isKosher" checked={this.state.isKosher} onChange={this.handleChange}/>Kosher
+            &lt;/label>
+            &lt;label>
+            &lt;input type="checkbox" name="isLactoseFree" checked={this.state.isLactoseFree} onChange={this.handleChange}/>Lactose Free
+            &lt;/label>
+
+
+            &lt;h1>Entered information&lt;/h1>
+            &lt;p>Name: {this.state.firstName} &lt;/p>
+            &lt;p>Surname: {this.state.lastName} &lt;/p>
+            &lt;p>Age: {this.state.age} &lt;/p>
+            &lt;p>Gender: {this.state.gender} &lt;/p>
+            &lt;p>Destination: {this.state.destination} &lt;/p>
+            &lt;p>Dietary Restrictions: Vegan {this.state.isVegan ? "Yes" : "No"} , Kosher {this.state.isKosher ? "Yes" : "No"} , LactoseFree {this.state.isLactoseFree ? "Yes" : "No"}  &lt;/p>
+            &lt;button onClick="">Submit&lt;/button>
+        
+            &lt;/form>
+            &lt;/main>
+        )
+    }
+    }
+
+    export default App;
+
+    
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

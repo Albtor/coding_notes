@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP Email</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">PHP EMAIL</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+
+<!-- PHP -->
+<pre class="prettyprint">
+<code class="language-php" spellcheck="false">
+    //PHP EMAIL c_user_register&lt;
+    session_start();
+include_once "../config/funciones.php";
+
+$error = '';
+$email = '';
+
+    //envio del email con la validación
+    $mensaje = &quot;&lt;body&gt; &lt;h1&gt;Este es tu c&oacute;digo de validaci&oacute;n:  &lt;/h1&gt; &lt;h2&gt; $activacion &lt;/h2&gt; &lt;/body&gt;&quot;;
+    $cabeceras = 'MIME-Version: 1.0' . "\r\n" .
+    'Content-type: text/html; charset=iso-8859-1' . "\r\n" .
+    'From: info@example.com' . "\r\n" .
+    'Reply-To: webmaster@example.com' . "\r\n" .
+    'X-Mailer: PHP/' . phpversion();
+    mail($email, "Activación de cuenta de Bodegón", $activacion, $cabeceras); 
+
+    //VISTA activacion
+    $_SESSION['email'] = $email;
+    header ("Location: v_user_activation.php");
+    //Si los passwords no coinciden
+    else:
+    $error = "Los passwords no coinciden";
+    endif;
+    
+    //Si hay email registrado ya
+    else:
+        $error = "El email ya está registrado";
+    endif;
+
+    //HAY QUE HACER UN UPDATE de la tabla del user a nivel 1
+
+endif;
+
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

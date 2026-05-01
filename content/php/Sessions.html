@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP Sessions</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">PHP SESSIONS</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="https://www.php.net/manual/es/function.session-start.php" class="link_file" target="_Blank">PHP Manual</a></li>
+            <li class="link_list"><a href="http://localhost/Coding/Resources/CodingNotes/content/php/examples/Acceso/" class="link_file" target="_Blank">Example</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- PHP -->
+<pre class="prettyprint">
+<code class="language-php" spellcheck="false">
+    //PHP INDEX MAIN SITE 
+    include './config/sesion.php';
+    require_once './config/funciones.php';
+</code>
+</pre>
+    
+<!-- PHP -->
+<pre class="prettyprint">
+<code class="language-php" spellcheck="false">
+    //PHP CONFIG INDEX&lt; ?¿ 
+    session_start();
+
+    //con esto se comprueba si no está el inicio de sesión hecho
+    if (!isset($_SESSION['logueado'])):
+        $_SESSION['logueado'] = 'no';
+        $_SESSION['nivel'] = '';
+    endif;
+</code>
+</pre>
+<!-- PHP -->
+<pre class="prettyprint">
+<code class="language-php" spellcheck="false">
+    //PHP CONFIG SESSION&lt;
+    $_SESSION son variables globales que se mantienen al navegar
+    Pero es necesario para que se puedan controlar y comprobar el: session_start();
+
+</code>
+</pre>
+
+<!-- PHP -->
+<pre class="prettyprint">
+<code class="language-php" spellcheck="false">
+    //PHP CONFIG SESSION&lt;
+    session_start();
+    if(!isset($_SESSION['id_usuario'])) $_SESSION['id_usuario']= 0;
+    if(!isset($_SESSION['nivel'])) $_SESSION['nivel']= 0;
+    if(!isset($_SESSION['id_pedido'])) $_SESSION['id_pedido']= 0;
+    if(!isset($_SESSION['logueado'])) $_SESSION['logueado']='no';
+</code>
+</pre>
+
+
+<!-- PHP -->
+<pre class="prettyprint">
+<code class="language-php" spellcheck="false">
+    //PHP BACKEND INDEX &lt; //Vuelve a otra pagina por no tener privilegios
+    include '../config/sesion.php';
+    if(!isset($_SESSION['nivel']) || $_SESSION['nivel'] &lt;2;):  
+        header ("Location: ".URL_BASE."/login/index.php");
+        endif;
+    $vista = "BACKEND";
+
+    //METODO PARA CERRAR LA SESSIóN, borrar las variables con unset, eliminar sesion con destroy
+    session_start();
+    $_SESSION['logueado'] = 'no';
+    $_SESSION['nivel'] = 0;
+    $_SESSION['id_usuario'] = 0;
+    $_SESSION['id_pedido'] = 0;
+    header ('Location: '.URL_BASE.'/');
+    // session_unset();
+    // session_destroy();
+    
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

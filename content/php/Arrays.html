@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP Arrays</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">PHP Arrays</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- PHP -->
+<pre class="prettyprint">
+<code class="language-php" spellcheck="false">
+    //PHP  ARRAYS
+    $cars = array("Volvo", "BMW", "Toyota");
+    echo "I like " . $cars[0] . ", " . $cars[1] . " and " . $cars[2] . ".";
+
+</code>
+</pre>
+
+<!-- PHP -->
+<pre class="prettyprint">
+<code class="language-php" spellcheck="false">
+    //PHP INDEXED ARRAYS
+    $cars = array("Volvo", "BMW", "Toyota");
+    $arrlength = count($cars);
+
+    for($x = 0; $x &lt; $arrlength; $x++) {
+    echo $cars[$x];
+    }
+    
+</code>
+</pre>
+
+<!-- PHP -->
+<pre class="prettyprint">
+<code class="language-php" spellcheck="false">
+    //PHP  ASSOCIATIVE ARRAYS
+    $age = array("Peter"=>"35", "Ben"=>"37", "Joe"=>"43");
+
+    foreach($age as $x => $x_value) {
+    echo "Key=" . $x . ", Value=" . $x_value;
+    }
+    
+    
+</code>
+</pre>
+
+<!-- PHP -->
+<pre class="prettyprint">
+<code class="language-php" spellcheck="false">
+    //PHP  MULTIDIMENSIONAL ARRAYS
+    $cars = array (
+    array("Volvo",22,18),
+    array("BMW",15,13),
+    array("Saab",5,2),
+    array("Land Rover",17,15)
+    );
+
+    for ($row = 0; $row &amp;lt; 4; $row++) {
+    echo &quot;&lt;p&gt;&lt;b&gt;Row number $row&lt;/b&gt;&lt;/p&gt;&quot;;
+    echo &quot;&lt;ul&gt;&quot;;
+    for ($col = 0; $col &amp;lt; 3; $col++) {
+        echo &quot;&lt;li&gt;&quot;.$cars[$row][$col].&quot;&lt;/li&gt;&quot;;
+    }
+    echo &quot;&lt;/ul&gt;&quot;;
+    }
+    
+</code>
+</pre>
+
+
+<!-- PHP -->
+<pre class="prettyprint">
+<code class="language-php" spellcheck="false">
+    //PHP  M
+    $persona = array(
+        "nombre" => "Martin",
+        "profesion" => "profesor",
+        "genero" =>"hombre"
+
+    );
+
+    echo "Tu nombre es ".$persona["nombre"].". Tu profesion es ".$persona["profesion"];
+
+    $cars = array
+        (
+        array("marca"=>"Volvo","stock"=>22,"vendido"=>18),
+        array("marca"=>"BMW","stock"=>15,"vendido"=>13),
+        array("marca"=>"Saab","stock"=>5,"vendido"=>2),
+        array("marca"=>"Land Rover","stock"=>17,"vendido"=>15)
+        );
+
+    foreach($cars as $car):
+        echo "Marca: ".$car["marca"]. ". Stock en almacén: ".$car["stock"].". Vendidos: ".$car["vendido"];
+    endforeach;
+    
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Triangulo Poo</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVA TRIANGULO POO</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //JAVA &lt;
+    
+    /**Clase CalculoAreaTriangulo para crear objetos Triangulo y calcular el area
+    * @version 1.0
+    * @author Alberto Toribio Ruiz
+    */
+
+    public class TrianguloCalculo {
+
+    /**Metodo main para pedir datos y llamar otros métodos
+    * @param args String 
+    */
+
+
+    public TrianguloCalculo() {
+    Triangulo triangulo = pedirDatos();
+    triangulo.setArea();
+    mostrarDatos(triangulo);
+    
+    }
+
+
+    /**Metodo para recoger los datos y generar un nuevo objeto Triangulo
+    * @return Triangulo Un triángulo con la base y altura
+    */
+
+    public static Triangulo pedirDatos() {
+
+    double base, altura, area;
+    boolean error;
+    Triangulo triangulo = new Triangulo();
+    Scanner entrada = new Scanner(System.in);
+
+    System.out.println("Introduzca la base: ");
+    base = entrada.nextDouble();
+    System.out.println("Introduzca la altura: ");
+    altura = entrada.nextDouble();
+
+    
+    triangulo.setBase(base);
+    triangulo.setAltura(altura);
+    
+
+    return triangulo;
+    }
+
+    /**Metodo para mostrar los datos de base altura y area de un triangulo 
+    * @param triangulo Altura, Base y Area calculada de un Triangulo
+    */
+
+    public static void mostrarDatos(Triangulo triangulo) {
+    System.out.printf("La base es ->%.2f \n", triangulo.getBase());
+    System.out.printf("La altura es->%.2f \n", triangulo.getAltura());
+    System.out.printf("El área del triangulo es->%.2f \n", triangulo.getArea());
+    }
+
+
+    }
+
+</code>
+</pre>
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //JAVA &lt;
+    /**Clase triangulo para recibir parametros de base y altura y calculo de area
+     * @version 1.0
+     * @author Alberto Toribio Ruiz
+     */
+public class Triangulo {
+    double base;
+    double altura;
+    double area;
+    
+    public Triangulo(double base, double altura) { //constructor
+        this.base = base;
+        this.altura = altura;
+    }
+    
+    public Triangulo() { //constructor
+    }
+    
+    public double getBase() {
+    return base;
+    }
+    
+    public void setBase(double base) {
+    this.base = base;
+    }
+    
+    public double getAltura() {
+    return altura;
+    }
+    
+    public void setAltura(double altura) {
+    this.altura = altura;
+    }
+    
+    public double getArea() {
+    return area;
+    }
+    
+    /**Metodo para calcular el area dadas una altura y base específicos
+     * 
+     */
+    public void setArea() {
+    area = (base * altura)/2;
+    }
+    
+}
+
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

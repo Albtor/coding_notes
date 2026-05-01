@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruby Advanced</title>
+    <link rel="stylesheet" href="../../css/file.css"> 
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+   
+</head>
+<body class="apis-bkg">
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code Icon" class="menu_img">
+    </a>
+    <h1 class="title_template">RUBY - ADVANCED</h1>
+    <h4>Links </h4>
+        <ul>
+            <li class="link_list"> <a href="#" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+
+<div class= "code_container ">
+
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    # READING FILES
+    #file modes r=read, w=write, r+= read-write, w+= read write, a=write only, b=binary, t=textfile
+
+    File.open("employees.txt","r") do |file| #you can open in different modes: r=read, w=write
+    puts file #prints metadata
+    puts file.read() #prints data from the file
+    puts file.read().include? "Jim" #Search if there is a string 
+
+    pits file.readLine() #reads 1 line
+    pits file.readLines() #reads all  line, stores in array
+    pits file.readchar() #reads 1 char
+
+        for line in file.readLines()
+            puts line
+        end
+    end
+
+    #Another way need to close the file
+    file = File.open("employees.txt","r")
+    file.close()
+
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    # WRITING FILES
+
+    # Append data to a file "a"
+    File.open("employees.txt","a") do |file|
+        file.write("\nJohn, Accounting")
+    end
+
+    # Override file "w"
+    File.open("employees.txt","w") do |file|
+        file.write("\nJohn, Accounting") 
+    end
+    
+    # Create new file "w"
+    File.open("newFile.txt","a") do |file|
+        file.write("\nJohn, Accounting") 
+    end
+    
+    # Read and write file "r+"
+    File.open("newFile.txt","r+") do |file|
+        file.readLine()
+        file.write("Overriden") #it's added after the first line
+    end
+
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    # HANDLING ERRORS
+
+    begin
+        lucky_nums = [4, 5, 6, 8, 9]
+        lucky_nums["dog"]
+        #num = 10 / 0
+    rescue ZeroDivisionError
+        puts "Division by 0 error"
+    rescue TypeError => e 
+        puts e
+        puts "WrongType"
+    end
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    # CLASSES
+
+    class Book
+        attr_accessor :title, :author, :pages
+    end
+
+    book1 = Book.new()
+    book1.title = "Jurassic Park"
+    book1.author = "Michael Chrickton"
+    book1.pages = 400
+
+    puts book1.title 
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    # INITIALIZE METHOD / CONSTRUCTOR
+
+    class Book
+        attr_accessor :title, :author, :pages
+        def initialize(title, author, pages)
+            @title = title
+            @author = author
+            @pages = pages
+        end
+    end
+    book2 = Book.new("Harry Potter", "JK Rowling", 250)
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    # OBJECT METHODS, CLASS METHODS
+
+    class Student
+        attr_accessor :name, :major, :gpa
+        def initialize(name, major, gpa)
+            @name = name
+            @major = major
+            @gpa = gpa
+        end
+
+        # METHOD
+        def has_honors
+            if @gpa >= 3.5
+            return true
+            end
+            return false
+        end
+    end
+    student1 = Book.new("Pam", "Art", 3.6)
+
+    puts student1.has_honors
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    # BUILDING A QUIZ
+
+    class Question 
+    attr_accessor :prompt, :answer
+        def initialize(prompt, answer)
+            @prompt = prompt
+            @answer = answer
+        end
+    end
+
+    p1 = "What color are apples?\n(a)red\n(b)purple,\n(c)orange"
+    p2 = "What color are bananas?\n(a)pink\n(b)purple,\n(c)yellow"
+    p3 = "What color are pears?\n(a)blue\n(b)green,\n(c)red"
+
+    questions = [
+        Question.new(p1, "a"),
+        Question.new(p2, "c"),
+        Question.new(p3, "b"),
+    ]
+    
+
+    def run_test(questions)
+        answer = ""
+        score = 0
+        for question in questions
+            puts question.prompt
+            answer = gets.chomp()
+            if answer == quest.answer
+                score += 1
+            end
+        end
+        puts "Your score is "+ score.to_s + "/"+score.length.to_s"
+    end
+
+    run_test(questions)
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    # INHERITANCE
+    #Super class
+    #define subclasses
+    #override methods
+    #create new methods
+
+    class Chef 
+        def make_chicken
+            puts "The chef makes chicken"
+        end
+        def make_salad
+            puts "The chef makes salad"
+        end
+        def make_special_dish
+            puts "The chef makes bbq ribs"
+        end
+    end
+
+    chef = Chef.new()
+    chef.make_chicken
+
+    #inherit
+    class ItalianChef &lt; Chef
+        def make_special_dish
+             puts "The chef makes spaguetti"
+        end
+
+        def make_pizza
+            print "The chef makes Pasta"
+        end
+    end
+
+    italian_chef = ItalianChef.new()
+    italian_chef.make_special_dish
+
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    # MODULES
+    # Container to store groups of methods 
+
+    #in a different file, needs capital letter
+    module Tools
+        def sayhi(name)
+        puts "hello #{name}"
+        end
+        def saybyname)
+        puts "bye bye #{name}"
+        end
+
+
+    #In another File
+    require_relative "useful_tools.rb"
+    include Tools
+    Tools.sayhi("mike")
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    # INTERACTIVE RUBY
+    #Test in sandbox environment. Open cmd
+
+    write to check:
+    irb -v
+
+    write irb
+
+    Commands: 
+    num = 123
+    puts num
+
+    # Can create variables, methods, conditional statements etc in the terminal to test
+
+
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

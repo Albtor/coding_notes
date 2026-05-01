@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React State</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+        </a>
+        <h1 class="title_template">REACT - STATE</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // USE STATE
+    console.log(useState("Hello world")); //returns arraz
+    const value = useState(1)[0];
+    const handler = useState(1)[1];
+
+    ReacAdvanced2020 tutorial 1useState
+    
+</code>
+</pre>
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // 
+    import React, { useState } from "react";
+    console.log(useState());
+
+
+    EXAMPLE:
+    import React, { useState } from 'react';
+    // starts with use
+    // component must be uppercase
+    // invoke inside function/component body
+    // don't call hooks conditonally
+    
+    const UseStateBasics = () => {
+    // console.log(useState());
+    // const value = useState()[0];
+    // const handler = useState()[1];
+    // console.log(value, handler);
+    
+    const [text, setText] = useState('random title');
+    const handleClick = () => {
+    if (text === 'random title') {
+    setText('hello world');
+    } else {
+    setText('random title');
+    }
+    };
+    
+    return (
+    <React.Fragment>
+        <h1>{text}</h1>
+        <button type='button' className='btn' onClick={handleClick}>
+            change title
+        </button>
+    </React.Fragment>
+    );
+    };
+    
+    export default UseStateBasics;
+</code>
+</pre>
+
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    //STAE
+    //data that a component mantains. Can't change its value. Props cannot be changed
+    import React, {Component} from 'react'
+
+    import React, {Component} from 'react'
+
+    //STATE: needs to be a class based component
+    //needs a constructor that initializes values / parts of a class
+    //if not used {Component}, need to use down here React.Component
+    class App extends Component { 
+        constructor(){
+            super()
+            this.state ={
+                name: "Alberto",
+                age: "38",
+                answer: "yes",
+                isLoggedIn: true
+            }
+        }
+    render(){
+        let wordDisplay
+        if (this.state.isLoggedIn) {
+            wordDisplay = "in"
+        }else{
+            wordDisplay = "out"
+        }
+        return (
+            &lt;div>
+            &lt;h1>{this.state.name}&lt;/h1>
+            &lt;h1>{this.state.age} years old&lt;/h1>
+            &lt;p>Is state necessary? {this.state.answer}&lt;/p>
+            &lt;p>Are you logged in/out? {wordDisplay}&lt;/p>
+            &lt;/div>
+        )
+    }
+    }
+
+
+export default App;
+        
+</code>
+</pre>
+
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // CHANGING STATE - SEE HANDLING EVENTS<
+    //CHANGING STATE 
+    import React from 'react'
+
+
+    class App extends React.Component { 
+    constructor(){
+        super()
+        this.state ={
+            count: 0
+        }
+        this.handleClick = this.handleClick.bind(this)
+    }
+
+    handleClick(){
+        console.log("I'm working")
+        //this.setState({count: 1}) //when using set state you neet to binde it. See line above
+        this.setState(prevState => {
+        return {
+            count: prevState.count + 1
+        }
+        }) 
+        
+    }
+    render(){
+    return (
+        &lt;div>
+            &lt;h1>{this.state.count}&lt;/h1>
+            &lt;button onClick={this.handleClick}>Change&lt;/button>
+        &lt;/div>
+    )
+    }
+    }
+
+
+export default App;
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

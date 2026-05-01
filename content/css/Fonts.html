@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Fonts</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+    </a>
+    <h1 class="title_template">CSS - FONTS</h1>
+    <h4>Links</h4>
+    <ul>
+        <li class="link_list"><a href="https://fonts.google.com/" class="link_file">Google Fonts</a></li>
+        <li class="link_list"><a href="https://www.dafont.com/es/" class="link_file">DaFont</a></li>
+        <li class="link_list"><a href="https://www.1001fonts.com/" class="link_file">1001 Fonts</a></li>
+       
+        <li class="link_list"><a href="https://css-tricks.com/snippets/css/using-font-face/" class="link_file">CSS Tricks</a></li>
+        <li class="link_list"><a href="https://www.fontsquirrel.com/" class="link_file">Font Squirrel</a> <span>Can convert your own fonts with Generator to add them in a folder in your project</span></li>
+        <li class="link_list"><a href="https://sparanoid.com/lab/opentype-features/#aalt" class="link_file">Flourish Fonts</a></li>
+    </ul>
+    <p>Types: Serif: Classic/Elegant, Sans Serif: Engagint, Script luxury, Display: Campaigns;</p>
+    <p>Some Fonts: Montserrat Joost Galindo Londrina Cony HappyMonkey Spirax Righteous Monoton</p>
+
+        
+<div class= "code_container">
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+    // IMPORT FONTS
+    font-family: 'Montserrat2', sans-serif;
+
+    /*IN CSS file*/
+    @import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap"); 
+
+    /*IN HTML*/
+    &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot;&gt;
+    &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,300&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+
+    /*IMPORT FROM file (added at the beginning in css file) */
+    @font-face {
+        font-family: 'Montserrat2';
+        src: 
+        url('fonts/fontawesome-webfont.woff2') format('woff2'),
+        url('fonts/fontawesome-webfont.woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    src: url('webfont.eot'); /* IE9 Compat Modes */
+    src: url('webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        url('webfont.woff2') format('woff2'), /* Super Modern Browsers */
+        url('webfont.woff') format('woff'), /* Pretty Modern Browsers */
+        url('webfont.ttf')  format('truetype'), /* Safari, Android, iOS */
+        url('webfont.svg#svgFontName') format('svg'); /* Legacy iOS */
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+    //STYLING  
+    font-family: "Permanent Marker", Verdana, sans-serif; /*2nd and 3rd are backups*/
+    font-style: normal | italic | oblique;
+    font-weight: normal | bold | 300 400 500 600;
+    font-variant: small-caps;
+    font-size: 18px | 100% | 1.2rem | 1em | 1vw;
+    color: white;
+    line-height: 
+    font (all): font-style, font-variant, font-weight, font-size[line-height], font family;
+    font: italic small-caps bold 12px/30px Georgia, serif;
+
+    ::first-letter {font-size: 130%; }
+    ..first-line {font-weight: bold; }
+    
+</code>
+</pre>
+    
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Mapping</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+        </a>
+        <h1 class="title_template">REACT - MAPPING</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // MAPPING &lt;
+    //App.js
+    import React from 'react';
+    import Joke from './components/Joke';
+    import jokesData from './components/jokesData';
+
+
+    function App() {
+    //create an array of componentes
+    const jokeComponents = jokesData.map(joke => &lt;Joke key={joke.id} question={joke.question}  punchLine={joke.punchLine} /> )
+
+    // const nums = [1,2,3,4,5,6,7]
+    // const doubled = nums.map(function(num){
+    //   return num * 2
+    // })
+    return (
+        &lt;div >
+        {jokeComponents}
+        &lt;/div>
+    )
+    }
+
+    export default App;
+
+
+    
+    //jokesData.js
+
+    const jokesData = [
+        {
+        id: 1,
+        question:"What's the best thing about Switzerland? ",
+        punchLine:"I don't kwnow but the flag is a big plus"
+        },
+        {
+        id: 2,
+        punchLine:"He'll stop at nothing to avoid them!"
+        },
+        {
+        id: 3,
+        question:"Hear bout the new restaurant called Karma?",
+        punchLine:"There's no menu: You get what you deserve"
+        },
+        {
+        id: 4,
+        question:"Did you hear about the claustrophobic astronaut?",
+        punchLine:"He just needed a little space"
+        }
+
+    ]
+
+    export default jokesData
+
+    //Joke.js
+    //EVERY COMPONENT NEEDS TO IMPORT REACT
+    import React from 'react'
+
+    function Joke(props){
+        return (
+            &lt;div>
+                &lt;h3 style={{display: props.question ? "block" : "none"}}>Question: {props.question}&lt;/h3>
+                &lt;h3 color={{color: props.question ? "#888888" : "#2FAjN2"}}>PunchLine: {props.punchLine}&lt;/h3>
+            &lt;/div>
+        )
+    }
+
+    export default Joke
+
+    
+</code>
+</pre>
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // MAPPING &lt; 24 class based components
+    
+
+    
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

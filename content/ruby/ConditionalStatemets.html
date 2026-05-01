@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruby Conditional Statemets</title>
+    <link rel="stylesheet" href="../../css/file.css"> 
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+   
+</head>
+<body class="apis-bkg">
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Excel Icon" class="menu_img">
+    </a>
+    <h1 class="title_template">RUBY Conditional Statemets</h1>
+    <h4>Links </h4>
+        <ul>
+            <li class="link_list"> <a href="#" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+
+<div class= "code_container ">
+
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    # IF STATEMENTS
+
+    ismale = true
+    istall = true
+       
+    if ismale and istall
+        puts "You are a tall male"
+    elsif ismale and !istall
+        puts "You are a short male"
+    elsif !ismale and istall
+        puts "You are a not male but are tall"
+    else 
+        puts "You are a not a male and not tall"
+    end
+</code>
+</pre>
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    # IF STATEMENTS II
+    def Max(num1, num2, num3)
+        if num1 >= num2 and num1 >= num3
+            return num1
+        elsif num2 >= num1 and num2 >= num2
+            return num2
+        else 
+            return num3
+        end
+    end
+
+    puts(1,2,3)
+</code>
+</pre>
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    # CALCULATOR
+    
+    puts "Enter first number: "
+    num1 = gets.chomp().to_f
+    puts "Enter operator: "
+    op = gets.chomp()
+    puts "Enter second number: "
+    num2 = gets.chomp().to_f
+
+    if op == "+"
+        puts (num1 + num2)
+    elsif op == "-"
+        puts (num1 -num2)
+    elsif op == "/"
+        puts (num1 / num2)
+    elsif op == "*"
+        puts (num1 * num2)
+    else
+        puts "Invalid operator"
+    end
+
+</code>
+</pre>
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    # CASE EXPRESSIONS
+    def get_day_name(day)
+        day_name = ""
+        case day 
+        when "mon"
+            day_name = "Monday"
+        when "tue"
+            day_name = "Tuesday"
+        when "wed"
+            day_name = "Wednesday"
+        else
+            day_name = "Invalid abbreviation"
+        end
+
+        return day_name
+    end
+
+    puts get_day_name("mon")
+    
+</code>
+</pre>
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    # WHILE LOOPS
+    index = 1
+    while index &lt;= 5
+        puts index
+        index += 1
+    end
+</code>
+</pre>
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    # Guessing name
+    secret_word = "giraffe"
+    guess = ""
+    guess_count = 0
+    guess_limit = 3
+    out_of_guesses = false
+    while guess != secret_word
+        if guess_count &lt; guess_limit and !out_of_guesses
+            puts "Enter your guess: "
+            guess = gest.chomp()
+            guess_count += 1
+        else
+            out_of_guesses = true 
+        end
+    end
+    
+    if out_of_guesses
+        puts "You Lose"
+    else
+        puts "You won"
+    end
+</code>
+</pre>
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    # FOR LOOPS
+
+    friends = ["Kevin","Karen","Oscar","Angela","Andy"]
+
+    for friend in friends
+        puts friend
+    end
+    
+    friends.each do |friend|
+        friend
+    end
+
+    for index in 0..5
+        puts index
+    end
+
+    6.times do |index|
+        puts index
+    end
+</code>
+</pre>
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    # EXPONENT METHOD
+    def pow(base_num, pow_num)
+        result = 1
+            pow_num.times do |index|
+                result = result * base_num
+            end
+        return result
+    end
+
+    puts pow(2,3)
+</code>
+</pre>
+
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+*{
+    box-sizing: border-box;
+}
+
+/* arial, cyan, stryke */
+
+.header-title{
+    text-align: center;
+}
+
+.section{
+    padding: 0.1em;
+    margin: 1em;
+}
+.green-section{
+    background-color: rgb(123, 206, 123);
+    color: white;
+}
+
+.section-title{
+    font-family: Arial, sans-serif;
+}
+
+/* no funciona */
+.bands li:last-child{
+    color: lime;
+    text-decoration: line-through;
+}
+
+li:first-child{
+    color: cyan;
+}
+

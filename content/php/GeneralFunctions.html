@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP General Functions</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">PHP GENERAL FUNCTIONS</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+
+<!-- PHP -->
+<pre class="prettyprint">
+<code class="language-php" spellcheck="false">
+    //FUNCIONES STRING https://www.php.net/manual/es/ref.strings.php
+    $texto = " Lo que el viento se llevó";
+    $letras = strlen($texto); //Strlen:  devuelve la longitud de un string con espacios incluidos
+    $espacios = substr_count($texto, " "); //substr_count: muestra el número de veces que se repite un substring, en este caso el espacio
+    $caracteres = $letras - $espacios;
+    $texto_trim = trim($texto, " \t."); //trim() elimina espacios al principio y final de un string
+
+    La frase &quot;&lt;?php echo $texto;?&gt;&quot; tiene &lt;?php echo $letras;?&gt; letras y &lt;?php echo $espacios;?&gt; espacios. &lt;br&gt;
+    Total: &lt;?php echo $caracteres;?&gt; caracteres (sin espacios).&lt;br&gt;
+    &lt;?php echo $texto_trim;?&gt;
+</code>
+</pre>
+
+<!-- PHP -->
+<pre class="prettyprint">
+    <code class="language-php" spellcheck="false">
+    //FUNCIONES NUMBERS https://www.php.net/manual/es/ref.math.php
+    $precio = 125.35;
+    $dto = 0.15;
+    $descontar= round($precio * $dto,2);
+    $porcentaje = round($dto * 100);
+    $precio_dto = $precio - ($precio * $dto);
+    $precio_formateado = str_replace(".",",", $precio_dto);
+    $precio_formateado2 = str_replace(".",$decimal, $precio_dto);
+
+    $lang= "en";
+    if($lang =="en")
+        $decimal=".";
+    else{
+        $decimal=",";
+    }
+
+    &lt;h2&gt;Funciones de Numeros&lt;/h2&gt;
+    El precio redondeado con ceil() de &lt;?php echo $precio;?&gt;  es : &lt;?php echo ceil($precio);?&gt;&lt;br&gt;
+    El precio redondeado con floor() de &lt;?php echo $precio;?&gt;  es : &lt;?php echo floor($precio);?&gt;&lt;br&gt;
+    El precio redondeado con round() de &lt;?php echo $precio;?&gt;  es : &lt;?php echo round($precio);?&gt;&lt;br&gt;
+    El descuento que se aplica de &lt;?php echo $porcentaje;?&gt;% es de:  &lt;?php echo $descontar;?&gt;&euro;&lt;br&gt; 
+    El precio final con descuento aplicado es de: &lt;?php echo $precio_dto;?&gt;&euro;&lt;br&gt; 
+    El precio final con descuento aplicado y redondeado es de: &lt;?php echo round($precio_dto,2);?&gt;&euro;&lt;br&gt; 
+    El precio final con descuento aplicado y formateado con coma (,) es de: &lt;?php echo $precio_formateado;?&gt;&euro;&lt;br&gt; 
+    The final price for english, with $decimal: &lt;?php echo $precio_formateado2;?&gt;&euro;&lt;br&gt; &lt;br&gt; 
+
+    El producto tiene un precio de: &lt;?php echo $precio;?&gt;&euro;&lt;br&gt; 
+    Le aplico un descuento de &lt;?php echo $porcentaje;?&gt;%&lt;br&gt; 
+    Y se me queda en &lt;?php echo round($precio_dto,2);?&gt;&euro;&lt;br&gt;
+</code>
+</pre>
+
+<!-- PHP -->
+<pre class="prettyprint">
+    <code class="language-php" spellcheck="false">
+    //PHP DATE &lt;
+    date_default_timezone_set ('UTC');
+    $hoy_array = localtime();
+    $hoy_arrayAsoc = getdate();
+    $hoy = $hoy_arrayAsoc['mday']."/".$hoy_arrayAsoc['mon']."/".$hoy_arrayAsoc['year']." ".$hoy_arrayAsoc['hours'].":".$hoy_arrayAsoc['minutes'];
+
+    Hoy &lt;?php print_r($hoy_array);?&gt;&lt;br&gt; 
+    Hoy2 &lt;?php print_r($hoy_arrayAsoc);?&gt;&lt;br&gt; 
+    Hoy es:  &lt;?php echo $hoy;?&gt;&lt;br&gt; 
+</code>
+</pre>
+
+
+<!-- PHP -->
+<pre class="prettyprint">
+    <code class="language-php" spellcheck="false">
+    //PHP OTHERS &lt;
+    echo strlen("Hello world!"); //lenght of a string
+    echo str_word_count("Hello world!"); //str_word_count : Cuenta palabras
+    echo strrev("Hello world!"); // Inverts string
+    echo strpos("Hello world!", "world"); // En qué posición empieza la segunda palabra
+    echo str_replace("world", "Dolly", "Hello world!"); // replaces world for Dolly
+    define("Greeting", "Welcome to California", true);// true may min mayúscula o minúscula
+    define("cars", ["Alfa Romeo","BMW","Toyota"]);// arreglo
+</code>
+</pre>
+
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

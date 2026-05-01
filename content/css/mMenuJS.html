@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS mMenujs</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+
+</head>
+<body>
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+    </a>
+    <h1 class="title_template">CSS - mMENUJS</h1>
+    <h4>Links</h4>
+    <ul>
+        <li class="link_list"><a href="https://mmenujs.com/" class="link_file" target="_Blank">mMenujs</a></li>
+    </ul>
+  
+        
+<div class= "code_container">
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    // mMENU JS
+    Download and link
+    &lt;link href=&quot;path/to/mmenu.css&quot; rel=&quot;stylesheet&quot; /&gt;
+    &lt;script src=&quot;path/to/mmenu.js&quot;&gt;&lt;/script&gt;
+    
+</code>
+</pre>
+
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    // mMENU JS
+    &lt;div id=&quot;my-header&quot;&gt;
+        &lt;nav id=&quot;my-menu&quot;&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a href=&quot;/&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;/about/&quot;&gt;About us&lt;/a&gt;
+                    &lt;ul&gt;
+                        &lt;li&gt;&lt;a href=&quot;/about/history/&quot;&gt;History&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href=&quot;/about/team/&quot;&gt;The team&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href=&quot;/about/address/&quot;&gt;Our address&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;/contact/&quot;&gt;Contact&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/nav&gt;
+    &lt;/div&gt;
+</code>
+</pre>
+    
+
+<!-- JS -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // INITIALIZE JAVASCRIPT
+    Mmenu.configs.classNames.selected = "active";
+    Mmenu.configs.offCanvas.page.selector = "#my-page";
+    
+    document.addEventListener(
+        "DOMContentLoaded", () => {
+            new Mmenu( "#my-menu", {
+                extensions: ["theme-dark"]
+            });
+        }
+    );
+    
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

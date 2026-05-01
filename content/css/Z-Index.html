@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Z-Index</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+    </a>
+    <h1 class="title_template">CSS - Z-INDEX</h1>
+    <h4>Links</h4>
+    <ul>
+        <li class="link_list"><a href="#" class="link_file">Link</a></li>
+    </ul>
+
+        
+<div class= "code_container">
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+// Z-INDEX
+position: absolute;
+left: 0px;
+top: 0px;
+z-index: -1;
+z-index only works on positioned elements (position: absolute, position: relative, position: fixed, or position: sticky) and flex items (elements that are direct children of display:flex elements).
+From 0 to +2000000000
+stacking context: en un div con 3 childs si el div padre tiene zindex 10, los children por defecto tambien
+pero si se le pone a un child z-index2 será relativo al padre y elementos. Fuera de ese padre tendrá un zindex de 10. Ej:
+div1: 10zindex con subdiv a: 14, b: 11,c: 12
+div2:  zindex con subdiv a: 50, b: 30, c:10
+Stacking context concept: Hierarchy. If a parent div has 4 z-index, that's the absolute value for its children in relation to other elements. Inside the parent, you can set individually any range of numbers to position the children (for example child 1 z-index: 10). But outside the parent, they all will have z:index: 4
+siempre el div1 y sus elementos se verán por encima de los del div2
+Si no tienen posicionamiento aparecen debajo de los que lo tienen si no está espeficiado el z index
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

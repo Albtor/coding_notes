@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Connetion</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVA CONNECTION</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //CONNEXION Class Basic
+    public class Conexion {
+    public Connection con;
+    
+    public  Conexion(){
+        con=null;
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/informaticaatr?useSSL=false&useTimezone=true&serverTimezone=UTC","xxxx","xxxx");
+            if (con != null){
+                System.out.println("Conectado a la BBDD");
+            }
+            
+        }catch (Exception e){
+            System.out.println("Error de conexión");
+            System.err.println("Error:" + e);
+        }
+        }
+        
+    }
+    
+</code>
+</pre>
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // CONEXION DInterfaces
+    private void mostrarDatos(Integer id) {
+        Conexion cn = new Conexion();
+        Statement st;
+        ResultSet rs;
+        try{
+            st = cn.con.createStatement();
+            rs = st.executeQuery("SELECT * from productosatr WHERE id = "+id+"");
+            
+            while (rs.next()){
+
+                jTextFieldNombre.setText(rs.getString("nombre"));
+                jTextFieldEspecificaciones.setText(rs.getString("especificaciones"));
+                jTextFieldPrecio.setText(rs.getString("precio")+" €");
+            }
+            cn.con.close();
+       }catch (SQLException e){
+            System.out.println("Error");
+        }
+
+}
+    
+</code>
+</pre>
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //JAVA &lt;
+    
+</code>
+</pre>
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //JAVA &lt;
+    
+</code>
+</pre>
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

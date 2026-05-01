@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel Funciones Nuevas</title>
+    <link rel="stylesheet" href="../../../css/file.css">
+   
+</head>
+<body class="excel-bkg">
+<div class="main_container">
+
+    <a href="../Excel.html" class="menu_link">
+        <img src="../img/excel.png" alt="Excel Icon" class="menu_img">
+    </a>
+    <h1 class="title_template">EXCEL FUNCIONES NUEVAS</h1>
+
+<div class= "code_container ">
+
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //FUNCIONES NUEVAS
+    ANIDACIÓN, FUNCION SI.CONJUNTO. No hay que anidar ni especificar si falso
+    =SI.CONJUNTO(B2&lt;5;"INSUFICIENTE";B2&lt;6;"SUFICIENTE";B2&lt;7;"BIEN";B2&lt;9;"NOTABLE";B2&lt;=10;"SOBRESALIENTE")
+    Asistente de funciones Todas, si conjunto
+
+    Matiz: Ultima condicion como VERDADERO
+    =SI.CONJUNTO(B2&lt;5;"INSUFICIENTE";B2&lt;6;"SUFICIENTE";B2&lt;7;"BIEN";B2&lt;9;"NOTABLE";VERDADERO)
+
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //FUNCIONES NUEVAS
+    MAX.SI CONJUNTO
+    Rango Max
+    Rango Criterios 1 (Filas)
+    Criterio 1 "EEUU"
+    =MAX.SI.CONJUNTO(D2:D8;A2:A8;"EEUU")
+
+    Rango Criterios 2
+    Criterio 2 "East"
+    =MAX.SI.CONJUNTO(D2:D8;A2:A8;"EEUU";C2:C8;"East")
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //FUNCIONES CABIAR
+    Hay que evaluar un valor y tiene varias respuestas posibles.
+    Expresion: Celda que queremos evaluar
+    Valor1, Valor2
+    =CAMBIAR(A2;1;"Lunes";2;"Martes";3;"Miercoles";4;"Jueves";5;"Viernes";6;"Sabado";7;"Domingo")
+    =CAMBIAR(D2;1;"Insuficiente";2;"Insuficiente";3;"Insuficiente";4;"Insuficiente";5;"Suficiente";6;"Bien";7;"Notable";8;"Notable";9;"Sobresaliente";10;"Matricula")
+    Ojo con las referencias !
+
+    =CAMBIAR($B$24;$A$20;B20;$A$21;B21;$A$22;B22)
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //FUNCIONES CONCAT
+    =CONCAT(A2:C2)
+
+    Concatenar todo de una tabla en una celda
+    =CONCAT(A2:C5)
+
+    //SEPARADORES
+    =CONCAT(A2;" ";B2;" ";C2)		
+    =UNIRCADENAS(" ";FALSO;A2:C2)	//falso: no ignore celdas vacias -verdadero: ignorar celdas vacias.
+	
+
+
+</code>
+</pre>
+    
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

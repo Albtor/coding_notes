@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel Tablas Dinamicas</title>
+    <link rel="stylesheet" href="../../../css/file.css">
+   
+</head>
+<body class="excel-bkg">
+<div class="main_container">
+
+    <a href="../Excel.html" class="menu_link">
+        <img src="../img/excel.png" alt="Excel Icon" class="menu_img">
+    </a>
+    <h1 class="title_template">EXCEL TABLAS DINÁMICAS</h1>
+
+<div class= "code_container ">
+
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //TABLAS DINÁMICAS VID 31
+    Resumenes de grandes listados, o muchos cálculos, información más amigable
+    Estructura: Columnas, Filas, Datos/Totales, Filtros
+    Recomendaciones: Columnas con cabecera, sin celdas en blanco en campos numéricos (poner 0), no columnas o filas totalmente en blanco, Si la Tabla lleva cálculos, mejor quitarlos asi como subtotales
+</code>
+</pre>
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //CREACION
+    Seleccionar celda tabla > Insertar > Tablas Dinámicas
+    Poner campos en columnas, filas, valores, filtros.
+    Dinamica = se puede modificar y se actualiza automáticamente
+    <img src="../img/td01.PNG" alt="td1" width="300" class="imgFormat">
+</code>
+</pre>
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    // FILTROS VID 32
+    Al añadirlos, se abre nueva fila para elegir. Seleccionar un elemento o varios
+
+    //VALORES
+    Campo de valores suele ser de operaciones. click en el y click en configuracion de campo de valor (Promedio, recuento, contar nums, )
+    Ej: contar números-> Cuantas celdas con valores numéricos
+
+    //mostrar valores como - sin cálculo
+    porcentaje del total de columnas por ejemplo
+    Hay muchas combinaciones interesantes
+
+    //Añadir varias secciones a columnas
+    Fecha, se pueden mostrar año, trimestres.. mucha información
+    <img src="../img/td02.PNG" alt="td1" width="300" class="imgFormat">
+
+    //Refrescar datos / Actualizar
+    tras cambios en BD, se actualiza haciendo clic en tabla, luego Arriba Análisis de tabla dinámica > Actualizar
+    Actualizar: Datos
+    Actualizar todo: Cambios en estructura
+    <img src="../img/td03.PNG" alt="td3" width="300" class="imgFormat">
+
+    
+</code>
+</pre>
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //SEGMENTACION DE DATOS
+    Análisis de tabla dinámica > Insertar segmentacion de Datos
+    Crea tabla flotante Ej elegimos pais, filtra
+    Para borrar clicar en ella y dar a SUPR
+    Varias segmentaciones a la vez ok
+    <img src="../img/td04.PNG" alt="td3" width="300" class="imgFormat">
+    <img src="../img/td05.PNG" alt="td3" width="300" class="imgFormat">
+    
+    
+</code>
+</pre>
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //Escala de tiempo
+    Análisis de tabla dinámica > Insertar Escala de tiempo
+    Permite filtrar por intervalos de tiempo (meses, años, trimestres) de manera gráfica
+    Uso de varias ok
+    Años Meses trimestres
+    Por ejemplo: Elegir los datos de Abril de 2018 
+    Se habilita ficha
+</code>
+</pre>
+    
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //AutoFiltros
+    Seleccionar celda vacia a la derecha de la cabecera y luego Datos > Filtro 
+    <img src="../img/TDautoFiltros.PNG" alt="td3" width="300" class="imgFormat">
+</code>
+</pre>
+    
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

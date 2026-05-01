@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Images</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+    </a>
+    <h1 class="title_template">CSS - IMAGES</h1>
+    <h4>Links</h4>
+    <ul>
+        <li class="link_list"><a href="https://medium.com/@bretcameron/parallax-images-sticky-footers-and-more-8-useful-css-tricks-eef12418f676" class="link_file" target="_Blank">Useful Tricks</a></li>
+        <li class="link_list"><a href="https://developer.mozilla.org/es/docs/Web/CSS/object-fit" class="link_file" target="_Blank">Mozilla - Object Fit</a></li>
+        <li class="link_list"><a href="https://css-tricks.com/almanac/properties/o/object-fit/" class="link_file" target="_Blank">CSS Tricks - Object Fit</a></li>
+    </ul>
+    
+
+        
+<div class= "code_container">
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+    //IMG
+    &lt;img src=&quot;pic.png&quot; alt=&quot;Foto Ejemplo&quot;&gt;
+</code>
+</pre>
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+    //OBJECT-FIT (Not in IE) Specifies how an img or video should be resized to fit its container
+    object-fit: cover; /*the image keeps its aspect ratio and fills the given dimension. The image will be clipped to fit*/
+    object-fit: contain; /*the image keeps its aspect ratio, but is resized to fit within the given dimension:*/
+    object-fit: fill; /*the image is resized to fill the given dimension. If necessary, the image will be stretched or squished to fit:*/
+    object-fit: none; /*the image is not resized:*/
+    object-fit: scale-down; /*the image is scaled down to the smallest version of none or contain*/
+
+    //OBJECT POSITION Specifies how an img or video should be positioned with x/y coordinates inside its "own content box"
+</code>
+</pre>
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+    //BORDERS
+
+    img {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 5px;
+        width: 150px;
+    }
+    img {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 5px;
+        width: 150px;
+    }
+</code>
+</pre>
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+    //IMAGES
+    //If you want an image to scale down if it has to, but never scale up to be larger than its original size, add the following:
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+</code>
+</pre>
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+    //CENTER IMAGE
+    img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+    }
+</code>
+</pre>
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+    //POLAROID STYLE
+    div.polaroid {
+        width: 80%;
+        background-color: white;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    img {width: 100%}
+</code>
+</pre>
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+    //FILTER STYLES
+    .blur {filter: blur(4px);}
+    .brightness {filter: brightness(250%);}
+    .contrast {filter: contrast(180%);}
+    .grayscale {filter: grayscale(100%);}
+    .huerotate {filter: hue-rotate(180deg);}
+    .invert {filter: invert(100%);}
+    .opacity {filter: opacity(50%);}
+    .saturate {filter: saturate(7);}
+    .sepia {filter: sepia(100%);}
+    .shadow {filter: drop-shadow(8px 8px 10px green);}
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

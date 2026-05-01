@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX Basics</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">AJAX Basics</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="https://www.youtube.com/watch?v=82hnvUYY6QA&t=242s&ab_channel=TraversyMedia" class="link_file" target="_Blank">Youtube course</a></li>
+        </ul>
+     
+<div class= "code_container">
+
+<!-- HTML -->
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //AJAX THEORY
+    Asynchronous Javascript & XML
+    Set of web Technologies
+    Send & receive data from a client to a server asynchronously, without reload
+    Does not interfere with current web page
+    XML has been replaced by JSON mostly
+</code>
+</pre>
+<!-- HTML -->
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //IMAGE
+    Allows to make requests in the backgroun without reload or refresh our webpage.
+    Different ways to do it. We will be using Javascript
+    We make a HmlHttpRequest (XHR) Object:
+    API in the form of object, provided by browser's JS, methods, can be used with other protocols other than HTTP (but it is the most common).
+    Server returns data in JSON, XML, text.
+    <img src="img/Ajax1.PNG" alt="Esquema" class="imgInline">
+</code>
+</pre>
+<!-- HTML -->
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    // Libraries / Methods
+    jQuery, Axios, Superagent, Fetch API, Prototype, Node HTTP
+</code>
+</pre>
+    
+<!-- HTML -->
+<!-- <figure></figure> -->
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //SETUP
+    Need to be running a Server -> XAMPP
+    Folder in htdocs (coding/others/ajax)
+</code>
+</pre>
+
+
+<!-- HTML -->
+<!-- <figure></figure> -->
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //Basic
+    XMLHttpRequest();
+    xhr.open('GET', 'sample.txt', true); // xhr.open('GET', 'https://api.github.com/users', true);
+    xhr.onload = function(){...}
+    xhr.send();
+    JSON.parse(this.responseText);
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

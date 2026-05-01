@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Modaal</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+
+</head>
+<body>
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+    </a>
+    <h1 class="title_template">CSS - MODAAL</h1>
+    <h4>Links</h4>
+    <ul>
+        <li class="link_list"><a href="https://www.humaan.com/modaal/" class="link_file" target="_Blank">Modaal</a></li>
+        <li class="link_list"><a href="https://github.com/humaan/Modaal" class="link_file" target="_Blank">Download Github</a></li>
+    </ul>
+  
+        
+<div class= "code_container">
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    // MODAAL
+    Download and link files ( js/modaal.min.js - css/modaal.css - jquery.js)
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;css/modaal.css&quot;&gt;
+    &lt;script src=&quot;js/jquery-3.4.1.min.js&quot;&gt;&lt;/script&gt;  //Librerias primero antes de js
+    &lt;a href=&quot;ajax.html&quot; class=&quot;modaal-ajax&quot;&gt;Show Ajax&lt;/a&gt;
+    
+</code>
+</pre>
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    // USE
+    //.inline
+    &lt;button data-modaal-content-source=&quot;#inline&quot; data-modaal-type=&quot;inline&quot; data-modaal-animation=&quot;fade&quot; class=&quot;modaal&quot;&gt;Show3&lt;/button&gt;
+
+    //Gallery
+    &lt;a href=&quot;img/1.jpg&quot; data-group=&quot;gallery&quot; class=&quot;gallery&quot;&gt;&lt;img src=&quot;img/Mini/1.jpg&quot; alt=&quot;&quot;&gt;&lt;/a&gt;
+    &lt;a href=&quot;img/2.jpg&quot; data-group=&quot;gallery&quot; class=&quot;gallery&quot;&gt;&lt;img src=&quot;img/Mini/2.jpg&quot; alt=&quot;&quot;&gt;&lt;/a&gt;
+
+    //iFrame
+    &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/oSmUI3m2kLk&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen&gt;&lt;/iframe&gt; 
+
+    //Video
+    &lt;a href=&quot;https://www.youtube.com/embed/c8lEWPKC0kk&quot; class=&quot;video&quot;&gt;Show Youtube&lt;/a&gt;
+
+    //Ajax
+    &lt;a href=&quot;ajax.html&quot; class=&quot;modaal-ajax&quot;&gt;Show Ajax&lt;/a&gt;
+</code>
+</pre>
+
+<!-- JS -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // INITIALIZE JAVASCRIPT
+
+    //INLINE BUTTON
+    //   For the first "a" only  $('.inline').modaal(); 
+    $('.inline').modaal({ 
+        content_source: '#inline'
+    });
+    
+    //GALLERY
+    $('.gallery').modaal({
+    type: 'image'
+    });
+    
+    
+    //CALCULAR ANCHO VENTANA
+    var ancho = $(window).width();
+    console.log(ancho);
+    
+    if(ancho > 500){
+        window.alert('La ventana mide mas de 500');
+    }
+    
+    $(window).on('resize', function(){ 
+        ancho = $(window).width();
+        console.log(ancho);
+    });
+    
+    
+    // VIDEO
+    $('.video').modaal({
+    type: 'video', 
+    hide_close: true,
+    overlay_close: false,
+    background: '#f345'
+    });
+    
+    //AJAX
+    $('.modaal-ajax').modaal({
+    type: 'ajax'
+    });
+    
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

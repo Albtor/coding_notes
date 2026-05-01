@@ -1,0 +1,52 @@
+/* Pseudo classes 2 */
+
+*{
+    margin: 0.1em;
+    box-sizing: border-box;
+}
+
+.inline{
+    display: inline;
+}
+
+[class*="p"]{
+    border: 1px solid black;
+}
+
+.p1 span:first-child{
+    color: red;
+}
+
+.p11 span:first-of-type{
+    color: red;
+}
+
+.p2 span:last-child{
+    color: rgb(0, 81, 255);
+}
+.p21 span:last-of-type{
+    color: rgb(47, 194, 194);
+}
+
+.p3 span:nth-child(2){
+    color: green;
+}
+
+.p32 span:nth-child(even){
+    color: rgb(212, 119, 13);
+}
+.p33 span:nth-child(odd){
+    color: rgb(212, 119, 13);
+}
+
+.p34 span:nth-child(2n+1){
+    color: rgb(212, 119, 13);
+}
+
+.p35 span:nth-of-type(4){
+    color: rgb(212, 119, 13);
+}
+
+.p36 span:nth-last-child(4){
+    color: rgb(212, 119, 13);
+}

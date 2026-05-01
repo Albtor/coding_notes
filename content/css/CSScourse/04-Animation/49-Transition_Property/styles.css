@@ -1,0 +1,55 @@
+/* GENERAL TRANSITION */
+.container {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    margin: 0 auto;
+}
+.box {
+    height: 100px;
+    width: 100px;
+}
+.div1 {
+    background-color: rgb(0, 255, 242);
+    color: white;
+    transition: background-color 1s ease-in-out;
+}
+
+.div1:hover {
+    background-color: rgb(45, 112, 112);
+    color: black;
+}
+
+
+/* DETAILED POSSIBLE VALUES FOR TRANSITION */
+.div2 {
+    background-color: rgb(100, 194, 112);
+    color: white;
+    transition-property: all;
+    transition-duration: 1s; 
+    transition-timing-function: linear;
+    transition-delay: .5s;
+ 
+}
+
+.div2:hover {
+    background-color: rgb(23, 104, 30);
+    color: black;
+}
+
+
+/* MULTIPLE SELECTED VALUES */
+.div3 {
+    background-color: rgb(197, 114, 179);
+    color: black;
+    transition: color 1s, background-color 3s;
+
+    /* transition-property: color, background-color;
+    transition-duration: 2s; */
+ 
+}
+
+.div3:hover {
+    background-color: rgb(63, 36, 46);
+    color: white;
+}

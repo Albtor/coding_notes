@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel Funciones BBDD</title>
+    <link rel="stylesheet" href="../../../css/file.css">
+   
+</head>
+<body class="excel-bkg">
+<div class="main_container">
+
+    <a href="../Excel.html" class="menu_link">
+        <img src="../img/excel.png" alt="Excel Icon" class="menu_img">
+    </a>
+    <h1 class="title_template">EXCEL FUNCIONES BBDD</h1>
+
+<div class= "code_container ">
+
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //FUNCIONES BBDD I
+    //Se crea una hoja aparte con las mismas cabeceras y en la primera linea podemos poner valores que coincidadn en la BBDD
+    //En una celda Asistente funciones > Base datos					
+    Base de datos: con cabecera incluida en otra Hoja
+    Nombre de campo: cabecera de la BD
+    Criterio: Cabecera nueva mas primera linea (ponemos en una España)
+    =BDSUMA(BD!A1:G9;BD!D1;A1:G2)
+    =BDPROMEDIO(BD!A1:G9;BD!D1;A1:G2)
+
+    
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //FUNCIONES BBDD II 
+
+    //CARACTERES COMODIN
+    ? Sustituye a un único caracter FERRETERÍA vs FERRETERIA podemos poner FERRETER?A
+    * Sustituye a varios caracteres *CABALLERO   -- FERRET*  *RRETERIA  FE*TERIA 
+
+    //Y O 
+    Poniendo varias infos en varias celdas
+
+    //NOMBRAR RANGOS: Hace que si añadimos más artículos, la tabla los reconozca
+    En BD clicar sobre una celda, insertar tabla. QUitar check de encabezados
+    En Fórmukas, Administrador de nombres. Se le ha asociado un nombre a la tabla
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

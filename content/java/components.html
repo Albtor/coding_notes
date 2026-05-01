@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Componentes</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVA Componentes</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //JAVA &lt;
+    Crear y añadir componentes a la paleta
+    Añadir propiedades (hace falta set y get) Con boolean no se usa get sino IS
+    Probar en paquetes de prueba
+    Debe ser serializable y tener un constructor sin parámetros 
+    Clean and Build (escoba) en dist encontramos el fichero.jar compilado
+    Crear los jar para usar 
+    Añadir un Jar, Herramientas Paleta Componente Swing. Añadir fichero JAR y cerrar y en paleta te aparece el componente para usarlo gráficamente
+</code>
+</pre>
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //COMPONENTE BASE CONEXION &lt;
+    
+    package preparacioncomponente;
+
+
+    import java.sql.Connection;
+    import java.sql.DriverManager;
+    import java.sql.SQLException;
+    import java.sql.Statement;
+    import javax.swing.JLabel;
+    import javax.swing.JOptionPane;
+    import javax.swing.JTextField;
+
+
+public class ComponenteConexion extends JLabel{
+    //CONEXION
+    private transient Connection conexion = null; // conexion con DB
+    private String AA_Servidor = "localhost";
+    private int AA_Puerto = 3306;
+    private String AA_BaseDatos = "misclientes";
+    private String AA_usuario = "root";
+    private String AA_password = "";
+    public boolean hayError;
+    public String mensajeError;
+    
+    //PROPIEDADES
+    private String AA_tabla = "cliente2";
+    private String AA_columnaBusqueda = "id";
+    private String AA_columnaMostrar = "nombre";
+    private boolean AA_Activar = false;
+    
+    private transient Statement comandoSQL;
+    private String consultaSELECT;
+
+    public ComponenteConexion() {
+        this.setText("Componente Conexion Basico");
+    }
+
+    public String getAA_Servidor() {
+        return AA_Servidor;
+    }
+
+    public void setAA_Servidor(String AA_Servidor) {
+        this.AA_Servidor = AA_Servidor;
+    }
+
+    public int getAA_Puerto() {
+        return AA_Puerto;
+    }
+
+    public void setAA_Puerto(int AA_Puerto) {
+        this.AA_Puerto = AA_Puerto;
+    }
+
+    public String getAA_usuario() {
+        return AA_usuario;
+    }
+
+    public void setAA_usuario(String AA_usuario) {
+        this.AA_usuario = AA_usuario;
+    }
+
+    public String getAA_password() {
+        return AA_password;
+    }
+
+    public void setAA_password(String AA_password) {
+        this.AA_password = AA_password;
+    }
+
+    public String getAA_tabla() {
+        return AA_tabla;
+    }
+
+    public void setAA_tabla(String AA_tabla) {
+        this.AA_tabla = AA_tabla;
+    }
+
+    public String getAA_columnaBusqueda() {
+        return AA_columnaBusqueda;
+    }
+
+    public void setAA_columnaBusqueda(String AA_columnaBusqueda) {
+        this.AA_columnaBusqueda = AA_columnaBusqueda;
+    }
+
+    public String getAA_columnaMostrar() {
+        return AA_columnaMostrar;
+    }
+
+    public void setAA_columnaMostrar(String AA_columnaMostrar) {
+        this.AA_columnaMostrar = AA_columnaMostrar;
+    }
+
+    public boolean isAA_Activar() {
+        return AA_Activar;
+    }
+
+    public void setAA_Activar(boolean AA_Activar) throws SQLException {
+        this.AA_Activar = AA_Activar;
+        if (!AA_Activar) { //CHECK
+            this.AA_Activar = false;
+            if (this.conexion !=null) this.conexion.close();
+            return;  // nada que hacer ya que es falso por defecto
+        }
+
+        if (AA_Activar) { // Si está true, entonces intentamos conexión
+            this.AA_Activar = true;
+            Conexion();
+            MostrarPane();
+            
+        }
+    }
+    
+    public void Conexion(){
+        try {
+                Class.forName("com.mysql.jdbc.Driver"); // OJO cargar driver
+                this.conexion = DriverManager.getConnection("jdbc:mysql://" + this.AA_Servidor + ":" + this.AA_Puerto + "/" + this.AA_BaseDatos,
+                        this.AA_usuario, this.AA_password);
+                try // ejecutara cada vez que el objeto asociado (en este caso conexion a base de datos) cambie su estado de conectada o no
+                {
+                    this.hayError = false;
+                    this.comandoSQL=this.conexion.createStatement();
+                    //ACCION
+
+                } catch (Exception ex) {
+                    this.hayError = true;
+                    this.mensajeError = ex.getMessage();
+                    JOptionPane.showMessageDialog(null, "Error ConsultaSQL: \n" + this.mensajeError);
+                }
+
+           
+            
+        } catch (SQLException ex) {
+            this.hayError = true;
+            this.mensajeError = ex.getMessage();
+            JOptionPane.showMessageDialog(null, "Error ConectorDB: \n" + this.mensajeError);
+            return;
+        } catch (ClassNotFoundException ex) {
+            this.hayError = true;
+            this.mensajeError = ex.getMessage();
+            JOptionPane.showMessageDialog(null, "DRIVER.-Error ConectorDB: \n" + this.mensajeError);
+            return;
+        }
+    
+    
+    }
+
+    private void MostrarPane() {
+        JOptionPane.showMessageDialog(null, "Conectado");
+    }
+    
+}
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

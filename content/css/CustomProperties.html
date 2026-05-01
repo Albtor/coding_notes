@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Custom Properties</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+    <style>
+
+    :root{
+        --primary-color: green;
+        --border: 1px solid blue;
+    }
+
+    p.example{
+    border: var(--border);
+    color: var(--primary-color);
+    }
+
+    </style>
+</head>
+<body>
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+    </a>
+    <h1 class="title_template">CSS - CUSTOM PROPERTIES</h1>
+    <h4>Links</h4>
+    <ul>
+        <li class="link_list"><a href="" class="link_file">Link</a></li>
+    </ul>
+
+        
+<div class= "code_container">
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+    //CUSTOM PROPERTIES
+    :root{
+        --primary-color: green;
+        --border: 1px solid blue;
+    }
+
+    h2{background-color: var(--primary-color);} /*Use*/
+    p{ --border: 3px solid yellow;} /*Override*/
+    p{margin: var(--margin, 10px);} /*if not declared, you can set a default value. ex:  It means that if the variable --margin is not declared in root, it will take 10px of value*/
+</code>
+</pre>
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    //JAVASCRIPT MODIFICATION
+    &lt;script&gt;
+    const button = document.querySelector('button').addEventListener('click', ()=> {
+        console.log(getComputedStyle(document.documentElement).getPropertyValue('--primary-color'))
+        document.documentElement.style.setProperty('--primary-color', 'white')
+        document.documentElement.style.setProperty('--border', '2px dotted cyan')
+      })
+    &lt;/script&gt;
+</code>
+</pre>
+<button>Click me</button>
+<p class="example">Paragraph Example, click button</p>
+</div>
+</div>
+     <!-- OBTENER EL COLOR Y CAMBIARLO -->
+  <script>
+    const button = document.querySelector('button').addEventListener('click', ()=> {
+      console.log(getComputedStyle(document.documentElement).getPropertyValue('--primary-color'))
+      document.documentElement.style.setProperty('--primary-color', 'white')
+      document.documentElement.style.setProperty('--border', '2px dotted cyan')
+    })
+
+  </script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

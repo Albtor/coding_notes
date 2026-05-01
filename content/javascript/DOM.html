@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript DOM</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVASCRIPT DOM</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="https://www.w3schools.com/js/js_htmldom_document.asp" class="link_file" target="_Blank">W3Schools</a></li>
+        </ul>
+    
+
+
+    
+<div class= "code_container">
+
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //JAVASCRIPT DOM Document Object Model 
+    HTML DOM is constructed as a tree of objects: Document,
+    JavaScript can change all the HTML elements in the page 
+    JavaScript can change all the HTML attributes in the page
+    JavaScript can change all the CSS styles in the page
+    JavaScript can remove existing HTML elements and attributes
+    JavaScript can add new HTML elements and attributes
+    JavaScript can react to all existing HTML events in the page
+    JavaScript can create new HTML events in the page
+</code>
+</pre>
+
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //DOM METHODS
+    document.getElementById();
+    VAR.innerHTML = "New Text";
+    document.getElementById("demo").innerHTML = "Hello World!";
+
+    document.getElemenyByTagName();
+    document.getElemenyByClassName();
+    document.querySelector();
+    document.querySelectorAll();
+
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //DOM FINDING HML ELEMENTS 
+    document.getElemenyByTagName();
+    document.getElemenyByClassName();
+    document.querySelector();
+    document.querySelectorAll();
+
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //DOM FINDING CHILDREN with Nodes SMARTER WAY TO LEARN JAVASCRIPT
+    var p = document.childNodes[0].childNodes[1].childNodes[1].childNodes[1];
+    html > body > div > p
+    first node is html, then head[0] and body[1] and then the elements you use
+
+    var nType = targetNode.nodeTye;
+    var targetNode = parentNode.firstChild //gets to a specific children firstChild, lastChild
+    var nName = targetNode.nodeName; //gives you p DIV, SPAN, IMG
+    var nName = targetNode.nodeValue; //gives you the value, but is different to innerHTML, will not give you subnode values like span o em inside a node p. innerHTML does this
+
+    //Counting Elements
+    var liElements = getElementsByTagName("li");
+    var howManyLi = liElements.lenght();
+
+    //Attributes
+    var target = getElementById("p1");
+    var hasClass = target.hasAttribute("class"); //searches if an element has an attribute of class
+    var attVal = target.getAttribute("class"); //gets the value
+    var attVal = target.setAttribute("class"); //sets the value
+    var list = document.getElementBy('id').attributes; //gets all attributes of the element
+    var nName = list[2].nodeName;
+
+    //Adding nodes
+    var nodeToAdd = document.createElement("p"); //adds a new node
+    nodeToAdd.setAttribute("class", "regular"); //Add an attribute to the node
+    var newTxt = document.createTextNode("Hello!"); //adds a new node
+    nodeToAdd.appendChild(newTxt);
+
+    //Inserting Nodes
+    var parentDiv = .document.getElementBzId("div1");
+    var newParagraph = document.createElement("p");
+    var t = document.createTextNode("Hello World");
+    newParagraph.appendChild(t);
+    parentDiv.appendChild(newParagraph);
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //DOM CHANGING HTML ELEMENTS
+    //Properties
+    element.innerHTML
+    element.attribute 
+    element.style.property = new style
+    //Methods
+    element.setAttribute(attribute, value)
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //DOM ADDING / DELETING ELEMENTS METHODS
+    document.createElement(element)
+    document.removeChild(element)
+    document.appendChild(element)
+    document.replaceChild(new, old)
+    document.write(text)
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //DOM EVENTS
+    document.getElementById(id).onclick = function(){code}
+    &lt;h1 onclick="this.innerHTML = 'Ooops!'">Click on this text!&lt;/h1>
+    &lt;body onload="checkCookies()">&lt;/body>
+
+    onchange="upperCase()"
+
+    //MOUSE
+    onmouseover
+    onmouseout
+    onmousedown
+    onmouseup
+    onfocus
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //DOM CSS
+    document.getElementById("p2").style.color = "blue";
+</code>
+</pre>
+
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //DOM EVENT LISTENER
+    element.addEventListener(event, function, useCapture);
+    document.getElementById("myBtn").addEventListener("click", displayDate);
+</code>
+</pre>
+
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //DOM CSS
+    document.getElementById("p2").style.color = "blue";
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //DOM NAVIGATION
+    html root Node
+    parent of head and body 
+
+    Navigate: parentNode, childNode[i], firstChild, lasChild, nextSibling, previousSibling
+    node vs text node: Text node is the text inside a tag. The node is the tag, doesn't have text
+    document.createElement("p");
+    document.creadeTextNode("This is new");
+    
+    firstChild.nodeValue
+
+    document.body
+    document.documentElement
+    .nodeName .nodeType .nodeValue
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //DOM COLLECTIONS
+    const myCollection = document.getElementsByTagName("p");
+    for (let i = 0; i &lt; myCollection.length; i++) {
+        myCollection[i].style.color = "red";
+      }
+</code>
+</pre>
+
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //DOM DIFFERENCE COLLECTION NODELIST
+    An HTMLCollection (previous chapter) is a collection of HTML elements.
+    A NodeList is a collection of document nodes, can be accesed only by index number, only this can have attribute nodes and text nodes
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

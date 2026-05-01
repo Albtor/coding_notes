@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruby Basics</title>
+    <link rel="stylesheet" href="../../css/file.css"> 
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+   
+</head>
+<body class="apis-bkg">
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Excel Icon" class="menu_img">
+    </a>
+    <h1 class="title_template">RUBY BASICS</h1>
+    <h4>Links </h4>
+        <ul>
+            <li class="link_list"> <a href="https://rubyinstaller.org/downloads/" class="link_file" target="_Blank">Ruby Installer</a></li>
+            <li class="link_list"> <a href="https://www.youtube.com/watch?v=t_ispmWmdjY" class="link_file" target="_Blank">Course FreeCodeCamp</a></li>
+        </ul>
+
+<div class= "code_container ">
+
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    #INSTALLATION
+    Download  Ruby 3.0.1-1 (x64)
+    Install file / at the end check "Run ridk install" and click finish
+    Opens a command window with 3 options. use enter (or Install each one by one separately. 1, Enter, 2 Enter, 3 Enter)
+    Check in cmd ruby -v to know the version and see if it is installed
+    Visual Code Extensions
+    For input we need a special terminal
+</code>
+</pre>
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    #BASIC 
+    print "Hello World" //prints something
+    print "Hello World" //print next to previous print 
+    puts "Hello World" //print a new line afterwards
+
+    #single line comment
+    =begin
+    multiple line comment
+    =end
+</code>
+</pre>
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    #VARIABLES AND DATA TYPES. Don't need to specify it.
+    name = "John"
+    age = 35
+    weight = 80.00
+    ismale = true
+    falws = nil # means that doesn't have a value
+
+    //CONCATENATION
+    puts (name + " has " + age +" years.")
+
+    #ESCAPE CHARACTERS
+    puts "Customers\" Solutions"
+    \n another line
+
+</code>
+</pre>
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    # METHODS
+
+    # String Methods
+    name = "Customer Solutions"
+    name.upcase()
+    name.downcase()
+    name.strip() # like trim
+    name.length() 
+    name.include? "Hi" #if the string target includes the string indicated, returns boolean
+    name[0] #character in the position indicated of the string name. Strings start counting at 0
+    name[0,3] #characters from 0 to 3, excluding 3. so returns 0,1,2
+    name.index("omer") #returns the position if found
+
+    # Math Methods
+    num = 25
+    weight = 70.20
+    puts 5+9 #prints the result
+    2**3 = 2^3 #exponential
+    10 % 3 #resto / reminder 
+    num.abs() # absolute value
+    num.round()
+    num.ceil()
+    num.floor()
+    Math.sqrt(num) # Math class with different functions / methods
+    Math.log(num)
+    integer and decimals can be used, but it will create decimal results when using a decimal. If using 2 integers, the result will be an integer even if the result is not like 10/7
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    # INPUT
+    Need to use a terminal o command prompt, we need to use the terminal
+    Run a ruby program in Terminal. Write:
+    ruby fileName.rb
+
+    # Code
+    puts "Enter your name:"
+    name = gets.chomp()  # stores what the user inputs into the program / terminal in the variable
+    #chomp() removes the new line that happens after the user clics enter after inputting info
+    puts ("hello" + name)
+</code>
+</pre>
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    # Building a calculator, problem with strings / decimals
+
+    puts "Enter a number: "
+    num1 = gets.chomp() #alternatively you can convert it here gets.chomp().to_f
+    puts "Enter another number: "
+    num2 = gets.chomp()
+
+    puts (num1 + num2) #ruby concatenates, because it converts it into a string
+    puts (num1.to_i + num2.to_i) #converts into integers
+    puts (num1.to_f + num2.to_f) #converts into decimals / floating point numbers
+
+    run a program: ruby rubyfile.rb
+    
+</code>
+</pre>
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    # Mad Libs game
+    puts "Enter a color: "
+    color = gets.chomp()
+    puts "Enter a plural_noun: "
+    plural_noun = gets.chomp()
+    puts "Enter a celebrity: "
+    celebrity = gets.chomp()
+
+    puts ("Roses are "+ color)
+    puts (plural_noun + " are blue")
+    puts ("I love " + celebrity)
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

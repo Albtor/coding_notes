@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Persona Poo</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVA PERSONA POO</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //JAVA PERSONA &lt;
+
+    //UNA CLASE ES UNA PLANTILLA PARA CREAR OBJETOS
+    //PARA CREAR UN OBJETO HAY QUE HACER ASI:
+    //Persona nuevaPersona = new Persona(); 
+    //Depende del constructor que tenga, puede que haya que crearlo con parametro/s
+
+    public class Persona {
+    //DEFINICION ATRIBUTOS
+    private String nombre;
+    private int edad;
+    private float altura;
+    private static ArrayList&lt;Persona> listado = new ArrayList&lt;>();
+    
+    
+    //constructor por defecto sin parámetros
+    public Persona() {} 
+    
+    
+   //Constructor con Parámetros
+     public Persona(String nombre, int edad, float altura){ 
+       this.nombre= nombre ;
+       this.edad= edad;
+       this.altura = altura;
+    }
+    
+
+     //GETTERS Y SETTERS
+    
+    public String getNombre(){
+        return nombre;
+    }
+    
+    public void setNombre(String nombre){
+        this.nombre = nombre;
+    }
+    
+    public Integer getEdad(){
+        return edad;
+    }
+    
+    public void setEdad(Integer edad){
+        this.edad = edad;
+    }
+    
+    public Float getAltura(){
+        return altura;
+    }
+    
+    public void setAltura(Float altura){
+        this.altura = altura;
+    }
+    
+    
+    public void Personas() {             
+        Persona persona = introducirPersonas();      
+    }
+    
+    
+    
+    //*********************************//
+    //Normalmente en el main
+    ///Metodo para recoger los datos y generar un nuevos objetos Persona hasta que se introduzca el valor 9999 en el nombre
+  
+    public static Persona introducirPersonas() {
+        String nombre;
+        int edad;
+        float altura;       
+        boolean validar;
+        validar = true;
+        Persona persona = new Persona();
+        Scanner entrada = new Scanner(System.in);
+        
+        while(validar){
+            System.out.println("Introduzca su nombre: ");
+            nombre = entrada.nextLine();
+            if(nombre.equals("9999")){
+                validar = false;
+            }else{
+            System.out.println("Introduzca su edad: ");
+            edad = entrada.nextInt();
+            System.out.println("Introduzca su altura en cm: ");
+            altura = entrada.nextFloat();
+            nombre = entrada.nextLine();
+        
+            persona.setNombre(nombre);
+            persona.setEdad(edad);
+            persona.setAltura(altura);
+        
+            listado.add(persona);
+            }
+                 
+        }return persona;       
+    }
+    
+
+     //Metodo para seleccionar objetos de la lista y llamar a un método para imprimir
+     
+    public static void listadoPersonas(List listaPersonas) {
+        for(int i = 0; i&lt; listaPersonas.size(); i++){  
+          mostrarPersona((Persona) listaPersonas.get(i));
+        }
+    }
+    
+    //Metodo para mostrar el nombre, edad y altura de una persona
+    public static void mostrarPersona(Persona persona) {
+        System.out.println("\nNombre->"+ persona.getNombre());
+        System.out.println("Edad->"+ persona.getEdad());
+        System.out.println("Altura->"+ persona.getAltura());
+    }
+    
+}
+
+    
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Floats</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+    <style>
+        .img1{
+            width: 200px;
+            height: 200px;
+            float: left;
+        }
+
+        .img2{
+            width: 200px;
+            height: 100px;
+            float: left;
+        }
+
+
+
+
+        .img3{
+            width: 200px;
+            height: 200px;
+            float: left;
+        }
+
+        .img4{
+            width: 200px;
+            height: 100px;
+            float: right;
+        }
+
+        .lorem2{
+            clear: right;
+        
+        }
+
+    </style>
+   
+</head>
+<body>
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+    </a>
+    <h1 class="title_template">CSS - FLOATS</h1>
+    <h4>Links</h4>
+    <ul>
+        <li class="link_list"><a href="#" class="link_file">Link</a></li>
+    </ul>
+
+        
+<div class= "code_container">
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+    // FLOATS
+    float: left;
+    float: right;
+    clear: right; left; both; //ignore the float indicated, and put an element under
+    clearfix hack (que una imagen con float salga del contenedor verticalmente) . Solución; overflow-y: auto o dar altura
+</code>
+</pre>
+
+</div>
+<h1>Float and Clear</h1>
+  <p>Float (left and right), Clear (right, left, both) Ignores floats and puts content below. Clear se usaría para un párrafo y evitar que tomara en cuenta los floats para poner su contenido alrededor. 
+  </p>
+  <p>El primero tenemos float left a las imagenes y el texto normal sin clear</p>
+  <img class="img1" src="https://source.unsplash.com/Mq--NyL0KxE" alt="img1">
+  <img class="img2" src="https://source.unsplash.com/IYh4J2zp4sk" alt="img2">
+  <p class="lorem">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum quia rem placeat asperiores explicabo sed dolorem aperiam a neque nulla autem architecto porro ea, voluptatem ipsam veritatis odio ab enim dignissimos suscipit libero aut illo possimus necessitatibus. Sequi pariatur quod earum tempore dolor alias officiis eum vitae minus labore quaerat maxime incidunt quas, perferendis ipsa dignissimos inventore quos nihil tempora, recusandae impedit, deleniti odit praesentium. Commodi earum autem consequuntur. Ipsam reiciendis deleniti deserunt accusantium cupiditate quae suscipit perspiciatis odit pariatur tempora consequuntur quaerat maiores beatae ea, error consequatur veniam eaque praesentium ipsum officia impedit? Nobis asperiores iure temporibus eos. Cupiditate aspernatur, deleniti eligendi non illum fugiat. A, impedit voluptates necessitatibus illo eaque ea quidem nesciunt laudantium illum aspernatur maiores vero corrupti libero beatae nulla exercitationem facere assumenda doloremque ratione! Illum ab, vitae dicta suscipit quibusdam voluptatem saepe odio omnis voluptate libero atque porro ipsam labore officiis alias inventore voluptas nobis commodi qui laudantium tempore id recusandae, iusto placeat. Ipsa ut quidem labore eum eveniet soluta, facere, totam est, exercitationem quo temporibus suscipit dignissimos ea ipsam hic. Esse aut quas atque officia placeat maxime eligendi magni molestiae ut molestias laborum laboriosam, quidem, tempora asperiores recusandae ducimus assumenda eum facilis id corrupti minus ullam dicta. Porro dolor, in mollitia enim asperiores deserunt odio pariatur deleniti temporibus esse, libero voluptatem. Perferendis magnam facere hic explicabo assumenda aperiam consequatur blanditiis sit soluta natus vitae ipsam eum repellendus recusandae ratione architecto corrupti voluptates adipisci ea voluptatibus accusamus illum odio, ducimus nulla. Modi fugit earum nemo temporibus quos quas dicta doloremque delectus sint praesentium voluptas atque, ullam facere exercitationem culpa. Doloremque, harum temporibus! Quidem, quod consequuntur quia animi dolor ipsa, alias velit voluptatum repudiandae eius veritatis provident voluptatem nihil, voluptatibus libero unde in. In velit esse id fugiat, tempora nobis aut laborum, dignissimos quam odit ex.</p>
+  <br>
+  <p>En este segundo tenemos un clear right para el párrafo por lo que ignora el float de la img a la derecha y empieza el contenido una vez termina.
+    Por eso aparece al lado de la img de la izquierda. 
+  </p>
+  <img class="img3" src="https://source.unsplash.com/V9VpF6xE-2w" alt="img3">
+  <img class="img4" src="https://source.unsplash.com/alQJd78lp5U" alt="img4">
+  <p class="lorem2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum quia rem placeat asperiores explicabo sed dolorem aperiam a neque nulla autem architecto porro ea, voluptatem ipsam veritatis odio ab enim dignissimos suscipit libero aut illo possimus necessitatibus. Sequi pariatur quod earum tempore dolor alias officiis eum vitae minus labore quaerat maxime incidunt quas, perferendis ipsa dignissimos inventore quos nihil tempora, recusandae impedit, deleniti odit praesentium. Commodi earum autem consequuntur. Ipsam reiciendis deleniti deserunt accusantium cupiditate quae suscipit perspiciatis odit pariatur tempora consequuntur quaerat maiores beatae ea, error consequatur veniam eaque praesentium ipsum officia impedit? Nobis asperiores iure temporibus eos. Cupiditate aspernatur, deleniti eligendi non illum fugiat. A, impedit voluptates necessitatibus illo eaque ea quidem nesciunt laudantium illum aspernatur maiores vero corrupti libero beatae nulla exercitationem facere assumenda doloremque ratione! Illum ab, vitae dicta suscipit quibusdam voluptatem saepe odio omnis voluptate libero atque porro ipsam labore officiis alias inventore voluptas nobis commodi qui laudantium tempore id recusandae, iusto placeat. Ipsa ut quidem labore eum eveniet soluta, facere, totam est, exercitationem quo temporibus suscipit dignissimos ea ipsam hic. Esse aut quas atque officia placeat maxime eligendi magni molestiae ut molestias laborum laboriosam, quidem, tempora asperiores recusandae ducimus assumenda eum facilis id corrupti minus ullam dicta. Porro dolor, in mollitia enim asperiores deserunt odio pariatur deleniti temporibus esse, libero voluptatem. Perferendis magnam facere hic explicabo assumenda aperiam consequatur blanditiis sit soluta natus vitae ipsam eum repellendus recusandae ratione architecto corrupti voluptates adipisci ea voluptatibus accusamus illum odio, ducimus nulla. Modi fugit earum nemo temporibus quos quas dicta doloremque delectus sint praesentium voluptas atque, ullam facere exercitationem culpa. Doloremque, harum temporibus! Quidem, quod consequuntur quia animi dolor ipsa, alias velit voluptatum repudiandae eius veritatis provident voluptatem nihil, voluptatibus libero unde in. In velit esse id fugiat, tempora nobis aut laborum, dignissimos quam odit ex.</p>
+</div>
+
+
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

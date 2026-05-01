@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Properties</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+    </a>
+    <h1 class="title_template">CSS - PROPERTIES</h1>
+    <h4>Links</h4>
+    <ul>
+        <li class="link_list"><a href="" class="link_file">Link</a></li>
+    </ul>
+
+        
+<div class= "code_container">
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+    // BASIC Properties OF THE BOX
+    box-sizing: border-box; /*Evitar que los contenedores se expandan por padding border*/
+    *, *::before, *::after {box-sizing: border-box;}
+    margin: 2px 5px; /*top, bottom, left, right*/
+    padding: 2px 2px 4px 4px; 
+    border: 1px solid black; /*style: none, dotted, solid, double, groove, onset | transparent for the color*/
+    width: 100px;
+    height: 90px;
+    background: black;
+    background-color: cyan;
+    
+    font-family: Arial, cursive;
+    font-size: 18px;
+    outline: none; //Doesn't affect layout, drawn outside of border outline-offset: 3px;
+    direction: rtl; ltr;  /*Dirección de escritura izq dcha o dcha izqud */
+
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+    // BOX SHADOW Doesn't affect document Flow
+    box-shadow: 0 0 5px 0 black; // horizontal vertical blur spread color 
+    spread: adding xpx before starting to blur
+    inherits color
+    filter: drop-shadow(20px 20px 5px blue) (doesn't accept spread yet)"
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+    // TEXT / CONTENT PROPERTIES 
+    longitud max: 60 -80 caracteres por linea
+    uso de calc()
+    color: white | inherit;; /**/
+    text-decoration: none, underline, overline, line-through blink
+    text-align: left, right, justify
+    text-indent: tabulacion. longitud en uds css o porcentaje
+    text-transform: capitalize, uppercase, lowercase, none
+    word-spacing:  tamaño
+    letter-spacing: tamaño
+    vertical align: alineacion vertical: baseline, sub, super, top, text-top,middle, bottom, text-bottom o %
+    line-height: tamaño o porcentaje
+</code>
+</pre>
+
+
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+    // OTHERS
+    html{scroll-behavior: smooth; /* Transicion suave */}
+
+    //Lists
+    display: block, inline, list-item none. flex, grid, inline-block
+    white-space: Indica el modo en que se ha de gestionar los espacios en blanco que hay en el elemento, es decir, si se mantienen todos los existentes tal y como estén en el
+    documento o si se anulan a uno las secuencias de blancos, es el valor por defecto y el de la opción normal. Valores que puede tomar son: pre, nowrap, normal.
+    list-style-type: Indica cual es el símbolo que se utiliza como marcador en las listas. Valores que puede tomar son: disc, circle, square, decimal, lower-roman, upper-roman, loweralpha,upper-alpha, none.
+    list-style-image: img como marcador de lista, toma la ruta del fichero imagen
+    list-style-position: posicion outside o inside
+    list-style: list-style-type, list-style-position y list-style-image.
+</code>
+</pre>
+        
+    
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

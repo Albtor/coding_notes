@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kotlin Basics</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+
+<body>
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+    </a>
+    <h1 class="title_template">KOTLIN Basics</h1>
+    <h4>Links</h4>
+    <ul>
+        <li class="link_list"><a href="#" class="link_file" target="_Blank">Link</a></li>
+    </ul>
+
+
+<div class="code_container">
+
+
+<!-- &lt; -->
+<!-- KOTLIN -->
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false">
+    //KOTLIN
+    no semicolons
+    Staticlly typed ?
+    // Comments
+
+    file.kt
+
+    fun main (){
+        birthdayGreeting
+        println("Hello Kotlin")
+        print("Hello Kotlin")
+        print("Hello Kotlin")
+    }
+
+    fun birthdayGreeting() {
+    println("Happy Birthday, Rover!")
+    println("You are now 5 years old!")
+    }
+    
+</code>
+</pre>
+
+<!-- KOTLIN -->
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false">
+    // VARIABLES
+    val: read-only
+    var: read and write
+    const val (no en modo local)
+
+    val firstName: String = "Alb"
+    val firstName: Char = "a"
+    val firstName = "Alb"
+    var weight = 160
+    var myVariable: Double = 2.5
+    var myVariable: Float = 2.54f
+    var myVariable: Int = 4
+    var trueFalse: Boolean = false
+
+    saldo.toString()
+
+    NULL
+    val instagramBio: String? = null // ? allows null
+    if (instagramBio != null){
+        println(instagramBio.toUpperCase())
+    }
+    println(instagramBio?.toUpperCase())
+    
+    Double 64,    Float 32,    Long 64,     Int 32,     Short 16,    Byte 8
+    
+</code>
+</pre>
+
+<!-- KOTLIN -->
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false">
+    // GENERAL 
+    OPERATORS     + val combined = "Al" + "Tor"
+
+    PRINT 
+    val myString = "Kotlin"     println(myString)
+    println("the String is $myString")
+
+
+    METHODS
+    println(myString[0])
+    println(myString[1])
+    println(myString.isEmpty())
+    println(myString.length)
+    println(myString.substrings(2,4))
+</code>
+</pre>
+
+<!-- KOTLIN -->
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false">
+    // CONDITIONALS
+
+    val examScore = 88
+    if (examScore > 79) {
+        println("you pass")
+    } else {}
+
+    LOOP
+    for (name in names){
+        print(name)
+    }
+    for (i in 1..5){ // (1 until 5)
+        print(name)
+    }
+    
+    when(mes)
+        1,2,3 -> printl("invierno")
+
+    
+    do(){
+
+    }while()
+
+    while(){}
+
+    if() break
+    
+</code>
+</pre>
+
+<!-- KOTLIN -->
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false">
+    //COLLECCIONES
+    arrays. tamaño fijo
+    sets: no duplicados, desordenadas, no indice
+    lists: ordenadas, insercion eliminacion
+    maps: pares clave valor, unicidad, sin orden
+
+    //ARRAYS
+    var recibos: Array&lt;String> = arrayOf("luz","agua","gas")
+
+    MATRIZ // 1 =0,0; 6 = 1,2
+    var matriz = ArrayOf(
+        intArrayOf(1,2,3)
+        intArrayOf(4,5,6)
+        intArrayOf(7,8,9,10,11)
+    )
+
+
+
+    //SETS
+    var clientesVIP: Set&lt;Int> = setOf(1234,5678,1402)
+    var setMezclado = setOf(2,5.24,"casa")
+    clientesVIP.size clientesVIP.contains(1234)
+
+    MUTABLES (se pueden añadir o cambiar nuevos)
+    var clientes: MutableSet&lt;Int> = mutableSetOf(1234,5678,1402)
+    clientes.add clientes.remove clientes.clear clientes.size
+
+
+
+    //LISTS
+    var divisas: List&lt;String> = listOf("USD", "EUR", "YEN")
+    var divisas: List&lt;String> = mutableListOf("USD", "EUR", "YEN")
+    se puede recorrer
+    divisas.removeAt(indice) divisas.add
+
+    Several:
+    val names = listOf("Ali", "Maya", "Chen")
+    names[2]
+    val names = mutableListOf("Ali", "Maya", "Chen")
+    names.add("Albert")
+
+
+
+    //MAP (usado para bases de datos)
+    var mapa: Map&lt;Int, String> = mapOf(
+        1 to "España",
+        2 to "Mexico",
+        3 to "USA"
+    ) //SystemOut {1=España, 2=Mexico, 3=USA}
+
+    var inversiones = mutableMapOf&lt;String, Float>(
+    "nVidia" to 12.45f,
+    "IMB" to 312.32f,
+    "BTC" to 462.16f
+    )
+    
+    
+</code>
+</pre>
+
+<!-- KOTLIN -->
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false">
+    // FUNCTIONS
+    fun myFunction(name: String, age: Integer){
+        println("hello $name")
+    }
+
+    myFunction("Jay")
+
+
+    //UNIT FUNCTIONS, don't return
+    fun birthdayGreeting(): String {  
+    val nameGreeting = "Happy Birthday, Rover!"
+    val ageGreeting = "You are now 5 years old!"
+    }
+
+    // retuurn functions
+    fun birthdayGreeting(): String {
+    val nameGreeting = "Happy Birthday, Rover!"
+    val ageGreeting = "You are now 5 years old!"
+    return "$nameGreeting\n$ageGreeting"
+    }
+
+
+    fun birthdayGreeting(name: String): String {
+    val nameGreeting = "Happy Birthday, Rover!"
+    val ageGreeting = "You are now 5 years old!"
+    return "$nameGreeting\n$ageGreeting"
+    }
+    
+</code>
+</pre>
+
+<!-- KOTLIN -->
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false">
+    // ANDROID
+    onCreate() punto de entrada (es como el main())
+    setContent()  - dentro de onCreate() define diseño con funciones que adminten composición. Todas las funciones con @Composable
+
+    @Preview
+
+    @Composable: convierte datos en UI
+    @Composable 
+    fun Greeting(name: String) {
+    Text(text = "Hello $name!")
+    }
+
+    Column, Row y Box
+
+    
+</code>
+</pre>
+
+<!-- KOTLIN -->
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false">
+    // LOOPS
+
+    var recibos: Array&lt;String> = arrayOf("luz","agua","gas")
+    recorrer_array(recibos)
+    LOOP
+    for (name in names){
+    print(name)
+    }
+    for (i in 1..5){ // (1 until 5)
+    print(name)
+    }
+
+    fun recorrer_array(array: Array&lt;String>){
+        for (name in array) //name, i
+        
+        for (i in 1..5)// (1 until 5)
+    
+        for (i in array.indices)
+        array.get(i)
+    }
+
+    for (i in (0 until matriz.size)){
+        print(i)
+        for(j in (0 until matriz[i].size)){
+            print($matriz[i][j])
+        }
+    }
+
+    i in 0 .. array.size -1
+</code>
+</pre>
+
+<!-- KOTLIN -->
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false">
+    // EJERCICIOS CURSO
+    /** */
+    
+    fun main() {
+    // cuentaRegresiva90()
+    // recorrer110conpares()
+    // recorrerArrayPlatos()
+    // recorrerArrayPlatosconjuntoDatos()
+    recorrerArrayPlatosconjuntoDatosyIngredientes()
+    }
+    
+    /**1-Usa un bucle do-while para mostrar por pantalla una cuenta regresiva del 9 al 0 igual que cuando hay un lanzamiento
+    de un cohete por parte de la NASA.
+    Incluye tu código en la respuesta*/
+    fun cuentaRegresiva90(){
+    var number = 9
+    do{
+    println(number)
+    number--
+    }while(number >=0)
+    }
+    
+    /** 2- Usa un bucle while para recorrer todos los números del 1 al 10 y mostrar únicamente los pares
+    Incluye tu código en la respuesta*/
+    fun recorrer110conpares(){
+    var number = 0
+    while (number &lt;=10) { if(number%2==0) print(number) number++ } } /** 3-Usa un bucle for para recorrer un array en el que
+        estén almacenados los diferentes platos que ofrece un restaurante y mostrarlos por pantalla Incluye tu código en la
+        respuesta*/ fun recorrerArrayPlatos(){ val platos=arrayOf("carbonara", "pizza frita" , "marguerita" ) for (plato in
+        platos) print(plato) } 
+        
+    /** 4-Crea el mismo ejercicio de antes pero ahora con un array de conjuntos de datos Cada
+    elemento del array debe contener el nombre del plato y su precio*/ fun recorrerArrayPlatosconjuntoDatos(){ val
+    platos=arrayOf( listOf("carbonara",10), listOf("pizza frita",6.6), listOf("marguerita",5.50) ) for (plato in platos)
+    { println("${plato[0]} - ${plato[1]}€") } } 
+        
+    /**5-Crea el mismo ejercicio de antes pero añadiendo a cada conjunto de
+    datos un array con los ingredientes de cada plato Ahora deberiamos tener la siguiente información de cada elemento
+    del array principal: plato, precio, lista de ingredientes ADVERTENCIA: la idea NO es que toooooooooooooodos los
+    ingredientes este en una unica string, sino que cada ingrediente sea una string */ fun
+    recorrerArrayPlatosconjuntoDatosyIngredientes(){ val platos=listOf( listOf("carbonara",10,
+    listOf("huevos","guanciale")), listOf("pizza frita",6.6, listOf("masa","mozzarella")), listOf("marguerita",5.50,
+    listOf("mozzarella","pomodoro")) ) for (plato in platos) { val nombre=plato[0] as String val precio=plato[1] as
+    Number val ingredientes=plato[2] as List&lt;String>
+    // println("${plato[0]} - ${plato[1]}€ - ingredientes: ")
+    print("$nombre - $precio€ - Ingredientes: ")
+    println(ingredientes.joinToString(", "))
+    }
+
+
+    }
+
+    
+</code>
+</pre>
+
+<!-- KOTLIN -->
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false">
+    // OBJETOS
+    class Person(var nombre: String = "Anonimo", var passport: String? = null) {
+    var alive: Boolean = true
+    
+    fun die(){
+    alive = false
+    }
+    }
+
+    var hombre: Person = Person("Alb", "GJSN77")
+    var anonimo: Person = Person()
+    println(hombre.alive)
+    hombre.die()
+
+
+    class Pokemon(private var name: String = "Pok",
+    var attackPower: Float = 30f,
+    var life: Float = 100f) {
+    
+    fun Pokemon (n: String, aP: Float){
+    this.name = n
+    this.attackPower = aP
+    this.life = 100f
+    }
+    
+    fun getName(): String{
+    return this.name
+    }
+    fun getattackPower(): Float{
+    return this.attackPower
+    }
+    fun getLife(): Float{
+    return this.life
+    }
+    fun setName(value: String){
+    this.name = value
+    }
+    fun setattackPower(value: Float){
+    this.attackPower = value
+    }
+    fun setLife(value: Float){
+    this.life = value
+    }
+    }
+    
+</code>
+</pre>
+
+<!-- KOTLIN -->
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false">
+    // HERENCIA
+    open class Person(var name: String = "Anonimo", var passport: String? = null) {
+    var alive: Boolean = true
+    
+    fun Person(){
+    name = "Juan"
+    passport = "BKOSFSU7"
+    }
+    fun die(){
+    alive = false
+    }
+    }
+    
+    class Atleta(name: String, passport: String?, var sport: String): Person(name, passport) {
+    
+    }
+
+    var atleta: Atleta = Atleta("Pele", "19238123", "futbol")
+    
+</code>
+</pre>
+
+<!-- KOTLIN -->
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false">
+    // PUBLIC PROTECTED PRIVATE INTERNAL
+    PUBLIC: Se puede acceder desde cualquier lado
+    PRIVATE: Solo se puede acceder desde dentro. No heredable
+    PROTECTED: No es público, es privado pero heredable por los hijos.
+    INTERNAL: Para las funciones que permitan usar Protected. Para Get y Setters. Para el resto de una clase no es necesario
+    
+</code>
+</pre>
+
+<!-- KOTLIN -->
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false">
+    // POLIMORFISMO
+    Método de clase padre modificado en clase hijo. Varaciones de un método general. Se sobreescribe con override la función principal
+    // debe ser una función open
+    fun attack(){}
+    override fun attack(){toast...}
+    
+</code>
+</pre>
+
+<!-- KOTLIN -->
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false">
+    // SUPER
+    USar la función del padre manteniendo el código pero cambiando o añadiendo ciertas cosas
+    // debe ser una función open
+    fun attack(){
+        super.attack()  //se usa el método del padre tal cual
+    } 
+    
+</code>
+</pre>
+
+<!-- KOTLIN -->
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false">
+    // ABSTRACT CLASS
+    No se van a hacer objetos de esa clase. Es para usar sus métodos y atributos
+    abstract class Thanks(){
+        fun thankscure(){Toast.make.... "Thanks !"}
+    }
+
+    open class Pokemon(): Thanks
+    
+</code>
+</pre>
+
+<!-- KOTLIN -->
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false">
+    // INTERFACES
+    Herencia multiple no posible en Kotlin/Java. Solo permite usar una clase de la que heredab
+    Sin embargo se pueden usar multiples interfaces
+    interface sayBye(){
+        fun thankscure(){Toast.make.... "Bye !"}
+    }
+    open class Pokemon(): Thanks, sayBye
+</code>
+</pre>
+
+<!-- KOTLIN -->
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false">
+    // SUBCLASES
+    class ClasePadre{
+        privar var name: String = "Padre"
+        fun saludo(): String {return name}
+
+        class Anidada{
+            private val nameAnidada = "Anidada"
+            fun saludo(): String {return nameAnidada}
+        }
+
+        inner class Interna{
+            privat val nameInterna = "Interna"
+            fun saludo(): String {return "Hola soy ${this.nameInterna}", hija de ${name}}
+        }
+    }
+
+    var padre = ClasePadre()
+    padre.saludo()
+    var ani = ClasePadre.Anidada() //Se crea un objeto de Anidada
+    ani.saludo()
+    var interna = CñasePadre().Interna()
+    interna.saludo()
+    
+</code>
+</pre>
+
+<!-- KOTLIN -->
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false">
+    // OBJETOS ANONIMOS
+    fuera de funciones
+    object persona{
+        var apodo = "fer"
+        fun saludo(){ println("Hola, me llaman ${apodo}")}
+    }
+    
+</code>
+</pre>
+
+<!-- KOTLIN -->
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false">
+    // DATA CLASS
+    Atributos sin métodos
+    Hay que especificar si es var o val
+    data class star( val name: String = "",  val radius: Float = 0f, val galaxy: String = ""){
+        var alive = true
+    }
+
+    var sol: star = star("Sol", 16.56f, "Via Láctea")
+
+    //ENUM CLASS
+    enum class dias{
+        LUNES, MARTES, MIERCOLES, JUEVES, VIERNES, SABADO, DOMINGO;
+    }
+    var dia: dias = dias.MIERCOLES
+    var semana = dias.values()
+    for (i in semana){println(i)}
+</code>
+</pre>
+
+<!-- KOTLIN -->
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false">
+    // EJERCICIOS.
+
+    open class Deportista(var nombre: String,var estatura: Float, var peso: Float, var edad: Int){
+    fun Deportista (nombre: String, estatura: Float, peso: Float, edad: Int){
+    this.nombre = nombre
+    this.estatura = estatura
+    this.peso = peso
+    this.edad = edad
+    }
+    
+    fun descansar(){}
+    
+    
+    }
+    
+    
+    class Runner(nombre: String, estatura: Float, peso: Float, edad: Int, var estilo: String): Deportista(nombre, estatura,
+    peso, edad){
+        fun Runner(nombre: String, estatura: Float, peso: Float, edad: Int, var estilo: String){
+            this.nombre = nombre
+            this.estatura = estatura
+            this.peso = peso
+            this.edad = edad
+            this.estilo = estilo
+        }
+    fun correr(){}
+    fun competir(){}
+    
+    }
+    
+    class Ciclista(nombre: String, estatura: Float, peso: Float, edad: Int, var tipoBici: String, var velocidad: Int):
+    Deportista(nombre, estatura, peso, edad){
+        fun Ciclista(nombre: String, estatura: Float, peso: Float, edad: Int, XXXX){
+        this.nombre = nombre
+        this.estatura = estatura
+        this.peso = peso
+        this.edad = edad
+        }
+    fun pedalear(){}
+    fun competir(){}
+    }
+    
+    class Nadador(nombre: String, estatura: Float, peso: Float, edad: Int, var estilo: String, var velocidad: Int):
+    Deportista(nombre, estatura, peso, edad){
+        fun Nadador(nombre: String, estatura: Float, peso: Float, edad: Int, XXXX){
+        this.nombre = nombre
+        this.estatura = estatura
+        this.peso = peso
+        this.edad = edad
+        }
+    fun nadar(){}
+    fun competir(){}
+    }
+    
+    var maradona: Deportista = Deportista("Digo Armando", 1.65f, 67.3f, 25)
+    
+</code>
+</pre>
+
+<!-- KOTLIN -->
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false">
+    // FUNCIONES DE ORDEN SUPERIOR
+    uso de fn (funcion) para incluir una función dentro de los parámetros de una función. 
+    private fun calculadora(n1: int, n2: int, fn(int, int) -> int): Int{
+        return fn(n1,n2)
+    }
+    private fun suma(x: int, y:int): Int { return x+y}
+    private fun multiplica(x: int, y:int) = x*y
+
+    calculadora(4,5,::suma)  //se envía usando dos :: + el nombre de la función
+
+    //En Objetos
+    Clase de ejemplo: 
+    open class Person(var name: String = "Anonimo", var passport: String? = null) {
+        var alive: Boolean = true
+        
+        fun Person(){
+            name = "Juan"
+            passport = "BKOSFSU7"
+        }
+        fun die(){alive = false}
+        fun checkPolicia(fn: (Float)->Boolean):Boolean{ return fn(height)}
+    }
+    
+    2 ejemplos: 1 dentro de la clase (arriba). 
+    Funcion de orden superior en objeto
+    private fun inColombia(h:Float): Boolean {
+        if (h >=1.6f) return true
+        else return false
+    }
+
+    private fun Person.checkPolice(fn: (Float)->Boolean):Boolean{ return fn(height)} // Si no es nuestra clase podemos crear función de extensión
+    var ejemplo = Person("Jota", "A182348J")
+    ejemplo.checkPolicia(::inColombia)
+
+    class Atleta(name: String, passport: String?, var sport: String): Person(name, passport)
+    var atleta: Atleta = Atleta("Pele", "19238123", "futbol")
+    
+</code>
+</pre>
+
+<!-- KOTLIN -->
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false">
+    // LAMBDAS
+    LAMBDAS {x: Int, y: Int -> x+y}
+    Incluir una función dentro de una variable
+    Función anónima que se envía como parámetro en una función de orden superior
+    Se puede declarar fuera de los paréntesis
+    Se puede acceder a código externo
+    La función puede cambiar un bloque de código bajo el mismo nombre
+    
+
+    private fun calculadora(n1: int, n2: int, fn(int, int) -> int): Int{return fn(n1,n2)    }
+    var funcion = {x: Int, y: Int -> x+y}
+    calculadora(80,20, funcion)
+    var funcion = {x: Int, y: Int -> x*y}
+
+    Lambdas Funciones que mandamos a una función de orden superior pero son anónimas, no están guardadas en ninguna variable.
+    calculadora(80,20, {x: Int, y: Int -> x+y})
+
+    Lambda fuera del paréntesis. Funciona igual. También puede ir dentro
+    calculadora(2,5)
+        {x, y ->
+            var valor = 1
+        for (i in 1..y) valor *= x
+        valor
+        }
+
+    calculadora(2,5,
+    {x, y ->
+    var valor = 1
+    for (i in 1..y) valor *= x
+    valor
+    })
+
+    Manipulación código en Lambda
+    var array = intArray(10){5} //podría ser intArray(10, {5}) //Muestra array de números 5. INt array es una función de orden superior
+
+    LAMBDA Parámetro IT que puede ser de distintos tipos: Iterador, View, Int...
+    It es un parámetro que tiene una  Lambda por defecto. 
+    En cada lamba puede haber un elemento distinto, un objeto, etc. Se puede cambiar el nombre.
+    var array = intArray(10){it} //mostraría el array como 0,1,2...9
+    var array = intArray(10){it*2} //mostraría el array como 0,2,4...18
+    Cambiando nombre del parámetro
+    var array = intArray(10){i* -> i*3} 
+
+    Ejemplo de Lambda
+    boton.setOnClickListener({      //it:View!
+        fight(firePok,earthPok)     //necesario per view -> no es o se puede incluir
+    })
+
+
+    // Acceder a código externo
+    Unit = Void ? Cuando la función no devuelve elemento
+    private fun recorrerArray(array: IntArray, fn:(Int)-> Unit){
+        for (i in array)
+            fn(i)
+    }
+    var suma = 0
+    recorrerArray(array){
+        suma += it
+    }
+
+
+
+    
+</code>
+</pre>
+<!-- KOTLIN -->
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false">
+    //TYPEALIAS
+    typealias aliasObjeto = 
+
+    
+</code>
+</pre>
+
+<!-- KOTLIN -->
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false">
+    // TRY CATCH
+    var trycatch = 
+    try{
+        println()
+    }catch(e: Exception) {
+        println("Error: se guarda una variable (e)de tipo exception")
+    }finally{ 
+        println("Ejecuta código siempre se haya o no producido el error")
+    }
+
+    private fun valuetry(){   }
+    throw exception
+</code>
+</pre>
+
+<!-- KOTLIN -->
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false">
+    // OPERADOR ELVIS ?
+    Para controlar los null
+
+    var pais: String? = "Rusia"
+    pais = pais.uppercase()?: "Desconocido"
+    var pais: String? = Null
+    pais = pais.uppercase()?: "Desconocido"
+</code>
+</pre>
+
+<!-- KOTLIN -->
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false">
+    //
+    
+</code>
+</pre>
+
+<!-- KOTLIN -->
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false">
+    //
+    
+</code>
+</pre>
+
+<!-- KOTLIN -->
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false">
+    //
+    
+</code>
+</pre>
+
+<!-- KOTLIN -->
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false">
+    //
+    
+</code>
+</pre>
+
+<!-- KOTLIN -->
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false">
+    //
+    
+</code>
+</pre>
+
+
+
+</div>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+
+</html>

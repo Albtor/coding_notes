@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java PGV02</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVA PGV02</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // TAREA 02
+    Sinchronized y Unsinchronized + ventana modal hijo
+    Synchronized Lectores Escritores
+
+    System.out.println("Método " + Thread.currentThread().getStackTrace()[1].getMethodName());
+    
+</code>
+</pre>
+
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // R14 Hilo Principal
+    Thread miHilo = Thread.currentThread(); 
+    miHilo.getName(); //En el main, el nombre es main
+</code>
+</pre>
+
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // R18 Crear Hilo Thread
+    public class Saludo extends Thread {
+        //clase  que extiende a Thread
+           @Override
+           public void run() {
+           // se redefine el método run() con el código asociado al hilo
+               System.out.println("¡Saludo desde un hilo extendiendo thread!");
+           }
+           public static void main(String args[]) {
+               Saludo hilo1=new Saludo();
+               //se crea un objeto Thread, el hilo hilo1
+               hilo1.start();
+               //invoca a start() y pone en marcha el hilo hilo1
+           }
+         }
+</code>
+</pre>
+
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // R22 Crear Hilo Runnable
+    public class Saludo implements Runnable {
+    //clase que implementa a Runnable
+        public void run() {
+        //se redefine el método run()con el código asociado al hilo
+            System.out.println("¡Saludo desde un hilo creado con Runnable!");
+        }
+        public static void main(String args[]) {
+            Saludo  miRunnable=new Saludo();
+            //se crea un objeto  Saludo
+            Thread hilo1= new Thread(miRunnable);
+            //se crea un objeto Thread (el hilo hilo1) pasando como argumento
+            // al constructor un objeto Saludo
+            hilo1.start();
+            //se invoca al método start() del hilo hilo1
+        }
+    }
+</code>
+</pre>
+
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // R27 Ejecutar Varios hilos
+    public class Main {
+
+        public static void main(String[] args) {
+             //creamos 2 hilos del tipo Hilo_Thread con 2 constructores
+             //diferentes
+             Thread hilo1 = new Hilo_Thread("Isabel");
+             Thread hilo2 = new Hilo_Thread();
+     
+             //creamos un hilo Runnable en un paso
+             Thread hilo3 = new Thread(new Hilo_Runnable());
+     
+             //ponemos en marcha los 3 hilos
+             hilo1.start();
+             hilo2.start();
+             hilo3.start();
+         }
+     
+     }
+
+
+     //CLASE APARTE
+     public class Hilo_Thread extends Thread {
+        //clase que extiende a Thread con 2 constructores
+        
+            String nombre = "Hilo_derviaThread";
+        
+            public Hilo_Thread(String nb) {
+                //constructor 1
+                nombre = nb;
+            }
+        
+            public Hilo_Thread() {
+                //constructor 2
+            }
+        
+            @Override
+            public void run() {
+                //redefinimos run() con el código asociado al hilo
+                for (int i = 1; i &lt;= 5; i++) {
+                    System.out.println(nombre);
+                }
+            }
+        }
+     //CLASE APARTE
+     public class Hilo_Runnable implements Runnable {
+        //clase que implementa Runnable
+        public void run() {
+            //redefinimos run() con el código asociado al hilo
+            for (int i = 1; i <= 5; i++) {
+                System.out.println("  Hilo_Runnable");
+            }
+        }
+    }
+
+</code>
+</pre>
+
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // R30 Estado Hilo
+    hilo1.getState() | hilo1.isAlive() | 
+    hilo1.start() |hilo1.join(); //esperar a que muera
+
+    // Se crea y etsña new y no alive. Con start está runnable y alive Muerto: terminated noAlive
+
+    public static void main(String[] args) {
+        Hilo_Auxiliar hilo1 = new Hilo_Auxiliar();
+        //Crea un nuevo hilo. El hilo está en estado Nuevo (new)
+
+        System.out.println("Hilo Auxiliar Nuevo: Estado=" + hilo1.getState()
+                + ",¿Vivo? isAlive()=" + hilo1.isAlive());
+        //Obtenemos el estado del thread hilo1 y si está vivo o no
+
+        hilo1.start();
+        //Inicia el thread hilo1 y pasa al estado Ejecutable
+
+        System.out.println("Hilo Auxiliar Iniciado: Estado="
+                + hilo1.getState()
+                + ",¿Vivo? isAlive()=" + hilo1.isAlive() + "\n");
+       
+        try {
+            hilo1.join();
+            //espera a que el thread hilo1 muera
+        } catch (InterruptedException e) {
+            System.out.println(e);
+        }
+        System.out.println("\n Hilo Auxiliar Muerto: Estado="
+                + hilo1.getState()
+                + ",¿Vivo? isAlive()=" + hilo1.isAlive());
+    }
+
+
+    public class Hilo_Auxiliar extends Thread{
+        //código del hilo
+          @Override
+          public void run(){
+            for(int i=10;i>=1;i--)
+              System.out.print(i+",");
+          }
+        }
+        
+
+
+</code>
+</pre>
+
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // R32 DORMIR HILO
+
+    this.sleep(1000);
+
+    //CON UN HILO AUXILIAR SIN DORMIR
+    Thread thIzquierdo = new Hilo_Auxiliar(false, marcador);
+      //crea un hilo pasándole como argumento el marcador pero el duerme como falso ! cuenta muy rápido
+      thIzquierdo.start();
+
+    //CON UN HILO AUXILIAR DORMIDO
+    Thread thIzquierdo = new Hilo_Auxiliar(true, marcador);
+    //crea un hilo pasándole como argumento el marcador
+    thIzquierdo.start();
+
+    //Clase Hilo
+
+    public class Hilo_Auxiliar extends Thread {
+        //clase que hereda de Thread
+        JPanel_Marcador mi_marcador;
+        //marcador local
+        boolean duerme;
+        //variable para controlar si dormimos o no al hilo 
+
+        //COnstructor donde le pasamos el parametro duerme y el marcador
+        public Hilo_Auxiliar(boolean d, JPanel_Marcador marcador) {
+            //constuctor del hilo
+            duerme = d;
+            mi_marcador = marcador;
+            //almacena el marcador recibido
+        }
+    
+        @Override
+        public void run() {
+            //código del hilo
+            mi_marcador.valor = 0;
+            //anula la cuenta
+            mi_marcador.repaint();
+            //solicita el repintado para borrar el marcador
+            if (duerme) {
+                for (int i = 1; i &lt;=20; i++) {
+                    //incremental la cuenta
+                    mi_marcador.valor = i;
+                    mi_marcador.repaint();
+                    //solicita el repintado
+                    try {
+                        this.sleep(100);
+                        //duerme el hilo actual durante 1 décima de segundo, para
+                        //que la petición de repintado del marcador sea atendida
+                    } catch (InterruptedException ex) {
+                    }
+                }
+            } else {
+                for (int i = 1; i &lt;= 20; i++) {
+                    //incremental la cuenta
+                    mi_marcador.valor = i;
+                    mi_marcador.repaint();
+                    //solicita el repintado
+                }
+            }
+        }
+    }
+
+</code>
+</pre>
+
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // R36 Prioridades hilos
+
+    yield() problem : Thread.yield();, This.yield()
+ 
+    public class Hilo extends Thread {}
+    public Hilo(int prioridad) {this.setPriority(prioridad);} 
+    int contador = 5;
+    //vectores para hilos de distintas prioridades
+    Thread[] hiloMIN = new Thread[contador];
+    Thread[] hiloNORM = new Thread[contador];
+    Thread[] hiloMAX = new Thread[contador];
+
+    //Constructores con y sin valores
+    hiloMIN[i] = new Hilo(Thread.MIN_PRIORITY); //new Hilo(); new Hilo(Thread.MAX_PRIORITY); Constru
+    hiloMIN[i].start();
+    hiloNORM[i].start();
+    hiloMAX[i].start();
+
+    //yield()sugiere al planficador Java que puede seleccionar otro hilo
+    //this.getPriority() obtener la prioridad de un hilo
+</code>
+</pre>
+
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //  R39 Posible Hijo Egoista
+    public class Main {
+        public static void main(String[] args) {
+              //se crean dos hilos: hrojo y hazul
+              Color hrojo = new Color ("Rojo");
+              Color hazul = new Color ("Azul");
+              //se inician los hilos para su ejecución
+              hrojo.start();
+              hazul.start();
+           }
+       }
+
+       public class Color extends Thread {
+        //clase que extiende a Thread
+         String color;
+         public Color (String c){
+             color=c;
+         }
+        public void run(){
+            //se imprime 100 veces el valor de: color + i
+            for(int i=1;i&lt;=100;i++)
+                 System.out.println(color + i);
+                 yield(); //llamada a yield() mejor con Thread.yield() o This.yield()
+         }
+     }
+
+       
+</code>
+</pre>
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //  R46 Problema Jardines
+    Comparten un recurso pero no se actualiza correctamente entran y salen pero las cuentas no van.
+</code>
+</pre>
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //  R50JardinesSincronizado
+    Hacer los métodos synchronized del recurso. Recurso Jardin
+
+    public class RecursoJardin_S {
+        //clase que simula las entradas y las salidas al Jardín
+            private int cuenta; //para contar las entradas y salidas al Jardín
+            public RecursoJardin_S() {
+                cuenta = 100; //inicalmente hay 100 personas en le jardín
+            }
+            public synchronized void incrementaCuenta() {
+                //método que increamenta en 1 la varibale cuenta
+                System.out.println("hilo " + Thread.currentThread().getName()
+                        + "----- Entra en Jardín");
+                //muestra el hilo que entra en el método
+                cuenta++;
+                System.out.println(cuenta + " en jardín");
+                //cuenta cada acceso al jardín y muestra el número de accesos
+            }
+           public synchronized void  decrementaCuenta() {
+                //método que decrementa en 1 la varibale cuenta
+                System.out.println("hilo " + Thread.currentThread().getName()
+                        + "----- Sale de Jardín");
+                //muestra el hilo que sale en el método
+                cuenta--;
+                System.out.println(cuenta + " en jardín");
+                //cuenta cada acceso al jardín y muestra el número de accesos
+            }
+        }
+</code>
+</pre>
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //  R55 Jardines sincronizando segmentos
+    Dentro del thread:sincronizamos Jardin
+    @Override
+    public void run() {}
+        synchronized (jardin) { //segmento sincronizado
+            jardin.incrementaCuenta();
+
+        }
+
+        synchronized (jardin) {//segmento sincronizado
+            jardin.decrementaCuenta();
+            //invoca al método que decrementa la cuenta de accesos al jardín
+        }
+    
+
+    //en vez de:
+    @Override
+    public void run() {
+        jardin.incrementaCuenta();
+    }
+</code>
+</pre>
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //  R59 Lectores Escritores SEMAFORO
+    wait();
+
+    Si entra y hay alguien se espera con wait().
+    Comparten Semáforo
+    public final static int LIBRE = 0;
+    //indica que no hay lectores leyendo, ni ningún escritor escribiendo.
+    //En este estado pueden entrar lectores a leer, o un escritor a escribir
+    public final static int CON_LECTORES = 1;
+    //constante que indica que hay lectores leyendo. Puede entrar un nuevo
+    //lector a leer, pero no puede entrar ningún escritor a escribir
+    public final static int CON_ESCRITOR = 2;
+    //constante que indica que hay escritores escribiendo. En este estado, no
+    //puede entrar ningún lector a leer, ni nigún escritor a escribir
+    private int estado = LIBRE;
+    //estado del semáforo (inicialmente: libre)
+    private int tLectores = 0;
+
+</code>
+</pre>
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //  R60 INTERBLOQUEO EJEMPLO Deadlock
+    cada metodo u objeto llama a otro que está synchronized
+    a.metodoA(this);
+    b.metodoB(this);
+
+</code>
+</pre>
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //  R61 Semaphore ejemplo 1
+    private Semaphore
+    semaforo.acquire();
+    semaforo.release();
+    yield();
+
+</code>
+</pre>
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //  R61 Semaphore ejemplo 2
+    Semaphore sema = new Semaphore(5);
+    semaforo.acquire();
+    semaforo.release();
+
+    El semaforo permite 5 al mismo tiempo.
+
+    Si no se puede
+</code>
+</pre>
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //  R64 Exchanger Ejemplo
+    Intercambian datos, productor y consumidor 
+</code>
+</pre>
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //  R66CountDownLatch
+    Not there
+</code>
+</pre>
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //  R68 Cyclic Barrier
+</code>
+</pre>
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //  R71 Executor Ejemplo
+    Pool de hilos
+
+    public static void main(String[] args) {
+        
+        //define un pool fijo de dos hilos
+        ExecutorService executor = Executors.newFixedThreadPool(2);
+
+        //pasa 30 tareas NumerosAleatorios al pool de 2 hilos
+        for (int i = 1; i &lt;= 30; i++) {
+            executor.submit(new NumerosAleatorios());
+        }
+
+        //ordena la destrucción de los dos hilos del pool cuando hayan
+        //completado todas las tareas
+        executor.shutdown();
+    }
+
+
+    public class NumerosAleatorios implements Runnable {
+        public void run() {
+    
+            String strReturn = "";
+            Random random = new Random();
+    
+            for (int i = 0; i &lt;10; i++) {
+                strReturn += random.nextInt(50) + ", ";
+                Thread.yield();
+            }
+    
+            System.out.println("Números aleatorio obtenidos por "
+                    + Thread.currentThread().getName() + ": " + strReturn);
+        }
+    }
+
+    // Se creará un pool de 2 hilos capaz de realizar 30 de esas tareas.
+    //output Números aleatorio obtenidos por pool-1-thread-2: 29, 13, 41, 37, 24, 3, 37, 48, 4, 12, 
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

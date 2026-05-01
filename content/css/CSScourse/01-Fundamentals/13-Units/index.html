@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Units</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <h1>12 - Units</h1>
+    <div class="item item-percent">50%</div>
+    <div class="item item-view-width">50vw</div>
+
+    <div class="parent">
+        <div class="item">20px</div>
+        <div class="item">20px</div>
+        <div class="item item-percent">50% </div>
+    </div>
+
+    <div class="item rem"> 1 REM</div>
+    <div class="item em">1 EM</div>
+    <div class="parent">
+        <div class="item rem"> 1 REM</div>
+        <div class="item em">1 EM</div>
+    </div>
+
+
+    <p>px: Unidad de medida fija, según la resolución del monitor. No cambia</p>
+    <p>Porcentaje: depende del contenedor padre</p>
+    <p>View Width /height: depende unicamente del tamaño de la pantalla</p>
+    <p>REM - Root font size. 1= 100% of the size (same) 2=200% 0.5= 50%. Don't accumulate like em</p>
+    <p>EM - Based on the parent's font size. They can multiply so better use rem. Em </p>
+    <p>When is recommended to use em: When you want an object to have padding that 
+        scales with the size of the element. For example: padding: 0.25em; For scaling padding</p>
+    <p>Problem of using px for the font size. If someone resizes the browser, the 
+        font size will remain on the px set. With rem</p>
+        <p>Same with percentages which is similar to em regarding to fonts, as reppresents the % of a font</p>
+</body>
+</html>

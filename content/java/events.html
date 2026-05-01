@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Events</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVA EVENTS</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //EVENTOS 
+    /*
+    * EVENTOS
+    */
+    package E_SWING;
+
+    import java.awt.Color;
+    import java.awt.Font;
+    import java.awt.Graphics;
+    import java.awt.Graphics2D;
+    import java.awt.event.ActionEvent;
+    import java.awt.event.ActionListener;
+    import javax.swing.JButton;
+    import javax.swing.JFrame;
+    import javax.swing.JPanel;
+
+
+    public class Eventos {
+        
+        
+        
+    //    public static void main(String[] args) {
+    //        Events();
+    //    }
+    //    
+        public static void Events(){
+            MarcoBotones marcoBut = new MarcoBotones();
+            marcoBut.setVisible(true);
+            marcoBut.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            
+        }
+    }
+
+    //Jframe
+    class MarcoBotones extends JFrame{
+            
+            public MarcoBotones(){
+                setTitle("Botones y eventos");
+                setBounds(700,300, 500, 300);
+                LaminaBotones miLamina = new LaminaBotones();
+                add(miLamina);
+            }
+        }
+
+
+    //JPanel
+    //IMPLEMENTAMOS LA INTERFAZ ACTION LISTENER, TENEMOS QUE DESARROLLAR LOS METODOS @Override
+    class LaminaBotones extends JPanel implements ActionListener{
+        
+        JButton botonAzul = new JButton("Azul");
+        JButton botonAmarillo = new JButton("AMarillo");
+        JButton botonRojo= new JButton("Rojo");
+        
+        public LaminaBotones(){
+            add(botonAzul);
+            add(botonAmarillo);
+            add(botonRojo);
+            ColorFondo Azul = new ColorFondo(Color.blue);
+            ColorFondo Amarillo = new ColorFondo(Color.yellow);
+            ColorFondo Rojo = new ColorFondo(Color.red);
+            
+            botonAzul.addActionListener(this); //El This se refiere a la clase, en este caso la lámina, es el que escucha
+            botonAmarillo.addActionListener(this); 
+            botonRojo.addActionListener(this); 
+            
+            botonAzul.addActionListener(Azul); 
+            botonAmarillo.addActionListener(Rojo); 
+            botonRojo.addActionListener(Amarillo); 
+        }
+        
+        
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Object botonPulsado = e.getSource();
+            
+            if(botonPulsado == botonAzul){
+            setBackground(Color.blue);
+            }
+            else if(botonPulsado == botonAmarillo){
+            setBackground(Color.yellow);
+            }
+            else {
+            setBackground(Color.red);
+            }
+        
+        }
+        
+        
+        private class ColorFondo implements ActionListener{
+            private Color colorDeFondo;
+
+            public ColorFondo(Color c){
+            colorDeFondo = c;
+            }
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setBackground(colorDeFondo);
+            }
+
+        }
+    }
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

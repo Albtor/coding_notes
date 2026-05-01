@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Use State</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+        </a>
+        <h1 class="title_template">REACT - Use State</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="https://www.youtube.com/watch?v=iZhV0bILFb0&list=PLnHJACx3NwAdT_8forzXYvx0o4A2VnoHX&index=5&ab_channel=CodingAddict" class="link_file" target="_Blank">Youtube Tutorial</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // 1 ERROR EXAMPLE
+    import React from "react";
+    
+    const ErrorExample = () => {
+    let title = "random title";
+    const handleClick = () => {
+    title = "hello people";
+    console.log(title);
+    };
+    return (
+    &lt;React.Fragment>
+        &lt;h2>{title}&lt;/h2>
+        &lt;button type="button" className="btn" onClick={handleClick}>
+            Change title
+        &lt;/button>
+    &lt;/React.Fragment>
+    );
+    };
+    
+    export default ErrorExample;
+    
+</code>
+</pre>
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // 2 - USE STATE - BASICS
+    import React, { useState } from "react";
+    
+    const UseStateBasics = () => {
+    // console.log(useState("Hello world"));
+    // const value = useState(1)[0];
+    // const handler = useState(1)[1];
+    // console.log(value, handler);
+    
+    const [text, setText] = useState("random title");
+    const handleClick = () => {
+    if (text === "random title") {
+    setText("hello world");
+    } else {
+    setText("random title");
+    }
+    };
+    return (
+    &lt;React.Fragment>
+        &lt;h1>{text}&lt;/h1>
+        &lt;button type="button" className="btn" onClick={handleClick}>
+            Change title
+        &lt;/button>
+    &lt;/React.Fragment>
+    );
+    };
+    
+    export default UseStateBasics;
+    
+</code>
+</pre>
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // 3- USESTATE - ARRAY
+    import React from "react";
+    import { data } from "../../../data";
+    
+    const UseStateArray = () => {
+    const [people, setPeople] = React.useState(data);
+    
+    const removeItem = (id) => {
+    let newPeople = people.filter((person) => person.id !== id); //all the items with different ID are added to the array
+    (eliminates the one we want to eliminate)
+    setPeople(newPeople);
+    };
+    
+    return (
+    &lt;>
+        {people.map((person) => {
+        const { id, name } = person;
+        return (
+        &lt;div key={id} className="item">
+            &lt;h4>{name}&lt;/h4>
+            &lt;button onClick={()=> removeItem(id)}>remove&lt;/button>
+        &lt;/div>
+        );
+        console.log(person);
+        return "hello";
+        })}
+        &lt;button className="btn" onClick={()=> setPeople([])}>
+            clear items
+        &lt;/button>
+    &lt;/>
+    );
+    };
+    
+    export default UseStateArray;
+
+
+    
+</code>
+</pre>
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // 4 - USESTATE - OBJECT
+
+    import React, { useState } from "react";
+    
+    const UseStateObject = () => {
+    const [person, setPerson] = useState({
+    name: "peter",
+    age: 24,
+    message: "random message",
+    });
+    
+    console.log(person);
+    // const [name,setName] = useState('peter')
+    // const [age,setAge] = useState(24)
+    // const [message,setMessage] = useState('random message')
+    
+    const changeMessage = () => {
+    setPerson({ ...person, message: "hello world" });
+    // setMessage('hello world')
+    };
+    return (
+    &lt;>
+        &lt;h3>{person.name}&lt;/h3>
+        &lt;h3>{person.age}&lt;/h3>
+        &lt;h4>{person.message}&lt;/h4>
+        &lt;button className="btn" onClick={changeMessage}>
+            change message
+        &lt;/button>
+    &lt;/>
+    );
+    };
+    
+    export default UseStateObject;
+
+
+    
+</code>
+</pre>
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // 5 - USESTATE - COUNTER
+    import React, { useState } from "react";
+    
+    const UseStateCounter = () => {
+    const [value, setValue] = useState(0);
+    
+    const reset = () => {
+    setValue(0);
+    };
+    
+    const complexIncrease = () => {
+    setTimeout(() => {
+    // setValue(value + 1);
+    setValue((prevState) => {
+    return prevState + 1;
+    });
+    }, 2000);
+    };
+    
+    return (
+    &lt;>
+        &lt;section style={{ margin: "4rem 0" }}>
+            &lt;h2>regular counter&lt;/h2>
+            &lt;h1>{value}&lt;/h1>
+            &lt;button className="btn" onClick={()=> setValue(value - 1)}>
+                decrease
+            &lt;/button>
+            &lt;button className="btn" onClick={reset}>
+                reset
+            &lt;/button>
+            &lt;button className="btn" onClick={()=> setValue(value + 1)}>
+                increase
+            &lt;/button>
+        &lt;/section>
+        &lt;section style={{ margin: "4rem 0" }}>
+            &lt;h2>more complex counter&lt;/h2>
+            &lt;h1>{value}&lt;/h1>
+            &lt;button className="btn" onClick={complexIncrease}>
+                increase later
+            &lt;/button>
+        &lt;/section>
+    &lt;/>
+    );
+    };
+    
+    export default UseStateCounter;
+
+
+    
+</code>
+</pre>
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // &lt;
+
+    
+</code>
+</pre>
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // &lt;
+
+    
+</code>
+</pre>
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // &lt;
+
+    
+</code>
+</pre>
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // &lt;
+
+    
+</code>
+</pre>
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // &lt;
+
+    
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

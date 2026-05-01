@@ -1,0 +1,17 @@
+h2{
+    margin: 1rem;
+}
+
+p{
+    margin: calc(10px * 2);
+}
+
+.p2{
+    --margin: 30px;
+    margin: calc(var(--margin) * 2);
+}
+
+.p3{
+    --spacer: 20;
+    margin: calc(var(--spacer) * 2px);
+}

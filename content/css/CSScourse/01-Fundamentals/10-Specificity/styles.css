@@ -1,0 +1,67 @@
+*{
+    margin: 0.1em;
+    box-sizing: border-box;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+    background-color: yellowgreen;
+    border-radius: 20px;
+    padding:0.5em;
+    display: inline-block;
+}
+
+a:hover{
+    background-color: peru;
+    color: white;
+}
+
+
+[class*="a"]{
+    height: 40px;
+    padding: 0.5em;
+}
+
+div{
+    background-color: hsl(61, 75%, 57%);
+    padding:0.5em;
+    font-size: 2em;
+}
+
+#a0{
+    background-color: cyan !important; 
+}
+
+/* .a0{
+    background-color: cyan !important; 
+} */
+
+.a1{
+    background-color: rgb(255,0,255);
+}
+
+
+#a2{
+    background-color: rgba(255,0,255,.4);
+
+}
+
+.a3{
+    background-color: #1188AA;
+}
+
+
+h3{
+    background-color: rgb(108, 202, 121);
+}
+
+
+h3.a5{
+     background-color: hsl(39, 67%, 57%);
+}
+
+h3.a5#a5{
+     background-color: hsla(56, 96%, 54%, 0.5);
+}
+

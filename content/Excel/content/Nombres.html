@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel Nombres</title>
+    <link rel="stylesheet" href="../../../css/file.css">
+   
+</head>
+<body class="excel-bkg">
+<div class="main_container">
+
+    <a href="../Excel.html" class="menu_link">
+        <img src="../img/excel.png" alt="Excel Icon" class="menu_img">
+    </a>
+    <h1 class="title_template">EXCEL NOMBRES</h1>
+
+<div class= "code_container ">
+
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    // NOMBRES
+    Dar nombre en Formulas > Nombres definidos (definir nombres)
+    Damos nombre a tablas de base de datos y busqueda.
+    Al usar la funcion BDsuma podemos usar estos nombres
+    =BDSUMA(BaseProductos;PRODUCTOS!D1;ZonaCriterios)
+
+    Crear desde la seleccion: al usar columnas de datos y nombres, puedan asignarse los nombres de rangos de los nombres
+    Si hay nombres en una fila y columna, excel lo detecta
+
+    Utilizar en la fórmula 
+    
+    Intersecciones_: coje un valor de una tabla con nombres en izquierda y arriba
+    =Maria febrero 
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    // NOMBRES EN FUNCIONES Hoja d
+    Dar nombre al rango / tabla que no debe moverse y luego lo usamos en una función
+    =BUSCARV(C4;tablaCursos;2)*D4*1,21
+
+    Dar nombre a FUNCIONES
+    =FIN.MES(AHORA();2) le damos a dar nombre
+    =ultimo_dia_mes
+</code>
+</pre>
+        
+    
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

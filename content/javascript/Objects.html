@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript OBjects</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVASCRIPT OBJECTS</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="#" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // BUILD JAVASCRIPT OBJECTS
+
+    var ourDog = {
+        "name": "Camper",
+        "legs": 4,
+        "tails": 1,
+        "favorite spot": "bed",
+        "friends": ["everything!"]
+    };
+
+    var myDog = {
+        "name": "Quincy",
+        "legs": 3,
+        "tails": 2,
+        "favorite spot": "park",
+        "friends": []
+    }
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //ACCESSING OBJECT PROPERTIES WITH DOT NOTATION
+    var legsValue = myDog.legs;
+    var tailsValue = myDog.tails;
+    console.log("Accessing object properties with dot notation: var tailsValue = myDog.tails;");
+    console.log(legsValue + " " + tailsValue);
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // ACCESSING OBJECT PROPERTIES WITH BRACKETS NOTATION (if have space on it)
+
+    var legsValue = ourDog["favorite spot"];
+    var tailsValue = myDog["favorite spot"];
+    console.log("Accessing object properties with brackets: var tailsValue = myDog['favorite spot'];");
+    console.log(legsValue + " " + tailsValue);
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //ACCESSING OBJECT PROPERTIES WITH VARIABLES
+
+    var textObjt = {
+        12: "Namath",
+        16: "Montana",
+        19: "Unitas"
+    };
+    
+    var playerNumber = 16;
+    var player = textObjt[playerNumber];
+    console.log("Accessing object properties with variables: var player = textObjt[playerNumber];");
+    console.log(player);
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //UPDATING OBJECT PROPERTIES
+    var newDog = {
+        "name": "Quincy",
+        "legs": 3,
+        "tails": 2,
+        "favorite spot": "park",
+        "friends": []
+    }
+
+    newDog.name = "Happy coder";
+    newDog.tails
+    console.log("Updating Object Properties: newDog.name = 'Happy coder';");
+    console.log(newDog.name);
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //ADD NEW PROPERTIES TO AN OBJECT
+    var ChrisDog = {
+        "name": "Quincy",
+        "legs": 3,
+        "tails": 2,
+        "favorite spot": "park",
+        "friends": []
+    }
+
+    ChrisDog.bark = "woof woof!";
+
+    console.log("Add new properties: ChrisDog.bark = 'woof woof!';");
+    console.log(ChrisDog.bark);
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //DELETE PROPERTIES FROM AN OBJECT
+    var SoniaDog = {
+        "name": "Quincy",
+        "legs": 3,
+        "tails": 2,
+        "favorite spot": "park",
+        "friends": []
+    }
+
+    delete SoniaDog.tails;
+    console.log("Add new properties: delete SoniaDog.tails;2");
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // USING OBJECTS FOR LOOKUPS
+    function phoneticLookup(val){
+        var result = "";
+        var lookup = {
+            "alpha": "Adams",
+            "bravo": "Boston",
+            "charlie": "Chicago",
+            "delta": "Denver",
+            "echo": "Easy"
+        };
+        result = lookup[val];
+        return result;
+    }
+    console.log(phoneticLookup("charlie"));
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //TESTING OBJECTS FOR PROPERTIES
+    var myObj = {
+        gift: "pony",
+        pet: "kitten",
+        bed: "sleigh"
+    };
+
+    function checkObj(checkProp){
+    
+        if (myObj.hasOwnProperty(checkProp)){
+            return myObj[checkProp];
+        } else {
+            return "Not found";
+        }
+    };
+
+    console.log(checkObj("gift"));
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // OBJECTS METHODS
+    var newDog = {
+        "name": "Quincy",
+        "legs": 3,
+        "tails": 2,
+        "favorite spot": "park",
+        "friends": []
+    }
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //CONSTRUCTORS
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //PROTOTYPE
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //CHECKING FOR PROPERTIES AND METHODS
+    var gotTheProperty = "price" in plan1;
+    
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

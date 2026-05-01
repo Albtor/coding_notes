@@ -1,0 +1,43 @@
+
+
+p::first-letter{
+  font-size: 200%;
+}
+
+
+.box, .box2{
+  width: 100px;
+  height: 100px;
+  margin: 50px;
+  background-color: lightgreen;
+}
+
+.box::before{
+  display: block;
+  content: 'before';
+  color: yellow;
+  background-color: grey;
+  width: 25px;
+  height: 25px;
+
+}
+
+.box::after{
+
+  display: block;
+  content: 'after';
+  color: blue;
+  background-color: grey;
+  width: 25px;
+  height: 25px;
+}
+
+.box2::before{
+  display: block;
+  content: attr(data-text);
+  color: yellow;
+  background-color: grey;
+  width: 25px;
+  height: 25px;
+
+}

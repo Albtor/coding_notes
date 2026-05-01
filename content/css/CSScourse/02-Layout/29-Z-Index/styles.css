@@ -1,0 +1,46 @@
+body{
+    height: 300vh;
+}
+
+h1{
+    margin: 5vh;
+}
+
+h2{
+    margin: 0;
+}
+
+/* STICKY */
+.parent{
+    padding: .5rem;
+    background-color: lightskyblue;
+    position: relative;
+    z-index: -3;
+}
+
+.parent2{
+    z-index: -10;
+    top: -17px;
+
+}
+.child1{
+    position: sticky;
+    top: 0px;
+    left: 0;
+    padding: .25rem;
+    background-color: lightcoral;
+    height: 20vh;
+    z-index: -1;
+}
+.child2{
+    padding: .25rem;
+    background-color: lightgreen;
+    height: 20vh;
+    z-index: 2;
+}
+.child3{
+    padding: .25rem;
+    background-color: peru;
+    height: 20vh;
+    z-index: -20;
+}

@@ -1,0 +1,22 @@
+.div1{
+    background-color: grey;
+    width: 300px;
+}
+
+.span1{
+    background-color: cyan;
+}
+.button{
+    background-color: red;
+}
+
+.span2{
+    background-color: yellow;
+    display: inline-block;
+    height: 30px;
+
+
+}
+.div2{
+    background-color: green;
+}

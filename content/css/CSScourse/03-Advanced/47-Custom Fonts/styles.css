@@ -1,0 +1,29 @@
+.jost {
+    font-family: 'Jost', sans-serif;
+}
+
+@font-face {
+    font-family: 'Montserrat2';
+    src: 
+    url('fonts/fontawesome-webfont.woff2') format('woff2'),
+    url('fonts/fontawesome-webfont.woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat2';
+    src: 
+    url('fonts/fontawesome-webfont.woff2') format('woff2'),
+    url('fonts/fontawesome-webfont.woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+.fface {
+    font-family: "Montserrat2";
+}
+
+.Times {
+    font-family: 'Arial';
+}

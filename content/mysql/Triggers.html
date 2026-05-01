@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySQL Triggers</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+    </a>
+    <h1 class="title_template">MySQL - TRIGGERS</h1>
+    <h4>Links</h4>
+    <ul>
+        <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+    </ul>
+
+        
+<div class= "code_container">
+
+<!-- MySQL -->
+<pre class="prettyprint">
+<code class="language-mysql" spellcheck="false">
+    // TRIGGERS
+    --TRANSACCIONES
+
+    BEGIN TRANSACTION
+
+    UPDATE Nota set Nota = Nota +1 WHERE idAlumno = 1710
+    COMMIT TRANSACTION --validar cambios
+
+    ROLLBACK TRANSACTION --anular cambios desde el Begin Transaction
+
+    BEGIN TRANSACTION T1
+        BEGIN TRANSACTION T2
+        DELETE FROM Nota
+        COMMIT TRANSACTION T2
+    ROLLBACK TRANSACTION T1
+
+
+
+    --TRIGGERS
+
+    -- INSERT, UPDATE, DELETE
+    -- Se ejecutan automáticamente procedimientos almacenados al efectuar estas acciones
+    -- SE ve en SQL en carpeta de la tabla, DESENCADENADORES: El trigger es lo último que se ejecuta
+    -- Lanzan mensajes de error
+    -- Se usan principalmente para 3 cosas: Checkear datos, mantener datos o tener un log
+    -- En el trigger se crean dos TABLAS virtuales: INSERTED y DELETED
+    -- No hay parámetros 
+    -- CUANDO HAY QUE PONERLO PARA QUE SE EJECUTE
+
+
+
+    GO
+
+    CREATE TRIGGER trNoToquesNotas ON Nota FOR INSERT, DELETE, UPDATE
+    AS
+        --A quien estás cambiando?
+        raiserror ( 'NO TOQUES LAS NOTAS', 16, 1) --16: nivel de error, a partir de 21 solo para administrador
+        ROLLBACK TRANSACTION --anularia la acción siempre
+
+    GO
+
+
+    CREATE TRIGGER trNoToquesNotas2 ON Nota FOR UPDATE
+    AS
+        DECLARE @novavieja int
+        DECLARE @notanueva int
+
+        SET @novavieja = (SELECT NOTA FROM inserted)
+        SET @notanueva = (SELECT Nota FROM deleted)
+        if ( (SELECT Nota FROM inserted) &lt;> (SELECT Nota FROM deleted) )
+        --if (UPDATE (nota)) --versión moderna SQL server
+        BEGIN
+            raiserror ( 'NO TOQUES LAS NOTAS', 16, 1)
+            rollback transaction
+        END
+
+    GO
+
+    create trigger trNoMeToquesLasNotas3 on NOTA for  update
+    as
+    
+    if ( UPDATE (nota)) 
+        begin
+        raiserror ('NO PUEDES MODIFICAR LA NOTA',16,1)    
+        rollback transaction 
+        END
+
+    go
+
+    --AFTER Y BEFORE (--TAMBIEN INSTEAD OF, pero no usamos mucho
+    create trigger trNoMeToquesLasNotas4 on NOTA AFTER update --o Before 
+    as
+    
+    if ( UPDATE (nota)) 
+        begin
+        raiserror ('NO PUEDES MODIFICAR LA NOTA',16,1)    
+        rollback transaction 
+        END
+
+    go
+
+
+    CREATE TRIGGER trNoToquesNotasTutoria ON Nota FOR UPDATE
+    AS
+        DECLARE @id int
+        DECLARE @nota int
+        SET @id = (SELECT idAlumno FROM inserted)
+        SET @nota = (SELECT Nota FROM inserted)
+
+        if ( (SELECT Nota FROM inserted) &lt;> (SELECT Nota FROM deleted) )
+        BEGIN
+        --cambio de nota UPDATE
+        END
+
+    GO
+
+        --if (update(nota))
+
+
+
+
+    --TRIGGER EJERCICIO DE ALUMNO QUE NO TENGA MENOS DE 10 ASIGNATURAS
+
+    CREATE TRIGGER trNoMenosDe10Asignaturas ON Nota FOR DELETE, UPDATE
+    AS
+        
+        DECLARE @numAsignaturas int
+        DECLARE @id int
+        SET @id = (SELECT idAlumno FROM deleted)
+        SET @numAsignaturas = (SELECT COUNT(idAsignatura) FROM Nota WHERE idAlumno = @id)
+
+        if (@numAsignaturas &lt; 10)
+        BEGIN 
+            raiserror ('LOS ALUMNOS NO PUEDEN TENER MENOS DE 10 ASIGNATURAS',16,1)
+            rollback transaction
+        END
+
+    GO
+
+    create or alter trigger trMenosDeTresAsignaturas2 on nota for  update, delete
+    as
+        declare @idAlumno int -- a quien le estas haciendo esto!!
+        set @idAlumno=(select idAlumno from deleted) 
+        declare @asignaturas int
+
+        set @asignaturas = (select count(*) from Nota  WHERE idAlumno=@idAlumno)
+        if (@asignaturas &lt; 3)
+        begin
+            raiserror ('Tiene menos de tres asignaturas', 16,1)
+            rollback transaction
+        end
+    GO
+
+    create or alter trigger trMenosDeTresAsignaturas on nota for  update, delete
+    as
+        IF ( (select COUNT(*) from Nota where idAlumno=(select idAlumno from deleted)) &lt; 3) 
+        begin
+            raiserror ('Tiene menos de tres asignaturas', 16,1)
+            rollback transaction
+        end
+    GO
+
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

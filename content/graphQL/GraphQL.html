@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GraphQL Tutorial</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+        </a>
+        <h1 class="title_template">GRAPHQL - TUTORIAL WEB DEV SIMPLIFIED</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="https://www.youtube.com/watch?v=ZQL7tL2S0oQ&t=1670s&ab_channel=WebDevSimplified" class="link_file" target="_Blank">Web Dev Simplified</a></li>
+            <li class="link_list"><a href="https://github.com/WebDevSimplified/Learn-GraphQL/blob/master/server.js" class="link_file" target="_Blank">Github Graph QL</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- GRAPH QL -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    //INSTALL &lt;
+    Open folder terminal -> npm init (creates package.json)
+    then install dependencies -> npm i express express-graphql graphql
+    then -> npm i --save-dev nodemon
+
+    In package.json change:
+    this line: "test": "echo \"Error: no test specified\" && exit 1"
+    for this: "devStart": "nodemon server.js"
+    create server.js file (look doown)
+
+    Then in terminal: npm run devStart
+    open browser in http://localhost:5000/
+</code>
+</pre>
+
+<!-- GRAPH QL -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // Server.js File Basic example 
+    const express = require('express')
+    const expressGraphQL = require('express-graphql').graphqlHTTP
+    const {
+        GraphQLSchema,
+        GraphQLObjectType,
+        GraphQLString
+    } = require('graphql')
+    const app = express()
+
+    const schema = new GraphQLSchema({
+        query: new GraphQLObjectType({
+            name: "HelloWorld",
+            fields: () => ({
+                message: {
+                    type: GraphQLString,
+                    resolve: () => 'Hello world'
+                
+                }
+            })
+        })
+    })
+    app.use('/graphql', expressGraphQL({
+        schema: schema,
+        graphiql: true
+    }))
+    app.listen(5000., () => console.log('Server Running'))
+        
+</code>
+</pre>
+<!-- GRAPH QL -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    //  Server.js Web Dev Simplified &lt;
+    const express = require('express')
+    const expressGraphQL = require('express-graphql').graphqlHTTP
+    const {
+      GraphQLSchema,
+      GraphQLObjectType,
+      GraphQLString,
+      GraphQLList,
+      GraphQLInt,
+      GraphQLNonNull
+    } = require('graphql')
+    const app = express()
+    
+    const authors = [
+        { id: 1, name: 'J. K. Rowling' },
+        { id: 2, name: 'J. R. R. Tolkien' },
+        { id: 3, name: 'Brent Weeks' }
+    ]
+    
+    const books = [
+        { id: 1, name: 'Harry Potter and the Chamber of Secrets', authorId: 1 },
+        { id: 2, name: 'Harry Potter and the Prisoner of Azkaban', authorId: 1 },
+        { id: 3, name: 'Harry Potter and the Goblet of Fire', authorId: 1 },
+        { id: 4, name: 'The Fellowship of the Ring', authorId: 2 },
+        { id: 5, name: 'The Two Towers', authorId: 2 },
+        { id: 6, name: 'The Return of the King', authorId: 2 },
+        { id: 7, name: 'The Way of Shadows', authorId: 3 },
+        { id: 8, name: 'Beyond the Shadows', authorId: 3 }
+    ]
+    
+    const BookType = new GraphQLObjectType({
+      name: 'Book',
+      description: 'This represents a book written by an author',
+      fields: () => ({
+        id: { type: GraphQLNonNull(GraphQLInt) },
+        name: { type: GraphQLNonNull(GraphQLString) },
+        authorId: { type: GraphQLNonNull(GraphQLInt) },
+        author: {
+          type: AuthorType,
+          resolve: (book) => {
+            return authors.find(author => author.id === book.authorId)
+          }
+        }
+      })
+    })
+    
+    const AuthorType = new GraphQLObjectType({
+      name: 'Author',
+      description: 'This represents a author of a book',
+      fields: () => ({
+        id: { type: GraphQLNonNull(GraphQLInt) },
+        name: { type: GraphQLNonNull(GraphQLString) },
+        books: {
+          type: new GraphQLList(BookType),
+          resolve: (author) => {
+            return books.filter(book => book.authorId === author.id)
+          }
+        }
+      })
+    })
+    
+    const RootQueryType = new GraphQLObjectType({
+      name: 'Query',
+      description: 'Root Query',
+      fields: () => ({
+        book: {
+          type: BookType,
+          description: 'A Single Book',
+          args: {
+            id: { type: GraphQLInt }
+          },
+          resolve: (parent, args) => books.find(book => book.id === args.id)
+        },
+        books: {
+          type: new GraphQLList(BookType),
+          description: 'List of All Books',
+          resolve: () => books
+        },
+        authors: {
+          type: new GraphQLList(AuthorType),
+          description: 'List of All Authors',
+          resolve: () => authors
+        },
+        author: {
+          type: AuthorType,
+          description: 'A Single Author',
+          args: {
+            id: { type: GraphQLInt }
+          },
+          resolve: (parent, args) => authors.find(author => author.id === args.id)
+        }
+      })
+    })
+    
+    const RootMutationType = new GraphQLObjectType({
+      name: 'Mutation',
+      description: 'Root Mutation',
+      fields: () => ({
+        addBook: {
+          type: BookType,
+          description: 'Add a book',
+          args: {
+            name: { type: GraphQLNonNull(GraphQLString) },
+            authorId: { type: GraphQLNonNull(GraphQLInt) }
+          },
+          resolve: (parent, args) => {
+            const book = { id: books.length + 1, name: args.name, authorId: args.authorId }
+            books.push(book)
+            return book
+          }
+        },
+        addAuthor: {
+          type: AuthorType,
+          description: 'Add an author',
+          args: {
+            name: { type: GraphQLNonNull(GraphQLString) }
+          },
+          resolve: (parent, args) => {
+            const author = { id: authors.length + 1, name: args.name }
+            authors.push(author)
+            return author
+          }
+        }
+      })
+    })
+    
+    const schema = new GraphQLSchema({
+      query: RootQueryType,
+      mutation: RootMutationType
+    })
+    
+    app.use('/graphql', expressGraphQL({
+      schema: schema,
+      graphiql: true
+    }))
+    app.listen(5000, () => console.log('Server Running'))
+    
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

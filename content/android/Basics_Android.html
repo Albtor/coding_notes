@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Android Basics</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">ANDROID - BASICS</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="https://developer.android.com/" class="link_file" target="_Blank">Developers Android</a></li>
+            <li class="link_list"><a href="https://developer.android.com/studio/" class="link_file" target="_Blank">Download Android Studio</a></li>
+            <li class="link_list"><a href="https://www.youtube.com/watch?v=tyx05coXixw&list=PLyvsggKtwbLX06iMtXnRGX5lyjiiMaT2y" class="link_file" target="_Blank">Curso Android Studio</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- ANDROID -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // ULTRABASIC
+    TOASTS
+    Toast.makeText(this,"Happy Music",Toast.LENGTH_SHORT).show();
+    Empty Views Activity
+    res: 
+        drawable: icons 
+        layout: design and xml
+        values: colors/strings
+    
+    images: Copiar imagenes con click derecho y agregar en Drawable
+    icons: en app right click and add asset.
+    
+</code>
+</pre>
+<!-- ANDROID -->
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false" >
+    // PASS DATA FROM ONE ACTIVITY TO ANOTHER
+    
+    private void showList(String listName) {
+    Intent i = new Intent(this, activity_List.class);
+    i.putExtra("list_name", listName);
+    startActivity(i);
+    }
+    
+    New activity:
+    tv1 = (TextView)findViewById(R.id.tv_list);
+    String titulo = getIntent().getStringExtra("list_name");
+    
+    
+    CERRAR ACTIVITY Y VOLVER AL ANTERIOR
+    public void Cerrar (View view){
+    finish();
+    }
+    
+
+    
+</code>
+</pre>
+
+<!-- ANDROID -->
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false" >
+    //  MAIN METHODS
+    https://www.youtube.com/watch?v=poipVVd2jzU&list=PLyvsggKtwbLX06iMtXnRGX5lyjiiMaT2y&index=7&ab_channel=LaGeekipediaDeErnesto
+
+    Abrir la aplicación
+    onCreate(): Crea el activity lo primero que sucede al abrir la vista. Si no se coloca, no funciona el activity.
+    onStart() Una vez creado el activity, inicia el activity
+    onResume(): Visualizar el activity
+    
+    Una vez aquí el activity se está ejecutando
+    Aqui pueden pasar varios escenarios:
+    onPause() pausa el activity. Pasa de 1er y 2ndo plano, como si se minimiza la aplicación
+    onStop() Oculta la aplicación. De aquí puede ir avarios tipos:
+    • onDestroy(): Cierra el activity completamente, cuando se cierra la aplicación
+    • onRestart(): Vuelve a iniciar el onStart(), lo inicia y luego onResume() para hacerlo visible
+    
+    public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Toast.makeText(this,"On Create",Toast.LENGTH_LONG).show();
+        //La actividad está creada
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Toast.makeText(this,"On Start",Toast.LENGTH_LONG).show();
+        setContentView(R.layout.activity_main);
+        //La activity está a punto de hacerse visible
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Toast.makeText(this,"On Resume",Toast.LENGTH_LONG).show();
+        setContentView(R.layout.activity_main);
+        //La activity se hace visible. Ahora se reanuda
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Toast.makeText(this,"On Pause",Toast.LENGTH_LONG).show();
+        setContentView(R.layout.activity_main);
+        //La activity se pausa y lanza onStop()
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Toast.makeText(this,"On Stop",Toast.LENGTH_LONG).show();
+        setContentView(R.layout.activity_main);
+        //La activity se cierra, se vuelve hidden
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Toast.makeText(this,"On Destroy",Toast.LENGTH_LONG).show();
+        setContentView(R.layout.activity_main);
+        //La activity se cierra completamente
+    }
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Toast.makeText(this,"On Restart",Toast.LENGTH_LONG).show();
+        setContentView(R.layout.activity_main);
+        //La activity se cierra completamente
+    }
+}
+    
+</code>
+</pre>
+<!-- ANDROID -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // INSTALACIóN
+
+    Instalar JDK De Java última version
+    Instalar Android Studio
+
+    No instalar plugin Kotlin
+
+    Folders:
+    Java: Main activity: code
+    res/layout: xml where you can see both code and design
+    manifest: AndroidManifest.xml
+    
+    Open project not with empty activity, because then it's Kotlin
+    Use Empty Views Activity
+    
+    New activity
+    Right click over app and then empty activity
+    
+</code>
+</pre>
+<!-- ANDROID -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // ESTRUCTURA PROYECTOS
+    fichero.java logica del programa
+    fichero xml controles que ponemos en la pantalla principal. Tiene 2 vistas, vista del código y el diseño xml.
+    Blueprint: vista diseño
+    Los controles tienen que tener un id, para en la parte lógica referirte a ese control.
+
+    Activities: Ventanas
+
+    // ANDROID
+    java > com.example.{appName}
+    MainActivity     Este es el fichero donde añadimos el código de backend así como el diseño
+
+    MANIFEST     Fichero principal
+    
+</code>
+</pre>
+<!-- ANDROID -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // VISUALIZACIÓN PROYECTOS
+    Virtualizar Móviles
+    ver en móvil propio: Activar modo desarrollador y depurador *, conectar por usb
+
+</code>
+</pre>
+
+<!-- ANDROID -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // Estructura aplicación
+    libs: librerias externas añadidas de forma manual
+    src: codigo java
+    res: imagenes, layouts, textos
+        • drawable: imagenes e iconos, organizar por resolucion
+        • layout: diseños de las pantallas
+        • menu
+        • values: textos
+    Manifest.xml 
+    build.gradle
+    package: paquete base de la aplicación
+    activity vistas
+    meta data: Api key de google maps
+    Clase R: puente el fichero java y xml. Identifica los recursos
+
+    
+</code>
+</pre>
+
+<!-- ANDROID -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // IMAGES
+    Step 1: Understand Android Screen Densities
+    Density Folder Name Scale from mdpi Example size (for a 48x48 mdpi image)
+    mdpi drawable-mdpi 1x 48x48 px
+    hdpi drawable-hdpi 1.5x 72x72 px
+    xhdpi drawable-xhdpi 2x 96x96 px
+    xxhdpi drawable-xxhdpi 3x 144x144 px
+    xxxhdpi drawable-xxxhdpi 4x 192x192 px
+
+    Step 2: Prepare Your Base Image
+    Use a large, high-resolution PNG (typically 192x192 or more) so you can scale it down without quality loss.
+
+    
+</code>
+</pre>
+<!-- ANDROID -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // Layouts: 
+    LinearLayout: vertical horizontal
+    Relative Layout: posiciones en funcion de otros y de bordes
+        • wrap_content: Se extiende para contener los valores
+        • fill_parent (MATCH_PARENT): fuerza a expandrise a todo el espacio del elemento donde esta
+    Linear Layout Vertical o Horizontal: para agrupar componentes: textview, button etc
+    Table Layout: Para Tablas, necesitas añadir Table Rows por cada Row que se quiera dentro del Table Layout. Los
+    componentes se deben incluir dentro de cada Table Row.
+    Usar Layout Span dentro de la row, para indicar cuantas columnas se quiere que se ocupen por un elemento. Layout weight
+    
+    Scrollview: Use switch en codigo si
+    CONSTRAINT LAYOUT     Importante para el layout
+
+    Opciones de crear variaciones para distinta orientación, tablet. Crea un nuevo archivo para que se visualice de distinta manera
+</code>
+</pre>
+
+
+<!-- ANDROID -->
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false" >
+    // COMPONENTS/ VIEWS 
+    textView > private TextView tv1 (TextView)  // tv1.setText(variable)
+    editText > private EditText et1 / eti = (EditText)findViewById(R.id.txt_resultado)   
+
+    Button goes in a method.
+    In UI search for "onclick2 and select the method created
+    public void AddSong (View view){ }
+
+    RadioButton/Radiogroup  rbi.isChecked() == true
+    Checkbox (Checkbox) cb.isChecked() == true
+
+    Spinner (Spinner)findViewById(R.id.spinner_name)
+    String [] opciones = {"sumar", "restar"}
+    ArrayAdapter &lt;String> adapter = new ArrayAdapter&lt;String> (context: this, android.R.layout.simple_spinner_item, opciones)
+    spinner1.setAdapter(adapter)
+    seleccion = spinner1.getSelectedItem().toString();
+
+    TableLayout
+    Spinner
+    Listview
+    Seekbar
+
+    
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false" >
+    // LISTVIEW RECYCLER VIEW
+    Listview Component
+    Prepare Icon
+    mipmap right click paste pngs no cap letters or strange symbols
+    add content description
+
+</code>
+</pre>
+
+<!-- ANDROID -->
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false" >
+    //  COLORS Res values
+    Colors file > colors.xml material palette download for Android xml
+    Colors: We define the colors
+    &lt;color name="grey_light">#E6F4F1&lt;/color>
+    To be added in themes
+    
+    &lt;color name="purple_200">#FFBB86FC&lt;/color>
+    &lt;color name="purple_500">#FF6200EE&lt;/color>
+    &lt;color name="purple_700">#FF3700B3&lt;/color>
+    &lt;color name="teal_200">#FF03DAC5&lt;/color>
+    &lt;color name="teal_700">#FF018786&lt;/color>
+    &lt;color name="black">#FF000000&lt;/color>
+    &lt;color name="white">#FFFFFFFF&lt;/color>
+    &lt;color name="blue_light">#44CAE0&lt;/color>
+    &lt;color name="blue_dark">#00394C&lt;/color>
+    &lt;color name="brown_dark">#00394C&lt;/color>
+    &lt;color name="grey_light">#E6F4F1&lt;/color>
+
+</code>
+</pre>
+<!-- ANDROID -->
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false" >
+    //  STRINGS Res values
+    Strings: We define the texts
+    &lt;string name="app_title">Hola Mundo App de Alberto!&lt;/string>
+    @string/app_name
+    String file strings.xml // text @string/addsongs
+    NOmbre aplicación: Strings
+    &lt;string name="app_name">Alberto\'s App&lt;/string>
+    &lt;string name="app_title">Hola Mundo App de Alberto!&lt;/string>
+
+</code>
+</pre>
+<!-- ANDROID -->
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false" >
+    // MULTILENGUAJE https://www.youtube.com/watch?v=ffjLi4Cwg1k&list=PLyvsggKtwbLX06iMtXnRGX5lyjiiMaT2y&index=44
+    Un archivo strings nuevo para cada lenguaje
+
+    values nuevo - values resource file 
+    1 - nombre: strings
+    2 Locale pasar a la derecha y elegir pais
+
+    Copypaste de strings y traducir
+</code>
+</pre>
+
+<!-- ANDROID -->
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false" >
+    // WEB VIEW
+    Button to new activity
+    Elements > container > web view
+
+    // IMAGE BUTTON
+    Element Image BUtton
+    Choose background transparent if neede
+
+    // SHARED PREFERENCES 26
+    SharedPreferences preferences = getSharedPreferences( "datos", Context.MODE_PRIVATE);
+    et1.setText(preferences.getString("mail",""));
+    
+    SharedPreferences.Editor Obj_editor = preferencias.edit();
+    Obj_editor.putString("mail", et1.getTextt().toString());
+    Obj_editor.commit();
+
+    // GENERAR APK
+    Build Bundle
+    Android App BUndle for playstore
+    APK
+
+</code>
+</pre>
+
+
+<!-- ANDROID -->
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false" >
+    
+    
+</code>
+</pre>
+
+<!-- ANDROID -->
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false" >
+    
+    
+</code>
+</pre>
+
+<!-- ANDROID -->
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false" >
+    
+    
+</code>
+</pre>
+
+<!-- ANDROID -->
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false" >
+    
+    
+</code>
+</pre>
+
+<!-- ANDROID -->
+<pre class="prettyprint">
+<code class="language-java" spellcheck="false" >
+    
+    
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

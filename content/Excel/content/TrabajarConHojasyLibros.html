@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel Hojas y Libros</title>
+    <link rel="stylesheet" href="../../../css/file.css">
+   
+</head>
+<body class="excel-bkg">
+<div class="main_container">
+
+    <a href="../Excel.html" class="menu_link">
+        <img src="../img/excel.png" alt="Excel Icon" class="menu_img">
+    </a>
+    <h1 class="title_template">EXCEL TRABAJAR CON HOJAS Y LIBROS</h1>
+
+<div class= "code_container ">
+
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    // TRABAJAR CON DISTINTAS HOJAS Y LIBROS
+    //Crear vínculos
+    Copiar, ir al otro libro, boton derecho, pegar vinculo. 
+    =[Trimestre1.xlsx]Hoja1!$B$2
+    Advertencia que aparece por los vinculos externos. Quitar en Datos > Editar Vinculos > Pregunta inicial > no mostrar alerta
+    
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    // TRABAJAR CON DISTINTAS HOJAS Y LIBROS
+    Organizar todo Vista > Organizar todo poner en vertical
+    Poner formula y doble clic, F$, y + para sumar
+    ='C:\Users\34717\Documents\Coding\Excel\xcel_Files\hojas_libros\[Trimestre3.xlsx]Hoja1'!B2+'C:\Users\34717\Documents\Coding\Excel\xcel_Files\hojas_libros\[Trimestre1.xlsx]Hoja1'!B2+'C:\Users\34717\Documents\Coding\Excel\xcel_Files\hojas_libros\[Trimestre2.xlsx]Hoja1'!B2
+    //solucionar problemas
+    Si un libro no está dará error por no encontrar el vínculo, te abre un explorador para encontrarlo
+    Datos: Editar vínculos: Comprobar estado de los libros / hojas vinculados. Cambiar origen para encontrar el archivo que falte
+    Abrir origen : abre un libro u hojas
+    Actualizar valores
+</code>
+</pre>
+        
+    
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

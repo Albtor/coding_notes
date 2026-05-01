@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Navbars</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+
+</head>
+<body>
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+    </a>
+    <h1 class="title_template">CSS - NAVBARS</h1>
+    <h4>Links</h4>
+    <ul>
+        <li class="link_list"><a href="https://www.youtube.com/watch?v=NsHhKpR1ItA&ab_channel=JDBART" class="link_file" target="_Blank">Lateral Menu</a></li>
+    </ul>
+  
+        
+<div class= "code_container">
+
+<!-- NAVBAR 1  -->
+<!-- HTML -->
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    // NAVBAR HTML 1 HORIZONTAL BASICO
+    &lt;nav class=&quot;nav nav-top&quot;&gt;
+        &lt;img class=&quot;logo&quot; src=&quot;img/logo.png&quot; alt=&quot;Jungle Logo&quot;&gt;
+        &lt;ul class=&quot;nav-list&quot;&gt;
+        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Curriculum&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Works&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a class=&quot;btn&quot; href=&quot;#&quot;&gt;Contact&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/nav&gt;
+    
+</code>
+</pre>
+
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+    // NAVBAR CSS 1
+    
+    .nav{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #1B2522;
+        padding: .5rem 1rem;
+    }
+    /*  */
+    .nav-top{
+        position: fixed;
+        top: 0;
+        left: 0; /*With these two we make sure it takes 100% of the size  */
+        right: 0;
+        z-index:1;
+    }
+
+    .logo{
+        width: 50px;
+    }
+
+    .nav-list{
+        margin: 0;
+        padding: 0;
+        display: flex;
+        list-style: none;
+        
+    }
+
+    .nav-list a{
+        text-decoration: none;
+        margin-left: 1rem;
+        color: white;
+    }
+
+    .nav-list a:hover{
+        color: #ccc;
+    }
+</code>
+</pre>
+
+
+<!-- NAVBAR 2 -->
+<!-- HTML -->
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    // NAVBAR HTML 2 HORIZONTAL SUBMENUS
+    &lt;nav class=&quot;navbar&quot;&gt;
+    &lt;ul class=&quot;nav_links&quot;&gt;
+        &lt;li class=&quot;&quot;&gt;&lt;a class=&quot;&quot; href=&quot;path&quot; id=&quot;&quot;&gt; &lt;/a&gt;
+            &lt;ul class=&quot;dropdown-menu&quot;&gt;
+                &lt;li class=&quot;dropdown_menu-submenu&quot;&gt;&lt;a class=&quot;dropdown-item&quot; href=&quot;path&quot; &gt;Item Name&lt;/a&gt;&lt;/li&gt;
+                &lt;li class=&quot;dropdown_menu-submenu&quot;&gt;&lt;a class=&quot;dropdown-item&quot; href=&quot;path&quot; &gt;Item Name&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;/nav&gt;
+    
+</code>
+</pre>
+
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+    // NAVBAR CSS 2 HORIZONTAL SUBMENUS 
+    //Navbar inside a Header with Flex display and 2 elements separated Logo and Menu
+    header{
+        position: absolute;
+        right: 0;
+        left: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 8%;
+        z-index: 1800;
+    }
+    
+    .nav_links{
+        list-style: none;
+    }
+    
+    .nav_links >li{
+        display: inline-block;
+        padding: 0px 10px;
+    }
+    
+    .nav_links li a {
+        transition: all 0.3s ease 0s;
+    }
+    
+    .nav_links li a:Hover {
+        color: #01b8e6;
+    }
+    
+    .dropdown-menu > li{
+        display: block;
+        background-color: rgb(63, 64, 68);
+    }
+    
+    .dropdown_menu-submenu:hover{
+        background-color: rgb(103, 104, 110);
+        color: black;
+    }
+    
+    .nav_links .dropdown-menu{
+        display: none;
+        position: absolute;
+        min-width: 140px;
+        z-index: 8888;
+    }
+    
+    .nav_links li:hover > .dropdown-menu{
+        display: block;
+        
+    }
+    .dropdown_menu-submenu{
+        padding: 0.8rem;
+    }
+    
+</code>
+</pre>
+    
+
+
+
+
+<!-- NAVBAR 3 -->
+<!-- HTML -->
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    // NAVBAR HTML 2 LATERAL SUBMENUS
+    &lt;nav&gt;
+        &lt;ul&gt;
+            &lt;li class=&quot;dropdown&quot;&gt;&lt;a href=&quot;#&quot;&gt;Draft&lt;span&gt;&amp;rsaquo;&lt;/span&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                    &lt;li class=&quot;dropdown&quot;&gt;&lt;a href=&quot;#&quot;&gt;Not received in WH&lt;span&gt;&amp;rsaquo;&lt;/span&gt;&lt;/a&gt; 
+                        &lt;ul&gt;
+                            &lt;li&gt;&lt;a href=&quot;templates/status/Draft_B.html&quot;&gt;B2B&lt;/a&gt; &lt;/li&gt;
+                            &lt;li&gt;&lt;a href=&quot;templates/status/Draft_C.html&quot;&gt;B2C&lt;/a&gt; &lt;/li&gt;
+                        &lt;/ul&gt;
+                    &lt;/li&gt;
+                    &lt;li class=&quot;dropdown&quot;&gt;&lt;a href=&quot;#&quot;&gt;Pre Picker Escalate&lt;span&gt;&amp;rsaquo;&lt;/span&gt;&lt;/a&gt; 
+                        &lt;ul&gt;
+                            &lt;li&gt;&lt;a href=&quot;templates/status/DraftPrePicker_B.html&quot;&gt;B2B&lt;/a&gt; &lt;/li&gt;
+                            &lt;li&gt;&lt;a href=&quot;templates/status/DraftPrePicker_C.html&quot;&gt;B2C&lt;/a&gt; &lt;/li&gt;
+                        &lt;/ul&gt;
+                    &lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/nav&gt;
+        
+</code>
+</pre>
+
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+    // NAVBAR CSS 2 LATERAL SUBMENUS
+    nav{
+        width: 250px;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.1);
+        border-radius: 10px;
+        box-shadow: 5px 7px 10px rgba(0,0,0,.2);
+        /* z-index: 10000000; */
+    }
+    
+    nav ul{
+        position: relative;
+        list-style-type: none;
+        border-radius: 5px;
+    }
+    
+    nav ul li a{
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        text-transform: capitalize;
+        padding: 0px 10px;
+        height: 42px;
+        color: black;
+        transition: .2s ease;
+        /* border-radius: 0 30px; */
+        border-radius: 5px;
+    }
+    
+    nav ul li a:hover{
+        background: rgba(115, 215, 223, 0.76);
+        color: white;
+        text-decoration: none;
+    }
+    
+    nav ul ul{
+        position: absolute;
+        left: 250px;
+        width: 250px;
+        top: 0;
+        display: none;
+        background: rgba(0,0,0,0.1);
+        border-radius: 5px;
+        box-shadow: 2px 2px 5px rgba(0,0,0, .2);
+    }
+    
+    nav ul span{
+        position: absolute;
+        right: 20px;
+        font-size: 1.5em;
+    }
+    
+    nav ul .dropdown{
+        position: relative;
+    }
+    
+    nav ul .dropdown:hover > ul{
+        display: initial;
+    }
+    
+    nav ul .dropdown_two ul{ 
+        position: absolute;
+        left: 200px;
+        top: 0;
+    }
+    
+    nav ul .dropdown_two:hover ul{
+        display: initial;
+    }
+</code>
+</pre>
+
+
+
+
+
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

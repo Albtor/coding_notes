@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pseudo classes 2</title>
+    <link rel="stylesheet" type="text/css" href="styles2.css">
+</head>
+<body>
+    <h1>Pseudo classes 2</h1>
+    <p>Structural pseudoclasses: select things based on where they are on the page. </p><br>
+
+    <h3>First child / first Of Type</h3>
+    <p>span:first-child(Span that is also the first child inside of a container)in the third 
+        case the div is the first element, so neither it nor the first span get selected</p>
+    <div class="p1">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+    </div>
+    <div class="p1">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+    </div>
+    <div class="p1">
+        <div class="inline">Div</div>
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+    </div>
+    <p>span:first-of-type - Si selecciona el primer span</p>
+    <div class="p11">
+        <div class="inline">Div</div>
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+    </div>
+
+    <p>span:first-of-type - Aquí inner1 es el primer subspan de span 3, por lo que es el primero de ese contenedor y se selecciona</p>
+    <div class="p11">
+        <div class="inline">Div</div>
+        <span>1</span>
+        <span>2</span>
+        <span>3 
+            <span>Inner1</span>
+            <span>Inner2</span>
+        </span>
+        <span>4</span>
+        <span>5</span>
+    </div>
+    <br>
+
+    <h3>Last child / Last of type</h3>
+    <p>.p2 span:last-child - Selecciona si span es el último elemento de su contenedor 
+        - En el tercer caso el último elemento es un contenedor div, por lo que no se selecciona ni span ni div</p>
+    <div class="p2">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+    </div>
+    <div class="p2">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+    </div>
+    <div class="p2">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+        <div class="inline">Div</div>
+    </div>
+    <p>span:last-of-type - Si selecciona el último span</p>
+    <div class="p21">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+        <div class="inline">Div</div>
+    </div>
+
+    <p>span:last-of-type - Aquí inner2 es el último subspan de span 2 por lo que al ser último elemento se selecciona</p>
+    <div class="p21">
+        <span>1</span>
+        <span>2 
+            <span>Inner1</span>
+            <span>Inner2</span>
+        </span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+        <div class="inline">Div</div>
+    </div>
+    <br>
+
+    <h3>Nth child</h3>
+    <p>nth-child(2) - Selecciona el segundo span de un contenedor (se cuenta a partir de 0), contando los elementos independientemente de su tipo</p>
+    <div class="p3">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+    </div>
+    <p>nth-child(2) - Aqui hay un div al principio por lo que el segundo elemento es 1</p>
+    <div class="p3">
+        <div class="inline">Div</div>
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+    </div>
+    <p>nth-child(even) - Se seleccionan los elementos span pares (</p>
+    <div class="p32">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+    </div>
+    <p>nth-child(odd) - Se seleccionan los elementos span impares </p>
+    <div class="p33">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+    </div>
+
+    <p>nth-child(even) - Se seleccionan los elementos span pares (con div)- Se cuenta el primer elemento del contenedor</p>
+    <div class="p32">
+        <div class="inline">Div</div>
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+    </div>
+    <p>nth-child(odd) - Se seleccionan los elementos span impares (con div) - Se cuenta el primer elemento del contenedor</p>
+    <div class="p33">
+        <div class="inline">Div</div>
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+    </div>
+
+    <p>nth-child(2n+1) - Custom formula (todos los elementos even saltandonos el 1º x= salto n=umbers + x=empezando por)</p>
+    <div class="p34">
+        <!-- <div class="inline">Div</div> -->
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+    </div>
+
+    <p>nth-first-child(4) - Custom formula (empezando por el primer span el 4)</p>
+    <div class="p35">
+        <!-- <div class="inline">Div</div> -->
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+    </div>
+
+    <p>nth-last-child(4) - Custom formula (empezando por el último span, el 4)</p>
+    <div class="p36">
+        <!-- <div class="inline">Div</div> -->
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+    </div>
+   
+    
+    
+</body>
+</html>

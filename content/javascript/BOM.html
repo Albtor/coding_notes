@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript BOM</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVASCRIPT BOM</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="#" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //BOM  
+    //Browser Object Model
+    /
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //BOM WINDOW
+    window.document.getElementById("header");  /*is the same as*/ document.getElementById("header");
+
+    window.innerHeight
+    window.innerWidth
+    //* doesn't work in all browsers*/
+
+    var w = window.innerWidth
+    || document.documentElement.clientWidth
+    || document.body.clientWidth;
+
+    var h = window.innerHeight
+    || document.documentElement.clientHeight
+    || document.body.clientHeight;
+
+    //Other methods:
+    window.open() // open a new window
+    window.close() // close the current window
+    window.moveTo() // move the current window
+    window.resizeTo() // resize the current window
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //BOM SCREEN
+    //Can be written without the window prefix
+    screen.width
+    screen.height
+    screen.availWidth //returns the width of the visitor's screen, in pixels, minus interface features like the Windows Taskbar.
+    screen.availHeight //returns the height of the visitor's screen, in pixels, minus interface features like the Windows Taskbar.
+    screen.colorDepth //umber of bits used to display one color.
+    screen.pixelDepth // depth of the screen.
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //BOM WINDOW LOCATION
+    window.location.href returns the href (URL) of the current page
+    window.location.hostname returns the domain name of the web host
+    window.location.pathname returns the path and filename of the current page
+    window.location.protocol returns the web protocol used (http: or https:)
+    window.location.assign() loads a new document
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //BOM WINDOW HISTORY
+    //window.history object can be written without the window prefix.
+    history.back() - same as clicking back in the browser
+    history.forward() - same as clicking forward in the browser
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //BOM WINDOW NAVIGATOR
+    //The window.navigator object can be written without the window prefix.
+    navigator.appName
+    navigator.appCodeName
+    navigator.platform
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //BOM 
+    //The window.navigator object can be written without the window prefix.
+    navigator.appName //returns the application name of the browser:
+    navigator.appCodeName
+    navigator.platform
+    navigator.cookieEnabled //returns true if cookies are enabled, otherwise false
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //BOM POPUP BOXES
+    window.alert()
+    window.confirm()
+    window.prompt()
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //BOM TIMING
+    setTimeout(function, milliseconds)
+    setInterval(function, milliseconds)
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //BOM COOKIES
+    //It gets deleted when browser is closed
+    document.cookie = "username=John Doe";
+    document.cookie = "username=John Doe; expires=Thu, 18 Dec 2013 12:00:00 UTC";
+    document.cookie = "username=John Doe; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/";
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

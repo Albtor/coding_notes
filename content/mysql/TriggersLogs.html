@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySQL Triggers Logs</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+    </a>
+    <h1 class="title_template">MySQL - TRIGGERS LOGS</h1>
+    <h4>Links</h4>
+    <ul>
+        <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+    </ul>
+
+        
+<div class= "code_container">
+
+<!-- MySQL -->
+<pre class="prettyprint">
+<code class="language-mysql" spellcheck="false">
+    // TRIGGERS Logs
+    create table logNotas
+    (
+    id int identity primary key,
+    fechaHora datetime default ( getdate()),
+    usuarioBD varchar(100) default (suser_name()) ,
+    texto varchar(1000)
+
+    )
+    go
+    //--drop trigger trInsGrabalog
+    create trigger trINSGrabaLog on nota for insert
+    as
+    declare @idAlumno int
+    declare @idAsignatura int
+    declare @nota int
+    declare @texto varchar(1000)
+
+    set @idAlumno=(select idAlumno from inserted) 
+    set @idAsignatura=(select idAsignatura from inserted)
+    set @nota =(select Nota from inserted)
+
+    set @texto='Inserta al alumno '+CAST(@idAlumno as varchar(8))+' la nota '+CAST(@nota as varchar(2)) +
+                ' en la asignatura '+CAST(@idAsignatura as varchar(10)) 
+
+
+    insert into logNotas (texto) values (@texto) -- INSERTO ESTA NOTA A ESTE ALUMNO EN LA ASIGNATURA ...
+    go
+    //--drop trigger trModGrabaLog
+    create trigger trMODGrabaLog on nota for update
+    as
+    declare @a1 varchar(3) 
+    declare @a2 varchar(3)
+    declare @a3 varchar(3)
+
+    set @a1=''
+    set @a2=''
+    set @a3=''
+
+    declare @idAlumno int
+    declare @idAsignatura int
+    declare @nota int
+    declare @texto varchar(1000)
+
+    set @idAlumno=(select idAlumno from deleted) -- como estaba antes
+    set @idAsignatura=(select idAsignatura from deleted)
+    set @nota =(select Nota from deleted)
+
+    declare @textoOld varchar(300)
+    set @textoOld = 'Antes =('+CAST(@idAlumno as varchar(7))+','+cast(@idAsignatura as varchar(5))+','
+                    +CAST(@nota as varchar(2))+')'
+
+    if ( UPDATE (idAlumno) ) set @a1='(*)'
+    if ( UPDATE (idAsignatura) ) set @a2='(*)'
+    if ( UPDATE (nota) ) set @a3='(*)'
+
+    set @idAlumno=(select idAlumno from inserted) -- como queda
+    set @idAsignatura=(select idAsignatura from inserted)
+    set @nota =(select Nota from inserted)
+
+    declare @textoNew varchar(300)
+    set @textoNew ='Ahora ('+CAST(@idAlumno as varchar(7))+' '+@a1+','+cast(@idAsignatura as varchar(5))
+                    +' '+@a2+','
+                    +CAST(@nota as varchar(2))+' '+@a3+')'
+    set @texto=@textoOld+' '+@textoNew
+    insert into logNotas (texto) values (@texto) -- MODIFICO LA NOTA DEL ALUMNO ... EN LA ASIGNATRUA ... Y PUSO DE NOTA ...
+    go
+
+    create trigger trDELGrabaLog on nota for delete -- BORRO LA NOTA DEL ALUMNO... EN LA ASIGNTURA ...
+    as
+    declare @idAlumno int
+    declare @idAsignatura int
+    declare @nota int
+    declare @texto varchar(1000)
+
+    set @idAlumno=(select idAlumno from deleted) 
+    set @idAsignatura=(select idAsignatura from deleted)
+    set @nota =(select Nota from deleted)
+
+    set @texto='BORRO al alumno '+CAST(@idAlumno as varchar(8))+' la nota '+CAST(@nota as varchar(2)) +
+                ' en la asignatura '+CAST(@idAsignatura as varchar(10)) 
+    go
+    create table logNotas
+    (
+    id int identity primary key,
+    fechaHora datetime default ( getdate()),
+    usuarioBD varchar(100) default (suser_name()) ,
+    texto varchar(1000)
+
+    )
+    go
+    --drop trigger trInsGrabalog
+    create trigger trINSGrabaLog on nota for insert
+    as
+    declare @idAlumno int
+    declare @idAsignatura int
+    declare @nota int
+    declare @texto varchar(1000)
+
+    set @idAlumno=(select idAlumno from inserted) 
+    set @idAsignatura=(select idAsignatura from inserted)
+    set @nota =(select Nota from inserted)
+
+    set @texto='Inserta al alumno '+CAST(@idAlumno as varchar(8))+' la nota '+CAST(@nota as varchar(2)) +
+                ' en la asignatura '+CAST(@idAsignatura as varchar(10)) 
+
+
+    insert into logNotas (texto) values (@texto) -- INSERTO ESTA NOTA A ESTE ALUMNO EN LA ASIGNATURA ...
+    go
+    --drop trigger trModGrabaLog
+    create trigger trMODGrabaLog on nota for update
+    as
+    declare @a1 varchar(3) 
+    declare @a2 varchar(3)
+    declare @a3 varchar(3)
+
+    set @a1=''
+    set @a2=''
+    set @a3=''
+
+    declare @idAlumno int
+    declare @idAsignatura int
+    declare @nota int
+    declare @texto varchar(1000)
+
+    set @idAlumno=(select idAlumno from deleted) -- como estaba antes
+    set @idAsignatura=(select idAsignatura from deleted)
+    set @nota =(select Nota from deleted)
+
+    declare @textoOld varchar(300)
+    set @textoOld = 'Antes =('+CAST(@idAlumno as varchar(7))+','+cast(@idAsignatura as varchar(5))+','
+                    +CAST(@nota as varchar(2))+')'
+
+    if ( UPDATE (idAlumno) ) set @a1='(*)'
+    if ( UPDATE (idAsignatura) ) set @a2='(*)'
+    if ( UPDATE (nota) ) set @a3='(*)'
+
+    set @idAlumno=(select idAlumno from inserted) -- como queda
+    set @idAsignatura=(select idAsignatura from inserted)
+    set @nota =(select Nota from inserted)
+
+    declare @textoNew varchar(300)
+    set @textoNew ='Ahora ('+CAST(@idAlumno as varchar(7))+' '+@a1+','+cast(@idAsignatura as varchar(5))
+                    +' '+@a2+','
+                    +CAST(@nota as varchar(2))+' '+@a3+')'
+    set @texto=@textoOld+' '+@textoNew
+    insert into logNotas (texto) values (@texto) -- MODIFICO LA NOTA DEL ALUMNO ... EN LA ASIGNATRUA ... Y PUSO DE NOTA ...
+    go
+
+    create or alter  trigger trDELGrabaLog on nota for delete -- BORRO LA NOTA DEL ALUMNO... EN LA ASIGNTURA ...
+    as
+    declare @idAlumno int
+    declare @idAsignatura int
+    declare @nota int
+    declare @texto varchar(1000)
+
+    set @idAlumno=(select idAlumno from deleted) 
+    set @idAsignatura=(select idAsignatura from deleted)
+    set @nota =(select Nota from deleted)
+
+    set @texto='BORRO al alumno '+CAST(@idAlumno as varchar(8))+' la nota '+CAST(@nota as varchar(2)) +
+                ' en la asignatura '+CAST(@idAsignatura as varchar(10)) 
+
+    insert into logNotas (texto) values (@texto) 
+    go
+
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

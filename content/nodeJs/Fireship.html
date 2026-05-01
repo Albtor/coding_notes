@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NODE Fireship Basics</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">NODE FIRESHIP BASICS</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="https://www.youtube.com/watch?v=ENrzD9HAZK4&t=359s&ab_channel=Fireship" class="link_file" target="_Blank">Fireship Youtube</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- NODE.JS -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //WHAT IS NODE JS
+    RUNTIME TO Run Javascript in a Server. It was originally designed for Client side / web browser.
+    2009 Way to write Javascript in a server
+
+    How it works
+    Visits a URL in the internet that points to your server
+    When the request is received we can use node to handle it and read a file and send a response to the Client
+
+    Node version manager
+    to use specific versions
+
+
+</code>
+</pre>
+
+<!-- NODE.JS -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // RUNTIME
+    NOde has different identifiers
+    Globals:
+    console
+    global
+    process
+
+</code>
+</pre>
+
+<!-- NODE.JS -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //EVENTS
+    process.on('exit', function(){
+    })
+    const {EventEmitter} = require('events');
+    const eventEmitter = new EventEmitter();
+    eventEmitter.on('lunch', ()=> {
+        console.log('yum ')
+    })
+    eventEmitter.emit('lunch');
+    Put intensive operations on a separate threads, that is why it is name non blocker
+    <img src="img/node.PNG" alt="" width="450">
+</code>
+</pre>
+<!-- NODE.JS -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //FILE SYSTEM
+    const {readFile, readFileSync} = require('fs');
+    const txt = readFileSync('./text.txt', 'utf8');
+    readFile('./text.txt', 'utf8'. (err,txt)=> {
+        console.log(txt); //this will be executed after the console log belog
+    });
+    console.log('Do this asap')
+
+    //WITH PROMISES
+    const {readFile} = require('fs').promises;
+    async functon hello(){
+        const file = await readFile('./text.txt', 'utf8');
+    }
+</code>
+</pre>
+<!-- NODE.JS -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //MODULES AND NPM
+    require()
+    ES Modules import/export syntax
+
+    npm init -y //To create a package in your project
+    Nodo modules directory, do not touch
+
+</code>
+</pre>
+<!-- NODE.JS -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //DEPLOY TO THE CLOUD
+    Google Cloud App Engine
+    Server in the cloud that scales
+    Need a google cloud platform account and google cloud command tools installed
+    In your coude, create Yaml file
+    Runtime: nodejs12
+
+    gcloud app deploy
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

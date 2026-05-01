@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Specificity</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <div>Specificity
+        <p>0,0,0,0 no hay límite para cada columna, no pasan a la siguiente.</p>
+    </div>
+    <a href="https://specificity.keegan.st/">Specificity Calculator</a>
+    <h3 class="a0" id="a0" >1: !important - 1,0,0,0</h3>
+    <h3 class="a0" style="background-color: blueviolet;">2: inline style - Es mayor que id pero menor que important. no se incluye en la clasificación</h3>
+    <h3 class="a0" id="a2">2: #id - 0,1,0,0</h3>
+    <h3 class="a3">3: .class - 0,0,1,0</h3>
+    <h3 class="a4">4: element (h1, a, h2) - 0,0,0,1</h3>
+    <h3 class="a5">example: h3.a5 = 0,0,1,1; h3.a5#a5 = 0,1,1,1</h3>
+    <h3 class="a5" id="a5">Tiene más especifidad 0,1,3,0 que 0,1,2,7. Si hay 2 important, se suman los id, class, element etc y gana el que más tiene</h3>
+</body>
+</html>

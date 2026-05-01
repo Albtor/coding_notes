@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NODE SetUp</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">NODE Basics</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="https://nodejs.org/es/" class="link_file" target="_Blank">Nodejs.org</a></li>
+            <li class="link_list"><a href="https://www.npmjs.com/" class="link_file" target="_Blank">NPMjs.COM</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- NODE.JS -->
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //SETUP
+    Download NodeJS from the page https://nodejs.org
+    In Visual Studio Code open terminal.
+    Ctrl + Shift + P > write "Default"
+    select Terminal Select Default
+    From the options, select Command Prompt
+    Hit +  button in terminal and select Command Prompt, it will make you choose the directory
+
+    Create a folder and a javascript file with 
+    console.log('Hello World from node JS')
+
+    then in terminal, write node nameOfTheFile.js
+    It should write in terminal the log
+
+    It can be done also with the cmd, need to go to the path of the file and then  "node nameOfTheFile.js"
+    cd stands for change directory
+    
+    cd C:\xampp\htdocs\Coding\Resources\CodingNotes\content\nodeJs\nodeJsFiles
+    Ctrl+C out of the server 
+    cls clear terminal
+</code>
+</pre>
+
+<!-- NODE.JS -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    //NODE MODULES EXPORT FUNCTIONS
+    They are Javascript Files
+    Expose variables: module.exports = sum;
+    const tutorial = require('./');
+
+    Two files
+    tutorial.js:
+    const sum = (num1, num2) => num1 + num2;
+    const PI = 3.14;
+    class SomeMathObject{
+        constructor(){
+            console.log('Object created');
+        }
+    }
+    module.exports.sum = sum;
+    module.exports.PI = PI;
+    module.exports.SomeMathObject = SomeMathObject;
+
+    app.js:
+    const tutorial = require('./tutorial'); //within the same exact path
+    console.log(tutorial);
+    console.log(tutorial.sum(3,9));
+    console.log(tutorial.PI);
+    console.log(new tutorial.SomeMathObject);
+
+</code>
+</pre>
+
+<!-- NODE.JS -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    //EVENTS MODULE
+    Allows bringing event driven programming to Node JS
+    const EventEmitter = require('events'); //events module it is built in NodeJS
+    const eventEmitter = new EventEmitter();
+
+    eventEmitter.on('2_tutorial', (num1, num2)=> {
+        console.log(num1 + num2);
+    });
+
+    eventEmitter.emit('2_tutorial', 1,2);
+
+    class Person extends EventEmitter{
+        constructor(name){
+            super();
+            this._name = name;
+        }
+
+        get name(){
+            return this._name;
+        }
+    }
+
+    let pedro = new Person('Pedro');
+    pedro.on('name', ()=>{
+        console.log('My name is '+pedro.name);
+    });
+
+    pedro.emit('name');
+</code>
+</pre>
+
+<!-- NODE.JS -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    //READ LINE MODULE
+    Allows promt user and get user info
+
+    const readLine = require('readline');
+    const rl = readLine.createInterface({input : process.stdin, output : process.stdout});
+
+    let num1 = Math.floor((Math.random() * 10) + 1);
+    let num2 = Math.floor((Math.random() * 10) + 1);
+    let answer = num1 + num2;
+
+    rl.question(`What is ${num1} + ${num2}? \n`, (userInput)=>{
+        if(userInput.trim() == answer){
+            rl.close(); //close 
+        }else {
+            rl.setPrompt('Incorrect Response, try again\n');
+            rl.prompt();
+            rl.on('line', (userInput)=>{
+                if(userInput.trim() == answer){
+                    rl.close();
+                }else {
+                    rl.setPrompt(`Your answer of ${userInput} is incorrect, try again\n`);
+                    rl.prompt();
+                }
+            });
+        }
+    });
+
+    rl.on('close', ()=> {
+        console.log("Correct!");
+    });
+
+</code>
+</pre>
+
+
+<!-- NODE.JS -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    //READ LINE MODULE
+    Allows promt user and get user info
+
+    const readLine = require('readline');
+    const rl = readLine.createInterface({input : process.stdin, output : process.stdout});
+
+    let num1 = Math.floor((Math.random() * 10) + 1);
+    let num2 = Math.floor((Math.random() * 10) + 1);
+    let answer = num1 + num2;
+
+    rl.question(`What is ${num1} + ${num2}? \n`, (userInput)=>{
+        if(userInput.trim() == answer){
+            rl.close(); //close 
+        }else {
+            rl.setPrompt('Incorrect Response, try again\n');
+            rl.prompt();
+            rl.on('line', (userInput)=>{
+                if(userInput.trim() == answer){
+                    rl.close();
+                }else {
+                    rl.setPrompt(`Your answer of ${userInput} is incorrect, try again\n`);
+                    rl.prompt();
+                }
+            });
+        }
+    });
+
+    rl.on('close', ()=> {
+        console.log("Correct!");
+    });
+
+</code>
+</pre>
+
+<!-- NODE.JS -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //FILE SYSTEM MODULE I
+    Create files, read, delete etc
+    const fs = require('fs');
+
+    //Create a file , 3 parameters
+    fs.writeFile('example.txt', "this is an example", (err)=> {
+        if(err)
+            console.log(err);
+        else{
+            console.log('File created');
+            fs.readFile('example.txt','utf8',(err,file)=>{ //if utf8 not set, it will print the binary
+                if(err){
+                    console.log(err);
+                }
+                else {
+                    console.log(file);
+                }
+                    
+            });
+        };
+            
+    });
+
+    //Rename 3 params
+    fs.rename('example.txt', 'example2.txt', (err)=>{
+        if(err)
+            console.log(err);
+        else 
+            console.log('successfully renamed the file');  
+    });
+
+    //Append data to the file 3 params
+    fs.appendFile('example.txt', '\nSome data being appended', (err)=>{
+        if(err)
+            console.log(err);
+        else 
+            console.log('successfully appended data to the file');
+        
+    });
+
+    //Delete file
+    fs.unlink('example.txt', (err)=>{
+        if(err)
+            console.log(err);
+        else 
+            console.log('successfully deleted file');
+        
+    });
+
+
+</code>
+</pre>
+
+<!-- NODE.JS -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //FILE SYSTEM MODULE II - FOLDERS
+
+    const fs = require('fs');
+
+    //CREATE FOLDER
+    fs.mkdir('tutorial',(err)=>{
+        if(err)
+            console.log(err);
+        else 
+            console.log('successfully created folder');
+    });
+
+    //DELETE FOLDER
+    fs.rmdir('tutorial',(err)=>{
+        if(err)
+            console.log(err);
+        else 
+            console.log('successfully deleted folder');
+    });
+
+
+    //CREATE FILE INSIDE A FOLDER
+    fs.writeFile('./tutorial/example.txt', 'file created in folder', (err)=>{
+        if(err)
+            console.log(err);
+        else 
+            console.log('successfully created file inside folder tutorial');
+    });
+
+    //DELETE FOLDER WITH 1 FILE INSIDE -- rmdir wouldn't work if folder is not empty
+    fs.unlink('./tutorial/example.txt', (err)=>{
+        if(err)
+            console.log(err);
+        else 
+            console.log('successfully removed  file inside folder tutorial');
+
+            fs.rmdir('tutorial',(err)=>{
+                if(err)
+                    console.log(err);
+                else 
+                    console.log('Deleted folder after deleting file');
+            });
+    });
+
+
+    //DELETE ALL FILES OF A FOLDER 
+    fs.readdir('tutorial', (err, files)=> {
+        if(err)
+            console.log(err);
+        else {
+            console.log(files);
+            for(let file of files){
+                fs.unlink('./tutorial/' + file, (err)=>{
+                    if(err)
+                    console.log(err);
+                    else 
+                    console.log('succesfully deleted file '+file);
+                });
+            }
+        }
+            
+    });
+
+</code>
+</pre>
+
+<!-- NODE.JS -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // WORKING WITH READABLE AND WRITABLE STREAMS
+    const fs = require('fs');
+    const readStream = fs.createReadStream('./example.txt', 'utf8');
+    const writeStream = fs.createWriteStream('example2.txt');
+    readStream.on('data',(chunk)=>{
+        console.log(chunk);
+        writeStream.write(chunk); //writes in a new file
+    });
+    
+    //When to use streams instead of read file
+    //read file uses a buffer and will not work
+    //with streams there is no limit
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

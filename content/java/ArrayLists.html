@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Arraylists</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVA ARRAYLISTS</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //JAVA &lt;
+    public class A02_ArrayLists {
+
+    public ArrayList&lt;Persona> lista;
+    ArrayList&lt;Integer> lista2 = new ArrayList&lt;Integer>();
+    private static int totalAlum;
+    
+    //ARRAYLISTS METHODS
+    public void methods(){
+    //usando listado de numeros
+    lista2.add(8);
+    lista2.get(2);
+    lista2.remove(2);
+    lista2.clear(); //borra toda la lista
+    lista2.size();
+    lista2.set(0, 2);
+    Collections.sort(lista2); //Sorting alphabetically or numerically
+    }
+    
+    //LEER DE UN ARRAYLIST O LIST lista.size() . Tiene objetos
+    public void listadoPersonas() {
+        for (int i = 0; i &lt; lista.size(); i++) {
+            mostrarPersona((Persona) lista.get(i));
+        }
+        System.out.println("\nEl numero total de alumnos es: " + totalAlum);
+    }
+
+    //Mostrar un objeto, pasamos el parámetro Objeto, en este caso Persona
+    private void mostrarPersona(Persona persona) {
+        System.out.println("\nNombre->" + persona.getNombre());
+        System.out.println("Altura->" + persona.getAltura());
+    }
+    
+    
+    //ITERATOR
+    public void Iterating(){
+        Iterator&lt;Persona> it = lista.iterator();
+        while(it.hasNext()) {
+        System.out.println(it.next());
+        }
+    }
+    
+    
+    
+    //METODO PARA BUSCAR UN OBJETO DE UN ARRAY EN BASE A UN STRING (Nombre)
+    public Persona buscarObjetoPersona() {
+        String nombre, test;
+        Persona resultado = null;
+        Scanner input = new Scanner(System.in);
+        System.out.println("Escribe el nombre a buscar: ");
+        nombre = input.nextLine();
+
+        for (Persona persona : lista) {
+            if (persona.getNombre().equals(nombre)) {
+                resultado = persona;
+                break;
+            } else {
+                System.out.println("Alumno no encontrado con ese dato.");
+            }
+        }
+        return resultado;
+    }
+}
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySQL Stored Procedures</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+    </a>
+    <h1 class="title_template">MySQL - STORED PROCEDURES</h1>
+    <h4>Links</h4>
+    <ul>
+        <li class="link_list"><a href="#" class="link_file" target="_Blank">Link</a></li>
+    </ul>
+
+        
+<div class= "code_container">
+
+<!-- MYSQL -->
+<pre class="prettyprint">
+<code class="language-sql" spellcheck="false">
+    //--PROCEDIMIENTOS ALMACENADOS
+
+    CREATE OR ALTER PROCEDURE spHolaMundo
+    AS 
+    print 'hola mundo'
+    
+    GO
+    
+    execute spHolaMundo;
+    
+    GO
+    
+    CREATE OR ALTER PROCEDURE spMiNombre
+    AS 
+    print 'Alberto Toribio Ruiz'
+    
+    GO
+    
+    execute spMiNombre;
+    
+    GO
+    
+    //--VARIABLES
+    CREATE OR ALTER PROCEDURE spHolaMundo
+    AS 
+    declare @n int
+    set @n = 99
+    print @n
+    
+    GO
+    
+    //--1 PARAMETRO
+    CREATE OR ALTER PROCEDURE spHolaMundo @parametro varchar(10) = 'no tiene valor'
+    AS 
+    declare @n int
+    set @n = 1
+    print @n
+    print @parametro
+    
+    go
+    
+    execute spHolaMundo 99;
+    
+    GO
+    
+    //--2 parametros
+    CREATE OR ALTER PROCEDURE spHolaMundo @k int, @parametro varchar(10) = 'no tiene valor'
+    AS 
+    declare @n int
+    set @n = 99
+    print @n
+    print @parametro
+    select @k "valor como dato", @parametro "segundo parametro"
+    
+    go
+    
+    execute spHolaMundo 99, 'otro valor'
+    
+    GO
+    
+    
+    //--MODIFICAR PARAMETROS
+    CREATE OR alter procedure spHolaMundo @k int OUTPUT, @parametro varchar(20) ='no tiene valor'
+    as
+      set nocount on 
+      SET @k= 786
+      print @k
+      RETURN 77
+     
+    go
+    
+    execute spHolaMundo 22, 
+    
+    GO
+    
+    DECLARE @p int
+    declare @valorDevuelto int
+    set @p =-1
+    execute @valorDevuelto=spHolaMundo @p OUTPUT ,'otro valor'
+    print @p
+    print @valorDevuelto
+    
+    GO
+    
+    //--IF
+    //--posibilidad de usar if en una subconsulta
+    
+    CREATE OR ALTER procedure spHolaMundo @k int OUTPUT, @parametro varchar(20) = null
+    as
+      set nocount on 
+      SET @k= 786
+    
+    
+      if @k > 1 
+        BEGIN
+            print 'es grande'
+        END
+       
+       RETURN 77
+     
+    GO
+    
+    DECLARE @p int
+    declare @valorDevuelto int
+    set @p =-1
+    execute @valorDevuelto=spHolaMundo @p OUTPUT ,'otro valor'
+    print @p
+    print @valorDevuelto;
+    
+    GO
+    
+    //--EJEMPLO 
+    CREATE or ALTER PROCEDURE spBuenosAlumnos
+    as 
+    declare @mediaCentro float
+    
+    set @mediaCentro = (Select AVG(nota*1.) FROM nota)
+    
+    SELECT nombre, apellidos, idgrupo FROM alumno
+    WHERE (select AVG(nota*1.0) FROM nota WHERE alumno.idAlumno = nota.idAlumno) > @mediaCentro
+    
+    go
+    
+    execute spBuenosAlumnos
+    
+    GO 
+    
+    //--WHILE
+    /*
+    WHILE (expre...logica)
+    begin
+        break
+        continue
+    
+    
+        end
+    */
+    
+    CREATE PROCEDURE spTablaMultiplicar @X int
+    as
+        SET NOCOUNT ON
+        declare @cont int = 1
+        WHILE (@cont &lt;= 10)
+        begin
+            print CONCAT (@X +'*'+ @cont +'='+ @X * @cont);
+            set @cont = @cont + 1
+        end
+    
+    GO
+    
+    execute spTablaMultiplicar 7
+    
+    GO
+    
+    /*
+    ALTER PROCEDURE spTablaMultiplicar @numero INT
+    AS
+        DECLARE @contador INT
+        SET @contador = 1
+        CREATE TABLE #temporal (texto varchar(200))
+    
+        WHILE (@contador &lt;= 10)
+            BEGIN
+                INSERT INTO #temporal values(SELECT CONCAT (@numero, ' x ', @contador, ' = ', @numero*@contador))
+                SET	@contador = @contador + 1
+            END
+            SELECT * FROM #temporal
+    GO
+    
+    EXECUTE spTablaMultiplicar 7
+    
+    */
+    
+    
+    //--ERROR MESSAGES
+    //--pasamos codigo de un grupo y visualiza alumnos de ese grupo
+    //--raiserror ('texto del error', 16, 1)
+    
+    
+    
+    
+    CREATE OR ALTER PROCEDURE spAlumnosPorIdgrupo @idgrupo CHAR(6)
+    AS
+        SELECT *
+        FROM Alumno
+        WHERE idGrupo = @idgrupo
+    GO
+    
+    EXECUTE spAlumnosPorIdgrupo '225NMA'
+    
+    GO
+    
+    CREATE OR ALTER PROCEDURE spBoletinAlumno @idAlumno VARCHAR(7)
+    AS
+        SELECT N.idAsignatura, N.Nota
+        FROM Alumno A
+        INNER JOIN Nota N ON A.idAlumno = N.idAlumno
+        WHERE A.idAlumno = @idAlumno
+    GO
+    
+    EXECUTE spBoletinAlumno '1710'
+    
+    GO
+    
+    /*
+    SELECT *
+        FROM Alumno A
+        INNER JOIN Nota N ON A.idAlumno = N.idAlumno
+        WHERE A.idAlumno = '1710'
+    */
+    
+    
+    //--Paso nombre y apellidos y saca boletín de notas
+    
+    CREATE OR ALTER PROCEDURE spBoletinPorNombre @nombre VARCHAR(20), @apellidos VARCHAR(30)
+    AS
+        SELECT N.idAsignatura, N.Nota
+        FROM Alumno A
+        INNER JOIN Nota N ON A.idAlumno = N.idAlumno
+        WHERE A.nombre = @nombre AND A.Apellidos = @apellidos
+    GO
+    
+    EXECUTE spBoletinPorNombre 'FEDERICO', 'CARPANTA APOSTOL'
+    
+    GO
+    
+    
+    //--USANDO una función que llama a otra
+    
+    CREATE OR ALTER PROCEDURE spBoletinPorNombre2 @nombre VARCHAR(20), @apellidos VARCHAR(30)
+    AS
+        declare @id int
+        set @id = (SELECT A.idAlumno FROM Alumno A WHERE A.nombre = @nombre AND A.Apellidos = @apellidos)
+        if @id is null
+        begin
+            raiserror ('No existe el alumno', 16,1)
+            return
+        end
+    
+        execute spBoletinAlumno @id
+    GO
+    
+    EXECUTE spBoletinPorNombre 'FEDERICO', 'CARPANTA APOSTOL'
+    
+    GO
+    
+    //--relacion de alumnos con nota media entre dos valores que le pasan
+    
+    CREATE OR ALTER PROCEDURE spNotaMediaEntre @a float, @b float
+    AS
+        SELECT A.Nombre, A.Apellidos FROM Alumno A 
+        WHERE (SELECT AVG(N.Nota*1.0) FROM Nota N WHERE N.idAlumno = A.idAlumno) BETWEEN @a AND @b
+    GO
+    
+    EXECUTE spNotaMediaEntre 3, 7
+    
+    GO
+    
+    
+    //--CON GROUP BY
+    CREATE OR ALTER PROCEDURE spNotaMediaEntreValores @minimo float, @maximo float
+    AS
+        SELECT nombre,apellidos
+        FROM Nota	
+        inner join alumno on nota.idAlumno=alumno.idAlumno
+        
+        GROUP BY nota.idAlumno,nombre,apellidos
+        HAVING AVG(Nota * 1.0) BETWEEN @minimo AND @maximo
+    GO
+    
+    EXECUTE spNotaMediaEntreValores 9, 10
+    
+    
+    GO
+    
+    
+    //--TUTORIA PROCEDIMIENTOS ALMACENADOS
+    
+    CREATE PROCEDURE spPrograma @parm1 INT
+    AS
+        --declare variables
+        --set variable = 
+        --select ... WHERE <variable> = datoTabla
+    
+        /*
+        if (... where )
+            begin
+            end
+    
+        else
+            begin
+            end
+    
+        while (esto sea verdad) 
+            begin
+                --break
+                --continue (vuelve a empezar)
+            end
+        */
+    
+        --print
+        --raiserror
+        --return <valor entero>
+    
+    GO
+    
+    CREATE PROCEDURE spPrograma2 @param1 INT
+    AS
+        declare @n int
+        set @n = 9
+        set @n = @n + (SELECT COUNT(*) FROM Alumno)
+    
+    if (EXISTS (SELECT * FROM Alumno WHERE idAlumno = @param1) )
+        begin
+        set @n = @n + 90
+        insert into Nota values (1710, 91303, @n)
+        end
+    
+    
+    GO
+
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

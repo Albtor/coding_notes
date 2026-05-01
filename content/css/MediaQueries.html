@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Media Queries</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+    </a>
+    <h1 class="title_template">CSS - MEDIA QUERIES</h1>
+    <h4>Links</h4>
+    <ul>
+        <li class="link_list"><a href="https://developer.mozilla.org/es/docs/Web/CSS/Media_Queries/Using_media_queries" class="link_file" target="_Blank">Mozilla Developer</a></li>
+    </ul>
+
+        
+<div class= "code_container">
+
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+    // CONTAINER QUERIES
+    .article{container-type: insline-size}
+    @container(min-width:700px){
+        .card{flex-direction: column}
+    }
+
+    units
+
+</code>
+</pre>
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+    // MEDIA QUERIES
+    //OPERATORS: and or only, use of commas
+
+    /* Extra small devices (phones, 600px and down) */
+    @media only screen and (max-width: 600px) {...}
+
+    /* Small devices (portrait tablets and large phones, 600px and up) */
+    @media only screen and (min-width: 600px) {...}
+
+    /* Medium devices (landscape tablets, 768px and up) */
+    @media only screen and (min-width: 768px) {...}
+
+    /* Large devices (laptops/desktops, 992px and up) */
+    @media only screen and (min-width: 992px) {...}
+
+    /* Extra large devices (large laptops and desktops, 1200px and up) */
+    @media only screen and (min-width: 1200px) {...}
+</code>
+</pre>
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+    // EXAMPLES
+    @media print{
+        div{
+            color: green;
+        }
+    }
+    
+    @media (max-width: 700px) {
+        div{
+            color: blue;
+        }
+    }
+    
+    @media (orientation: landscape) { /*Solo cuando la pantalle esté en horizontal*/
+        div {
+            color: yellow;
+        }
+    }
+    
+    @media (min-width: 800px) and (max-width: 1000px){
+        div{
+            color: pink;
+        }
+    }
+    
+    @media (min-width: 701px) and (max-width: 799px){
+        div{
+            color: rgb(12, 166, 212);
+        }
+    }
+    
+    
+    
+    @media (max-width: 800px), (orientation: landscape){
+        .div2{
+            color: rgb(175, 44, 34);
+        }
+    }
+
+    Testear y monitorizar los estados de los medios usando los métodos de javascript Window.matchMedia() y MediaQueryList.addListener().    
+
+</code>
+</pre>
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+    // MEDIA QUERIES
+    @media
+    @media print
+    @media screen
+    @media all
+    @media (orientantion: landscape)
+    @media (min-width: 800px) and (max-width: 1000px)
+    OR is with , - @media (max-width: 800px), (orientation: landscape)
+
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

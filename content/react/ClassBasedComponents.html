@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React ClassBased Components</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+        </a>
+        <h1 class="title_template">REACT - CLASS BASED COMPONENTS</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // Functional vs Class based components 
+    //Components already written
+    //needs this
+
+    import React, {Component} from 'react';
+    import ReactDOM from 'react-dom';
+
+    //#1
+    class Apps extends React.Component {
+    render(){
+        return (
+            &lt;div>
+            &lt;Header  username="Alberto"/>
+            &lt;Greeting/>
+            &lt;/div>
+        )
+    }
+    }
+
+    //#2
+    class Header extends React.Component {
+    render(){
+        return (
+            &lt;header>
+            &lt;p>greeting {this.props.username}!&lt;/p>
+        &lt;/header>
+        )
+    }
+    }
+
+    //#3
+    class Greeting extends Component {
+    render(){
+        // const color = "red"
+        const date = new Date()
+        const hours = date.getHours()
+        let timeOfDay
+
+        if (hours &lt;12){
+        timeOfDay = "morning"
+        }else if(hours >=12 && hours &lt;17) {
+        timeOfDay = "afternoon"
+        }else{
+        timeOfDay = "nigh"
+        }
+    
+    
+        return (
+        &lt;h2>Good {timeOfDay} sir&lt;/h2>
+        )
+        
+    }
+    }
+
+
+    ReactDOM.render( &lt;Apps/>, document.getElementById('root'));
+    
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

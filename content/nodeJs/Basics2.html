@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NODE Basics2</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">NODE BASICS2</h1>
+        <h4>Links</h4>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="https://nodejs.org/es/" class="link_file" target="_Blank">Nodejs.org</a></li>
+            <li class="link_list"><a href="https://www.npmjs.com/" class="link_file" target="_Blank">NPMjs.COM</a></li>
+        </ul> 
+    
+   
+    
+<div class= "code_container">
+
+<!-- NODE.JS -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //PIPES AND COMPRESSION
+    //PIPE
+    const fs = require('fs');
+    const readStream = fs.createReadStream('./example.txt', 'utf8');
+    const writeStream = fs.createWriteStream('example2.txt');
+    readStream.pipe(writeStream); //we need 2 streams, read and write, this is the basic one
+
+
+    //PIPE CHAINING COMPRESS FILES
+    const zlib = require('zlib'); //Module for compressing files
+    const gzip = zlib.createGzip();
+    const readStream = fs.createReadStream('./example3.txt', 'utf8');
+    const writeStream = fs.createWriteStream('example4.txt.gzip');
+    readStream.pipe(gzip).pipe(writeStream); 
+
+
+    //UNCOMPRESS FILES
+    const zlib2 = require('zlib'); //Module for compressing files
+    const Gunzip = zlib2.createGunzip();
+    const readStream = fs.createReadStream('./example3.txt.gz');
+    const writeStream = fs.createWriteStream('uncompressed.txt');
+    readStream.pipe(Gungzip).pipe(writeStream); 
+</code>
+</pre>
+
+<!-- NODE.JS -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // CREATING HTTP SERVER AND USING HTTP MODULE
+    //HTTP SERVER MODULE
+    const http = require('http');
+    const server = http.createServer((req,res)=>{
+        if(req.url === '/'){
+            res.write('Hell world from Nodejs');
+            res.end(); //to send the response
+        }else {
+            res.write('using some other domain');
+            res.end(); //to send the response
+        }
+        
+    });
+
+    server.listen('3000');
+</code>
+</pre>
+
+<!-- NODE.JS -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //SERVING STATIC FILES WITH HTTP AND FILE SYSTEM MODULES
+    //HTTP AND FILES
+    const http = require('http');
+    const fs = require('fs');
+
+    const server = http.createServer((req,res)=>{ //request response
+        const readStream = fs.createReadStream('./static/example.txt'); //txt, json, png, cualquier archivo, pero habría que cambiar el content-type a image/png
+        res.writeHead(200, {'Content-type': 'text/html'}); //Header for response
+        readStream.pipe(res); 
+    }).listen(3000);
+
+</code>
+</pre>
+<!-- NODE.JS -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // PACKAGE JSON FILE Metadata
+    //npm init in terminal
+    name, version, description, ENTRY POINT.
+    Creates package.json
+</code>
+</pre>
+<!-- NODE.JS -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //INSTALLING EXTERNAL PACKAGES WITH NOM
+    https://www.npmjs.com/
+
+    npm install lodash
+    Al instalar crea un campo nuevo en el package.json creado con dependencies
+    también un nuevo folder node_modules
+
+    npm uninstall lodash
+
+</code>
+</pre>
+<!-- NODE.JS -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //SEMANTIC VERSIONING
+    Standard for the packages, know the version
+    /*
+    "dependencies": {
+        "lodash": "^4.17.21" //Major version, minor version, patch version
+    }
+
+    Changes of major versions are not compatible with previous ones
+    ^ means that minor and patch updates are ok, but no major
+    ~ Only patch updates
+    No sign, no other versions are allowed but the one specified
+    */
+</code>
+</pre>
+<!-- NODE.JS -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //EXPRESS WEB FRAMEWORK
+   
+
+</code>
+</pre>
+<!-- NODE.JS -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //
+   
+
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

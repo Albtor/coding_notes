@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySQL Ejercicios Examenes</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+    </a>
+    <h1 class="title_template">MySQL - EJERCICIOS DE EXAMENES</h1>
+    <h4>Links</h4>
+    <ul>
+        <li class="link_list"><a href="CREATE_INSERT_BDAlumnos.sql" class="link_file" target="_Blank">DB SQL ALUMNOS</a></li>
+    </ul>
+
+        
+<div class= "code_container">
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-sql" spellcheck="false">
+    //EJERCICIOS DE EXAMENES
+
+    //--G1-¿Cuántas asignaturas DISTINTAS imparte cada profesor? Si da la misma asignatura a dos grupos, se considera la misma.
+    select p.nombre ,p.idprofesor, COUNT( distinct idasignatura) from profesor p -- el count (distinct ...) no existe en todas las bases de datos, pero si en sqlserver
+    left join AsignaturasGrupo ag on p.idProfesor=ag.idProfesor
+    group by p.Nombre,p.idProfesor
+    
+    //--G2-¿Cuál es el alumno con mejor nota media del centro? (TOP 1).
+    SELECT N.idAlumno, AVG(N.Nota) FROM Nota N
+    GROUP BY N.idAlumno
+    HAVING AVG(N.Nota) > ALL (SELECT AVG(N.Nota*1.0) FROM NOTA N GROUP BY N.idAlumno)
+    
+    select apellidos,NOMBRE from Alumno a
+    inner join Nota n on a.idAlumno=n.idAlumno
+    group by apellidos,nombre,a.idalumno
+    having AVG(cast(Nota as float)) >= (select AVG(cast (nota as float)) from Nota group by idAlumno)
+    
+    SELECT TOP 1 AVG(Nota*1.0) FROM NOTA
+    GROUP BY idAlumno
+    ORDER BY 1 DESC;
+    
+    
+    //--G3-¿Cuántos grupos tienen más de 30 alumnos? CUANTOS GRUPOS, contar grupos
+    select COUNT(*) from Grupo g 
+    where (select COUNT(*) from Alumno a where a.idGrupo=g. idGrupo) > 30
+    
+    //--G4-¿Cuál es el grupo con más alumnos?
+    select idgrupo from Grupo g
+    where (select COUNT(*) from Alumno a where g.idGrupo=a.idGrupo) >= all ( select COUNT(*)
+    from Alumno group by idGrupo)
+    
+    //--G5-¿Cuál es el alumno con más asignaturas suspendidas?
+    select apellidos,NOMBRE from Alumno a 
+    where (select COUNT(*) from Nota n where n.idAlumno=a.idAlumno and Nota <5) 
+    >= 
+    all (select COUNT(*) from Nota where Nota &lt; 5 group by idAlumno)
+    
+    //--G6-¿Cuál es el grupo que más profesores tiene. Si un profesor da dos asignaturas a un grupo se considera el mismo profesor.
+    SELECT g.idgrupo from Grupo g
+    inner join AsignaturasGrupo ag on g.idGrupo=ag.idGrupo
+    group by g.idGrupo
+    having COUNT(distinct idprofesor) >=  all (select COUNT( distinct idprofesor) from AsignaturasGrupo group by idGrupo)
+    
+    //--G7-¿Cuantas asignaturas se imparten a más de 100 alumnos?
+    select COUNT(*) from Asignatura a
+    where (select COUNT(*) from Nota n where a.idAsignatura=n.idAsignatura) > 100
+    
+    //--G8-De los alumnos que no son de Tacoronte, ¿Cuantos tienen al menos 3 asignaturas suspendidas?
+    select apellidos,NOMBRE from Alumno a
+    inner join Nota n on a.idAlumno=n.idAlumno
+    where Nota &lt; 5 and Municipio not like '%TACORONTE%'
+    group by Apellidos,NOMBRE,a.idAlumno
+    having COUNT(*) >= 3
+    
+    //--G9-¿Cuantos alumnos tienes al menos dos asignaturas suspendidas y una nota media superior a 5,5?
+    select COUNT(*) from Alumno a
+    where (select COUNT(*) from Nota n where a.idAlumno=n.idAlumno and Nota &lt; 5) >= 2
+    and
+    ( select AVG(cast(Nota as float)) from Nota n where a.idAlumno=n.idAlumno) > 5.5
+    
+    
+    
+    ---------------------------
+    //--EXTRA EJERCICIOS
+    
+    //--ALUMNOS CON MAS DE 5 ASIGNATURAS
+    
+    SELECT * FROM Alumno A
+    WHERE (SELECT COUNT(N.idAsignatura) FROM Nota N WHERE idAlumno = A.idAlumno) > 10
+    
+    
+    //--no clara, no tiene sentido el +
+    SELECT apellidos, nombre FROM Alumno A
+    WHERE (SELECT COUNT(N.idAsignatura) FROM Nota N WHERE idAlumno = A.idAlumno)
+    + (SELECT COUNT(N.idAsignatura) FROM Nota N WHERE idAlumno = A.idAlumno and nota &lt; 5) 
+    > 10
+    
+    SELECT count(N.idAsignatura) FROM Nota N GROUP BY N.idAlumno;
+    
+    //--ALumnos con nota mayor que la media del grupo 811nma
+    SELECT nombre, apellidos, (SELECT AVG(N.nota*1.0) FROM Nota N WHERE idAlumno = A.idAlumno)  'Nota Media'  FROM Alumno A
+    WHERE (SELECT AVG(N.nota*1.0) FROM Nota N WHERE idAlumno = A.idAlumno) >
+    (SELECT AVG(N.Nota*1.0) FROM Nota N INNER JOIN Alumno Al ON N.idAlumno = Al.idAlumno WHERE Al.idGrupo = '811nma')
+    
+    //--EXISTS
+    //--IN (se usa con columna de datos, cuando se devuelven varias filas con un dato ?¿)
+    //--EXISTS (tiene que haber una mínimo, se usa * ?¿ - Hay filas o no hay filas exists (Select * From laPepa...)
+    
+    //--SUBCONSULTAS EN HAVING
+    //--GROUP BY HAVING count(*) > (....)
+    
+    //--WHERE por cada fila
+    //--HAVING por cada grupo
+    
+    
+
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

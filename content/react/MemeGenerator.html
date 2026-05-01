@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Meme Generator</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+        </a>
+        <h1 class="title_template">REACT - MEME GENERATOR</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // IMG
+    <img src="img/memegen.PNG" alt="" width="450">
+</code>
+</pre>
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // INDEX.JS
+    import React from 'react';
+    import ReactDOM from 'react-dom';
+    import './index.css';
+    import App from './App.js'
+
+    ReactDOM.render( &lt;App/>, document.getElementById('root'));
+</code>
+</pre>
+
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // APP.JS
+    //CONTAINER COMPONENT ARCHITECTURE
+    import React from 'react'
+    import Header from './components/Header'
+    import MemeGenerator from './components/MemeGenerator'
+
+
+    function App(){
+    return(
+        &lt;div>
+        &lt;Header/>
+        &lt;MemeGenerator/>
+        &lt;/div>
+    )
+    }
+
+export default App;
+
+    
+</code>
+</pre>
+
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // HEADER.JS 
+    import React from 'react';
+
+    function Header(){
+        return (
+       &lt;header>
+           &lt;img 
+            src="http://i.imgflip.com/1bij.jpg"
+            alt="Problem?"
+            />
+           &lt;p>Meme Generator</p>
+       &lt;/header>
+        )
+    }
+
+    export default Header
+    
+</code>
+</pre>
+
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // MEMEGENERATOR.JS
+
+    import React, {Component} from 'react';
+
+    class  MemeGenerator extends Component{
+        constructor(){
+            super()
+            this.state = {
+                topText: "",
+                bottomText:"",
+                randomImg: "http://i.imgflip.com/1bij.jpg",
+                allMemeImgs: []
+            }
+    
+            this.handleChange = this.handleChange.bind(this)
+            this.handleSubmit = this.handleSubmit.bind(this)
+        }
+    
+        componentDidMount(){
+            fetch("https://api.imgflip.com/get_memes")
+            .then(response => response.json())
+            .then(response => {
+                const {memes} = response.data
+                console.log(memes[8])
+                this.setState({allMemeImgs: memes})
+            })
+        }
+    
+        handleChange(event){
+            console.log("Working")
+            const {name, value} = event.target
+            this.setState({[name]:value})
+        }
+    
+        handleSubmit(event){
+            event.preventDefault()
+            const randNum = Math.floor(Math.random() * this.state.allMemeImgs.lengh)
+            // console.log(randNum)
+            const randMemeImg = this.state.allMemeImgs[randNum].url
+            this.setState({randomImg: randMemeImg})
+        }
+    
+        render(){
+            return(
+            &lt;div>
+                &lt;form className="meme-form" onSubmit={this.handleSubmit}>
+                    &lt;input type="text" name="topText" placeholder="top Text" value={this.state.topText} onChange={this.handleChange}/>
+                    &lt;input type="text" name="bottomText" placeholder="bottom Text" value={this.state.bottomText} onChange={this.handleChange}/>
+    
+                    &lt;button>Gen&lt;/button>
+                &lt;/form>
+                &lt;div className="meme">
+                    &lt;img 
+                    src={this.state.randomImg}
+                    alt="Problem?"
+                    />
+                    &lt;h2 className="top">{this.state.topText}&lt;/h2>
+                    &lt;h2 className="bottom">{this.state.bottomText}&lt;/h2>
+                &lt;/div>
+            &lt;/div>
+            )
+        
+    }
+    }
+    
+    export default MemeGenerator
+    
+</code>
+</pre>
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-cc" spellcheck="false">
+    // INDEX.CSS
+    header {
+        height: 100px;
+        display: flex;
+        align-items: center;
+        background: #6441a5;
+        background: -webkit-linear-gradient(to right, #2a0845, #6441a5);
+        background: linear-gradient(to right, #2a0845, #6441a5);
+      }
+      
+      header > img {
+        height: 80%;
+        margin-left: 100px;
+      }
+      
+      header > p {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: whitesmoke;
+        font-size: 50px;
+        margin-left: 60px;
+      }
+      
+      .meme {
+        position: relative;
+        width: 90%;
+        margin: auto;
+      }
+      
+      .meme > img {
+        width: 100%;
+      }
+      
+      .meme > h2 {
+        position: absolute;
+      }
+      
+      form input,
+      button {
+        height: 30px;
+      }
+      
+      button {
+        border: none;
+        background-color: #6441a5;
+        color: white;
+        font-size: 25px;
+      }
+      
+      .top {
+      }
+      
+      .bottom {
+      }
+      
+
+    
+</code>
+</pre>
+
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

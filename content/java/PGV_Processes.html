@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java PGV01</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVA PGV01</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+<div class= "code_container">
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+
+    
+</code>
+</pre>
+
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //TAREA 01 
+    RECONFIGURACION TAREA 01 - SOLUCION PROFESOR
+
+    Pasos para configurar el proyecto y que funcione correctamente.
+
+    Poner las librerias JAVAFX en Librerías en las pestañas Build y Run.
+    En el otro apartado Run (abajo) añadir el path:
+    --module-path "/usr/lib/jvm/javafx-sdk-17.0.0.1/lib/" --add-modules javafx.controls,javafx.fxml
+
+    Hacer clean and Build (icono escobilla) del hijo para generar carpeta distribución
+    dist/lib
+
+    Parámetros a poner en la ventana de configuración:
+    -Nombre de programa: java
+    -Parametros adicionales: los que aparecen por defecto
+
+    -Rutas de archivo (ruta del la carpeta lib de java fx)
+    C:\datos\javafx-sdk-17.0.0.1\lib
+
+    -Carpeta de trabajo (ruta a la carpeta dist del hijo):
+    C:\Users.............\proceso_comunicante_padre_hijo\proceso_comunicante_hijo\dist
+
+    C:\Users\alblu\Documents\NetBeansProjects\ServiciosProcesos\Tareas\Soluciones\proceso_comunicante_padre_hijo\proceso_comunicante_hijo\dist
+
+</code>
+</pre>
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //TAREA 01 
+    Process Builder
+    PADRE
+    Lanza ventana padre.
+    En el initialize se llama al proceso_comunicante_padre_controller  crear_dialogo() 
+    Este crea el dialogo_configuracionController y llama al metodo de crear_escena_modal()
+    Stage 
+
+    Scene
+    stdin = lectura entrada de texto
+    stoud = escritura de la salida de texto
+    sterr = notificar errores
+
+    INTERNACIONALIZACION
+    Netbeans
+        Tools internacionalize
+        Choose Bundlename
+    SceneBuilder
+        % es un literal 
+        PREVIEW Internacionalización y elegir el 
+        En properties 
+        también en el archivo de propiedades del fxml (editar)
+
+</code>
+</pre>
+
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //
+    Process nuevoProceso; 
+    nuevoProceso = Runtime.getRuntime().exec("java -jar "+
+                    "C:\\Users\\usuario\\Documents\\NetBeansProjects"+
+                    "\\Editor\\dist\\DocumentEditor.jar");
+</code>
+</pre>
+
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    
+</code>
+</pre>
+
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    
+</code>
+</pre>
+
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    
+</code>
+</pre>
+
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

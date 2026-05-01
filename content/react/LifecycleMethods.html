@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Lifecycle Methods</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+        </a>
+        <h1 class="title_template">REACT - LIFECYCLE METHODS</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="https://es.reactjs.org/docs/state-and-lifecycle.html" class="link_file" target="_Blank">Lyfecycle methods react.js</a></li>
+            <li class="link_list"><a href="https://engineering.musefind.com/react-lifecycle-methods-how-and-when-to-use-them-2111a1b692b1" class="link_file" target="_Blank">LifeCycleMethods Musefind</a></li>
+            <li class="link_list"><a href="https://es.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html" class="link_file" target="_Blank">Why you don't need derived state</a></li>
+
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    //LIFECYCLE METHODS &lt;
+    //render() and componentWillUnmount
+    componentDidMount()//{Get the data I need to correctly display }
+    
+    shouldComponentUpdate(nextProps, nextState)//{return true if want it to update}
+    componentDidMount(){}
+    getSnapshotBeforeUpdate()
+    componentWillUnmount()//{//Eg: remove event listeners //teardown or clean up your code before your component disappears}
+
+    //Deprecated 
+    UNSAFE_componentWillReceiveProps(nextProps)//{  if(nextProps.whatever !== this.props.whatever) //Deprecated}
+    componentWillMount(){}
+    componentWillUpdate()
+    
+</code>
+</pre>
+
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // &lt;
+    //LIFECYCLE METHODS  -- not to be visualized
+    import React from 'react'
+
+
+    //url: https://es.reactjs.org/docs/state-and-lifecycle.html
+    //https://www.google.com/search?q=engineering+react+lifecycles&oq=engineering+react+lifecycles+&aqs=chrome..69i57j0i22i30.5992j0j7&sourceid=chrome&ie=UTF-8
+
+
+
+    class App extends React.Component { 
+    constructor(){
+        super()
+        this.state ={
+            count: 0
+        }
+
+    }
+
+    //Deprecated 
+    // UNSAFE_componentWillReceiveProps(nextProps){if(nextProps.whatever !== this.props.whatever) //Deprecated}
+    // componentWillMount(){}
+    // componentWillUpdate(){}
+    // componentDidMount(){Get the data I need to correctly display }
+
+
+    static getDerivedStateFromProps(props, state){
+        //returne new update state based upon the props
+    }
+    componentDidMount(){}
+    getSnapshotBeforeUpdate(){
+        //create backup of the current way things are
+    }
+    shouldComponentUpdate(nextProps, nextState){
+        return true //if want it to update
+    }
+    componentWillUnmount(){
+        //Eg: remove event listeners //teardown or clean up your code before your component disappears
+    }
+
+    render(){
+        return (
+            &lt;div>
+            &lt;h1>{this.state.count}&lt;/h1>
+            &lt;button>Change!&lt;/button>
+            &lt;/div>
+        )
+    }
+    }
+
+
+    export default App;
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

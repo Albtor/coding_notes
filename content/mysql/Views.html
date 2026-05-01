@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySQL Views</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+    </a>
+    <h1 class="title_template">MySQL - VIEWS</h1>
+    <h4>Links</h4>
+    <ul>
+        <li class="link_list"><a href="CREATE_INSERT_BDAlumnos.sql" class="link_file" target="_Blank">DB SQL ALUMNOS</a></li>
+    </ul>
+
+        
+<div class= "code_container">
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-sql" spellcheck="false">
+    //VIEWS
+    CREATE VIEW vwAlumnosDel811nma ("Apellidos del Alumno", "Nombre", "Código del Grupo")
+    AS SELECT APELLIDOS, NOMBRE, IDGRUPO FROM ALUMNO WHERE idGrupo = '811nma'
+    WITH CHECK OPTION
+    GO
+
+    SELECT * FROM vwAlumnosDel811nma
+    INNER JOIN NOTA ON Nota.idAlumno = vwAlumnosDel811nma.idAlumno
+
+
+    --Crear vista de los alumnos de grupo “913NMA”
+    CREATE VIEW vwAlumnos913NMA ("No usar *")
+    AS SELECT * FROM ALUMNO WHERE idGrupo = '913NMA'
+
+    GO
+
+    //--Crear vista con los tutores de todos los grupos (codigo grupo, nombre tutor)
+    CREATE VIEW vwTutoresAll ("idGrupo", "nombre")
+    AS SELECT G.idGrupo, P.Nombre FROM Grupo G INNER JOIN Profesor P ON G.idProfesorTutor = P.idProfesor
+
+    GO
+
+    //--Crear vista con las notas de los alumnos del grupo “913nma”.(Apellidos,nombre,Nombre asignatura, nota)
+    CREATE VIEW notassGrupo913nma
+    AS SELECT A.Apellidos, A.Nombre, AG.Denominacion, N.Nota FROM ALUMNO A  
+    INNER JOIN Nota N ON A.idAlumno = N.idAlumno 
+    INNER JOIN Asignatura AG ON N.idAsignatura = AG.idAsignatura
+    WHERE idGrupo = '913NMA'
+
+    GO
+
+    //--Crear vista para ver los profesores que imparte clases al grupo “913NMA”(Nombre profesor, nombre asignatura)
+    CREATE VIEW profesoresGrupo913nma
+    AS SELECT P.Nombre, AG.Denominacion FROM Profesor P 
+    INNER JOIN AsignaturasGrupo ASG ON P.idProfesor = ASG.idProfesor 
+    INNER JOIN Asignatura AG ON ASG.idAsignatura = AG.idAsignatura
+    WHERE idGrupo = '913NMA'
+
+    GO
+
+    //--Utilizando una vista que nos de los alumnos del Sauzal, hacer una consulta que nos de la cantidad de alumnos del Sauzal con todo aprobado.
+
+    CREATE VIEW alumnossSauzal
+    AS SELECT * FROM Alumno 
+    WHERE Municipio LIKE '%SAUZAL'
+
+    GO
+
+    SELECT COUNT(ASa.idAlumno) FROM alumnosSauzal ASa
+    WHERE EXISTS (SELECT * FROM NOTA N WHERE ASa.idAlumno = N.idAlumno)
+    AND NOT EXISTS (SELECT * FROM NOTA N WHERE ASa.idAlumno = N.idAlumno AND Nota &lt; 5)
+
+    GO
+
+
+    //--Hacer una vista que nos permita modificar las notas del alumno PEPA ACOSTA PEREZ
+
+
+    //--Hacer una vista que nos de de la nota media de los alumnos de cada municipio.
+
+    GO
+    CREATE VIEW NotaMediaMunicipio ("municipio", "Nota media")
+    AS
+        SELECT A.Municipio, AVG(CAST(N.Nota AS float)) AS "NotaMedia" FROM Nota N INNER JOIN 
+        Alumno A ON N.idAlumno = A.idAlumno 
+        GROUP BY A.Municipio
+        ORDER BY 2
+
+     SELECT * FROM vwNotaMediaMunicipio 
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

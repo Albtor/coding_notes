@@ -1,0 +1,119 @@
+/* https://fonts.google.com/specimen/New+Tegomin#standard-styles */
+@import url("https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.menu_title {
+  margin: 20px 0px;
+  text-align: center;
+  color: white;
+}
+
+.menu_img {
+  width: 60px;
+  height: 60px;
+}
+
+.home {
+  height: 100vh;
+  font-family: "New Tegomin", serif;
+  color: black;
+  /* background: url(../img/background3.jpg) center center no-repeat ;
+    background-size: cover;  */
+
+  /* background: linear-gradient(to top right, #fff, rgb(182, 181, 181)); */
+  /* background: linear-gradient(to top right, #fff, rgb(182, 181, 181), rgb(24, 150, 172), grey); */
+}
+
+.home {
+  min-height: 100vh;
+  background: transparent url(../img/clouds.jpg) no-repeat center center / cover;
+  /* background-attachment: fixed; */
+  display: flex;
+  align-items: center;
+}
+
+nav {
+  width: 250px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: rgba(123, 177, 179, 0.8);
+  border-radius: 10px;
+  box-shadow: 5px 7px 10px rgba(0, 0, 0, 0.2);
+  /* z-index: 10000000; */
+}
+
+nav ul {
+  position: relative;
+  list-style-type: none;
+  border-radius: 5px;
+}
+
+nav ul li a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  text-transform: capitalize;
+  padding: 0px 10px;
+  height: 36px;
+  color: white;
+  transition: 0.2s ease;
+  /* border-radius: 0 30px; */
+  border-radius: 5px;
+}
+
+nav ul li a:hover {
+  background: rgba(252, 252, 252, 0.76);
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+}
+
+nav ul ul {
+  position: absolute;
+  left: 250px;
+  width: 250px;
+  top: 0;
+  display: none;
+  background: rgba(87, 143, 145, 0.9);
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+nav ul span {
+  position: absolute;
+  right: 20px;
+  font-size: 1.5em;
+}
+
+nav ul .dropdown {
+  position: relative;
+}
+
+nav ul .dropdown:hover > ul {
+  display: initial;
+}
+
+nav ul .dropdown_two ul {
+  position: absolute;
+  left: 200px;
+  top: 0;
+}
+
+nav ul .dropdown_two:hover ul {
+  display: initial;
+}
+
+nav ul .dropdown_two ul {
+  position: absolute;
+  left: 200px;
+  top: 0;
+}
+
+nav ul .dropdown_two:hover ul {
+  display: initial;
+}

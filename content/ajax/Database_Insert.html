@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX Database</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">AJAX Database</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- HTML -->
+<!-- <figure></figure> -->
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //HTML Files: Ajax6.html, processDB.php
+    &lt;h2&gt;POST FORM&lt;/h2&gt;
+    &lt;form action=&quot;processDB.php&quot; method=&quot;POST&quot;&gt;
+        &lt;input type=&quot;text&quot; name=&quot;name&quot;&gt;
+        &lt;input type=&quot;submit&quot; value=&quot;Submit&quot;&gt;
+    &lt;/form&gt;
+
+    &lt;h2&gt;AJAX POST FORM&lt;/h2&gt;
+    &lt;form id=&quot;postForm&quot;&gt;
+        &lt;input type=&quot;text&quot; name=&quot;name&quot; id=&quot;name2&quot;&gt;
+        &lt;input type=&quot;submit&quot; value=&quot;Submit&quot;&gt;
+    &lt;/form&gt;
+</code>
+</pre>
+    
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //AJAX  Files: Ajax6.html, processDB.php
+    document.getElementById('postForm').addEventListener('submit', getName2);
+
+    function getName2(e){
+        e.preventDefault();
+
+        var name = document.getElementById('name2').value;
+        var params = "name= "+name;
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'processDB.php', true); //With post we can't attach the parameter like with GET
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        xhr.onload = function(){
+            console.log(this.responseText);
+        }
+    xhr.send(params);
+    }
+</code>
+</pre>
+
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-php" spellcheck="false">
+    //processDB.php
+
+    //CONNECT TO DB
+    $host_name = 'localhost';
+    $database = 'ajaxtest';
+    $user_name = 'root';
+    $password = '';
+    $connect = mysqli_connect($host_name, $user_name, $password, $database); //funcion que permite conectar con DDBB
+
+    if(mysqli_connect_errno()){
+        die('Error al conectar al servidor de MySQL: '.mysqli_connect_error());
+    }else{
+        //echo 'Se ha establecido la conexión al servidor MySQL !!';
+        // return $connect;
+    }
+
+    echo 'Processing...';
+
+
+    //Check for POST variable 
+    if(isset($_POST['name'])){
+    $name = mysqli_real_escape_string($connect, $_POST['name']);
+    // echo 'POST: Your name is '. $_POST['name']; 
+
+    $query = "INSERT INTO users(name) VALUES('$name')";
+    if(mysqli_query($connect, $query)){
+        echo 'User Added';
+    }else {
+        echo 'ERROR: '. mysqli_error($connect);
+    }
+
+}
+
+</code>
+</pre>
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

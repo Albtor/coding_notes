@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Android Udemy</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">ANDROID Udemy</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- ANDROID -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // EJER
+
+    
+</code>
+</pre>
+
+<!-- ANDROID -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //  ANUNCIOS
+    LOs anuncios solo se pueden cargar y mostrar. No se puede cargar otro si el que se ha cargado no se ha mostrado
+    Se usa en GoogleAdmob: https://admob.google.com/intl/es-419/home/
+    pero para ello es necesario tener Google Adsense activado necesario: https://accounts.google.com/v3/signin/accountchooser?continue=https%3A%2F%2Fadsense.google.com%2Fadsense%2Fsignup%2Fcreate%3Fhl%3Des%26referer%3Dhttps%3A%2F%2Fwww.google.com%2F%26sac%3Dtrue&faa=1&hl=es&service=adsense&flowName=GlifWebSignIn&flowEntry=AccountChooser&dsh=S-751654272%3A1746192488728877
+
+    Guide: https://developers.google.com/admob/android/quick-start?hl=es#import_the_mobile_ads_sdk
+
+    Al lanzar app no incluir publicidad porque a los usuarios no les gusta. Añadir más tarde
+
+    ADD THREE THINGS IN YOUR APP:
+    In the on create function add initAds()
+    private fun initAds() {
+    Thread(
+    Runnable {
+    // Initialize the Google Mobile Ads SDK on a background thread.
+    MobileAds.initialize(this, { initializationStatus -> })
+    })
+    .start()
+    }
+
+    in manifest:
+    Get the code from Admob
+    &lt;meta-data android:name="com.google.android.gms.ads.APPLICATION_ID"
+        android:value="ca-app-pub-ca-app-pub-{XXXXXXXXX...XXX}" />
+
+    in gradle dependencies (and sync)
+    implementation("com.google.android.gms:play-services-ads:24.2.0")
+
+
+    4 tipos de anuncions
+    -Banner: rectangle Ad
+    -Intersticial: full screen AD
+    -Nativo: personalizable
+    -Bonificado: recompensa
+
+    BANNER: 
+    https://developers.google.com/admob/android/banner?hl=es
+    val adView = AdView(this)
+     adView.adSize = AdSize.BANNER
+    adView.adUnitId = "ca-app-pub-XXXXX.XXX"
+    var lyAdsBanner = findViewById&lt;LinearLayout>(R.id.lyAdsBanner)
+        lyAdsBanner.addView(adView)
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
+
+    INTERSTICIAL
+    https://developers.google.com/admob/android/interstitial?hl=es
+    
+
+    GOOGLE ADMOB
+    Generar Propios IDS: 
+    - Añadir app
+    - Ir a tipo de anuncio: banner, intersticial y aparece el ID o código (kotlin y manifest !!)
+</code>
+</pre>
+
+<!-- ANDROID -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //  PASARELAS DE PAGOS
+    Tarjeta Crédito - Stripe
+    New Activity
+    NodeJs: https://medium.com/@adnanrahic/hello-world-app-with-node-js-and-express-c1eb7cfa8a30
+    Servidor Local. Se crea una carpeta para crear: npm init
+    entry point: server.js (recomendado para Stripe)
+    npm install express --save
+    npm install --save stripe
+    crear n uievo archivo en la carpeta: server.js y añadir codigo de aqui: https://docs.stripe.com/payments/quickstart?platform=android&lang=node
+    Se puede abrir localhost:4242 para ver
+    https://docs.stripe.com/payments/quickstart?lang=java
+
+
+    CheckoutActivity.kt copy code
+    build.gradle add dependencies and sync !!!
+    Follow tutorial
+
+    Manifest: 
+    &lt;uses-permission android:name="android.permission.INTERNET" />
+    &lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+
+    //HEROKU
+    Crear cuenta
+    Install CLI & GIT
+    instalar. Deploying XXXX app on heroku (Node js, python, php)
+    update package json con engines 
+    server añadir
+    en la carpeta npm i -g heroku
+    lanzar: heroku local web
+    añadir a git - 
+        git init 
+        git add .
+        git commit -m "title"
+
+    
+    heroku login - abre ventana de heroku
+    crear project: heroku create {name}
+    git push heroku master
+    guardar https://xxxxxx  será usada en el proyecto en Backend URL de checkout activity
+    heroku open para comprobar las https
+
+    
+</code>
+</pre>
+
+<!-- ANDROID -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // SHARED PREFERENCES
+    private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var editor: SharedPreferences.Editor
+
+    
+</code>
+</pre>
+
+<!-- ANDROID -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //  ACTUALIZACIONES
+    Mejor en Base de datos: Niveles
+
+    
+</code>
+</pre>
+
+<!-- ANDROID -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // CONTROLAR ORIENTACION
+    Evitar que se cambie a vertical: android:screenOrientation="portrait"
+
+    
+</code>
+</pre>
+
+<!-- ANDROID -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // SONIDOS
+    Create en res android: resource directory raw
+    crear variable de tipo media player para acceder a ellos - private lateinit var mpsound : MediaPlayer
+    funcion para 
+    private fun initSound(){
+    mpsound = MediaPlayer.create(this, R.raw.sound)
+    mpsound.isLooping = false
+    }
+
+    desde otra spartes del codigo mpsound.start()
+
+
+    
+</code>
+</pre>
+
+<!-- ANDROID -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //  APK
+    Build APK y Bundle
+    Manifest: 
+    android:versionName= "1.0"
+    android:versionCode= "1" // cada cambio incrementa
+    Por ejemplo 1.1 -> 2, 1.2-> 3
+
+    
+</code>
+</pre>
+
+<!-- ANDROID -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //  METODOLOGIA PROFESIONAL PARA PROYECTOS
+    • Estrategia
+        - Definir proyecto:  Correctamente por escrito; Lo que se entrega debe ser lo especificado
+        - Audiencia: Edad, Sexo, Nacionalidades. Si el cliente tiene página web tendrá analytics para saber. Si ndo, duda. Paleta Colores
+        - Objetivo: viralizar, dinero, conseguir emails
+        - Especificaciones técnicas: Android o IOS? Nativo? Web? Minimo API de los teléfonos
+        - Inventario de contenido
+        - Recursos: quizás ya tienen usuarios en web, quizás tienen bbdd en sql, nosql, excel, logotipo, color corporativo, imágenes
+        - Timeline: Dar margen, doble de los cálculos. Si lo haces antes de previsto quedas mejor. Si surge algún imprevisto se puede manejar. Cualquier retraso son balas para el cliente pedirte cosas en el futuro. Fecha de versión de prueba: Varios prototipos. Se explica el trabajo.: Diseño gráfico, base de datos, analytics. Si sacas una versión y estás orgulloso es que la has sacado tarde. Si la sacas y hay que mejorar cosas, está bien.
+        - Presupuesto: app más caro que web. 1/3 del salario minimo. 350€. Muy particular. Cada semana 350€. Salario Promedio/3 para algo básico, Promedio/2 por semana para algo personalizado. Adelanto del 50%
+    • Planificacion
+        - Ventana inicio sesión: Usuario contraseña, aceptar terminos y condiciones, botones, 
+        - Lluvia de Ideas: ser caótico ok, apunta todas, base de datos, inspirate en otras, innovador si, raro no
+        - Arquitectura: (MVC, MVP, MVVVM) Base Datos: SQL-NoSQL
+        - Layouts: Dibujos de cada ventana en modo vertical y horizontal. Se pueden crear variaciones. No hacer lo mismo en la app y la web. First Mobile. Distintos contenidos.
+        - UX: Usabilidad. Mejora todo. Pocos clics en funcionalidades básicas. Don't make me think ! Lo más importante, más grande, claro y cerca
+        - Mockups: Ninja Mockup
+    • Diseño
+        - colores: Colorhunt, colord. DOs: modo light y modo oscuro, psicologia del color
+        - Icono
+        - Fuente: Palo (fuerza o delicadeza), bordes
+        - Diseño Activities
+        - Animaciones
+        - Test de UX
+        - Plantillas: 2-3 Diseños
+    • Desarrollo
+        - Lenguaje y framework
+        - Base de Datos: SQL vs NoSQL
+        - Diseño Visual: añadir imagenes, videos, tipografia, audios
+        - Funcionalidades, Ejecucion,
+        - Seguridad: no se guarda info sensible en shared preferences. Base de datos: encriptación de datos
+    • Lanzamiento
+        - Test final: Intenta encontrar fallos a lo bruto.
+        - Play Store
+        - analytics: google play console: Campañas. comportamiento: mejoras
+        - Garantia
+        - Entrenamiento Personal: manual, video, dedica el tiempo necesario
+    • Mantenimiento: la parte que más dinero puede dar
+        - Soporte: cuotas, control de datos, 
+        - Actualizaciones: diseño por moda, funcionalidad, contenido
+
+
+    
+</code>
+</pre>
+
+<!-- ANDROID -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //  TOOLBAR Y MENU NAVEGACION
+
+    Toolbar:
+    New layout: Coordinator layout  > AppBar > Toolbar
+    xml view: include layout="@layout/app_bar_main"
+
+    MENU
+    new folder in res= menu then xml menu
+    xml: menu / group / item (can be used submenus)
+    com.google.android.material.navigation.NavigationView
+    app:menu="menu/activity_menu"
+
+
+
+
+    
+</code>
+</pre>
+
+<!-- ANDROID -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // 
+
+    
+</code>
+</pre>
+
+<!-- ANDROID -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // 
+
+    
+</code>
+</pre>
+
+<!-- ANDROID -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // 
+
+    
+</code>
+</pre>
+
+<!-- ANDROID -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // 
+
+    
+</code>
+</pre>
+
+<!-- ANDROID -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // 
+
+    
+</code>
+</pre>
+
+<!-- ANDROID -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // 
+
+    
+</code>
+</pre>
+
+<!-- ANDROID -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // 
+
+    
+</code>
+</pre>
+
+<!-- ANDROID -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // 
+
+    
+</code>
+</pre>
+
+<!-- ANDROID -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // 
+
+    
+</code>
+</pre>
+
+<!-- ANDROID -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // 
+
+    
+</code>
+</pre>
+
+<!-- ANDROID -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // 
+
+    
+</code>
+</pre>
+
+<!-- ANDROID -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // 
+
+    
+</code>
+</pre>
+
+<!-- ANDROID -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // 
+
+    
+</code>
+</pre>
+
+<!-- ANDROID -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // 
+
+    
+</code>
+</pre>
+
+<!-- ANDROID -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // 
+
+    
+</code>
+</pre>
+
+<!-- ANDROID -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // 
+
+    
+</code>
+</pre>
+
+<!-- ANDROID -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // 
+
+    
+</code>
+</pre>
+
+<!-- ANDROID -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // 
+
+    
+</code>
+</pre>
+
+<!-- ANDROID -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // 
+
+    
+</code>
+</pre>
+
+<!-- ANDROID -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // 
+
+    
+</code>
+</pre>
+
+<!-- ANDROID -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // 
+
+    
+</code>
+</pre>
+
+<!-- ANDROID -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // 
+
+    
+</code>
+</pre>
+
+<!-- ANDROID -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // 
+
+    
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

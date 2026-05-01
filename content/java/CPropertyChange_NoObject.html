@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java PropertyChange No Object</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVA PropertyChange No Object</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //CONSTANTES
+
+    public class CONSTANTES {
+        public  static final  String PROPIEDAD_A_COMPROBAR_SI_CAMBIA="VALOR SI O NO";
+    }
+    
+
+</code>
+</pre>
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //AVISADOR 
+
+    import java.beans.PropertyChangeListener;
+    import java.beans.PropertyChangeSupport;
+    import java.io.Serializable;
+
+
+    public class AvisadorBasic implements Serializable{
+    private boolean encendido = false;
+    private final PropertyChangeSupport propertySupport;
+    
+    public AvisadorBasic() {
+        propertySupport = new PropertyChangeSupport(this);  // necesito crear el objeto que se encarga de avisar de los cambios..
+    }
+
+    public boolean isEncendido() {
+        return encendido;
+    }
+
+    public void setEncendido(boolean nuevoValor) {
+        if (nuevoValor == this.encendido) {
+            return;  // nada que hacer ya que es false
+        }
+        this.propertySupport.firePropertyChange(CONSTANTES.PROPIEDAD_A_COMPROBAR_SI_CAMBIA, this.encendido , nuevoValor );/*valor anterior*//* valor nuevo*/
+        this.encendido = nuevoValor; // el valor de encedido es el nuevo.
+    }
+    
+    
+    
+    
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        propertySupport.addPropertyChangeListener(listener);
+    }
+
+     //Metodo para quitar un escuchador: un seguidor .
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        propertySupport.removePropertyChangeListener(listener);
+    }
+}
+
+</code>
+</pre>
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //Escuchador
+    
+    
+    import java.beans.PropertyChangeEvent;
+    import java.beans.PropertyChangeListener;
+    import java.io.Serializable;
+    import javax.swing.JLabel;
+
+    public class EscuchadorBasic  extends JLabel implements Serializable{
+    
+    private AvisadorBasic AA_Avisador = null;
+    PropertyChangeListener MiEscuchador;
+    
+    public EscuchadorBasic() {
+        this.setText("Escuchador de no bjeto");
+
+        this.MiEscuchador = new PropertyChangeListener() // definimos el objeto que atiente al evento.. algo parecido a los botones, pero ahora para este tipo de objeto.
+        {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                cambioElEstado(evt);
+            }
+        };
+
+    }
+    
+    public void cambioElEstado(PropertyChangeEvent evt) {
+       
+        boolean sino = (boolean) evt.getNewValue();
+        if (sino) {
+            this.setText("Activado");//
+        } else {
+            this.setText("NO ESTA ACTIVADO");
+        }
+            
+        
+    }
+
+    public AvisadorBasic getAA_Avisador() {
+        return AA_Avisador;
+    }
+
+    public void setAA_Avisador(AvisadorBasic AA_Avisador) {
+       if (this.AA_Avisador != null) {
+            this.AA_Avisador.removePropertyChangeListener(this.MiEscuchador);
+        }
+
+        this.AA_Avisador = AA_Avisador;
+
+        // le decimos que me apunte a su lista de seguidores.
+        if (this.AA_Avisador != null) {
+            this.AA_Avisador.addPropertyChangeListener(this.MiEscuchador);
+        }
+    }
+
+}
+
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

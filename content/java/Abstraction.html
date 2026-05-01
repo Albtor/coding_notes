@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Abstraction</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVA ABSTRACTION</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //ABSTRACTION 
+
+    /*
+    Data abstraction is the process of hiding certain details and showing only essential information to the user.
+    Abstraction can be achieved with either abstract classes or interfaces 
+
+    The abstract keyword is a non-access modifier, used for classes and methods:
+    Abstract class: is a restricted class that cannot be used to create objects (to access it, it must be inherited from another class).
+    Abstract method: can only be used in an abstract class, and it does not have a body. The body is provided by the subclass (inherited from).
+
+    Se pueden desarrollar los metodos en la interfaz o en las clases que heredan
+    */
+
+  public class Abstraction {
+      
+      public Abstraction(){
+          Pig myPig = new Pig(); // Create a Pig object
+          myPig.animalSound();
+          myPig.sleep();
+      }
+  }
+
+
+  abstract class Animal {
+    // Abstract method (does not have a body)
+    public abstract void animalSound();
+    // Regular method
+    public void sleep() {
+      System.out.println("Zzz");
+    }
+  }
+
+  // Subclass (inherit from Animal)
+  class Pig extends Animal {
+    public void animalSound() {
+      // The body of animalSound() is provided here
+      System.out.println("The pig says: wee wee");
+    }
+  }
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

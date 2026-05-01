@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grid</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Grid</h1>
+  <h3>Basic</h3>
+  <ul>
+    <li>Define columns and rows. Check css because there are different</li>
+    <li>Items wrap in columns / rows</li>
+    <li>Columns: grid-template-columns: 100px 50px;</li>
+    <li>Columns: grid-template-columns: [nombreaelegir]100px 50px; - Se puede poner cualquier nombre entre corchetes y el valor al lado</li>
+    <li>Rows: grid-template-rows: 50px 100px;</li>
+    <li>Columns and Rows: grid-template: 50px 100px / 100px 50px;</li>
+    <li>grid-auto-rows: auto (by default). 100px 200px; - If set to 100px, all new rows added not defined, will be 100px. If there are two values, it will alternate</li>
+    <li>grid-auto-columns: auto (by default). 100px 200px; - If set to 100px, all new columns added not defined, will be 100px. If there are two values, it will alternate</li>
+    <li>grid-auto-flow: row(default) . Can be changed to column</li>
+    <li>Grid Template areas. Define names for columns and rows. And then to elements, set grid-area: with the name set previously above</li>
+    <li>grid-colum-start and grid-column-end. grid-column: 1/3. NO grid-template-areas necessary, just specify the columns and rows. the number 3 says it will end at the end of 2, so 3 will be available</li>
+    <li>grid-row: 1/3 same as above; grid-row: span 2 (takes two spaces)</li>
+    <li>All the space. Use -1. grid-column: 1 / -1; The negative is starting from the end and count backwards. You could also use -2, -3 if needed/Desired</li>
+    <li>grid-auto-flow: row, column o dense;</li>
+  </ul>
+  <h3>Medidas</h3>
+  <ul>
+    <li>fr. Fractional. Distributes space in fractions / ratios</li>
+    <li>grid-columns: 1fr 3fr 2fr;</li>
+    <li>grid-template-columns: 50px repeat(2, 1fr) 50px;</li>
+    <li>grid-template-rows: minmax(50px, auto) 100px; Minimum of x and maximum of the content. Auto makes to fill the space needed to fit the text/content</li>
+    <li>gaps. row-gap. column-gap. gap:15px;</li>
+  </ul>
+  <h3>Positioning</h3>
+    <ul>
+      <li>justify-content: center, end start.  Aling the the content of the parent. Horizontal alignment of all elements in the grid. Si el contenido no ocupa todo el ancho</li>
+      <li>align-content: center, start, end. Align grid. Works only when there's height in the parent container and more space than the content. Vertical alignment. Si el contenido no ocupa todo el alto</li>
+      <li>Align-items: stretch, start, end, center.  Vertical position in the grid cell</li>
+      <li>justify-items: stretch, start, end, center. Horizontal positions in the cell</li>
+      <li>justify-self: stretch, start, end, center. Vertical position in the grid cell</li>
+      <li>align-self, justify:self: start, end, center... To modify just individual items</li>
+      <li>grid-auto-flow: row dense . For missing gaps. Grid tries to fit items in empty gaps. FOr example if 2 consecutive divs have 2 columns span (in a total of 3 columns grid. It messes with the order so it should not matter</li>
+      <li>place-item: start end; (ponemos la posicion horizontal y vertical</li>
+    </ul>
+  
+  <div class="container">
+    <div class="item item1">Lorem ipsum dolor sit, amet consectetur adipisicing elit. </div>
+    <div class="item item2">B</div>
+    <div class="item item3">C</div>
+    <div class="item item4">D</div>
+    <div class="item item5">E</div>
+    <div class="item item6">F</div>
+    <div class="item item7">G</div>
+    <div class="item item8">H</div>
+  </div>
+
+</body>
+</html>

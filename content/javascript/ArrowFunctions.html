@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Arrow Functions</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVASCRIPT ARROW FUNCTIONS</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="#" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // 78 - USE ARROW FUNCTIONS TO WRITE CONCISE ANONYMOUS FUNCTIONS
+
+    // var magic = function() {
+    //     return new Date();
+    // }
+
+    //only if there is only one value
+
+    const magic = () =>  new Date();
+    console.log("Arrow Functions:  'const magic = () =>  new Date();'");
+    console.log(magic);
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // 78 - WRITE ARROW FUNCTIONS WITH PARAMETERS
+
+    // var myConcat = function(arr1, arr2) {
+    //     return arr1.concat(arr2);
+    // }
+
+    console.log("Arrow Functions with parameters: 'var myConcat = (arr1, arr2) => arr1.concat(arr2);'");
+
+    var myConcat = (arr1, arr2) => arr1.concat(arr2);
+    console.log(myConcat([1,2],[3,4,5]));
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // 79 - WRITE HIGHER ORDER ARROW FUNCTIONS
+    const realNumberArray = [4, 5.6, -9.8, 3.14, 42, 6, 8.34, -2];
+
+    const squareList = (arr) => {
+        const squaredIntegers = arr.filter(num => Number.isInteger(num) && Number > 0).map(x => x * x);
+        return squaredIntegers;
+    };
+
+    const squaredIntegers = squareList(realNumberArray);
+    console.log(squaredIntegers);
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // 80 - WRITE HIGHER ORDER ARROW FUNCTIONS II
+    const increment = (function() {
+        return function increment(number, value = 1){
+            return number + value;
+        }
+    })();
+
+    console.log(increment(5,2));
+    console.log(increment(5));
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // WEB DEV SIMPLIFIED
+    function sum(a,b){
+        return a + b
+    }
+    //Arrow function 
+    let sum2 = (a,b) => {
+        return a + b
+    }
+    let sum2 = (a,b) => a + b
+    
+    //Other example, if there is only one parameter we can remove parenthesis
+    function isPositive(number) {
+        return number > = 0
+    }
+
+    let isPositive = number => number > = 0
+
+    //With no parameters
+    let randomNumber = () => {
+        return Math.random
+    }
+    
+    //
+    document.addEventListener('click', function(){
+        console.log('Click');
+    })
+
+    document.addEventListener('click', () => {
+        console.log('Click')
+    })
+    
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //They redefine the use of this
+    //Normal standar function redefines this. But when using arrow functions, it captures the local value
+    Class Person {
+        constructor(name){
+            this.name = name
+        }
+        printNameArrow(){
+            setTimeout(()=>{
+                console.log('Arrow: ' +this.name)
+            }, 100)
+        }
+        printNamefunction(){
+            setTimeout(function()=>{
+                console.log('Function: ' +this.name)
+            }, 100)
+        }
+
+    }
+
+    let person = new Person('Bob')
+    person.printNameArrow()
+    person.printNameFunction()
+    console.log(this.name)
+    
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

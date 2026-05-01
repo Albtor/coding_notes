@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Components</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVA COMPONENTS</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //COMPONENTES &lt;
+    /*
+    COMPONENTES JTABLE, JLABEL, JTEXTFIELD, 
+    */
+    package E_SWING;
+
+    import java.awt.Color;
+    import java.awt.FlowLayout;
+    import java.sql.Connection;
+    import java.sql.PreparedStatement;
+    import java.sql.ResultSet;
+    import java.sql.ResultSetMetaData;
+    import java.sql.SQLException;
+    import java.util.ArrayList;
+    import java.util.List;
+    import javax.swing.JLabel;
+    import javax.swing.JPanel;
+    import javax.swing.JTable;
+    import javax.swing.JTextArea;
+    import javax.swing.JTextField;
+    import javax.swing.table.DefaultTableModel;
+
+    /**
+    *
+    * @author Alberto
+    */
+    public class Componentes {
+        
+        JTextField generico;
+        //TABLA1
+        
+        private DefaultTableModel modelo;
+        private Object[][] filas; //el primer [] corresponde a una fila, el segundo[] a las columnas
+        // filas de arrays de objetos = va a contener las filas que 
+        // he encontrado en la base de datos : ACUMULA LOS DATOS LEIDOS.
+        protected ArrayList&lt;Object[]> objetosFilas = new ArrayList();  
+        private Object[][] datosFila= {
+            {"Mercurio", 2440.0, false},
+            {"Venus", 19940.0, true},
+            {"Juìter", 240.0, false},
+            
+        };
+
+        String[] columnNames = {"Columna1", "Columna2"};
+        String[] titulosMetadata;
+        int numeroColumnas = 2;
+        
+        //TABLA2
+        private DefaultTableModel modelo2;
+        
+        
+        public Componentes(){}
+        
+        
+        //BASIC TABLE
+        public void BasicTable(){
+            JTable tabla = new JTable();
+            tabla.setAutoCreateRowSorter(true);
+            tabla.setModel(this.modelo);
+            modelo.getDataVector().removeAllElements(); // borramos todos los elementos anteriores..
+            modelo.setRowCount(0); //ponemos todas las filas a 0
+            modelo.addRow(new Object[]{/*filasTabla.getDouble(columna)*/});
+            modelo.addColumn("Columna");
+            modelo.fireTableDataChanged();
+            String[] columnNamesBasic;
+            ArrayList&lt;Object[]> FilasBase = new ArrayList();   
+            //add(new JscrollPane(tabla), BorderLayout.CENTER);
+        }
+        
+        //TABLA 2
+        public void Tabla1(){
+            JTable tabla = new JTable();
+            modelo = new DefaultTableModel(filas, columnNames); 
+            tabla.setModel(this.modelo); // ahora este es nuevo modelo...
+            
+        }
+        
+        
+        //TABLA 2
+        public void Tabla2(){
+            JTable tabla = new JTable();
+            modelo2 = new DefaultTableModel() {                   
+                @Override
+                public boolean isCellEditable(int fila, int columna) { //AVOIDS CELL EDITING
+                    return false; //Con esto conseguimos que la tabla no se pueda editar
+                }
+            };
+            
+            tabla.setModel(this.modelo2);
+            tabla.setVisible(true);  
+        }
+        
+        
+        //METADATA
+        public void Metadatas() throws SQLException{
+            Connection conexion = null;
+            PreparedStatement comandoSQL;
+    //        comandoSQL =conexion.prepareStatement();
+            ResultSetMetaData informacionDatosEncontrados;
+            ResultSet filasTabla = null;
+    //        filasTabla= comandoSQL.executeQuery("SELECT * FROM Table"); 
+            informacionDatosEncontrados = filasTabla.getMetaData();
+            informacionDatosEncontrados.getColumnCount();
+            titulosMetadata = new String[numeroColumnas];
+        }
+        
+        
+        //METODOS DE COLUMNAS
+        //Se pueden poner una a una o con un array de Strings
+        public void columnas(){
+            String[] titulosColumnas = new String[0];
+            titulosColumnas[0] = "Columna1";
+            modelo.setColumnIdentifiers(titulosColumnas);
+            modelo.addColumn("Identificación");
+    //        this.modelo.setColumnIdentifiers(this.miFER_ConsultaSQL.getAA_titulos());
+            String[] columnNames = {"Columna1", "Columna2"};
+            modelo.setColumnIdentifiers(columnNames);
+        }
+    
+        
+        //METODOS DE FILAS
+        //Array de objetos
+        public void filas() throws SQLException{
+            ArrayList&lt;Object[]> objetosFilas = new ArrayList();
+            objetosFilas.clear(); //para borrar todos los elementos de un arraylist
+            modelo.setRowCount(0); //ponemos todas las filas a 0
+            Object[][] filas2 = new Object[0][0];
+    //        this.modelo.addRow(/*filas2.get(1)*/);
+            ResultSet filasTabla = null;
+                while(filasTabla.next() ){ // mientras consiga una nueva fila (se puede mover a la siguiente ) = obtener siguiente fila.
+                    // cargamos la fila en el arraylist.
+                    Object[] filaNueva = new Object[numeroColumnas]; // creamos un array de objetos del tamaño de las columnas encontradas
+                    for (int i=0; i &lt; this.numeroColumnas; i++)  filaNueva[i]= filasTabla.getString(i+1); // por posicion (el +1 porque getString empieza a contar de 1;                               
+                    objetosFilas.add(filaNueva);
+                }    
+        } 
+        
+        
+        public void filasBDOO(){
+            //EN BDOO Mantenimiento
+            
+    //        TypedQuery&lt;Cliente> query =  comandoBD.createQuery("SELECT c FROM Cliente c", Cliente.class);       
+    //        List&lt;Cliente> results = query.getResultList(); // ya tengo la lista de clientes
+    //    for (Cliente c : results){   // por cada cliente  
+    //            // ccargamos la fila en la rejilla
+    //            Object[] filaNueva = {c.id, c.nombre }; // tenemos que añadir un array de objetos..
+    //            modelo.addRow(filaNueva); // añadirmos fila a fila (fila completa, no podemos añadir celda a celda)
+    //
+    //       }
+        }
+        
+        //VALE para varios componentes, Label, TextField, 
+        public void Generico(){
+            generico.setText("Texto Generico");
+            generico.setSize(700,20);
+            generico.setForeground(Color.blue);
+        }
+        
+        public void Label(){
+            JLabel label = new JLabel();
+            label.setText("Texto del JLabel");
+            label.setSize(700,20); 
+            label.setForeground(Color.blue);
+        }
+        
+        public void TextField(){
+            JTextField textField = new JTextField();
+            textField.setText("Texto del JTextField");
+            textField.setSize(700,20); 
+        }
+        
+        public void TextArea(){
+            JTextArea textArea = new JTextArea();
+            textArea.setText("Texto JTextArea");
+        }
+        
+        
+        //PANEL CON UN LABEL
+        public void Panel(){
+            JPanel panel = new JPanel();
+            panel.setSize(400, 500);
+            panel.setLayout(new FlowLayout()); //LAYOUT UNO DETRAS DE OTRO
+            
+            //Añadiendo un elemento al JPanel
+            JLabel JLabelMax = new JLabel();
+            panel.add(JLabelMax);
+            JLabelMax.setVisible(true);
+            JLabelMax.setText("Maximo");        
+        }
+        
+    }
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

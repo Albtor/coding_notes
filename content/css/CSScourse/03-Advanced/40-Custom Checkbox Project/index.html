@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Custom Checkbox Project</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Custom Checkbox Project</h1>
+  <ul>
+    <li>*, <strong>*::before, *::after </strong>{
+      box-sizing: border-box;
+    }</li>
+    <li>You need to apply specifically to those pseudoelements (::before, ::after)</li>
+    <li>if you set the display none for checkboxes, it is not good for tab. Breaks accessibility. better set opacity to 0;</li>
+  </ul>
+  <input class="custom-checkbox" type="checkbox" id="cb1" disabled checked>
+  <label for="cb1">Checkbox 1</label>
+  <br>
+  <input class="custom-checkbox" type="checkbox" id="cb2" disabled>
+  <label for="cb2">Checkbox 2</label>
+  <br>
+  <input class="custom-checkbox" type="checkbox" id="cb3">
+  <label for="cb3">Checkbox 3</label>
+  <br>    
+  <input class="custom-checkbox" type="checkbox" id="cb4">
+  <label for="cb4">Checkbox 4</label>
+</body>
+</html>

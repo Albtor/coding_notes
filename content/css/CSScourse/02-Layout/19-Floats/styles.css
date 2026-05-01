@@ -1,0 +1,35 @@
+
+
+
+
+.img1{
+    width: 200px;
+    height: 200px;
+    float: left;
+}
+
+.img2{
+    width: 200px;
+    height: 100px;
+    float: left;
+}
+
+
+
+
+.img3{
+    width: 200px;
+    height: 200px;
+    float: left;
+}
+
+.img4{
+    width: 200px;
+    height: 100px;
+    float: right;
+}
+
+.lorem2{
+    clear: right;
+  
+}

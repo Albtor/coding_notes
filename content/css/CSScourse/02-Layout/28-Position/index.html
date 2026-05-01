@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>28-Position</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="">
+  <h1>Position</h1>
+  <ul>
+    <li>Position: static as default.</li>
+    <li>relative and absolute</li>
+    <li>Absolute: Depends on the position context. poistion inside of the container with relative or. It positions itself anywhere in the page if there isn't any previous container with position relative. If the parent container has p:relative, then it will position absolutely inside it., will not be out. This way a "position context is created". </li>
+    <li>Absolute:  Always stays on the same position of the visible document but not out of it (unless you set negative values). It will not go further from the view, -not the total height of doc, without scroll-. So if height is 200vh, the element will be in the visible area.</li>
+    <li>Relative</li>
+    <li>Fixed:  stays positioned in the specific spot. It's like absolute. Depends on the <strong>screen.</strong> </li>
+    <li>Sticky: stays on its parent container</li>
+    <li>Values to set to define position (any): top, left, right, bottom</li>
+  </ul>
+  <h3>Position absolute without position context</h3>
+  <div class="parent1">Div1 (Parentwithout position Relative. The first child goes out of the parent)
+    <div class="child1">One: Absolute (the parent has no position relative so it is static by default. the element position depends on the visible page ). Belongs to div1</div>
+    <div class="child2">Two</div>
+    <div class="child3">Three</div>
+  </div>
+
+  <h3>Position absolute inside  relative container</h3>
+  <div class="parent11">Div2 (parent with position: relative). The child one stays within the parent
+    <div class="child11">One: Absolute (with a parent with position: relative so it stays in the container) Belongs to div2</div>
+    <div class="child2">Two</div>
+    <div class="child3">Three</div>
+  </div>
+  <h3>Position fixed: anywhere on the page. Doesn't matter if the parent has position relative</h3>
+  <div class="parent2">Div3. Parent with position: relative and child One one with position fixed. It is the Yellow one outside
+    <div class="child4">One: Fixed (even with parent with position relative) Belongs to div3</div>
+    <div class="child2">Two</div>
+    <div class="child3">Three</div>
+  </div>
+  <h3>Position fixed: Scroll down for the effect. Favorite one, investigate</h3>
+  <div class="parent3">Div4: Child2 with position sticky
+    <div class="child7">One</div>
+    <div class="child8">Two: Sticky</div>
+    <div class="child9">Three</div>
+  </div>
+  
+  
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Animations</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+    </a>
+    <h1 class="title_template">CSS - ANIMATIONS</h1>
+    <h4>Links</h4>
+    <ul>
+        <li class="link_list"><a href="CSScourse/04-Animation/52-Animation_Property/index.html" class="link_file" target="_Blank">WDS</a></li>
+        <li class="link_list"><a href="https://www.w3schools.com/css/css3_animations.asp" class="link_file" target="_Blank">W3Schools</a></li>
+        <li class="link_list"><a href="https://css-tricks.com/writing-animations-that-bring-your-site-to-life/" class="link_file" target="_Blank">CSS Tricks</a></li>
+    </ul>
+
+        
+<div class= "code_container">
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+    // ANIMATIONS
+    animation: -name- time style delay fillmode repetition
+    animation: color-change 1s linear forwards 1/alternate
+    animation-name: example;
+    animation-duration: 4s;
+    animation-timing-function: linear |ease | ease-in | ease-out | ease-in-out; /*Speed curve of the animation*/
+    animation-direction: alternate |reverse |alternate-reverse 
+    animation-iteration-count: infinite, 1, 4...; /*How many times an animation should run*/
+    animation-delay: .5s;
+    animation fillmode: forwards, backwards, both, none; /*a style for the target element when the animation is not playing (before it starts, after it ends, or both).*/
+
+    @keyframes color-change {
+        0% {
+            background-color: black;
+    
+        }
+    
+        100% {
+            background-color: lightgreen;
+            color: black;
+        }
+    }
+
+    .div2:hover {
+        animation-play-state: paused;
+        color: black;
+    }
+
+
+    @keyframes custom {
+        from {
+            font-size:1rem;
+        }
+    
+        25% {
+            font-size:2rem;
+            height: 50px;
+        }
+    
+        50% {
+            font-size:2.5rem;
+            color: limegreen;
+        }
+    
+        75% {
+            font-size:1.5rem;
+        }
+    
+        to  {
+            font-size:1rem;
+        }
+    }
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

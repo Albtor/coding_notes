@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX Php Get</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">AJAX PHP Get</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- HTML -->
+<!-- <figure></figure> -->
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //PHP Files-> Ajax4.html, Process.php
+    &lt;button id=&quot;button&quot;&gt;Get Name&lt;/button&gt;
+
+    &lt;h2&gt;GET FORM&lt;/h2&gt;
+    &lt;form action=&quot;process.php&quot; method=&quot;GET&quot;&gt;
+        &lt;input type=&quot;text&quot; name=&quot;name&quot;&gt;
+        &lt;input type=&quot;submit&quot; value=&quot;Submit&quot;&gt;
+    &lt;/form&gt;
+
+    &lt;h2&gt;AJAX GET FORM&lt;/h2&gt;
+    &lt;form id=&quot;getForm&quot;&gt;
+        &lt;input type=&quot;text&quot; name=&quot;name&quot; id=&quot;name1&quot;&gt;
+        &lt;input type=&quot;submit&quot; value=&quot;Submit&quot;&gt;
+    &lt;/form&gt;
+</code>
+</pre>
+    
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //AJAX js
+    document.getElementById('button').addEventListener('click', getName);
+        document.getElementById('getForm').addEventListener('submit', getName2);
+
+        function getName(){
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'process.php?name=Brad', true);
+
+            xhr.onload = function(){
+                console.log(this.responseText);
+            }
+        xhr.send();
+        }
+        function getName2(e){
+            e.preventDefault();
+
+            var name = document.getElementById('name1').value;
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'process.php?name='+name, true);
+
+            xhr.onload = function(){
+                console.log(this.responseText);
+            }
+        xhr.send();
+        }
+</code>
+</pre>
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX External API</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">AJAX External API</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="https://api.github.com/users" class="link_file" target="_Blank">API Github Users</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- HTML -->
+<!-- <figure></figure> -->
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //EXTERNAL API ajax3.html -> https://api.github.com/users
+    &lt;button id="button">Load Github Users&lt;/button>
+    &lt;br>&lt;br>
+    &lt;h2>&lt;/h2>Github Users &lt;span>&lt;a href="https://api.github.com/users">Github API&lt;/a>&lt;/span>&lt;/h2>
+    &lt;div id="users" class="users">&lt;/div>
+    
+</code>
+</pre>
+    
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //AJAX js
+    document.getElementById('button').addEventListener('click', loadUsers);
+
+        //Load Github Users
+        function loadUsers(){
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'https://api.github.com/users', true);
+            xhr.onload = function(){
+                if(this.status == 200){
+                    var users = JSON.parse(this.responseText);
+                    console.log(users);
+                    var output = '';
+                    for(var i in users){
+                    output += 
+                        '&lt;div class="user">' +
+                        '&lt;img src="'+users[i].avatar_url+'" width="70" height="70">'
+                        +'&lt;ul>' + 
+                        '&lt;li>Login: '+users[i].login+' &lt;/li>' +
+                        '&lt;li>id: '+users[i].id+' &lt;/li>' +
+                        '&lt;li>nodeID: '+users[i].node_id+' &lt;/li>' +
+                        '&lt;/ul>' +
+                        '&lt;/div>';
+                        document.getElementById('users').innerHTML = output;
+                    }
+                    
+                }
+            }
+            xhr.send();
+
+        }
+</code>
+</pre>
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

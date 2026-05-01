@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java BDOO</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVA BDOO</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //BDOO Basics
+    ObjectDB Descargar. Server.exe
+    usar local, sacar el jar para esto
+    Añadir en libreria el fichero de jar
+    Ejecutar
+
+    //Simplified
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("BASE_DATOS/points.odb")
+    EntityManager em = emf.createEntityManager();
+    em.getTransaction().begin();
+    em.getTransaction().commit();
+
+    //Ejecutamos proyecto y genera un fichero odb.
+    //Este odb lo cargamos en oBjectdb. Boton derecho open tree table o lupa
+
+    this.comandoBD.getTransaction().begin(); // Iniciamos transaction
+    this.comandoBD.persist(c); // grabamos
+    this.comandoBD.getTransaction().commit(); // fin trascation , OK! 
+
+    //Borrar: solo borra objetos que hayas buscado antes.
+    this.comandoBD.find(Cliente.class,  new Cliente( Integer.parseInt(this.txtID.getText()),null));
+
+    //Modificar
+
+    //Rejilla datos
+    //Creamos query que y lo metemos en TypedQuery&lt;Cliente>
+    List&lt;Cliente> results = query.getResultList()
+
+    @ManyToOne Cliente clienteLoCompro; // que somos de un cliente OBJETO cliente
+    @ManyToOne Articulo articuloVendido; // que articulo se ha vendido.
+    @OneToMany (mappedBy="clienteLoCompro") Set &lt;Venta> ventas;  //Set es como conjunto o arraylist
+
+
+</code>
+</pre>
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //BDOO
+    /*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package ad.tarea05.json_to_bdoo;
+
+import generated.Cliente;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
+import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author Alberto
+ */
+public class BDOO {
+
+    private EntityManagerFactory ooBD;
+    static EntityManager comandoDB;
+    boolean hayError;
+    String mensajeError;
+    EntityTransaction tx;
+
+    public BDOO() {
+        try {
+            // Creamos objeto de la base de datos..
+            ooBD = Persistence.createEntityManagerFactory("BASEDEDATOS/MISCLIENTES.odb"); // usando una base de datos local y en esta carpeta
+            // $objectdb == para referirnos a servidor con carpeta de datos.
+            comandoDB = ooBD.createEntityManager();
+            hayError = false;
+        } catch (Exception ex) {
+            mensajeError = ex.getMessage();
+            hayError = true;
+            System.out.println(mensajeError);
+        }
+    }
+
+    //METODO PARA AÑADIR CLIENTES A LA BDOO persists(objeto)
+    public void insert(Object objeto) { //Static method?
+        try {
+            comandoDB.getTransaction().begin(); // Iniciamos transaction
+            comandoDB.persist(objeto); // grabamos
+            comandoDB.getTransaction().commit(); // fin trascation , OK!                    
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error grabando\n" + e.getMessage());
+        }
+    }
+
+    //METODO PARA LISTAR CLIENTES DESDE LA BDOO
+    public void listar() {
+        TypedQuery&lt;Cliente> query = this.comandoDB.createQuery("Select c FROM Cliente c", Cliente.class);
+        List&lt;Cliente> results = query.getResultList();
+        for (Cliente p : results) {
+            mostrarCliente(p);
+        }
+    }
+    
+    //METODO PARA SACAR UN CLIENTE POR PANTALLA DESDE LA BDOO
+    private void mostrarCliente(Cliente cliente) {
+        System.out.println("Nombre: " + cliente.getNombre() + "\tId: " + cliente.getId() + "\tSaldo: " + cliente.getSaldo());
+        
+    }
+
+    //BORRAR OBJETOS DE LA BDOO remove(objeto)
+    private void borrar(Integer id) {
+        Cliente c = new Cliente(id);
+        c = this.comandoDB.find(Cliente.class, c);
+        //Hay que encontrar un objeto para poder borrar
+        if(c == null){
+            System.out.println("No existe");
+            return; //si no existe salimos del método
+        }
+        
+        try {
+            comandoDB.getTransaction().begin(); // Iniciamos transaction
+            comandoDB.remove(c); // grabamos
+            comandoDB.getTransaction().commit(); // fin trascation , OK!                    
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error borrando\n" + e.getMessage());
+        }
+    }
+
+    //MODIFICAR OBJETOS - usar el setter de los objetos para modificar atributos
+    private void modificar(Integer id) {
+        Cliente c = new Cliente(id);
+        c = this.comandoDB.find(Cliente.class, c);
+        //Hay que encontrar un objeto para poder borrar
+        if(c == null){
+            System.out.println("No existe");
+            return;
+        }
+        //Hay que encontrar un objeto para poder modificar 
+        try {
+            comandoDB.getTransaction().begin(); // Iniciamos transaction
+//            objeto.setNombre("Nombre cambiado");
+//            objeto.nombre = "Nombre Cambiado"; //tiene que ser publico
+            comandoDB.getTransaction().commit(); // fin trascation , OK!                    
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error modificando\n" + e.getMessage());
+        }
+    }
+
+    //METODO PARA CERRAR LA CONEXION DE LA BASE DE DATOS
+    public void closeConnection() {
+        this.ooBD.close();
+    }
+
+}
+
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

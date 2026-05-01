@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Charts</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+
+</head>
+<body>
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+    </a>
+    <h1 class="title_template">CSS - CHARTS</h1>
+    <h4>Links</h4>
+    <ul>
+        <li class="link_list"><a href="https://www.chartjs.org/docs/latest//" class="link_file" target="_Blank">Chart.js</a></li>
+    </ul>
+  
+        
+<div class= "code_container">
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    // CHART JS
+    &lt;canvas id=&quot;myChart&quot;&gt;&lt;/canvas&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.js&quot;&gt;&lt;/script&gt;
+    
+</code>
+</pre>
+
+<!-- JS -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // INITIALIZE JAVASCRIPT
+    1. SETUP
+    2. CONFIG
+    3. RENDER = new Chart
+
+    //SETUP
+    const labels = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    ];
+    const data = {
+    labels: labels,
+    datasets: [{
+    label: 'My First dataset',
+    backgroundColor: 'rgb(255, 99, 132)',
+    borderColor: 'rgb(255, 99, 132)',
+    data: [0, 10, 5, 2, 20, 30, 45],
+    }]
+    };
+
+    //CONFIG
+    const config = {
+        type: 'line',
+        data,
+        options: {}
+      };
+
+    //RENDER
+    var myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+      );
+    
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

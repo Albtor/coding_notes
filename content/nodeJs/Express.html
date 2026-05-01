@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NODE Express</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">NODE Express</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="https://expressjs.com/es/" class="link_file" target="_Blank">Express.js</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- NODE.JS -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // Express
+    Web framework for node.js
+    cd C:\xampp\htdocs\Coding\Resources\CodingNotes\content\nodeJs\expressjs
+
+    Create new folder, then: npm init --yes
+    then: npm install express 
+    
+</code>
+</pre>
+
+<!-- NODE.JS -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //GETTING STARTED
+    const express = require('express');
+    const app = express();
+
+    app.get('/',(req,res)=>{
+        res.send('Hello World from Express');
+    });
+
+    app.listen(3000);
+
+    //in browser: http://localhost:3000
+
+</code>
+</pre>
+
+<!-- NODE.JS -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // HTTP GET AND ROUTE PARAMETERS
+
+    const express = require('express');
+    const app = express();
+    
+    app.get('/',(req,res)=>{
+        res.send('Hello World from Express 2');
+    });
+    
+    app.get('/example',(req,res)=>{
+        res.send('Hitting example route');
+    });
+    
+    app.get('/example/:name/:age',(req,res)=>{
+        console.log(req.params);
+        console.log(req.query); //2* and 3*
+        res.send(req.params.name + " : " + req.params.age );
+    });
+    
+    app.listen(3000);
+    
+    
+    //IN browser: http://localhost:3000/example/pedro/25
+    
+    //2-in terminal there will be an object, to have it filled write in browser http://localhost:3000/example/pedro/25?tutorial=paramstutorial
+    //it will show in terminal: { tutorial: 'paramstutorial' }
+    
+    //3-in terminal there will be an object, to have it filled write in browser http://localhost:3000/example/pedro/25?tutorial=paramstutorial&sort=byage
+    //it will show in terminal: { tutorial: 'paramstutorial', sort: 'byage' }
+    
+    //When use route paramenters: When you must have that data, it cannot be blank
+    //Query string parameters: When we want to have some optional 
+</code>
+</pre>
+
+<!-- NODE.JS -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //SERVING STATIC FILES WITH EXPRESS
+    //html, css, javascript, images, videos etc
+
+    //create a folder called static with index.html, subfolders of css and js, and inside main.css, main.js
+    //it will show that html with the linked css but it will show in browser inspection another folder "public" not static, the one we created
+
+    const express = require('express');
+    const path = require('path');
+    const app = express();
+
+    app.use('/',express.static(path.join(__dirname, 'static'))); //using middleware
+    app.get('/',(req,res)=>{
+        res.sendFile(path.join(__dirname,'static','index.html'));
+    });
+
+    app.listen(3000);
+</code>
+</pre>
+
+<!-- NODE.JS -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // HTTP POST REQUEST W EXPRESS AND BODY PARSER MODULE
+    //INDEX FILE WITH A FORM WITH EMAIL AND PASSWORD TO SUBMIT
+    //WE NEED A MODULE TO PARSE DATA
+    //INSTALL npm install body-parser
+
+    const express = require('express');
+    const path = require('path');
+    const bodyParser = require('body-parser')
+    const app = express();
+
+    app.use('/public',express.static(path.join(__dirname, 'static'))); //using middleware
+    app.use(bodyParser.urlencoded({extended:false})); //Allows us to parse URL data forms
+    app.get('/',(req,res)=>{
+        res.sendFile(path.join(__dirname,'static','index.html'));
+    });
+
+    app.post('/',(req,res)=>{
+        console.log(req.body);
+        //When you post something to the server you do some database work here
+        res.send('successfully posted data');
+    });
+
+    app.listen(3000);
+
+</code>
+</pre>
+
+<!-- NODE.JS -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //WORKING WITH JSON DATA IN EXPRESS AND BODY PARSER MODULE
+    //Using indexJson.html
+    //Some Json methods , using jquery in the html file to have an ajax response to the form
+    
+    const express = require('express');
+    const path = require('path');
+    const bodyParser = require('body-parser')
+    const app = express();
+    
+    app.use('/public',express.static(path.join(__dirname, 'static'))); //using middleware
+    app.use(bodyParser.urlencoded({extended:false})); //Allows us to parse URL data forms
+    app.use(bodyParser.json());
+    
+    app.get('/',(req,res)=>{
+        res.sendFile(path.join(__dirname,'static','indexJson.html'));
+    });
+    
+    app.post('/',(req,res)=>{
+        console.log(req.body);
+        //When you post something to the server you do some database work here
+        res.json({success : true});
+    });
+    
+    app.listen(3000);
+</code>
+</pre>
+
+<!-- NODE.JS -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // USER INPUT VALIDATION WITH EXPRESS AND JOI
+    //npm install joi
+
+    //We need to validate the data. We create a Schema
+    //Doesn't work Joi.validate
+    const express = require('express');
+    const path = require('path');
+    const Joi = require('joi');
+    const bodyParser = require('body-parser')
+    const app = express();
+
+    app.use('/public',express.static(path.join(__dirname, 'static'))); //using middleware
+    app.use(bodyParser.urlencoded({extended:false})); //Allows us to parse URL data forms
+    app.use(bodyParser.json());
+
+    app.get('/',(req,res)=>{
+        res.sendFile(path.join(__dirname,'static','indexValidate.html'));
+    });
+
+    app.post('/',(req,res)=>{
+        console.log(req.body);
+        const schema = Joi.object().keys({
+            email : Joi.string().trim().email().required(),
+            password : Joi.string().min(5).max(10).required()
+        });
+
+        Joi.validate(req.body,schema,(err,result)=>{
+            if(err){
+                console.log(err);
+                res.send('an error has ocurred');
+            }
+            console.log(result);
+            res.send('Successfully posted data');
+        });
+    });
+
+    app.listen(3000);
+
+</code>
+</pre>
+
+<!-- NODE.JS -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //User Input Validation with JOI Validating Nested Object and Arrays
+    //Doesn't work *******
+
+
+    const Joi = require('joi');
+
+    // const arrayString = string[];
+    const arrayString = ['banana', 'bacon', 'cheese'];
+    const arrayObjects = [{example: 'example1'},{example: 'example2'},{example: 'example3'}];
+    const userInput = { personalInfo: {
+                            streetAddress: '12343434',
+                            city: 'Boston',
+                            state: 'fl'
+                        },
+                        preferences: arrayString}; //change to arrayObjects
+
+    //Schema for personal info
+    const personalInfoSchema = Joi.object().keys({
+        streetAddress: Joi.string().trim().required(),
+        city: Joi.string().trim().required(),
+        state: Joi.string().trim().length(2).required()
+    })
+
+    //Schema for preferences with Array String
+    const preferencesSchema = Joi.array().items(Joi.string());
+    //Schema for preferences with Array Objects
+    // const preferencesSchema = Joi.array().items(Joi.object().keys({
+    //     example : Joi.string().required()
+    // }));
+    // preferences: arrayString};
+
+    const schema = Joi.object().keys({
+        presonalInfo: personalInfoSchema,
+        preferences : preferencesSchema
+    });
+
+
+    Joi.valid(userInput,schema,(err,result)=>{
+        if(err){
+            console.log(err);
+        }
+        console.log(result);
+    });
+
+</code>
+</pre>
+
+<!-- NODE.JS -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // EJS TEMPLATES WITH EXPRESS
+
+    //localhost:3000/books 
+    //you can use this to create dinamic websites, 
+    //Does not work
+
+    const express = require('express');
+    const path = require('path');
+    const app = express();
+
+    app.use('/public',express.static(path.join(__dirname, 'static'))); //using middleware
+    app.set('view engine','ejs');
+
+    app.get('/:userQuery',(req,res)=>{
+        res.render('index',{data : {userQuery : req.params.userQuery,
+                                    searchResults: ['book1', 'book2','book3'],
+                                    loggedIn : true,
+                                    username : 'Pablo'
+                            }});
+    });
+
+    app.listen(3000);
+
+    &lt;div>
+        &lt;!-- &lt;h2>You searched for: &lt;%=data.userQuery %> &lt;/h2> -->
+
+        &lt;%= if(data.loggedIn){ %>
+            &lt;h2>You are logged in as:  &lt;%= data.username %>&lt;/h2>
+
+            &lt;%= }%>
+        &lt;ul>
+            &lt;!-- &lt;%=data.searchResults.forEach(result=>{  %>
+                &lt;li> &lt;%= result %>&lt;/li>
+            &lt;%= }); %> -->
+
+
+            &lt;!-- &lt;li>&lt;%=data.searchResults[0] %>&lt;/li>
+            &lt;li>&lt;%=data.searchResults[1] %>&lt;/li>
+            &lt;li>&lt;%=data.searchResults[2] %>&lt;/li> -->
+        &lt;/ul>
+    &lt;/div>
+
+</code>
+</pre>
+
+<!-- NODE.JS -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //MIDDLEWARE
+    //What is and how we can create them. 
+    //Code executed between the user and server
+
+    //localhost:3000
+    //localhost:3000
+
+    const express = require('express');
+    const bodyParser = require('body-parser')
+    const app = express();
+
+    app.use(bodyParser.json()); //Middleware function, checks if there is JSON sent, parses
+
+    //OWN MIDDLEWARE FUNCTION
+    app.use((req,res,next)=>{
+    req.banana = "banana"; //assign a param 
+    console.log(req.url,req.method);
+    next();
+    });
+
+    app.get('/',(req,res)=>{
+    console.log(req.banana); //gets printed in console
+    res.send('Middleware');
+    });
+
+    app.listen(3000);
+
+</code>
+</pre>
+
+<!-- NODE.JS -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //WORKING WIT THE EXPRESS ROUTER
+    //WORKING WIT THE EXPRESS ROUTER
+    //Separate the routes into different files
+
+    const express = require('express');
+    const path = require('path');
+    const app = express();
+
+    app.use('/public',express.static(path.join(__dirname, 'static'))); //using middleware
+    app.set('view engine','ejs');
+
+    const people = require('./routes/people');
+
+    app.use('/people',people);
+
+    app.listen(3000);
+
+
+    //ANOTHER FILE IN folder routes People.js:
+    const express = require('express');
+    const route = express.Router();
+
+    route.use((req,res,next)=>{
+        console.log('middleware being used');
+        next();
+    });
+
+
+    route.get('/', (req,res)=>{
+        res.send('/ being hit');
+    });
+
+    module.exports = route;
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

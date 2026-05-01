@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySQL ExamBase</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+    </a>
+    <h1 class="title_template">MySQL - EXAM BASE</h1>
+   
+
+        
+<div class= "code_container">
+
+<!-- MySQL -->
+<pre class="prettyprint">
+<code class="language-sql" spellcheck="false">
+    //--EXAMEN BASE DE DATOS 2DAM SEMIPRESENCIAL 2021-02-03 ALBERTO TORIBIO RUIZ
+
+    CREATE DATABASE XXXXX 
+    
+    GO
+    
+    USE XXXXX
+    
+    GO
+    
+    CREATE TABLE XXXXXXXXX(
+    idXXXXX INT IDENTITY(1,1) PRIMARY KEY,
+    idXXXXXX INT FOREIGN KEY REFERENCES XXXXX(idGrupo) ON UPDATE CASCADE,
+    dniXXXX VARCHAR(9) FOREIGN KEY REFERENCES XXXXXX(dni) ON UPDATE CASCADE,
+    total INT,
+    Constraint "Numero entre 1 y 8" CHECK (total BETWEEN 1 AND 10),
+    primary key (idGrupo, dniVisitante, idXXXXX),
+    FOREIGN KEY(111, 222) REFERENCES XXXX(111,222),
+    
+    )
+    GO
+    
+    CREATE TABLE 2(
+    Fecha DATE default getdate(),
+    FechaHora DATETIME default getdate(),
+    Precio FLOAT not null,
+    dni CHAR(9) UNIQUE,
+    Nombre VARCHAR(25) not null,
+    Apellidos VARCHAR(30) not null,
+    Municipio VARCHAR(40),
+    matricula VARCHAR(12) UNIQUE,
+    stock INT default 0 CHECK (Stock >= 0),
+    Peso INT not null,
+    PesoGr AS (Peso/100)
+    ) 
+    GO
+    
+    --INSERT. IDENTITY NO
+    --INSERT INTO xxxxxxx (1111,2222) VALUES(1111, 'asdasdasd')
+    --INSERT INTO Grupo VALUES ('23/01/2020', '15:09:00', 1)
+    --DATE '20200131' '17/5/2020' '2017-04-05'
+    
+    
+    
+    /*
+    --1 
+    --VIEW (hay que poner las columnas ) no se puede utilizar order by
+    CREATE OR ALTER VIEW vwXXXXX ("", "","")
+    AS
+        SELECT
+        WITH CHECK OPTION
+    GO
+    
+    SELECT * FROM vwXXXXXX
+    
+    
+    --2 
+    --PROCEDURE
+    CREATE OR ALTER PROCEDURE spXXXXX @num INT, @num2 FLOAT, @nom VARCHAR(20), @echa DATE, 
+    AS
+        DECLARE @xxxx INT VARCHAR(20) FLOAT
+        SET @total = (SELECT * FROM )
+        SELECT
+    GO
+    
+    execute spProcedimiento 99,'ASDAS';
+    
+    
+    --3 
+    -- TRIGGER 
+    CREATE OR ALTER TRIGGER trXXXXX ON xxxxxx FOR INSERT, UPDATE, DELETE
+    AS
+        DECLARE @xxxx INT VARCHAR(20) FLOAT DATE
+        DECLARE @total INT
+        SET @xxxx = (SELECT * FROM INSERTED/DELETED)
+        SET @total = (SELECT * FROM )
+        IF()
+        BEGIN 
+            raiserror('xxxxxxx', 16,1)
+            rollback transaction
+        END
+    GO
+    --if ( (SELECT Nota FROM inserted) &lt;> (SELECT Nota FROM deleted) )
+    
+    
+    --4 
+    
+    
+    
+    --5
+    
+    */
+    
+    
+    
+    /*
+    
+    --FUNCION (dbo.nombrefuncion para llamar)
+    
+    CREATE OR ALTER FUNCTION xxxxxxx (@idAlumno INT) RETURNS varchar(50)
+    AS
+    
+    BEGIN
+        DECLARE @AsignaturasSuspendidas INT
+        set @AsignaturasSuspendidas = (SELECT COUNT(N.Nota) FROM Alumno A INNER JOIN Nota N on A.idAlumno = N.idAlumno WHERE N.Nota &lt; 5 AND A.idAlumno = @idAlumno)
+        return @asignaturasSuspendidas 
+    END
+    
+    GO
+    
+    SELECT A.Nombre, dbo.AlumnosCon3Suspendidas(idAlumno) AS 'Asignaturas Suspendidas' FROM Alumno A WHERE dbo.AlumnosCon3Suspendidas(idAlumno) >= 3
+    
+    
+    
+    -------------------------
+    --OTROS
+    
+    
+    --FOREIGN KEY
+    FOREIGN KEY (Temporada, Capitulo) REFERENCES Capitulo(Temporada, Capitulo),
+    PRIMARY KEY (Temporada, Capitulo)
+    
+    CASCADES on update cascade on delete cascade (se pueden poner juntos
+    on update cascade
+    on delete cascade
+    on delete set default
+    on delete set null
+    
+    --SELECT 'DATOS PUESTOS POR MI' "COLUMNA AÑADIDA"
+    
+    --INDEX UNIQUE
+    --create unique index akAvionSoloVuelaUnaVez on vuelo (matriculahidro,fecha) --Para hacer que una tabla no se puedan repetir ciertos valores sin ser primary key
+    --CREATE UNIQUE index AK_Jamon on Jamon(idEmpresa, NumeroSerie) -- Hace que no se repita el mismo num de seria para la misma empresa
+    
+    --UPDATES Usar WHERE!!
+    --UPDATE Alumno SET nombre= 'Jose', notamedia = (SELECT AVG(nota*1.0) FROM Nota WHERE nota.idAlumno = alumno.idAlumno) WHERE idAlumno = 1
+    --UPDATE alumno set idMunicipio = (select idMunicipio from municipio M where m.Nombre=alumno.Municipio) 
+    --RETURN para hacer que pare un procedimiento/trigger y no continue
+    --CAST(getdate() AS DATE) // CAST(GETDATE() AS TIME)
+    --DATE,  //  '20200131' '17/5/2020' '2017-04-05' 
+    --DATETIME 	YYYY-MM-DD hh:mm:ss[.nnn]
+    --fecha datetime default getdate() ,  
+    --Hora TIME // '15:09:00'
+    --DATETIME TO DATE   where cast(v.fecha as DATE)= cast (GETDATE() as DATE) --Si tenemos que pasar datetime 
+    
+    --DEFAULT SYSDATE
+    --AGGREGATE FUNCTIONS: 
+            --SUM: Group by?
+            --MAX: SELECT MAX(nota) FROM Nota
+            --MIN: SELECT MIN(nota) FROM Nota
+            --COUNT Group by?
+            --AVG. DO A FILTER WITH HAVING
+            --AVG(nota*1.0) 
+            --AVG(cast(nota as float)) // CAST(AVG(N.Nota*1.0) AS DECIMAL (5,2)) 
+    
+    --WILDCARDS: % _ ? Like %ose
+        --LIKE "%ronte"
+    --ORDER BY ORDER BY APELLIDOS;
+    --DISTINCT // GROUP BY
+    --UNION: Left, Right, Inner IF REquests show all even if they have 0 CERO
+    --CONCAT SELECT CONCAT(‘p’, idProfesor) AS id, name, surname from profesore;
+    --SELECT (Tarifa* visitantes)
+    --CHECK: Constraint "Numero entre 1 y 8" CHECK (idTemporada BETWEEN 1 AND 10)
+    --UNIQUE: dni varchar(9) UNIQUE
+    --CONSTRAINT: constraint YA_EXISTE_CLAVE2 primary key (id1,id2) // Constraint "Numero entre 1 y 8" CHECK (idTemporada BETWEEN 1 AND 10)
+    --IS NULL: WHERE idProfesorTutor IS NULL;
+    --IDENTITY (1,1)// IDENTITY (30,2) --empieza en 30 y va de 2 en 2
+    
+    
+    --Comprobar si hay un nombre, id particular y que lance error si  no lo hay
+        declare @idJamon int
+        set @idJamon=(select idJamon from Jamon where NumeroSerie=@numSerieJamon) -- también haría falta poner " and idEmpresa = @idEmpresa ", pero no se pidio en el enunciado
+        if (@idJamon is null)
+            begin
+                raiserror ('No existe este jamon' ,16,1)
+                return
+            end
+    
+    
+    OTHERS:
+    create table municipio 
+       (idMunicipio int identity (38001,1) primary key,  Nombre varchar(50))
+       
+    
+    
+    TABLAS TEMPORALES
+    --create table #temporal
+    --create table ##pepe
+    
+    */
+
+</code>
+</pre>
+
+
+<!-- MySQL -->
+<pre class="prettyprint">
+<code class="language-sql" spellcheck="false">
+    // EXAM HELP
+    --TRICKS
+
+
+    --EXAMENES
+    /*
+    --Aparcamientos: Simple tabla // con fecha y IS NULL en salida.  
+        V Parkings con Plazas Libres
+        T 200 Coches Max por parking
+        SP Coche -> Parking en el que esta
+        SP Parking -> Coches en él
+    
+    --Caballos Oeste: creacion tablas no clara, un caballo siempre en un establo, puede estar en película. Segun el profe en Caballo ponemos idEstablo e idPelicula
+        V Caballos por establo
+        T No superar capacidad establo
+        SP Caballos en establo en momento dado
+        SP Donde esta un caballo
+    
+    --Calorias: hay que hacer función que cree las calorias, vista que cree las calorias por ingrediente en cada plato y finalmente vista con las calorias totales de cada plato o de un plato en particular
+        V Calorias por plato. Creo funcion para calcular las calorias de cada ingrediente en cada plato, luego vista usando la funcion que muestra los platos, sus ingredientes y sus calrias
+                            Finalmente hago vista que suma las calorias de los ingredientes agrupando por plato
+        SP Calorias de un plato
+        T Control del máximo de calorias al poner un plato en desayuno, comida, cena
+    
+    --Canyon: Grupo y visita, visitantes y guia, fecha y hora
+        T Personas no más de 25 + guia
+        SP Paises del grupo en ese intervalo Fecha y hora 
+        V Personas que visitaron más de una vez, 
+    
+    --Carritos Golf Hotel: idhabitacion en cliente, e id cliente (ya que el cliente puede volver varias veces y tener distintas habitaciones), tabla carrito y alquiler
+        SP Nombre cliente e intervalo y nos da los carritos alquilados
+        V Carritos en uso actualmente o  
+        V Carritos libres
+        T Impedir que un carrito sea alquilado por otro
+    
+    --Croacia: tabla turistas y pasaje. 2 Maneras... id excursion o idbarco/fecha
+        SP Tripulacion en una fecha determinada
+        T No sobreparsar Tripulación y Pasajeros, 2 Triggers
+        V Plazas libres hoy
+        T Turista no puede hacer 2 excursiones al mismo tiempo
+    
+    --Dispositivos:  IP, Propietarios
+        V Dispositivos IP Fija
+        SP @IP - Datos de dispositivo
+        T Una persona maximo 3 dispositivos
+        V Num dispositivos por Marca
+    
+    --Fotos Personales: Evento, Foto
+        T max 200 fotos por evento
+        V total fotos por evento( left join para que salgan todos los eventos)
+        SP @nombreEvento - Fotos de ese evento
+    
+    --Helicoptero: excursion y pasaje. 
+        T No sobrepasar capacidad y peso máximo,  2 triggers
+        V vuelos de hoy, 
+        SP nombre ap pasajero y vuelos realizados, 
+        SP piloto e intervalo fechas - vuelos realizados con cada helicopteros
+    
+    
+    --Hidroavion: Vuelo Pasaje, 
+        T no sobrepase peso, 
+        V pasajeros hoy
+        SP @matricula e intervalo @fechas- vuelos realizados
+        SP @fecha - vuelos no completos
+    
+    --Isla Fraser 4x4: Excursion, ClientesExcursion
+        V Pasajeros a recoger hoy
+        SP @pasajeroNom - veces como cliente
+        T No superar capacidad
+        SP @fecha- cestas de comida y agua
+    
+    --Jamones: columna calculada, Gramos kilos
+        T No dejar vender más del peso del jamón
+        V Cantidad Jamon vendido por dia
+        SP @empresa - Jamones comprados
+        SP @numSerie jamon - dinero conseguido vendiendolo en paquetes SELECT (@precioJamon * @pesoVendido)
+    
+    --Juego Tronas
+        V Total capitulos por temporada
+        SP @actor -- datos de los capitulos
+        T actor maximo 10 capitulos
+    
+    
+    --Linea Cableado: Intervalo Fechas @1@2 BETWEEN
+        V Cantidad de instalaciones por cliente
+        SP @nombreMun - relacion de instalaciones
+        SP @intervaloFechas - cantidad de cable
+        T Maximo 3 instalaciones
+    
+    --Munecos: Un elemento que sólo puede darse una vez, material, creamos tabla nueva. Check stock > 0
+        T Actualizar stock tras venta
+        V Cantidad ventas por muñeco
+        SP @color Num muñecos de ese color
+    
+    --Postales Aviones
+        SP @compañia - relacion postales
+        T no mas de 20 postales con mismo modelo avion
+        V relacion postales aviones volando
+        SP Modelo avion con mas postales
+    
+    --Ruta de la Tapa
+        T No mas 4 personas por tarjeta
+        V tarjetas con mas establecimientos sellados
+        SP @bar - total tarjetas y cantidad tapas
+        SP Bares que han vendido un @minimodetapas
+    
+    
+    --Top Of the Rocks: Vistas
+        V Grupos hoy
+        T No crear grupos fuera de las horas
+        SP @fecha dinero recaudado
+    
+    --Obras: Obra, pago
+        T Pagos parciales no supere presupuesto
+        V Obras no finalizadas
+        SP @cliente- sus obras finalizadas
+        V Obras no completamente pagadas
+    
+    --Sensores Arduinos: OrdenadoresConSensores Datos
+        V tipos de sensores grabados en el historico
+        T Arduino maximo 4 sensores
+        SP @arduino - historico de sensores
+        SP @nombresensor - Media de los valores de ese tipo de sensor
+    
+    --Vallas Publicitarias: Facil es sin fechas, con fechas se complica
+        T no mas de 10 vallas al mismo tiempo por cliente
+        V Total vallas por cliente contratadas
+        SP @cliente-- vallas contratadas
+        V Vallas libres
+    
+    --TV Cadenas
+    
+    
+    
+    
+    --TRIGGER
+    menos de: delete, update
+    No deje cambiar algo: Update~ se compara 
+    
+    --LEFT JOIN: para mostrar por ejemplo todos los juguetes y las ventas aunque no haya
+    */
+    
+    --VARIAS FOREIGN KEY AS PRIMARY KEY
+     create table vuelo
+     (
+      matricula varchar(12) foreign key references helicoptero(matricula), 
+      fecha datetime default getdate() ,   
+      valoracion INT,
+      idPiloto int foreign key references piloto(idPiloto),  
+      primary key (Matricula,fecha),
+      constraint "Valoración entre 1 y 10" check (valoracion between 1 and 10), 
+     )
+    go
+    
+    create table Billete -- relacion vuelo pasajero.
+     (
+      matricula varchar(12), 
+      fecha datetime ,
+      foreign key (matricula,fecha) references vuelo (matricula,fecha),
+      idPasajero varchar(15) foreign key references pasajero (idPasajero),
+      primary key (matricula,fecha,idPasajero)
+     )
+    go
+    
+    --EN caso de que en una tabla tengamos varios foreign key que sean primary key se declaran los campos
+    --y luego se añaden dos lineas para el foreign key y el primary key
+    FOREIGN KEY (Temporada, Capitulo) REFERENCES Capitulo(Temporada, Capitulo),
+    PRIMARY KEY (Temporada, Capitulo)
+    
+    
+    
+    --CONSULTAS ESPECIALES Y DIFICILES
+    
+    --SUBCONSULTAS
+    --EXISTS / NOT EXISTS muy usado en las complejas
+    --IN
+    --ALL // ANY
+    
+    --EXISTS
+    --IN (se usa con columna de datos, cuando se devuelven varias filas con un dato ?¿)
+    --EXISTS (tiene que haber una mínimo, se usa * ?¿ - Hay filas o no hay filas exists (Select * From laPepa...)
+    
+    --SUBCONSULTAS EN HAVING
+    --GROUP BY HAVING count(*) > (....)
+    
+    --WHERE por cada fila
+    --HAVING por cada grupo
+    
+    
+    --EL QUE MAS
+    --&lt; ALL G2
+    /*
+    SELECT N.idAlumno, AVG(N.Nota) FROM Nota N
+    GROUP BY N.idAlumno
+    HAVING AVG(N.Nota) > ALL (SELECT AVG(N.Nota*1.0) FROM NOTA N GROUP BY N.idAlumno)
+    
+    --TOP 1
+    SELECT TOP 1 AVG(Nota*1.0) FROM NOTA
+    GROUP BY idAlumno
+    ORDER BY 1 DESC;
+    */
+    
+    
+    --EL QUE TIENE MAS PROCEDIMIENTO
+    
+    /*
+        declare @maximo int
+       
+        set @maximo=( select top 1 COUNT(*) from postal p
+                      group by p.modelo
+                      order by 1 desc)  
+    
+        select  p.modelo "Modelo"   from postal p       
+        group by p.modelo
+        having COUNT(*) = @maximo  
+        */
+    
+    
+    
+    --No llenos
+    /*
+    create procedure spNoEstanLlenos @fecha date
+    as
+      select matriculaHidro , piloto.nombre from vuelo 
+          inner join piloto on (piloto.idPiloto =vuelo.idpiloto)
+      where fecha = @fecha 
+            and  10 > (select COUNT(*) from pasaje 
+                        where pasaje.idVuelo = vuelo.idVuelo)      
+    
+    go
+    
+    
+    
+    --3 Vista que nos de la relación de personas que han VISITA MÁS DE UNA VEZ este destino turístico.
+    CREATE OR ALTER VIEW vwVisitantesQueRepiten ("pasaporte", "Nombre", "Apellidos")
+    AS
+        SELECT Vis.pasaporte, Vis.Nombre, Vis.Apellidos FROM Visita V
+        INNER JOIN Visitante Vis ON V.pasaporte = Vis.pasaporte
+        GROUP BY Vis.pasaporte, Vis.Nombre, Vis.Apellidos
+        HAVING COUNT(V.pasaporte) > 1
+    GO
+    
+    
+    
+    --Relación de alumnos del 811NMA que tiene al menos una asignatura suspendida 33 filas
+    SELECT * FROM Alumno A
+    WHERE A.idGrupo = '811NMA' AND A.idAlumno IN (SELECT N.idAlumno FROM Nota N WHERE N.Nota &lt; 5);
+    
+    SELECT * FROM Alumno A
+    WHERE A.idGrupo = '811NMA' 
+    AND (SELECT count(*) FROM Nota N WHERE N.idAlumno = A.idAlumno AND Nota &lt; 5) >=1;
+    
+    SELECT * FROM Alumno A
+    WHERE A.idGrupo = '811NMA' AND
+    EXISTS (SELECT * FROM Nota N WHERE N.idAlumno = A.idAlumno AND Nota > 5)
+    
+    
+    
+    ----E6-Relación de alumnos del centro que no aprueban ninguna asignatura. 4 filas
+    --Nota: debe tener asignatura y nota suspendida. Los que NO tienen asignaturas no entran en la relación.
+    SELECT * FROM Alumno
+    WHERE --(NO APRUEBA NINGUNA)
+    --A) todas sus notas &lt; 5 y tiene nota!!
+    --(not existen >= 5 y existen notas para este alumno)
+    NOT EXISTS (SELECT * FROM Nota WHERE Alumno.idAlumno = Nota.idAlumno AND Nota >= 5)
+    AND EXISTS (SELECT * FROM Nota WHERE Alumno.idAlumno = Nota.idAlumno)
+    
+    
+    FUNCIONES
+    
+    --CREAR FUNCION
+    CREATE OR ALTER FUNCTION Calorias (@idPlato INT, @idIngrediente INT) RETURNS FLOAT
+    AS
+    
+    BEGIN
+        DECLARE @CaloriasIngredientePlato FLOAT 
+        set @CaloriasIngredientePlato = (SELECT (InP.TotalCalorias*I.CaloriasPorGr) FROM IngredientesPlato InP INNER JOIN Ingrediente I ON  InP.idIngrediente = I.idIngrediente WHERE InP.idPlato = @idPlato AND I.idIngrediente = @idIngrediente)
+        return @CaloriasIngredientePlato
+    END
+    
+    GO
+    
+    --USAR FUNCION EN VISTA 
+    CREATE OR ALTER VIEW vwCalorias ("Plato", "idIngrediente", "Calorias")
+    
+    AS
+        SELECT InP.idPlato, InP.idIngrediente, dbo.Calorias(InP.idPlato, InP.idIngrediente) FROM IngredientesPlato InP 
+        INNER JOIN Ingrediente I ON InP.idIngrediente = I.idIngrediente
+    GO
+    
+    */
+    
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

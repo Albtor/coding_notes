@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySQL Group By</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+    </a>
+    <h1 class="title_template">MySQL - GROUP BY</h1>
+    <h4>Links</h4>
+    <ul>
+        <li class="link_list"><a href="CREATE_INSERT_BDAlumnos.sql" class="link_file" target="_Blank">DB SQL ALUMNOS</a></li>
+    </ul>
+
+        
+<div class= "code_container">
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-sql" spellcheck="false">
+    //GROUP BY
+
+    SELECT 'DATOS PUESTOS POR MI' "COLUMNA AÑADIDA", A.idAlumno, N.Nota FROM Alumno A
+    INNER JOIN Nota N ON  A.idAlumno = N.idAlumno
+    WHERE N.nota > 8;
+    
+    //--D0-EJEMPLOS BASICOS
+    SELECT idgrupo, count(*) AS 'ALUMNOS' FROM Alumno GROUP BY idGrupo
+    ORDER BY idGrupo;
+    
+    SELECT idgrupo, count(*) AS 'ALUMNOS' FROM Alumno A
+    INNER JOIN Nota N ON N.idAlumno = A.idAlumno
+    GROUP BY idGrupo
+    ORDER BY idGrupo;
+    
+    //--HAVING: Filtro para los grupos, después del group BY
+    SELECT idgrupo, AVG(N.nota*1.0)  AS 'ALUMNOS' FROM Alumno A
+    INNER JOIN Nota N ON N.idAlumno = A.idAlumno
+    WHERE A.idGrupo LIKE '%A'
+    GROUP BY idGrupo
+    HAVING AVG(N.Nota*1.0) &lt; 5
+    ORDER BY idGrupo;
+    
+    //--D1-Relación de notas medias de los alumnos del grupo 913NMB - 28 filas 2 con nota media, el resto con media valor NULL
+    SELECT A.idAlumno,AVG(cast(N.Nota AS FLOAT)) FROM GRUPO G 
+    INNER JOIN Alumno A ON G.idGrupo = A.idGrupo
+    LEFT JOIN Nota N ON A.idAlumno = N.idAlumno
+    WHERE G.idGrupo = '913NMB'
+    GROUP BY A.idAlumno;
+    
+    //--D2-Número de asignaturas que imparte cada profesor del centro. Los que no tengan debe salir 0.  113 filas
+    SELECT P.idProfesor, P.Nombre, COUNT(ASG.idAsignatura) AS 'Numero Asignaturas' FROM Profesor P
+    LEFT JOIN AsignaturasGrupo ASG ON P.idProfesor = ASG.idProfesor
+    GROUP BY P.idProfesor, P.Nombre
+    ORDER BY [Numero Asignaturas];
+    
+    //--D3-Nota media de los alumnos de cada municipio. 40 filas
+    SELECT A.Municipio, AVG(cast(Nota*1.0 AS FLOAT)) FROM ALUMNO A
+    INNER JOIN Nota N On A.idAlumno = N.idAlumno
+    GROUP BY A.Municipio
+    ORDER BY A.Municipio;
+    
+    //--D4-Nota media de las notas puestas a los alumnos por cada profesor. 81filas, 113 si se quieren incluir todos aunque no pusieran notas.
+    SELECT P.idProfesor, cast(AVG(N.Nota*1.0) AS DECIMAL(5,2)) FROM NOTA N
+    INNER JOIN AsignaturasGrupo ASG ON N.idAsignatura = ASG.idAsignatura
+    RIGHT JOIN Profesor P ON ASG.idProfesor = P.idProfesor
+    GROUP BY P.idProfesor;
+    
+    //--D5-Relación de alumnos de El SAUZAL cuya nota media este entre 2 y 6. 111 filas
+    SELECT A.idAlumno AS id, A.Nombre+Apellidos AS Alumno, CAST(AVG(N.Nota*1.0) AS DECIMAL (5,2)) AS 'Nota media' FROM Alumno A
+    INNER JOIN Nota N ON A.idAlumno = N.idAlumno
+    WHERE A.Municipio LIKE '%SAUZAL'
+    GROUP BY A.idAlumno, A.Nombre+Apellidos
+    HAVING CAST(AVG(N.Nota*1.0) AS DECIMAL (5,2)) BETWEEN 2 AND 6
+    ORDER BY [Nota media];
+    
+    //--D6-Relación de nota media por profesor y asignatura  214 filas
+    SELECT P.nombre, ASG.idProfesor, N.idAsignatura, AVG(N.Nota*1.0) AS 'Nota' 
+    FROM Profesor P
+    INNER JOIN AsignaturasGrupo ASG ON ASG.idProfesor = P.idProfesor
+    INNER JOIN Alumno A ON A.idGrupo = ASG.idGrupo
+    INNER JOIN NOTA N ON A.idAlumno = N.idAlumno AND N.idAsignatura = ASG.idAsignatura
+    GROUP BY P.Nombre, ASG.idProfesor, N.idAsignatura;
+    
+    
+    //--D7-Relación de nota media por asignatura.  279 filas
+    SELECT ASG.idAsignatura, CAST(AVG(N.Nota*1.0) AS DECIMAL (5,2))
+    FROM NOTA N
+    INNER JOIN Asignatura ASG
+    ON N.idAsignatura = ASG.idAsignatura
+    GROUP BY ASG.idAsignatura
+    
+    
+    //--D8-Relación de nota media por asignatura del grupo 913NMA. 14 filas  
+    SELECT ASG.idAsignatura, ASG.Denominacion, CAST(AVG(N.Nota*1.0) AS DECIMAL (5,2))
+    FROM NOTA N
+    INNER JOIN Asignatura ASG ON N.idAsignatura = ASG.idAsignatura
+    INNER JOIN Alumno A ON N.idAlumno = A.idAlumno
+    WHERE A.idGrupo = '913NMA'
+    GROUP BY ASG.idAsignatura, ASG.Denominacion;
+    
+    
+    //--D9-Relación alumnos con sus notas medias que son de TACORONTE y tienen de nota media entre un 5 y un 9.  298 FILAS (NO ES 289, FALLO EN APUNTES)
+    SELECT A.idAlumno, AVG(N.Nota*1.0) FROM ALUMNO A
+    INNER JOIN Nota N ON A.idAlumno = N.idAlumno
+    WHERE A.Municipio LIKE '%TACORONTE'
+    GROUP BY A.idAlumno
+    HAVING AVG(N.Nota*1.0) BETWEEN 5 AND 9;
+    
+    //--RECHECK
+    //--D10-Relación del número de bajas de cada grupo. Incluir en la relación también los grupos que tienen CERO bajas. 52 Filas
+    //--importante no usar *  porque te cuenta las filas como 1, creo
+    SELECT G.idGrupo, COUNT(B.Grupo) AS 'Numero de Bajas' FROM  Grupo G
+    LEFT JOIN  Bajas B ON B.Grupo = G.idGrupo 
+    GROUP BY G.idGrupo;
+    
+    
+    
+    
+    //--CAST(AVG(N.Nota*1.0) AS DECIMAL (5,2)) 
+    //--CAST(AVG(N.Nota) AS FLOAT)
+    
+
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

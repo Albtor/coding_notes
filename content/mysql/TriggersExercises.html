@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySQL Triggers Exercises</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+    </a>
+    <h1 class="title_template">MySQL - TRIGGERS EXERCISES</h1>
+    <h4>Links</h4>
+    <ul>
+        <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+    </ul>
+
+        
+<div class= "code_container">
+
+<!-- MySQL -->
+<pre class="prettyprint">
+<code class="language-mysql" spellcheck="false">
+    // TRIGGERS EXERCISES
+    
+    //--1. No deje que un alumno tenga mas de 5 asignaturas en la tabla de notas (comprobarlo al insertar)
+    create or alter trigger trMenosDe5Asignaturas on nota for UPDATE
+    as
+        declare @idAlumno int -- a quien le estas haciendo esto!!
+        set @idAlumno=(select idAlumno from deleted) 
+        declare @asignaturas int
+    
+        set @asignaturas = (select count(*) from Nota  WHERE idAlumno=@idAlumno)
+        if (@asignaturas > 5)
+        begin
+            raiserror ('Tiene mas de cinco asignaturas', 16,1)
+            rollback transaction
+        end
+    GO
+    
+    //--2. No deje que un alumno tenga menos de 3 asignaturas en la tabla de notas (comprobarlo al borrar)
+    CREATE OR ALTER TRIGGER trMenosDe3Asignaturas ON Nota FOR DELETE
+    AS
+        DECLARE @idAlumno INT
+        set @idAlumno = (SELECT idAlumno FROM deleted)
+        DECLARE @asignaturas INT
+        SET @asignaturas = (SELECT COUNT(*) FROM Nota WHERE idAlumno = @idAlumno)
+        if (@asignaturas &lt; 3)
+        BEGIN
+            raiserror ('Tiene menos de tres asignaturas', 16,1)
+            rollback transaction
+        end
+    GO
+    
+    
+    //--3. No deje cambiar el código de la asignatura en la tabla de notas (comprobarlo en el UPDATE)
+    CREATE OR ALTER TRIGGER trNoCambiesCodigoASignatura ON Nota FOR UPDATE
+    AS
+        DECLARE @idAsViejo INT
+        DECLARE @idAsNuevo INT
+        SET @idAsViejo = (SELECT idAsignatura FROM deleted)
+        SET @idAsNuevo = (SELECT idAsignatura FROM inserted)
+        if (@idAsViejo &lt;> @idAsNuevo)
+        BEGIN
+            raiserror ('No cambies el código de la asignatura', 16,1)
+            rollback transaction
+        END
+    GO
+    
+    //--4. Programar la base de datos de tal forma nos mantenga la nota media de alumno automáticamente. Es decir, según se modifica, añade o borran notas en la tabla de notas de
+    //--alumnos, la nota media del alumno se mantiene actualizada.
+    alter table alumno add notaMedia float
+    
+    GO
+    
+    CREATE OR ALTER PROCEDURE spNotaMedia @idAlumno INT, @nmedia float OUTPUT
+    AS
+    SET @nmedia = (select AVG( CAST (Nota as float)) from Nota where idAlumno=@idALumno)
+    GO
+    
+    CREATE OR ALTER TRIGGER trActualizarNotaMediaInsert ON Nota FOR INSERT
+    AS
+        DECLARE @idAlumnoInsertado INT
+        DECLARE @nmedia FLOAT
+        SET @idAlumnoInsertado = (Select idAlumno FROM inserted)
+        EXECUTE spNotaMedia @idAlumnoInsertado, @nmedia OUTPUT
+        UPDATE Alumno SET notaMedia = @nmedia WHERE idAlumno = @idAlumnoInsertado
+    GO
+    
+    
+    CREATE OR ALTER TRIGGER trActualizarNotaMediaDelete ON Nota FOR DELETE
+    AS	
+        DECLARE @idAlumno INT
+        DECLARE @nmedia FLOAT
+        SET @idAlumno = (Select idAlumno FROM deleted)
+        EXECUTE spNotaMedia @idAlumno, @nmedia OUTPUT
+        UPDATE Alumno SET notaMedia = @nmedia WHERE idAlumno = @idAlumno
+    GO
+    
+    CREATE OR ALTER TRIGGER trActualizarNotaMediaUpdate ON Nota FOR UPDATE
+    AS
+        DECLARE @idAlumno INT
+        DECLARE @nmedia FLOAT
+        SET @idAlumno = (Select idAlumno FROM inserted)
+        EXECUTE spNotaMedia @idAlumno, @nmedia OUTPUT
+        UPDATE Alumno SET notaMedia = @nmedia WHERE idAlumno = @idAlumno
+    
+        if (UPDATE (idAlumno) ) -- se cambio el idALumno => afecta a otro alumno
+        begin
+        set @idAlumno =(select idALumno from deleted) -- a qué alumno se le quito laasignatura
+        execute spNotaMedia @idAlumno, @nmedia output
+        update Alumno set notaMedia = @nmedia where idAlumno =@idAlumno
+        end
+    go
+    
+    
+    //--5. Crear un campo “Numero_de_notas_suspendidas” en la tabla grupos, de tal forma que
+    //--mantenga el valor actualizado del número de suspensos que hay puestos a los alumnos de ese grupo.
+    alter table Grupo add NotasSuspendidas INT
+    GO
+    
+    //--a. Hacer procedimiento que nos ponga el valor actual para todos los grupos.
+    
+    CREATE OR ALTER PROCEDURE spNumNotasSusp @idGrupo CHAR(6), @numNotasS INT OUTPUT
+    AS 
+        SET @numNotasS = (SELECT COUNT(N.Nota) FROM Nota N INNER JOIN Alumno A ON N.idAlumno = A.idAlumno WHERE A.idGrupo = @idGrupo AND N.Nota &lt; 5)
+    GO
+    //--b. Hacer que la BD. Mantenga automáticamente ese valor según se ponen notas.
+    CREATE OR ALTER TRIGGER trNumNotasSIntr ON Nota FOR INSERT
+    AS
+        DECLARE @idAlumno INT
+        DECLARE @idGrupo CHAR(6)
+        DECLARE @numNotasS INT 
+        SET @idAlumno = (SELECT idAlumno FROM INSERTED)
+        SET @idGrupo = (SELECT idGrupo FROM Alumno WHERE idAlumno = @idAlumno)
+        EXECUTE spNumNotasSusp @idGrupo, @numNotasS OUTPUT
+        UPDATE GRUPO set NotasSuspendidas = @numNotasS WHERE idGrupo = @idGrupo
+        
+    GO
+    
+    CREATE OR ALTER TRIGGER trNumNotasSIntr ON Nota FOR DELETE
+    AS
+        DECLARE @idAlumno INT
+        DECLARE @idGrupo CHAR(6)
+        DECLARE @numNotasS INT 
+        SET @idAlumno = (SELECT idAlumno FROM DELETED)
+        SET @idGrupo = (SELECT idGrupo FROM Alumno WHERE idAlumno = @idAlumno)
+        EXECUTE spNumNotasSusp @idGrupo, @numNotasS OUTPUT
+        UPDATE GRUPO set NotasSuspendidas = @numNotasS WHERE idGrupo = @idGrupo
+    GO
+    
+    CREATE OR ALTER TRIGGER trNumNotasSIntr ON Nota FOR UPDATE
+    AS
+        DECLARE @idAlumno INT
+        DECLARE @idGrupo CHAR(6)
+        DECLARE @numNotasS INT 
+        SET @idAlumno = (SELECT idAlumno FROM INSERTED)
+        SET @idGrupo = (SELECT idGrupo FROM Alumno WHERE idAlumno = @idAlumno)
+        EXECUTE spNumNotasSusp @idGrupo, @numNotasS OUTPUT
+        UPDATE GRUPO set NotasSuspendidas = @numNotasS WHERE idGrupo = @idGrupo
+    
+    
+    GO
+    
+    // FOR TESTING PURPOSES
+    //--INSERT INTO Alumno VALUES( 14, 'Alberto', 'Ruiz', '962NMA', 'Heliodoro R L 3',  '38006', '38006', 7)
+    //--GO
+    //--SELECT * FROM Alumno WHERE idAlumno = 14
+    //--INSERT INTO Nota VALUES(14, 22502, 6)
+    //--INSERT INTO Nota VALUES(14, 91306, 4)
+    //--DELETE FROM Nota WHERE idAlumno = 14 AND idAsignatura = 91306
+    //--SELECT * FROM NOTA WHERE idAlumno = 14
+    //--SELECT * FROM GRUPO WHERE idGrupo = '962NMA'
+    //--SELECT  COUNT(N.Nota) FROM Nota N INNER JOIN Alumno A ON N.idAlumno = A.idAlumno WHERE A.idGrupo = '962NMA' AND N.Nota < 5
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

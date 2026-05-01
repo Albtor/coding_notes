@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React ToDoApp</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+        </a>
+        <h1 class="title_template">REACT - ToDoApp</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    //img
+    <img src="img/todoApp.PNG" alt="" width="550">
+
+</code>
+</pre>
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // INDEX.JS
+    import React from 'react';
+    import ReactDOM from 'react-dom';
+    import App from './App'
+    import './index.css';
+
+
+    ReactDOM.render(
+        &lt;App/>,
+    document.getElementById('root')
+    );
+
+</code>
+</pre>
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // APP.JS
+    import React from 'react'
+    import TodoItem from "./components/TodoItem"
+    import todoData from './components/todoData';
+
+
+    class App extends React.Component { 
+    constructor(){
+        super()
+        this.state ={
+            todos: todoData
+        }
+        this.handleChange = this.handleChange.bind(this)
+        }
+    
+        handleChange(id){
+        // console.log("Changed", id)
+        //Create a new array. VIdeo todoApp pHase 6 2:40h*** Complex
+        this.setState(prevState => {
+            const updatedTodos = prevState.todos.map(todo => {
+            if (todo.id === id){
+                todo.completed = !todo.completed
+            }
+            return todo
+            })
+            return {
+            todos: updatedTodos
+            } 
+        }) 
+        
+        }
+        
+        render(){
+        const todoItems = this.state.todos.map(item => &lt;TodoItem key={item.id} item={item} handleChange={this.handleChange}/>)
+        
+        return (
+            &lt;div className="todo-list">
+                {todoItems}
+            &lt;/div>
+        )
+    }
+    }
+
+
+    export default App;
+</code>
+</pre>
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // TODOITEM.JS 
+    import React from 'react';
+
+    function TodoItem(props){
+
+    const completedStyle = {
+        fontStyle: "italic",
+        color: "#cdcdcd",
+        textDecoration: "line-through"
+    }
+        return (
+            &lt;div className="todo-item">
+            &lt;input type="checkbox" 
+            checked={props.item.completed} 
+            onChange={()=> props.handleChange(props.item.id)}/>
+            &lt;p style={props.item.completed ? completedStyle : null}>{props.item.text}&lt;/p>
+        &lt;/div>
+        )
+    }
+
+    export default TodoItem
+</code>
+</pre>
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // TODODATA.JS
+
+    
+    const todoData = [
+    {
+    id: 1,
+    text:"Take out the trash",
+    completed:true
+    },
+    {
+    id: 2,
+    text:"Grocery Shopping",
+    completed:false
+    },
+    {
+    id: 3,
+    text:"Cook lunch",
+    completed:true
+    },
+    {
+    id: 4,
+    text:"Walk in Park",
+    completed:false
+    }
+
+    ]
+
+    export default todoData
+    
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

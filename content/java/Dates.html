@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Dates</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVA DATES</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //JAVA &lt;
+    
+public Dates(){
+    //LocalDate             Represents a date (year, month, day (yyyy-MM-dd))
+    LocalDate myObj = LocalDate.now(); // Create a date object
+    System.out.println(myObj); //2021-03-30
+    
+    //LocalTime             Represents a time (hour, minute, second and nanoseconds (HH-mm-ss-ns))
+    LocalTime myObj2 = LocalTime.now();
+    System.out.println(myObj2); //22:02:02.781961  
+    
+    //LocalDateTime         Represents both a date and a time (yyyy-MM-dd-HH-mm-ss-ns)
+    LocalDateTime myObj3 = LocalDateTime.now();
+    System.out.println(myObj3); //2021-03-30T22:02:02.784843
+    
+    //DateTimeFormatter	Formatter for displaying and parsing date-time objects
+    LocalDateTime myDateObj = LocalDateTime.now();
+    System.out.println("Before formatting: " + myDateObj);
+    DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+
+    String formattedDate = myDateObj.format(myFormatObj);
+    System.out.println("After formatting: " + formattedDate);
+    
+    
+    //ofPattern()
+    //yyyy-MM-dd	"1988-09-29"	
+    //dd/MM/yyyy	"29/09/1988"	
+    //dd-MMM-yyyy	"29-Sep-1988"	
+    //E, MMM dd yyyy	"Thu, Sep 29 1988"
+    
+}
+    
+
+//1-VALIDAR FECHA DESDE UN STRING
+    public boolean validarFecha(String fecha) {
+        try {
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+            formatoFecha.setLenient(false);
+            formatoFecha.parse(fecha);
+            return true;
+        } catch (ParseException e) {
+            return false;
+        }
+    }
+
+//1-CALCULAR EDAD DESDE FECHA EN STRING
+    public int calcularEdad(String fechaNacimiento) {
+        String date;
+        int edad;
+        date = fechaNacimiento;
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate fechaNac = LocalDate.parse(date, fmt);
+        LocalDate ahora = LocalDate.now();
+        Period periodo = Period.between(fechaNac, ahora);
+    //System.out.printf("Tu edad es: %s años, %s meses y %s días", periodo.getYears(), periodo. getMonths(), periodo.getDays());
+        edad = periodo.getYears();
+        System.out.println(edad);
+        return edad;
+
+    }
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

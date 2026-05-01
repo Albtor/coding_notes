@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Files</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVA FILES</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //BASIC FICHEROS 
+
+    public void FicheroExiste(String nombreFichero) {
+        Scanner teclado = new Scanner(System.in);
+        System.out.print("Entra nombre fichero :");
+        String nombre = teclado.nextLine();
+        File fichero = new File(nombre);
+
+        if (!fichero.exists()) {
+            System.out.println("El fichero no existe");
+        } else {
+            System.out.println("El fichero existe...");
+        }
+    }
+
+    public void RutaOFichero(String path) {
+        Scanner teclado = new Scanner(System.in);
+        System.out.print("Entra nombre ruta :");
+        String nombre = teclado.nextLine();
+        File fichero = new File(nombre);
+        File ruta = new File(nombre);
+        //z-docs\basicFichero.txt
+        //z-docs
+        //C:\Users\alblu\Documents\NetBeansProjects\AccesoADatos\MEGAMONSTER\z-docs
+        if (ruta.isDirectory()) {
+            System.out.println("Es un directorio");
+        } else if (fichero.exists()) {
+            System.out.println("Es un fichero");
+        } else {
+            System.out.println("No existe");
+        }
+    }
+    
+    public void BorraFichero(String path) {
+    Scanner teclado = new Scanner(System.in);
+    System.out.print ("Escribe path completo para borrar fichero:");
+    // Introducir este z-docs\ficheroABorrar.txt
+    String nombre = teclado.nextLine();
+    File fichero = new File (nombre);
+  
+    if (fichero.delete()){
+        System.out.println("Fichero borrado");
+    }
+    else System.out.println("No se ha podido borrar");
+    }
+</code>
+</pre>
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //FICHEROS SECUENCIALES &lt;
+
+    //METODO BASICO PARA LEER FICHERO TEXTO SECUENCIAL
+    public void FicheroLee1() {
+        File fichero = new File("z-docs\\basicFichero.txt");
+        if (!fichero.exists()) {
+            System.out.println("El fichero  N/o existe");
+            return;
+        }
+        try {
+            FileReader ficheroEntrada = new FileReader(fichero);
+            int c;
+            int contador = 0;
+            int contadorEspacios = 0;
+            while (-1 != (c = ficheroEntrada.read())) {// te lo devuelve como numero ASCII? cuando llega a -1 es que ha terminado el fichero secuencial
+                System.out.print((char) c); // lo saco por pantalla como letra, no número
+                contador++;
+            }
+            ficheroEntrada.close(); // importante cerrarlo
+            System.out.println("\nEl numero de carateres es: " + contador);
+            System.out.println("El numero de espacios es: " + contadorEspacios);
+        } catch (Exception e) {
+            System.out.println("No puedo leer del fichero: " + e);
+        }
+    }
+
+    public void FicheroLee2() {
+        try {
+            FileReader ficheroReaderEntrada = new FileReader("z-docs\\basicFichero.txt");
+            BufferedReader ficheroLeer = new BufferedReader(ficheroReaderEntrada); // fichero con buffer !!
+            String linea;
+            while ((linea = ficheroLeer.readLine()) != null) { // busca los saltos de linea. si linea es nulo, no se puede leer mas = se acabó el fichero
+                System.out.println(linea); //se lee 
+            }
+            // EXPLICACION:
+            //  .readLine() nos da la linea completa o bien "null"- si se acabo el fichero ( fin de fichero)
+            ficheroLeer.close();
+
+        } catch (Exception e) {
+            System.out.println("No puedo leer del fichero: " + e.getMessage());
+        };
+    }
+
+    public void FicheroTextoEscribir() {
+        File ficheroFisico = new File("z-docs\\ficheroCreado.txt");
+        try {
+            FileWriter FicheroEscritura = new FileWriter(ficheroFisico, true); // ,true= añada al final ,, no lo cree de nuevo); // ya lo ha creado
+            FicheroEscritura.write("hola");
+            FicheroEscritura.write("\r\nlinea dos"); // tenemos que escribir el el salto de linea nosotros ("\r\n" en windows o el "\n" en linux) si queremos hacer saltos de linea..
+            FicheroEscritura.close(); // si no cerramos puede que no graba todo en disco.. esto es importante..
+        } catch (IOException ex) {
+            System.out.println("No puedo crear el fichero de salida");
+        }
+    }
+
+    public void FicheroTextoEscribir2() {
+        try { // directamente aqui ponemos el fichero.
+            FileWriter FicheroEscritura = new FileWriter("z-docs\\ficheroCreado2.txt", true); // ,true= añada al final ,, no lo cree de nuevo); // ya lo ha creado
+            FicheroEscritura.write("Fichero2");
+            FicheroEscritura.write("\r\nlinea dos\nFIN\n"); // tenemos que escribir el \n si queremos hacer saltos de linea..
+            FicheroEscritura.close(); // si no cerramos puede que no graba todo en disco.. esto es importante..   
+        } catch (IOException ex) {
+            System.out.println("No puedo crear el fichero de salida " + ex.getMessage());
+        }
+    }
+
+    public void FicheroTextoEscribirPrint() throws IOException {
+        FileWriter FicheroEscritura = new FileWriter("z-docs\\ficheroPrintWriter.html", true); // ,true= añada al final ,, no lo cree de nuevo); // ya lo ha creado
+        try {
+            PrintWriter ficheroConFormato = new PrintWriter(FicheroEscritura); // AQUI PONEMOS ESTE OBJETO NUEVO.. y usamos este
+            ficheroConFormato.println("&lt;marquee>&lt;h1>hola QUE TAL!!!&lt;/h1>&lt;/marquee>"); // ahora usamos el fichoe
+            int i;
+            for (i = 0; i &lt; 100; i++) {
+                ficheroConFormato.println(((i % 2 == 0) ? "&lt;b>&lt;i>" : "") + "&lt;BR>&lt;font color=\"" + 500 + i * 255 + "\"> hola pepe&lt;/FONT>&lt;/i>&lt;/b> ");
+            };
+            ficheroConFormato.printf(" Esto es texto puesto %d\n", 1000);
+            ficheroConFormato.close(); // si no cerramos puede que no graba todo en disco.. esto es importante..
+        } catch (Exception x) {
+            System.out.println("No puedo crear el fichero de salida" + x.getMessage());
+        }
+    }
+
+    public void FicheroTextoEscribirPrint2() {
+        try {
+            PrintWriter ficheroTexto = new PrintWriter("z-docs\\ficheroPrintWriter2.txt"); // 
+            ficheroTexto.println("hola");
+            ficheroTexto.println("linea dos"); // 
+            ficheroTexto.close(); // si no cerramos puede que no graba todo en disco.. esto es importante..
+        } catch (IOException ex) {
+            System.out.println("No puedo crear el fichero de salida " + ex.getMessage());
+        }
+
+    
+}
+
+static void hacer() throws IOException {
+    }
+
+    //METODOS VERIFICAR SI ES VOCAL
+    static boolean EsVocal(char c) {
+        switch (c) {
+            case 'a':
+            case 'e':
+            case 'i':
+            case 'o':
+            case 'u':
+            case 'A':
+            case 'E':
+            case 'I':
+            case 'O':
+            case 'U':
+            case 'á':
+            case 'Á':
+
+                return true;
+        }
+        return false;
+    }
+
+    //NUMERO VOCALES
+    static int numeroVocalesEnElString(String s) {
+        int nVocales = 0;
+        int i;
+        for (i = 0; i &lt; s.length(); i++) {
+            if (EsVocal(s.charAt(i))) {
+                nVocales++;
+            }
+        }
+        return nVocales;
+
+    }
+    
+    //NUMERO CONSONANTES
+    static int numeroDeConsontantesEnElString(String s) {
+        int n = 0;
+        int i;
+
+        for (i = 0; i &lt; s.length(); i++) {
+            if (EsLetra(s.charAt(i)) && !EsVocal(s.charAt(i))) {
+                n++;
+            }
+        }
+        return n;
+    }
+
+    //SI ES LETRA O NO
+    static boolean EsLetra(char c) {
+        return (c >= 'a' && c &lt;= 'z') || (c >= 'A' && c &lt;= 'Z')
+                || c == 'ñ' || c == 'Ñ';
+    }
+
+</code>
+</pre>
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //BINARIOS 
+    //METODO PARA LEER UN FICHERO BINARIO
+    public void FicheroLeeBinario() throws FileNotFoundException, IOException {
+        FileInputStream f = new FileInputStream("z-docs\\arrow.png");
+        int c;
+        while (-1 != (c = f.read())) {
+            System.out.print((char) c); //aqui imprimimos
+        }
+        f.close(); //importante cerrar
+    }
+
+    //METODO PARA REALIZAR UNA COPIA DE UN FICHERO BINARIO
+    public void FicheroCopiaBinario() throws FileNotFoundException, IOException {
+        FileInputStream f = new FileInputStream("z-docs\\arrow.png");
+        FileOutputStream fs = new FileOutputStream("z-docs\\arrow_copia.png"); //con esto creamos
+        int c;
+        while (-1 != (c = f.read())) {
+            fs.write(c); //aqui ESCRIBIMOS en el nuevo fichero
+        }
+        f.close();
+        fs.close();
+    }
+</code>
+</pre>
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //DIRECTOS
+    public void FicheroDirectoTest() {
+        RandomAccessFile fDirecto;
+        try {
+            fDirecto = new RandomAccessFile("z-docs\\ficheroDirecto.dat", "rw");// rw = lectura escritura 
+            fDirecto.seek(0); // al principio
+            fDirecto.write(65); // es en binario puro, escribe 65 codigo asci de 'A'
+            /* int i;
+             for (i=10; i&lt; 20;i++) fDirecto.write(10+i);
+             fDirecto.seek( 100);
+             fDirecto.writeUTF("ñhola que-"); // 
+             /*fDirecto.write(65);// 65 en binarario == codigo de la letra A
+             */
+            fDirecto.seek(200); // nos vamos a la posicion 100
+            fDirecto.writeChars("machacado");
+
+            fDirecto.seek(100); // nos vamos a la posicion 100
+            fDirecto.writeChars("En100");
+            /*
+             fDirecto.seek(2);
+             int c=fDirecto.readByte();
+             fDirecto.seek(40);
+             fDirecto.writeUTF("ESTO ES NUEVO");
+             
+             int i;
+             for (i= 500; i> 10; i-=10)
+             {
+                 fDirecto.seek(i);
+                 fDirecto.writeUTF(""+i);
+                 
+             }*/
+            fDirecto.close();
+
+            //System.out.println(" Leí "+c);
+        } catch (FileNotFoundException ex) {
+            System.out.println("Error " + ex.getMessage());
+
+        } catch (IOException ex) {
+            System.out.println("Error " + ex.getMessage());
+        }
+
+    }
+    
+</code>
+</pre>
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //SERIALIZABLES
+
+    //z-docs\\
+    public void GrabarClienteSerializable() {
+        ClienteSerializable c = new ClienteSerializable();
+        c.Deuda = 10;
+        c.direccion = "Rue 13 del Percebe";
+        c.nombre = "El Gran Vazquez";
+        c.telefono = "555-555-555";
+        c.nif = "0000014F";
+        System.out.println("Vamos a grabar el objeto cliente con los siguiente datos :");
+        System.out.println(c.toString());
+        try {
+            FileOutputStream fs = new FileOutputStream("z-docs\\ClienteSerializable.objeto" /*, true*/); // admite el true para añadir al final de lo que estuviera grabado
+            ObjectOutputStream ficheroGrabarObjeto = new ObjectOutputStream(fs); //
+
+            ficheroGrabarObjeto.writeObject(c); // grabamos en disco el objeto
+            ficheroGrabarObjeto.close(); // cerramos el fichero...
+
+            System.out.println("\n\t*** Objeto grabado correctamente ***\n");
+        } catch (IOException error) {
+            System.out.println(error.getMessage());
+        } // error que hay ..
+        catch (Exception ex) {
+        }
+    }
+
+    public void LeerObjetoSerializable() {
+        Object objetoLeido;
+        try {
+            FileInputStream f = new FileInputStream("z-docs\\ClienteSerializable.objeto");// El fichero que creamos con el SERIALIZABLE_WRITE
+            ObjectInputStream ficheroLeerObjeto = new ObjectInputStream(f);
+            objetoLeido = ficheroLeerObjeto.readObject();
+            ficheroLeerObjeto.close();
+            if (objetoLeido == null) {   // si no lee nada ...es que fallo..
+                System.out.println("No he podido leer el objeto");
+            } else {
+                ClienteSerializable d = (ClienteSerializable) objetoLeido;
+                System.out.println("\n\t***** TODO OK *****\n\n\t-- se vuelve a leer el objeto de disco :");
+                System.out.println(d.toString());
+            }
+
+        } // try
+        catch (IOException | ClassNotFoundException e) {
+            System.out.println("Error : " + e.getMessage());
+        }
+    }
+
+    public void LeerSerializableURL() {
+        try {
+            URL url = new URL("http://www.ferminvelez.es"); // ojo poner el protocolo (http)
+            URLConnection conexion = url.openConnection();
+            // si queremos leer la pagina
+            DataInputStream f = new DataInputStream(conexion.getInputStream()); // 
+            String linea;
+            while ((linea = f.readLine()) != null) {
+                System.out.println(linea);
+            }
+            f.close();
+
+            //********************** AHORA EL FICHERO SERIALIZADO, pero como texto normal.
+            System.out.println("\n*********************FICHERO SERIALIZADO COMO DATOS *****************\n");
+            URL url2 = new URL("http://www.ferminvelez.es/PROGRAMACION/PRUEBAS/CLIENTE.objeto"); // ojo poner el protocolo (http)
+            URLConnection conexion2 = url2.openConnection();
+            // si queremos leer la pagina
+            DataInputStream f2 = new DataInputStream(conexion2.getInputStream()); // 
+            while ((linea = f2.readLine()) != null) {
+                System.out.println(linea);
+            }
+            f2.close();
+
+            //  AHORA LEEMOS EL FICHERO SERIALIZADO PARA CREAR MI OBJETO AQUI!!
+            Object objetoLeido;
+            ClienteSerializable c;
+            URL url3 = new URL("http://www.ferminvelez.es/PROGRAMACION/PRUEBAS/CLIENTE.objeto"); // ojo poner el protocolo (http)
+            // este el fichero creado anteriormente con los proyecto que escribe un 
+            // objeto Cliente serializado en un fichero 
+            URLConnection conexion3 = url3.openConnection();
+            ObjectInputStream ficheroLeerObjeto = new ObjectInputStream(conexion3.getInputStream()); // ahora los datos nos lo da la conexion a la URL especificada
+            objetoLeido = ficheroLeerObjeto.readObject();
+            ficheroLeerObjeto.close();
+            if (objetoLeido == null) {   // si no lee nada ...es que fallo..
+                System.out.println("No he podido leer el objeto");
+            } else {
+                c = (ClienteSerializable) objetoLeido;
+                System.out.println("\n\t***** TODO OK *****\n\n\tOBJETO LEIDO :\n\n");
+                System.out.println(c.toString());
+            }
+
+        } catch (MalformedURLException ex) {
+            System.out.println("No existe URL");
+        } catch (IOException ex) {
+            System.out.println("Error IO :" + ex.getMessage());
+        } catch (ClassNotFoundException ex) {
+            System.out.println("Error CLASE :" + ex.getMessage());
+        }
+    }
+
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

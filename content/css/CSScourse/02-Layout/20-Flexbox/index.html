@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlexBox</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Flex</h1> 
+  <p>Display: Flex. Attention: also display: inline-flex;</p> 
+  <ul>
+    <li>it displays the elements depending on a Main axis and cross axis. They change depending on the direction. By default is horizontal/vertical. but in column, it's vertical/horizontal</li> 
+    <li>Main: left to right by default. but it changes if you are in direction: column. Then it is top to botto,.</li>
+    <li>Cross top to bottom, but same as above. If we are working in column it works left to right.</li>
+    <li>Margins do not collapse</li>
+    <li>Main AXIS: justify-content,</li>
+    <li>Cross AXIS:align items, align-content </li>
+    <li>Main AXIS: justify-content: flex-start (default horizontal), flex-end, center, space-between, space-around. Depending on the axis</li>
+    <li>Cross AXIS: Align-items: stretch (default. If the size is not indicated they will stretch). MOdifies elements on the cross axis, flex-start, flex-end, center</li>
+    <li>Flex-wrap: wrap, nowrap (if you want elements in multiple lines)</li>
+    <li>Align-content: center, space-between, space-around. To Space elements is vertical</li>
+    <li>Flex-grow: To take the remaining space of a container. Takes the remaining space and assigns depending on the number assigned: 1, 2, 3 proportionally. If you have a size set, it adds to that. </li>
+    <li>Flex-basis: 0. To avoid the above. It sets size to 0 to calculate. Works in fractions</li>
+    <li>Flex-shrink. By default is 1 and it shrinks. if you set it to 0 it will not change. If you make it 2, it will shrink 2x faster. Works fractional too</li>
+    <li>Flex: grow shrink basis. flex: 1 0 0;</li>
+    <li>Align-self. Cross axis alignment for individual items</li>
+    <li>Order: if you don't set order in one the value is 0, it positions at the beginning in the order of the html tags. Negative values are allowed. Not recommendable because it affects on the tab so it is not good for accessibility</li>
+    <li>Inline-flex: the container behaves as inline block</li>
+  </ul>
+  <h2>Position: Direction Row (default). Main axis:  left to right</h2>
+  <div class="container">
+    <div class="item item1">1</div>
+    <div class="item item2">2</div>
+    <div class="item item3">3</div>
+  </div>
+  
+  <h2>Position: Direction Column: Main axis: top to bottom</h2>
+  <div class="container2">
+    <div class="item item1">1</div>
+    <div class="item item2">2</div>
+    <div class="item item3">3</div>
+  </div>
+<h3>Grow</h3>
+  <div class="container3">
+    <div class="item item4">Flex Grow 1</div>
+    <div class="item item5">Flex Grow 2</div>
+    <div class="item item6">Flex Grow 3</div>
+  </div>
+<h3>Shrink</h3>
+  <div class="container4">
+    <div class="item item7">Flex Shrink 0</div>
+    <div class="item item8">Flex Shrink 1</div>
+    <div class="item item9">Flex Shrink 3</div>
+  </div>
+  <h3>Flex: grow shrink basis. flex: 1 0 0;</h3>
+  <div class="container5">
+    <div class="item item10">Flex: 1 0 0</div>
+    <div class="item item11">Flex: 3 3 1</div>
+    <div class="item item12">Flex: 0 1 1</div>
+  </div>
+<h3>Align-self</h3>
+  <div class="container6">
+    <div class="item item13">Align-self: flex-start</div>
+    <div class="item item14">Align-self: flex-end</div>
+    <div class="item item15">Align-self: center</div>
+  </div>
+  
+  <h3>Order</h3>
+  <div class="container7">
+    <div class="item item16">First Div . Order: 3</div>
+    <div class="item item17">Second Div . Order: 1 </div>
+    <div class="item item18"> Third Div . Order: 2</div>
+  </div>
+
+  <h3>InlineFlex</h3>
+  <div class="container8">
+    <div class="item item1">First Div . Order: 3</div>
+    <div class="item item2">Second Div . Order: 1 </div>
+    <div class="item item3"> Third Div . Order: 2</div>
+  </div>
+  <span>This is a span</span>
+
+</body>
+</html>

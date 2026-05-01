@@ -1,0 +1,39 @@
+.container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(173, 180, 180);
+    padding-bottom: 1rem;
+}
+
+.block{
+    width: 200px;
+}
+
+.parent{
+    height: 100px;
+    width: 120px;
+    border: 3px solid lightseagreen;
+}
+
+.parent-hidden{
+    overflow: hidden;
+}
+
+.parent-scroll{
+    overflow: scroll;
+
+}
+.parent-scroll2{
+    overflow: scroll;
+    overflow-x: hidden;
+    
+}
+.parent-scroll_auto{
+    overflow: auto;
+    
+}
+
+.title{
+    display: inline
+}

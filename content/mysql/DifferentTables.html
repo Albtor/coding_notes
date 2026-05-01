@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySQL Different Tables</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+    </a>
+    <h1 class="title_template">MySQL - DIFFERENT TABLES</h1>
+    <h4>Links</h4>
+    <ul>
+        <li class="link_list"><a href="CREATE_INSERT_BDAlumnos.sql" class="link_file" target="_Blank">DB SQL ALUMNOS</a></li>
+    </ul>
+
+        
+<div class= "code_container">
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-sql" spellcheck="false">
+    //DIFFERENT Tables
+
+    //--B1 Relación de asignaturas del alumno FEDERICO CARPANTA APOSTOL. Debe aparecer el nombre de la asignatura. 12 filas
+    SELECT Asi.Denominacion 'Asignaturas de Federico Carpanta Apostol' FROM Alumno Alu
+    INNER JOIN Nota N ON Alu.idAlumno = N.idAlumno
+    INNER JOIN Asignatura Asi ON N.idAsignatura = Asi.idAsignatura
+    WHERE Alu.Nombre = 'FEDERICO' AND Apellidos = 'CARPANTA APOSTOL'
+    ORDER BY Denominacion
+    
+    //--version2 (subconsulta)
+    SELECT ASG.Denominacion AS 'Asignaturas de Federico Carpanta Apóstol' FROM Nota N
+    INNER JOIN Asignatura ASG ON N.idAsignatura = ASG.idAsignatura
+    WHERE idAlumno = (SELECT idAlumno FROM Alumno WHERE Nombre ='FEDERICO' AND  Apellidos = 'CARPANTA APOSTOL')
+    
+    //--B2-Relación de asignaturas aprobadas del alumno FEDERICO CARPANTA APOSTOL. Debe aparecer el nombre de la asignatura y la nota 8 filas
+    SELECT ASG.Denominacion AS 'Asignaturas aprobadas de Federico Carpanta Apóstol', N.Nota FROM Nota N
+    INNER JOIN Asignatura ASG ON N.idAsignatura = ASG.idAsignatura
+    WHERE idAlumno = (SELECT idAlumno FROM Alumno WHERE Nombre ='FEDERICO' AND  Apellidos = 'CARPANTA APOSTOL') AND Nota >= 5;
+    
+    
+    //--B3-Boletín de notas del alumno FEDERICO CARPANTA APOSTOL. Debe aparecer el nombre de la asignatura y la nota
+    SELECT ASG.Denominacion AS 'Boletín de notas de Federico Carpanta Apóstol', N.Nota AS 'Nota Final' FROM Nota N
+    JOIN Asignatura ASG ON N.idAsignatura = ASG.idAsignatura
+    WHERE idAlumno = (SELECT idAlumno FROM Alumno WHERE Nombre ='FEDERICO' AND  Apellidos = 'CARPANTA APOSTOL');
+    
+    
+    //--B4-Relación de asignaturas aprobadas del grupo 811NMA. Debe aparecer el alumno, asignatura y nota. 140 filas
+    SELECT A.Nombre + A.Apellidos AS Alumno, ASG.Denominacion AS Asignatura, N.Nota FROM Alumno A
+    INNER JOIN Nota N ON N.idAlumno = A.idAlumno
+    INNER JOIN Asignatura ASG ON N.idAsignatura = ASG.idAsignatura
+    WHERE N.Nota >= 5 AND A.idGrupo = '811NMA';
+    
+    //--B5-Relación de alumnos que tienen la asignatura con código 91302. Debe aparecer el nombre y apellidos del alumno 136 filas
+    SELECT A.Nombre + A.Apellidos AS Alumno FROM Alumno A
+    JOIN Nota N ON A.idAlumno = N.idAlumno
+    WHERE N.idAsignatura = 91302;
+    
+    //--B6-Relación de alumnos que han aprobado la asignatura CULTIVOS EN VIVEROS E INVERNADEROS 1 fila
+    SELECT A.Nombre + A.Apellidos AS 'El Crack' FROM Alumno A 
+    JOIN Nota N ON A.idAlumno = N.idAlumno 
+    JOIN Asignatura ASG ON ASG.idAsignatura = N.idAsignatura
+    WHERE ASG.Denominacion = 'CULTIVOS EN VIVEROS E INVERNADEROS' AND N.nota >= 5;
+    
+    //--B7-Relación de asignaturas que imparte el profesor ANACLETO PI.Indicar el nombre de la asignatura y el código del grupo al que da esa asignatura. 2 filas
+    SELECT A.Denominacion AS 'Asignaturas Impartidas por Anacleto Pi', AG.idGrupo AS 'Codigo Grupo'
+    FROM Asignatura A JOIN AsignaturasGrupo AG
+    ON A.idAsignatura = AG.idAsignatura JOIN Profesor
+    ON AG.idProfesor = Profesor.idProfesor
+    WHERE Profesor.Nombre = 'ANACLETO PI';
+    
+    
+    //--B8-Relación de alumnos a los que imparte clase el profesor ANACLETO PI. Debe aparecer por cada alumno : nombre y apellidos, grupo en el que está, código de la asignatura y nombre de la asignatura.   8 filas 
+    SELECT A.Nombre + A.Apellidos AS Alumno, A.idAlumno, AG.idGrupo, ASG.idAsignatura, ASG.Denominacion AS Asignatura FROM profesor P
+    INNER JOIN AsignaturasGrupo AG ON AG.idProfesor = P.idProfesor
+    INNER JOIN Alumno A ON A.idGrupo = AG.idGrupo
+    INNER JOIN nota N ON a.idAlumno = N.idAlumno AND N.idAsignatura = AG.idAsignatura
+    INNER JOIN Asignatura ASG ON AG.idAsignatura = ASG.idAsignatura
+    WHERE P.Nombre = 'Anacleto Pi'
+    ORDER BY apellidos;
+    
+    //--B9-Relación de alumnos que han suspendido con el profesor ANACLETO PI. Debe aparecer por cada alumno : nombre y apellidos, grupo en el que está, código de la asignatura, nombre de la asignatura y nota. 4 filas
+    SELECT A.Nombre,A.Apellidos AS Losers, A.idAlumno, AG.idGrupo, ASG.idAsignatura, ASG.Denominacion, N.nota AS Asignatura FROM profesor P
+    INNER JOIN AsignaturasGrupo AG ON AG.idProfesor = P.idProfesor
+    INNER JOIN Alumno A ON A.idGrupo = AG.idGrupo
+    INNER JOIN nota N ON a.idAlumno = N.idAlumno AND N.idAsignatura = AG.idAsignatura
+    INNER JOIN Asignatura ASG ON AG.idAsignatura = ASG.idAsignatura
+    WHERE P.Nombre = 'Anacleto Pi' AND  N.Nota &lt; 5
+    ORDER BY apellidos;
+    
+    
+    //--B10- Relación de grupos a los que imparte clase el profesor 'Rosa Maria casillero 78'. Sin repetir los grupos. Si da dos asignaturas a un grupo, solo debe aparecer una vez el grupo. 4 filas
+    SELECT DISTINCT AG.idGrupo  FROM profesor P
+    INNER JOIN AsignaturasGrupo AG ON P.idProfesor = AG.idProfesor
+    WHERE P.Nombre = 'Rosa Maria casillero 78';
+    
+    //--B11-Nota media del alumno FEDERICO CARPANTA APOSTOL 5,5
+    SELECT AVG(cast(N.Nota AS FLOAT)) FROM Alumno A
+    INNER JOIN Nota N ON A.idAlumno = N.idAlumno
+    WHERE A.Nombre = 'FEDERICO' AND A.Apellidos = 'CARPANTA APOSTOL';
+    
+    
+    //--B12-Nota media del grupo 913NMA en la asignatura 91303. 4,75
+    SELECT AVG(cast(N.Nota AS FLOAT)) FROM Alumno A
+    RIGHT JOIN Nota N ON N.idAlumno = A.idAlumno
+    WHERE A.idGrupo = '913NMA' AND N.idAsignatura = '91303';
+    
+    
+    //--B13-¿A cuantos alumnos imparte clase el profesor ANACLETO PI? - 8
+    SELECT COUNT(A.idAlumno) FROM profesor P
+    INNER JOIN AsignaturasGrupo AG ON AG.idProfesor = P.idProfesor
+    INNER JOIN Alumno A ON A.idGrupo = AG.idGrupo
+    INNER JOIN nota N ON a.idAlumno = N.idAlumno AND N.idAsignatura = AG.idAsignatura
+    INNER JOIN Asignatura ASG ON AG.idAsignatura = ASG.idAsignatura
+    WHERE P.Nombre = 'Anacleto Pi';
+    
+    
+    //--B14-Relación de alumnos a los que les da clase el profesor ANACLETO PI que vivan en El Sauzal. 1Fila
+    SELECT A.Nombre,A.Apellidos, A.Municipio FROM profesor P
+    INNER JOIN AsignaturasGrupo AG ON AG.idProfesor = P.idProfesor
+    INNER JOIN Alumno A ON A.idGrupo = AG.idGrupo
+    INNER JOIN nota N ON a.idAlumno = N.idAlumno AND N.idAsignatura = AG.idAsignatura
+    INNER JOIN Asignatura ASG ON AG.idAsignatura = ASG.idAsignatura
+    WHERE P.Nombre = 'Anacleto Pi' AND A.Municipio LIKE '%SAUZAL%'
+    ORDER BY apellidos;
+    
+
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

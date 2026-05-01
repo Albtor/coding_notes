@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySQL - Relations</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+        </a>
+        <h1 class="title_template">MYSQL - RELATIONS</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- MYSQL -->
+<pre class="prettyprint">
+<code class="language-mysql" spellcheck="false">
+    // 
+FOREIGN KEY REFERENCES Provincia(Id)
+
+    
+</code>
+</pre>
+<pre class="prettyprint">
+<code class="language-mysql" spellcheck="false">
+    // 1 A 1  / ONE TO ONE
+    CREATE TABLE Country(
+    Pk_Country_Id INT IDENTITY PRIMARY KEY,
+    Name VARCHAR(100),
+    Officiallang VARCHAR(100),
+    Size INT(11),);
+
+    CREATE TABLE UNrepresentative(
+    Pk_UNrepresentative_Id INT PRIMARY KEY,
+    Name VARCHAR(100),
+    Gender VARCHAR(100),
+    Fk_Country_Id INT UNIQUE FOREIGN KEY REFERENCES Country(Pk_Country_Id));
+
+    
+</code>
+</pre>
+
+<!-- MYSQL -->
+<pre class="prettyprint">
+<code class="language-mysql" spellcheck="false">
+    // 1 A MUCHOS / ONE TO MANY
+    CREATE TABLE  Modelo(
+    IdModelo int primary key,
+    Nombre varchar(30) )
+    go
+    CREATE TABLE helicoptero (
+    Matricula varchar(12) primary key,
+    IdModelo int foreign key references modelo ( idModelo) )  
+    go
+
+    //OTHER EXAMPLE
+    CREATE TABLE Car(
+    Pk_Car_Id INT PRIMARY KEY,
+    Brand VARCHAR(100),
+    Model VARCHAR(100));
+    //ONE TO MANY
+    CREATE TABLE Engineer(
+    Pk_Engineer_Id INT PRIMARY KEY,
+    FullName VARCHAR(100),
+    MobileNo CHAR(11),
+    Fk_Car_Id INT FOREIGN KEY REFERENCES Car(Pk_Car_Id));
+    
+</code>
+</pre>
+
+<!-- MYSQL -->
+<pre class="prettyprint">
+<code class="language-mysql" spellcheck="false">
+    // MUCHOS A MUCHOS / MANY TO MANY
+
+    CREATE TABLE pasajero( idPasajero varchar(15) primary key,
+    Nombre varchar(30),
+    Apellidos varchar(40),
+    Peso int default 80)
+
+    CREATE TABLE  Billete -- relacion vuelo pasajero.(
+    matricula varchar(12), 
+    fecha datetime ,
+    foreign key (matricula,fecha) references vuelo (matricula,fecha),
+    idPasajero varchar(15) foreign key references pasajero (idPasajero),
+    primary key (matricula,fecha,idPasajero) )
+
+
+    //OTHER EXAMPLE
+    CREATE TABLE Student(
+    StudentID INT(10) PRIMARY KEY,
+    Name VARCHAR(100),);
+    CREATE TABLE Class(
+    ClassID INT(10) PRIMARY KEY,
+    Course VARCHAR(100),);
+    //MANY TO MANY 
+    CREATE TABLE StudentClassRelation(
+    StudentID INT(15) NOT NULL,
+    ClassID INT(14) NOT NULL,
+    FOREIGN KEY (StudentID) REFERENCES Student(StudentID),
+    FOREIGN KEY (ClassID) REFERENCES Class(ClassID),
+    UNIQUE (StudentID, ClassID));
+
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

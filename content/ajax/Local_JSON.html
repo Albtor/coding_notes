@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX Local Json</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">AJAX Local JSON</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- HTML -->
+<!-- <figure></figure> -->
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //Files: Ajax 2 -Local JSON ajax2; user.json, users.json
+
+    &lt;button id=&quot;button1&quot;&gt;Get User&lt;/button&gt;
+    &lt;button id=&quot;button2&quot;&gt;Get UserS&lt;/button&gt;
+    &lt;br&gt;&lt;br&gt;
+    &lt;h2&gt;User&lt;/h2&gt;
+    &lt;div id=&quot;user&quot;&gt;&lt;/div&gt;
+
+    &lt;h2&gt;Users&lt;/h2&gt;
+    &lt;div id=&quot;users&quot;&gt;&lt;/div&gt;
+</code>
+</pre>
+
+
+    
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //AJAX js
+    document.getElementById('button1').addEventListener('click', loadUser);
+        document.getElementById('button2').addEventListener('click', loadUsers);
+
+        function loadUser(){
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'user.json', true);
+            xhr.onload = function(){
+                if(this.status == 200){
+                    console.log(this.responseText);
+                    var user = JSON.parse(this.responseText);
+                    console.log(user.name);
+                    var output = '';
+                    output += 
+                    '&lt;ul>' + '&lt;li>ID: '+user.id+' &lt;/li>' 
+                    +'&lt;li>Name: '+user.name+' &lt;/li>' + 
+                    '&lt;li>email: '+user.email+' &lt;/li>' +'&lt;/ul>';
+                    document.getElementById('user').innerHTML = output;
+                }   
+            }
+            xhr.send();
+        }
+
+        function loadUsers(){
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'users.json', true);
+            xhr.onload = function(){
+                if(this.status == 200){
+                    console.log(this.responseText);
+                    var users = JSON.parse(this.responseText);
+                    // console.log(user.name);
+                    var output = '';
+                    for(var i in users){
+                    output += 
+                    '&lt;ul>' + '&lt;li>ID: '+users[i].id+' &lt;/li>' 
+                    +'&lt;li>Name: '+users[i].name+' &lt;/li>' + 
+                    '&lt;li>email: '+users[i].email+' &lt;/li>' +'&lt;/ul>';
+                    }
+                    document.getElementById('users').innerHTML = output;
+                }
+            }
+
+            xhr.send();
+        }
+    
+</code>
+</pre>
+
+
+<!-- JSON -->
+<!-- <figure></figure> -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    //user.json
+    {
+        "id":1,
+        "name": "Rick",
+        "email": "rick@gmail.com"
+    }
+
+
+    //users.json
+    [
+    {
+        "id":1,
+        "name": "Rick",
+        "email": "rick@gmail.com"
+    },
+    {
+        "id":2,
+        "name": "Glenn",
+        "email": "glenn@gmail.com"
+    },
+    {
+        "id":3,
+        "name": "Megan",
+        "email": "megan@gmail.com"
+    }
+    ]
+</code>
+</pre>
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

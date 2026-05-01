@@ -1,0 +1,18 @@
+.div-1{
+    background-color: hsl(300, 80%, 50%);
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+    border: 6px solid black;
+    margin: 15px;
+
+
+}
+
+.div-2{
+    background-color: hsl(200, 80%, 50%);
+    width: 100px;
+    height: 100px;
+    margin: 15px;
+    padding: 10px 10px 10px 20px;
+}

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Basics</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVA BASICS</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //JAVA
+    //1-MAIN METHOD A program must have this:
+    public static void main(String[] args) {
+        System.out.println("Java Resources For Coding");
+        System.out.println("See Packages and Classes");
+    }
+</code>
+</pre>
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //2-METHODS
+    //VOID: no devuelve nada
+    public void metodo1(){System.out.println("El metodo imprime esto");}
+
+    //NO-VOID Hay que indicar el tipo de variable que se devuelve y debe haber un return
+    public int metodo2(){return 1;}
+</code>
+</pre>
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //STATIC VS NON STATIC
+    // Static method - Static methods can be called without creating objects, example main method
+    static void myStaticMethod() { System.out.println("Static methods can be called without creating objects");}
+
+    // Public method - must be called by creating objects
+    public void myPublicMethod() {System.out.println("Public methods must be called by creating objects");}
+
+</code>
+</pre>
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //MODIFIERS
+    //Classes: 
+    //final: The class cannot be inherited by other classe
+    //abstract: The class cannot be used to create objects (To access an abstract class, it must be inherited from another class)
+
+    //Atributes and methods
+    //final: cannot be override modified
+    //abstract: Can only be used in an abstract class, and can only be used on metho
+    //static: Attributes and methods belongs to the class, rather than an object
+    //transient
+    //synchronized
+    //volatile
+</code>
+</pre>
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //TYPES OF VARIABLES
+    public void TypesOfVariables(){
+    //    private int number = 2;
+    //    public String nombre = "Tyler";
+    //    protected double decimal = 23.90;
+
+    //3-PUBLIC PRIVATE PROTECTED DEFAULT: they need to be created outside the method, in the object
+    //PUBLIC: The code is accessible for all classes, from everywhere
+    //PRIVATE: The code is only accessible within the declared class
+    //PROTECTED: The code is accessible in the same package and subclasses. 
+    //DEFAULT: The code is only accessible in the same package. This is used when you don't specify a modifier.
+    }
+
+
+    //4-TYPES OF VARIABLES
+    public void Variables(){
+    String cadena = "Hola";
+    char sexo = 'M';                //Stores a single character/letter or ASCII values
+    int numero = 1923;
+    float decimal = 12.000f; 
+    double decimal2 = 12.8000;
+    boolean boleano = true;         //true, false
+
+    //WHOLE NUMBERS
+    byte diasem = 1;                //Stores whole numbers from -128 to 127
+    short diaanual = 300;           //Stores whole numbers from -32,768 to 32,767
+    long miliseg = 1298332800000L;  //Stores whole numbers from -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807
+
+    //FRACTIONAL NUMBERS
+    float decimal3 = 12.000f;        //Stores fractional numbers. Sufficient for storing 6 to 7 decimal digits
+    double decimal4 = 12.8000;      //Stores fractional numbers. Sufficient for storing 15 decimal digits
+
+    }
+</code>
+</pre>
+    
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //5-SCANNER Method
+    public void Scanner(){
+    float c1, c2, x;
+    Scanner teclado = new Scanner (System.in); //Import needed !
+    System.out.print("Introduce el primer numero C1: ");
+    c1 = teclado.nextInt();
+    System.out.print("Introduce el segundo numero C2: ");
+    c2 = teclado.nextInt();
+    //Operation: 
+    x = -(c2) / c1;
+    System.out.println("El valor de x es: "+x);
+    }
+</code>
+</pre>
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //6-FORMATTING
+    public void Formatting(){
+    //Escape characters
+    //      \'  = '
+    //      \"  = "
+    //      \\  = \
+
+    //      \n      New Line
+    //      \r      Carriage Return
+    //      \t      Tab
+    //      \b      Backspace
+    //      \f      Form Feed
+
+    short x = 7; //deberia ser tipo byte
+    int y = 5; //deberia ser tipo byte
+    float f1 = 13.5f; //le falta la f al final 13.5f
+    float f2 = 8f; 
+
+    System.out.println("El valor de x es " + x + " y el valor de y es "+ y);
+    System.out.println("El resultado de x + y es " + (x + y));
+    System.out.println("El resultado de x - y es " + (x - y));
+    System.out.printf("%s\n %s %s\n","División entera:","x / y = ",(x/y));
+    System.out.println("Resto de la división entera: x % y = " + (x % y));
+    System.out.printf("El valor de f1 es %f y el de f2 es %f\n",f1,f2);
+    System.out.println("El resultado de f1 / f2 es " + (f1 / f2));
+    //System.out.printf("Tu edad es: %s años, %s meses y %s días", periodo.getYears(), periodo.getMonths(), periodo.getDays());
+
+</code>
+</pre>
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //7-TRY/CATCH: Se utiliza para controlar errores
+    public void tryCatch(){
+        Scanner num = new Scanner (System.in); 
+        int x;
+        try {
+        x = num.nextInt();
+        if (x >=1 && x &lt;= 100){
+        boolean ver = false;
+    //    num.nextLine();
+        }
+        else {
+        System.out.println(x + " No es uno de esos números.");
+        }
+        }catch (Exception ex){
+    //        num.nextLine();
+            System.out.print("No es correcto. "+ex);
+        }
+
+    }
+</code>
+</pre>
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //TIPO ENUMERADO
+    class TipoEnumerado {
+        public enum Meses {
+            Enero, Febrero, Marzo, Abril, Mayo, Junio, 
+            Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre};
+        
+        public void Enumerado(enum Meses){
+        Meses m = Meses.Marzo;
+        System.out.println("El mes actual es " + m);
+        String eme = "Abril"; //Marzo
+        
+        m = Meses.valueOf(eme);
+        System.out.println("El mes actual es " + m);
+        }
+        
+    }
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

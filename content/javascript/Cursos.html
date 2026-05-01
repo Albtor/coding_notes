@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Cursos</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVASCRIPT CURSOS</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="#" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //FIBONACCI
+    var a, b, c;
+    var a=1;
+    var b=1;
+    var c=0;
+
+    document.write(c+",")
+    document.write(a+",")
+    document.write(b+",")
+
+    for (c=0; c&lt;=100;) {
+    document.write(c+",");
+        c=a+b
+        a=b
+        b=c
+    } 
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //FACTORIAL
+    var n;
+    var a;
+    var fact;
+    do {
+    n = parseInt(prompt("Introduce un numero para calcular el factorial:","0")); 
+    } 
+    while (n&lt;0);
+
+    a = 0;
+    fact = 0;
+
+    if ((n==0) || (n==1)) {
+            document.write("el factorial de "+ n +" es 1");
+    }else{
+        a=n-1;
+        fact=n*a;
+        
+        while (a!==1){
+        a=a-1;
+        fact=fact*a;
+        } document.write("el factorial de "+ n +" es "+fact);
+    }
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // MESES
+    var n1;
+    n1= parseInt(prompt("introduce el número entre 1 y 12: ","")) ;
+    var meses = ["", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
+
+    if ((n1>0) && (n1&lt;13)){
+    document.write(meses[n1]);
+    }
+    else {
+    document.write([n1]+" no es un número entre 1 y 12");
+    }
+
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // DECIMAL A BINARIO
+    var a;
+    var b = [];
+    var c=0;
+
+    do {
+    a = parseInt(prompt("Introduce un numero a partir de 0 para calcular su número binario","0")); 
+    } 
+    while (a&lt;0);
+
+    do {
+        b[c] = a%2;
+        a= Math.floor(a/2);	
+        c=c+1;
+    } while (a>1);
+
+    b[c]=a
+
+    alert(b.reverse());
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // BINARIO A DECIMAL//10.-Convertir a binario inverso
+    function BinarioInverso(){
+        var a = parseInt(prompt("Introducir un numero en binario que se pasara a decimal"));
+        alert(a.toString(10));
+    }
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //Piedra papel o tijeras.
+function PriedraPapelTijeras() {
+    var posibilidades = ["piedra", "papel", "tijera"];
+    var victorias = 0, empates = 0, derrotas = 0;
+
+    while ((victorias &lt;= 3) && (empates &lt;= 3) && (derrotas &lt;= 3)) {
+
+        var divpartidas = document.getElementById("partidas");
+        divpartidas.innerHTML = "Victorias: " + victorias + " Derrotas: " + derrotas + " Empates: " + empates;
+
+        var ramdon = Math.floor(Math.random() * 3) + 0;
+
+        var tiradausuario = prompt("Introducir piedra papel o tijeras");
+
+        switch (tiradausuario.toLowerCase()) {
+
+            case "piedra":
+
+                if (posibilidades[ramdon] == "tijera") {
+                    alert("Has ganado");
+                    victorias++;
+                }
+                if (posibilidades[ramdon] == "piedra") {
+                    alert("Empate");
+                    empates++;
+                }
+                if (posibilidades[ramdon] == "papel") {
+                    alert("Has perdido");
+                    derrotas++;
+                }
+                break;
+
+            case "tijera":
+
+                if (posibilidades[ramdon] == "tijera") {
+                    alert("Empate");
+                    empates++;
+                }
+                if (posibilidades[ramdon] == "piedra") {
+                    alert("Has perdido");
+                    derrotas++;
+                }
+                if (posibilidades[ramdon] == "papel") {
+                    alert("Has ganado");
+                    victorias++;
+                }
+                break;
+
+            case "papel":
+
+                if (posibilidades[ramdon] == "tijera") {
+                    alert("Has perdido");
+                    derrotas++;
+                }
+                if (posibilidades[ramdon] == "piedra") {
+                    alert("Has ganado");
+                    victorias++;
+                }
+                if (posibilidades[ramdon] == "papel") {
+                    alert("Empate");
+                    empates++;
+                }
+                break;
+        }
+
+    }
+
+}
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+     //Ahorcado
+    function ahorcado() {
+
+        var palabras = ["america", "australia", "murcielago", "manzana"]
+
+        var opcion = parseInt(prompt("Introducir un numero del 1 al 4 para elegir la palabra del ahorcado"));
+
+        var palabra = palabras[opcion - 1];
+
+        var palabraadivinar = "";
+
+        for (var i = 1; i &lt; palabra.length; i++) {
+            palabraadivinar = palabraadivinar + "-";
+        }
+        $("#palabra").val(palabraadivinar);
+        //Hasta aqui ya tengo que vaya poniendo los guiones en el input.
+        var numerodeletraspalabraadivinar = palabraadivinar.length+1;
+        var palabraimprimir= new Array(numerodeletraspalabraadivinar);
+        for(var j = 0; j&lt; numerodeletraspalabraadivinar; j++){
+            palabraimprimir[j]="-";
+        }
+        var rellena = false;
+        var cont = 0;
+        while (!rellena) {
+
+            var letra = prompt("Introducir una letra que se comprobara si está en la palabra");
+
+            for (var i = 0; i &lt; numerodeletraspalabraadivinar; i++) {
+                if (palabra[i] == letra) {
+                    if(palabraimprimir[i]=="-"){
+                        palabraimprimir[i] = letra;
+                        cont++;
+                    }
+                }
+            }
+            if (cont == numerodeletraspalabraadivinar) {
+                rellena = true;
+            }
+            $("#palabra").val(palabraimprimir.toString());
+        }
+        $("#palabra").val(palabraimprimir.toString());
+        alert("Has acertado la palabra");
+    }
+    
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

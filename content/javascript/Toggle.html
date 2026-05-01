@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Toggle</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVASCRIPT TOGGLE</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="#" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //TOGGLE WINES
+    document.querySelector('#btnCarrito')
+        .addEventListener( 'click', (e)=> {
+        //hace q el elemento html al que accede, deshabilita comportamiento
+        e.preventDefault();
+        document.querySelector('.carrito').classList.toggle('js_verCarrito');
+        document.querySelector('body').classList.toggle('carritoAbierto');
+        document.querySelector('.page__header').classList.remove('headroom--top'); 
+                    
+        drawer.close();
+
+    })
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //TOGGLE MARATON
+    //usar variables para acceder a distintos elementos
+    var btnMenu = document.getElementById('btnMenu'), 
+        elMenu = document.querySelector('.main_menu'), //esperamos encontrar 1, si hay mas de uno tomaría el primero (con querySelectorAll se podría aplicar)
+        elementosMenu = document.querySelectorAll('.main_menu-link'); 
+
+    btnMenu.addEventListener('click', function(){
+        console.log('Has pulsado el botónnnnnn');
+        
+        elMenu.classList.toggle('verMenu');  //con toggle hace que cambie
+        this.classList.toggle('btnX'); // se le añade una clase btnX 
+        
+    });
+
+    elementosMenu.forEach((elementoMenu)=>{
+        elementoMenu.addEventListener('click', () =>{ 
+            elMenu.classList.remove('verMenu'); //Se elimina el menu visible
+            btnMenu.classList.remove('btnX'); //se quita el boton de X de menu
+        });
+    });
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

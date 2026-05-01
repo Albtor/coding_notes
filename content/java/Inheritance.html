@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Inheritance</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVA INHERITANCE</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //HERENCIA INHERITANCE: Permite heredar atributos y métodos de otra clase
+
+    public class Inheritance {
+        
+        //super() o super(nombre, edad) DEPENDE DE LOS CONSTRUCTORES DE LA CLASE PADRE
+        
+        public Inheritance(){
+        Aguila aguila = new Aguila("Eagle");
+        aguila.vuela();
+        System.out.println("El número de alas es: "+aguila.alas);
+        
+        Gorrion gorrion = new Gorrion("Paco", "Marron");
+        gorrion.vuela();
+        }
+
+    }
+
+    //If you try to access a final class, Java will generate an error: final class Ave
+    class Ave {
+
+        protected int alas = 2;
+        protected String color;
+        
+        public Ave(){
+            this.alas = 2;
+        }
+
+        public void vuela() {
+            System.out.println("Flying");
+        }
+        
+        public Double damePeso(){
+            return 500.00;
+        }
+    }
+
+    class Aguila extends Ave{
+        
+        String color = "blanco";
+        String nombre = "Paco";
+
+        public Aguila(String nombre) { //CONSTRUYE SEGUN
+            super(); //llama al constructor de la clase padre y da estado inicial, tendrá dos alas
+            this.nombre = nombre;
+        }
+    }
+
+
+    class Gorrion extends Ave{
+        
+        String color = "marron";
+        String nombre = "parrot";
+        Double peso;
+
+        public Gorrion(String nombre, String color) { //CONSTRUYE SEGUN
+            super(); //llama al constructor de la clase padre y da estado inicial, tendrá dos alas
+            this.nombre = nombre;
+            this.color = color;
+        }
+        
+        //llamamos a un método de la clase padre 
+        @Override
+        public Double damePeso(){
+            this.peso = super.damePeso(); //llamamos al metodo de la clase padre
+            return peso;
+        }
+    }
+
+
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

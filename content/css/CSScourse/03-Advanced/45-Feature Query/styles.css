@@ -1,0 +1,25 @@
+div{
+    background-color: lightgreen;
+    margin-bottom: 2%;
+}
+
+@supports (background-color: revert) {
+    .div {
+        background-color: rgb(156, 135, 250);
+    }
+}
+
+@supports not (background-color: revert) {
+    .div {
+        background-color: yellow;
+    }
+}
+
+
+/* USING or / and */
+
+@supports (background-color: revert) or (background-color: red) {
+    .div2 {
+        background-color: rgb(219, 121, 56);
+    }
+}

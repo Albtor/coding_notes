@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Tooltips</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+    <style>
+        span.tooltip{
+            margin-top: 200px;
+            padding:.2rem;
+            background-color: rgb(234, 238, 238);
+        }
+
+        [data-tooltip]{
+            position: relative;
+
+        }
+
+        [data-tooltip]::before,
+        [data-tooltip]::after{
+            --tooltip-color: #333;
+            --arrow-size: .5rem;
+            --scale: 0;
+
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, var(--translate-y)) scale(var(--scale));
+
+            transition: transform 500ms;
+            transition-timing-function: linear;
+            
+        }
+
+
+        [data-tooltip]:hover::before,
+        [data-tooltip]:hover::after {
+            --scale: 1;
+
+            transition-timing-function: cubic-bezier(0.25, 0.1, 0.45, 1.93);
+        }
+
+        [data-tooltip]::before{
+            --translate-y: calc(-100% - var(--arrow-size));
+            content: attr(data-tooltip);
+        
+            /* top: -1rem; */
+            /* left: 50%;
+            transform: translate(-50%, calc(-100% - var(--arrow-size))); */
+            background-color: var(--tooltip-color);
+            color: white;
+            padding: .5em;
+            border-radius: .3em;
+            width: max-content;
+            max-width: 100%;
+            text-align: center;
+
+            transform-origin: bottom center;
+        }
+
+        [data-tooltip]::after{
+            --translate-y: calc(-1 * var(--arrow-size));
+            content:'';
+            border: var(--arrow-size) solid transparent;
+            border-top-color: var(--tooltip-color);
+
+
+            transform-origin: top center;
+        }
+
+    </style>
+</head>
+<body>
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+    </a>
+    <h1 class="title_template">CSS - TOOLTIPS</h1>
+    <h4>Links</h4>
+    <ul>
+        <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+    </ul>
+    <span data-tooltip="This is a tooltip" class="tooltip">Hover me for more information</span>
+        
+<div class= "code_container">
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+    // TOOLTIP
+    &lt;span data-tooltip=&quot;This is a tooltip&quot; class=&quot;tooltip&quot;&gt;Hover me for more information&lt;/span&gt;
+
+    //CSS
+    [data-tooltip]{
+        position: relative;
+
+    }
+
+    [data-tooltip]::before,
+    [data-tooltip]::after{
+        --tooltip-color: #333;
+        --arrow-size: .5rem;
+        --scale: 0;
+
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, var(--translate-y)) scale(var(--scale));
+
+        transition: transform 500ms;
+        transition-timing-function: linear;
+        
+    }
+
+
+    [data-tooltip]:hover::before,
+    [data-tooltip]:hover::after {
+        --scale: 1;
+
+        transition-timing-function: cubic-bezier(0.25, 0.1, 0.45, 1.93);
+    }
+
+    [data-tooltip]::before{
+        --translate-y: calc(-100% - var(--arrow-size));
+        content: attr(data-tooltip);
+    
+        /* top: -1rem; */
+        /* left: 50%;
+        transform: translate(-50%, calc(-100% - var(--arrow-size))); */
+        background-color: var(--tooltip-color);
+        color: white;
+        padding: .5em;
+        border-radius: .3em;
+        width: max-content;
+        max-width: 100%;
+        text-align: center;
+
+        transform-origin: bottom center;
+    }
+
+    [data-tooltip]::after{
+        --translate-y: calc(-1 * var(--arrow-size));
+        content:'';
+        border: var(--arrow-size) solid transparent;
+        border-top-color: var(--tooltip-color);
+
+
+        transform-origin: top center;
+    }
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

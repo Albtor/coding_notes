@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP Csv</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">PHP CSV</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+
+<!-- PHP -->
+<pre class="prettyprint">
+<code class="language-php" spellcheck="false">
+    //PHP CSV &lt;
+
+    //CONTROLLER 
+    $file = "Coches.csv";
+    $csv = array_map('str_getcsv', file($file));
+
+        // con este código se eliminan los header de las tablas: nombres de las columnas
+    array_walk($csv, function(&$a) use ($csv) {
+      $a = array_combine($csv[0], $a);
+    });
+    array_shift($csv); # remove column header
+
+
+    //VIEW TOP
+    require "e7_controller.php";
+    error_reporting(E_ALL ^ E_NOTICE);
+
+    //PAGE
+    &lt;?php 
+        /*
+        print_r($csv);  
+        echo &quot;&lt;br&gt;&quot;.$csv[1][&quot;marca&quot;] . &quot;&lt;br&gt;&quot;;
+        */
+
+        $contador = 0;
+        foreach($csv as $car):
+            if($car[&quot;activo&quot;]==1):
+    ?&gt;
+        &lt;div class=&quot;coches_active&quot;&gt;
+            marca &lt;strong&gt;&lt;?php echo $car[&quot;marca&quot;]?&gt;&lt;/strong&gt; Stock  &lt;strong&gt;&lt;?php echo $car[&quot;stock&quot;]?&gt;&lt;/strong&gt;  unidades,  vendido  &lt;strong&gt;&lt;?php echo $car[&quot;vendido&quot;]?&gt;&lt;/strong&gt;  - active.
+        &lt;/div&gt;
+
+    &lt;?php else:?&gt;
+
+        &lt;div class=&quot;coches_inactive&quot;&gt;
+            marca &lt;strong&gt;&lt;?php echo $car[&quot;marca&quot;]?&gt;&lt;/strong&gt; Stock  &lt;strong&gt;&lt;?php echo $car[&quot;stock&quot;]?&gt;&lt;/strong&gt;  unidades y vendido  &lt;strong&gt;&lt;?php echo $car[&quot;vendido&quot;]?&gt;&lt;/strong&gt;- inactive.
+        &lt;/div&gt;
+    &lt;?php
+        endif;
+        endforeach;
+
+
+        /*
+        echo $car[&quot;marca&quot;]
+        echo $car[&quot;stock&quot;]
+        echo $car[&quot;vendido&quot;]*/ 
+    ?&gt;
+
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React ReactDom & JSX</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+        </a>
+        <h1 class="title_template">REACT - REACT DOM & JSX</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // BASIC STRUCTURE
+    
+    INDEXJS
+    import React from 'react';
+    import ReactDOM from 'react-dom';
+    import './index.css';
+    import App from './App';
+    
+    ReactDOM.render(
+    &lt;React.StrictMode>
+        &lt;App />
+    &lt;/React.StrictMode>,
+    document.getElementById('root')
+    );
+
+
+    APPJS
+    import React from 'react'
+    function App() {
+    return (
+    &lt;div className='container'>
+        &lt;h2>Advanced Tutorial&lt;/h2>
+    &lt;/div>
+    )
+    }
+    
+    export default App
+
+</code>
+</pre>
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // IMPORTS 
+    This is generated automatically when you create a React proyect in index.js 
+
+    import React from 'react';
+    import ReactDOM from 'react-dom';
+
+    ReactDOM.render(
+        &lt;h1>Hello World&lt;/h1>,
+    document.getElementById('root')
+    );
+
+    //If you want to use 2 elements they must be inside a div
+    ReactDOM.render(
+        &lt;div>
+            &lt;h1>Hello World&lt;/h1>
+            &lt;p>Here is a paragraph&lt;/p>
+        &lt;/div>,
+    document.getElementById('root')
+    );
+
+    // If you want to start measuring performance in your app, pass a function
+    // to log results (for example: reportWebVitals(console.log))
+    // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+    reportWebVitals();
+</code>
+</pre>
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // EXPORTS 
+    books.js
+
+    export const books = [
+    {
+    id: 1,
+    img: "https://images-na.ssl-images-amazon.com/images/I/51VQB3uWu+L._SX258_BO1,204,203,200_.jpg",
+    author: "Alice Schertle",
+    title: "Little Blue Truck's Springtime",
+    },
+    {
+    id: 2,
+    img: "https://images-na.ssl-images-amazon.com/images/I/51p2SDOCV9L._SX218_BO1,204,203,200_QL40_FMwebp_.jpg",
+    author: "Amelia Hepworth",
+    title: "I Love You to the Moon and Back ",
+    },
+    ];
+
+    //To import from another file:
+    import { books } from "./books.js";
+
+</code>
+</pre>
+
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    //FUNCTIONAL COMPONENTS
+    function MyApp(){
+    return (....)
+    }
+
+    ReactDOM.render(
+    
+    &lt;MyApp/>,
+    document.getElementById('root')
+    );
+</code>
+</pre>
+
+
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // PARENT CHILD COMPONENTS IN SEPARATE FILES &lt;
+    index.js:
+    import MyInfo from "./curso/3-myInfo.js"
+
+    3-myInfo.js:
+    import React from 'react';
+
+    function MyInfo(){
+        return (...)
+    }
+
+export default MyInfo
+    
+</code>
+</pre>
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    //  &lt;
+    index.js
+    import React from 'react';
+    import ReactDOM from 'react-dom';
+
+
+    //PARENT CHILD COMPONENTS IN SEPARATE FILES
+    import App from "./App.js"
+
+
+    ReactDOM.render(
+    &lt;App/>,
+    document.getElementById('root')
+    );
+
+
+    App.js
+    import React from 'react';
+    import Footer from './components/Footer.js';
+    import Main from './components/Main.js';
+    // import logo from './logo.svg';
+    // import './App.css';
+
+    function App() {
+    return (
+        &lt;div>
+        &lt;Main/>
+        &lt;Footer/>
+        &lt;/div>
+    );
+    }
+
+    //MAIN as an example, would need also footer too
+    import React from 'react';
+
+    function Main(){
+        return (
+        &lt;div>
+            &lt;h1>Alberto&lt;/h1>
+        &lt;ul>
+            &lt;li>New York&lt;/li>
+            &lt;li>Berlin&lt;/li>
+            &lt;li>Tenerife&lt;/li>
+        &lt;/ul>
+        &lt;/div>
+        )
+    }
+
+    export default Main
+
+export default App;
+</code>
+</pre>
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    //Styling 
+    import React from 'react';
+
+    function Header(){
+        return (
+            &lt;header className="navbar">This is the header&lt;/header>
+        )
+    }
+    export default Header
+    
+</code>
+</pre>
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    //TRICKS
+    Semicolons not necessary
+    function Header = () => &lt;header>This is the header&lt;/header>
+    &lt;header>This is the header{variable1+ " " + variable2}&lt;/header> 
+    &lt;header>This is the header{'$(firstName) $(lastName)'}&lt;/header> 
+    
+</code>
+</pre>
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    //INLINE STYLES
+    camelCase instead of - background-color = backgroundColor
+    import React from 'react';
+import ReactDOM from 'react-dom';
+
+function App() {
+  const date = new Date(2020,7,8,19);
+  const hours = date.getHours();
+  let timeOfDay;
+  const styles = { 
+    fontSize: 50
+   }
+
+  if(hours&lt;12){
+    timeOfDay = "morning";
+    styles.color = "#bfe45b"
+  }else if(hours>=12 && hours&lt;17) {
+    timeOfDay = "afternoon";
+    styles.color = "#e4b228"
+  }else{
+    timeOfDay = "nigh";
+    styles.color = "#1eb39a"
+  }
+
+  return (
+   &lt;h2 style={styles}>Good {timeOfDay}&lt;/h2>
+  )
+}
+
+ReactDOM.render(
+  &lt;App/>,
+  document.getElementById('root')
+);
+
+    
+</code>
+</pre>
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    //JSX RULES
+    return single elements
+    div/section/article or fragment
+    use camelcase for html attribute
+    className instead of class
+    close every element
+    formatting
+
+    //JSX in camelcase onClick
+    function Greeting(){
+    return (
+    &lt;div onClick>
+        &lt;img src="" alt="" />
+    &lt;/div>
+    );
+    };
+    
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

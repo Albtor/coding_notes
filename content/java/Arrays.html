@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Arrays</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVA ARRAYS</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //JAVA &lt;
+    //BASIC ARRAYS
+    public void ArraysBasic() {
+
+        String[] cars = {"Volvo", "BMW", "Ford", "Mazda"};
+        System.out.println(cars[0]);
+        cars[0] = "Opel";
+        System.out.println(cars.length);
+        
+        //For Basic
+        for (int i = 0; i &lt; cars.length; i++) {
+            System.out.println(cars[i]);
+        }
+        
+        //Different FOR
+        for (String i : cars) {
+            System.out.println(i);
+        }
+
+    }
+
+    //ARRAY UNIDIMENSIONAL
+    public void ArrayUnidimensional() {
+        int a = 0;
+        int array[] = new int[10]; //this kind of array is fixed
+
+        for (int i = 0; i &lt; array.length; i++) {
+            array[i] = a;
+            a = a + 2;
+            System.out.println("La posicion del array [" + i + "] es: " + array[i]);
+        }
+    }
+
+    //REFERENCIAS FOR ARRAY BIDIMENSIONALES
+    coinz[i][1] [fila][columna] [0-5][0-1]
+    let coinz = [
+        ['btc', 18],
+        ['eth', 116],
+        ['ada', 32000],
+        ['dot', 987],
+        ['one', 10000],
+        ['uni', 611]
+    ]
+
+    for(var i = 0; i &lt; coinz.length; i++){
+        console.log("++"+ coinz[i][0]);
+        if(coin == coinz[i][0]){
+            var supply = coinz[i][1];
+            return supply;    
+        };
+
+    };
+
+
+    //ARRAY BIDIMENSIONAL BASIC
+    public void ArraysBidimensionalBasic() {
+        int[][] myNumbers = {{1, 2, 3, 4}, {5, 6, 7}};
+        for (int i = 0; i &lt; myNumbers.length; ++i) {
+            for (int j = 0; j &lt; myNumbers[i].length; ++j) {
+                System.out.println(myNumbers[i][j]);
+            }
+        }
+
+    }
+
+    //ARRAY BIDIMENSIONAL
+    public void ArrayBidimensional() {
+        int a = 0;
+        int array[][] = new int[10][10]; //this kind of array is fixed
+
+        for (int i = 0; i &lt; array.length; i++) {
+            for (int j = 0; j &lt; array.length; j++) {
+                array[i][j] = a;
+                a = a + 2;
+                System.out.println("La posicion del array [" + i + "][" + j + "] es: " + array[i][j]);
+            }
+        }
+    }
+
+    
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySQL Basic Exercises</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+    </a>
+    <h1 class="title_template">MySQL - BASIC EXERCISES</h1>
+    <h4>Links</h4>
+    <ul>
+        <li class="link_list"><a href="CREATE_INSERT_BDAlumnos.sql" class="link_file" target="_Blank">DB SQL ALUMNOS</a></li>
+    </ul>
+
+        
+<div class= "code_container">
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-sql" spellcheck="false">
+    // BASIC EXERCISES
+
+    //--A1-Relación de alumnos del grupo 811NMA 37 filas
+    SELECT nombre, apellidos FROM Alumno WHERE idGrupo= '811NMA' ORDER BY APELLIDOS;
+    
+    //--A2-Relación de alumnos que son de TACORONTE 552 filas
+    SELECT nombre, apellidos FROM Alumno WHERE Municipio = 'Tacoronte' ORDER BY APELLIDOS;
+    
+    //--A3-Relación de grupos que no tienen asignado tutor. 17 filas
+    SELECT * FROM GRUPO WHERE idProfesorTutor IS NULL;
+    
+    //--A4-Relación de alumnos que viven en el CALVARIO 23 filas
+    SELECT * FROM Alumno where direccion LIKE '%Calvario%' ORDER BY APELLIDOS;
+    
+    //--A5-¿Cuantos alumnos tienen de código postal 38350? 525 
+    SELECT COUNT(*) FROM Alumno where CodigoPostal= '38350';
+    
+    //--A6-¿Cuantos alumnos tiene el grupo 811NMA?37
+    SELECT COUNT(*) FROM Alumno WHERE idGrupo= '811NMA';
+    
+    //--A7-¿Cuantos grupos tiene el centro escolar? 52
+    SELECT COUNT(*) FROM grupo;
+    
+    //--A8-Número de alumnos que han suspendido la asignatura 91302 125
+    SELECT COUNT(*) FROM Nota where idAsignatura = '91302' AND nota &lt; 5;
+    
+    //--A9-Número de alumnos que han aprobado la asignatura 91302 11
+    SELECT COUNT(*) FROM Nota where idAsignatura = '91302' AND nota >= 5;
+    
+    //--A10-Número de alumnos que tienen la asignatura 91302. 136
+    SELECT COUNT(*) FROM Nota where idAsignatura = '91302';
+    
+    //--A11-Nota media de la asignatura 91303 de todos los alumnos 2,832
+    SELECT AVG(cast(nota as float)) FROM Nota where idAsignatura = '91303';
+    
+    SELECT cast(nota/3.0 as decimal(5,2)) FROM Nota where idAsignatura = '91303';
+    
+    //--A13-Cual es la nota mínima en la asignatura 91302. 0
+    SELECT MIN(nota) FROM Nota where idAsignatura = '91302';
+    
+    //--A14 Cual es la nota máxima en la asignatura 91304. 10
+    SELECT MAX(nota) FROM Nota where idAsignatura = '91304';
+
+
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

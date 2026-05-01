@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySQL SP Exercises</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+    </a>
+    <h1 class="title_template">MySQL - STORED PROCEDURES EXERCISES</h1>
+    <h4>Links</h4>
+    <ul>
+        <li class="link_list"><a href="#" class="link_file" target="_Blank">Link</a></li>
+    </ul>
+
+        
+<div class= "code_container">
+
+<!-- MYSQL -->
+<pre class="prettyprint">
+<code class="language-sql" spellcheck="false">
+    //--PROCEDIMIENTOS ALMACENADOS EJERCICIOS
+
+    //--1.- Alumnos del 811NMA con nota media mayor que la nota media de ese grupo
+    CREATE OR ALTER PROCEDURE spAlumnos811NMAMediaMayor
+    AS 
+        declare @nmGrupo float
+        set @nmGrupo = (SELECT AVG(Nota*1.0) FROM Nota N INNER JOIN Alumno A ON N.idAlumno = A.idAlumno WHERE A.idGrupo = '811NMA')
+    
+        SELECT A.idAlumno, AVG(N.Nota*1.0) FROM Nota N
+        INNER JOIN Alumno A ON N.idAlumno = A.idAlumno WHERE A.idGrupo = '811NMA'
+        GROUP BY A.idAlumno HAVING AVG(N.Nota*1.0) > @nmGrupo
+    
+    GO
+    
+    EXECUTE spAlumnos811NMAMediaMayor
+    
+    Go
+    
+    
+    //--2 Alumnos con nota media mayor a la nota media del grupo pasado como parametro
+    CREATE OR ALTER PROCEDURE spAlumnosMediaMayorGrupoIntroducido @idGrupo VARCHAR(7)
+    AS 
+        declare @nmGrupo float
+        set @nmGrupo = (SELECT AVG(Nota*1.0) FROM Nota N INNER JOIN Alumno A ON N.idAlumno = A.idAlumno WHERE A.idGrupo = @idgrupo)
+    
+        SELECT A.idAlumno, AVG(N.Nota*1.0) FROM Nota N
+        INNER JOIN Alumno A ON N.idAlumno = A.idAlumno WHERE A.idGrupo = @idgrupo
+        GROUP BY A.idAlumno HAVING AVG(N.Nota*1.0) > @nmGrupo
+    
+    GO
+    
+    EXECUTE spAlumnosMediaMayorGrupoIntroducido '225NMA'
+    
+    GO
+    
+    //--3.- Relacion de alumnos de un grupo dado (por parámetro)
+    CREATE OR ALTER PROCEDURE spAlumnosGrupoIntroducido @idGrupo VARCHAR(9)
+    AS
+        SELECT * FROM Alumno WHERE idGrupo = @idGrupo
+    
+    GO
+    
+    EXECUTE spAlumnosGrupoIntroducido '225NMA'
+    
+    GO
+    
+    //--4.- Boletín de notas de un alumno . Se pasa como parámetro el numero de expediente
+    CREATE OR ALTER PROCEDURE spBoletinNotasAlumnoExpedienteIntroducido @idAlumno INT
+    AS
+        SELECT AG.Denominacion, N.Nota FROM Alumno A 
+        INNER JOIN Nota N ON A.idAlumno = N.idAlumno 
+        INNER JOIN Asignatura AG ON N.idAsignatura = AG.idAsignatura
+        WHERE A.idAlumno = @idAlumno
+    GO
+    
+    EXECUTE spBoletinNotasAlumnoExpedienteIntroducido 1
+    
+    GO
+    
+    //--5. Boletín de notas de un alumno. Se pasa como parámetro apellidos y nombre del alumno
+    CREATE OR ALTER PROCEDURE spBoletinconApellidosyNombre @nombre VARCHAR(20), @apellidos VARCHAR (50)
+    AS
+        SELECT AG.Denominacion, N.Nota FROM Alumno A 
+        INNER JOIN Nota N ON A.idAlumno = N.idAlumno 
+        INNER JOIN Asignatura AG ON N.idAsignatura = AG.idAsignatura
+        WHERE A.Nombre = @nombre AND A.Apellidos = @apellidos
+    GO
+    
+    EXECUTE spBoletinconApellidosyNombre 'Ana', 'Valle CARPANTa'
+    
+    GO
+    
+    //--6.- Relación de alumnos con nota media entre dos valores dados que se pasan como parámetros.
+    CREATE OR ALTER PROCEDURE spNotaMediaEntre2Num @a float, @b float
+    AS
+        SELECT A.idAlumno, AVG(N.Nota*1.0) FROM Alumno A
+        INNER JOIN Nota N ON A.idAlumno = N.idAlumno 
+        GROUP BY A.idAlumno
+        HAVING AVG(N.Nota*1.0) BETWEEN @a AND @b
+        
+    GO
+    
+    EXECUTE spNotaMediaEntre2Num 2, 3
+    
+    GO
+    
+    //--7.- Relación de alumnos con mejor y peor nota media del centro..(TABLAS TEMPORALES)
+    
+    
+    
+    
+    //--8.- Relación de alumnos de un grupo que se pasa como parámetro cuya nota media es mayor que la nota media de ese grupo.
+    CREATE OR ALTER PROCEDURE spAlumnosconNotaMediaMayorqueGrupoIntroducido @idgrupo VARCHAR(9)
+    AS
+        declare @mediaGrupo FLOAT
+        set @mediaGrupo = (SELECT AVG(N.Nota * 1.0) FROM Nota N INNER JOIN Alumno A ON N.idAlumno = A.idAlumno WHERE A.idGrupo = @idgrupo)
+        
+        SELECT A.idAlumno, AVG(N.Nota*1.0) FROM Alumno A
+        INNER JOIN Nota N ON A.idAlumno = N.idAlumno 
+        WHERE A.idGrupo = @idgrupo
+        GROUP BY A.idAlumno
+        HAVING AVG(N.Nota*1.0) > @mediaGrupo
+    
+    GO
+    
+    EXECUTE spAlumnosconNotaMediaMayorqueGrupoIntroducido '225NMA'
+    
+    GO 
+    
+    //--REVISAR
+    //--9.- Número de alumnos de un grupo que tienen mas de 3 asignaturas suspendidas. Elgrupo se pasa como parámetro.
+    CREATE OR ALTER PROCEDURE spNumAlumnosMasde3SuspendidasGrupoIntroducido @idGrupo VARCHAR(9)
+    AS
+        select COUNT(*) "Mas de 3 suspensas" from Alumno a
+        where idGrupo = @idGrupo and
+        3 &lt; (select COUNT(*) from Nota n where a.idAlumno=n.idAlumno and Nota &lt; 5);
+    
+    GO
+    
+    EXECUTE spNumAlumnosMasde3SuspendidasGrupoIntroducido '225NMA'
+    
+    GO
+    
+    
+    //--10.- Lo mismo que el 9 pero el valor debe ser devuelto al programa que llama el procedimiento.
+    create procedure spMasDe3SsuspensasReturn @idGrupo char(6)
+    as
+        return (
+        select COUNT(*) "Mas de 3 suspensas" from Alumno a
+        where idGrupo = @idGrupo and
+        3 &lt; (select COUNT(*) from Nota n where a.idAlumno=n.idAlumno and
+        Nota &lt; 5)
+        )
+    go
+    
+    //-- para probarlo
+    declare @n int
+    execute @n=spMasDe3SsuspensasReturn '225NMA' -- @n tendrá el valor devuelto en return
+    print @n
+    go
+    
+    //--11.- Procedimiento almacenado al que le pasamos el código de un alumno y nos devuelve la nota media.
+    CREATE OR ALTER PROCEDURE spNotaMediaAlumnoConID @idAlumno INT, @media float OUTPUT
+    AS
+        set @media = (SELECT AVG(N.Nota*1.0) FROM Alumno A INNER JOIN Nota N ON A.idAlumno = N.idAlumno WHERE A.idAlumno = @idAlumno)
+    
+    GO
+    
+    declare @nm float
+    EXECUTE spNotaMediaAlumnoConID 1, @nm OUTPUT
+    PRINT @nm
+    GO
+    
+    
+    //--12. Procedimiento almacenado al que pasamos el código de un grupo y nos devuelve la nota media de ese grupo (media de todas las notas de los alumnos de ese grupo)
+    CREATE OR ALTER PROCEDURE spNotaMediaGrupo @idGrupo VARCHAR (7), @media float OUTPUT
+    AS
+        set @media = (SELECT AVG(N.Nota*1.0) FROM Nota N INNER JOIN Alumno A ON N.idAlumno = A.idAlumno WHERE A.idGrupo = @idGrupo)
+    GO
+    
+    declare @nm float
+    EXECUTE spNotaMediaGrupo '225NMA', @nm OUTPUT
+    PRINT @nm
+    
+    
+
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

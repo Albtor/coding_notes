@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Hibernate</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVA HIBERNATE</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //HIBERNATE Netbeans Basics
+    Crear Nuevo proyecto Hibernate
+    1. Crea un fichero xml con Asistente/Wizard. Definir la base de datos. Elegir conexion
+    hibernate.cfg.xml con los parámetros de conexión. Decimos a que BD nos conectamos
+    deben aparecer datos:
+    2. Crear en el proyecto ingenieria inversa Reverse engineering (elegir folder a guardar archivo reveng1.xml)
+    3. Crear en el proyecto Hibernate mapping files and POJO’s from database (tiene que estar el archivo reveng1.xml y hay que elegir el paquete correcto). Getter and Setters
+    4. Crear en el proyecto Hibernate util (elegir paquete): Crea session (como una conexión a base de datos)
+
+    Empezar a trabajar
+    Session: 
+    Session sesion =NewHibernateUtil.getSessionFactory().openSession();
+    session.load() cargar objetos te un tipo tal class→ clave principal
+    sesion.close();
+    System.exit(0);
+
+    
+</code>
+</pre>
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //BASE DE DATOS
+    /*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package tarea04.hibernate_to_xml;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+//import static tarea04.hibernate_to_xml.Tarea04Hibernate_to_XML.lista;
+
+/**
+ *
+ * @author Alberto Toribio
+ */
+public class BaseDatos {
+
+    Session sesion;
+    public boolean hayError = false;
+    public String mensajeError = "";
+    protected Clientes listado;
+  
+   
+
+    public BaseDatos() {
+        ///* PARA QUITAR LOS MENSAJES DE AVISO DE HIBERNATE..********************************************* 
+        LogManager logManager = LogManager.getLogManager();
+        Logger logger = logManager.getLogger("");
+        logger.setLevel(Level.SEVERE); //se podr�a poner Level.OFF para que no saque ningun mensaje
+        ////////////******************************************
+        // nos conectamos a la base de datos..
+        try {
+            sesion = NewHibernateUtil.getSessionFactory().openSession();
+            hayError = sesion == null;
+            if (hayError) {
+                this.mensajeError = "No conecta";
+            }
+        } catch (HibernateException ex) {
+            this.mensajeError = ex.getLocalizedMessage();
+            this.hayError = true;
+        }
+
+    }
+    
+//    void MostrarUnCliente(){
+//    Cliente c = (Cliente ) this.sesion.load(Cliente.class, 1); 
+//    System.out.println ( "Nombre del cliente :"+ c.getNombre()); 
+//}
+    
+    //METODO PARA OBTENER LOS CLIENTES DE LA BASE DE DATOS, CREARLOS COMO OBJETOS Y AÑADIRLOS A LA LISTA
+    void ObtenerListadoClientes(){
+        listado = new Clientes();
+        List&lt;Cliente> listadoClientes =  sesion.createQuery("from Cliente where saldo &lt; 0 ").list(); 
+        
+        for (Cliente c: listadoClientes )  {  
+            System.out.println (c.getNombre()+c.getId()+c.getSaldo());
+            Cliente nuevoCliente = new Cliente(c.getId(), c.getNombre(),c.getSaldo()); //creamos un cliente
+            listado.addCliente(nuevoCliente);//añadimos a la lista               
+        }
+    }
+    
+    //METODO PARA CONVERTIR A XML DESDE UN ARRAYLIST DE CLIENTES
+    void ConvertiraXML(){
+        ConversorXML conversor = new ConversorXML();
+        conversor.ConvierteAXML(listado);
+    }
+
+
+    List executeQuery(String query) // hacer consulta diretamente
+    {
+        // si no se ha puesto :  this.sesion.clear();  en cada modificaci�n, hay que hacerlo aqui. fuerza a cargar de nuevo los objetos de disco a memoria..
+
+        return sesion.createQuery(query).list();
+    }
+
+    Object load(String clave, Class c) // que se llame igual que el metodo
+    {
+        return this.sesion.load(c, clave);
+    }
+
+    Object leePorClave(String clave, Class c) // explicando que hace realmente!!
+    {
+        return this.sesion.load(c, clave);
+    }
+
+    public void close() {
+        this.sesion.close();
+
+    }
+
+    Session conexion() {
+        return this.sesion;
+    }
+
+    
+
+}
+
+</code>
+</pre>
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //PARAMETROS
+    public class Parametros {
+
+        static BaseDatos BD;    // base de datos de todo el programa
+    
+        static {// se va a ejectuar sin necesidad de ser llamado 
+            BD = new BaseDatos();
+        }
+    
+        protected void finalize() throws Throwable {
+            BD.close(); // por si se nos olvida cerrarla base de datos..
+            super.finalize();
+        }
+    
+        public Session conexion() {
+            return BD.conexion();
+        } // para hacer mas comodo el uso
+    
+    }
+    
+</code>
+</pre>
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //JAVA &lt;
+    
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

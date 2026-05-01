@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Conditions</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVA CONDITIONS</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //JAVA &lt;
+    
+    
+    //1- IF ELSE ELSE IF
+    public void ifElse() {
+        int time = 22;
+        if (time &lt; 10) {
+            System.out.println("Good morning.");
+        } else if (time &lt; 20) {
+            System.out.println("Good day.");
+        } else {
+            System.out.println("Good evening.");
+        }
+    }
+
+    //SWITCH
+    public void switching() {
+        int day = 4;
+        switch (day) {
+            case 6:
+                System.out.println("Today is Saturday");
+                break;
+            case 7:
+                System.out.println("Today is Sunday");
+                break;
+            default:
+                System.out.println("Looking forward to the Weekend");
+        }
+
+    }
+
+    //WHILE
+    public void Whiles() {
+        int i = 0;
+        while (i &lt; 5) {
+            System.out.println(i);
+            i++;
+        }
+    }
+
+    //DO WHILE
+    public void doWhile() {
+        int i = 0;
+        do {
+            System.out.println(i);
+            i++;
+        } while (i &lt; 5);
+
+    }
+
+    //FOR
+    public void forLoop() {
+        for (int i = 0; i &lt; 5; i++) {
+            System.out.println(i);
+        }
+
+        String[] cars = {"Volvo", "BMW", "Ford", "Mazda"};
+        for (String i : cars) {
+            System.out.println(i);
+        }
+    }
+
+    //BREAK // can be used to joup out of a loop
+    public void breaking() {
+        for (int i = 0; i &lt; 10; i++) {
+            if (i == 4) {
+                break;
+            }
+            System.out.println(i);
+        }
+    }
+
+    //CONTINUE
+    public void continuing() {
+        for (int i = 0; i &lt; 10; i++) {
+            if (i == 4) {
+                continue;
+            }
+            System.out.println(i);
+        }
+    }
+    
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

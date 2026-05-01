@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RubyOnRails Advanced</title>
+    <link rel="stylesheet" href="../../css/file.css"> 
+    <link rel="shortcut icon" type="image/png" href="../../img/api2.png">
+   
+</head>
+<body class="apis-bkg">
+<div class="main_container">
+
+    <a href="../../Solutions.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code Icon" class="menu_img">
+    </a>
+    <h1 class="title_template">RUBY ON RAILS ADVANCED</h1>
+    <h4>Links </h4>
+        <ul>
+            <li class="link_list"> <a href="#" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+
+<div class= "code_container ">
+
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    // ASSOCIATIONS &lt;
+    Connect tables
+    Models concerns > tablas de friends y users (o los nombres que les hayamos dado)
+
+    class Friend &lt; Application Record
+     belongs_to :user
+    end
+
+    class User &lt; Application Record
+        #...other code
+        has_many :friends
+    end
+
+    Create new field in friends table
+    check db > schema.rb // you can see the columns of the tables
+
+    #Add a column
+    rails g migration add_user_id_to_friends user_id:integer:index    #add user id to the table friends
+    rails db:migrate
+
+    2:39
+    &lt;=% form.number_field :user_id, id: :friend_user_id class:"form-control", value: current_user.id, type: :hidden %>
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    // &lt;
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    // &lt;
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    // &lt;
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    // &lt;
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    // &lt;
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    // &lt;
+</code>
+</pre>
+
+    
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

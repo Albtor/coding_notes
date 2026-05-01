@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySQL Triggers Stock</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+    </a>
+    <h1 class="title_template">MySQL - TRIGGERS STOCK</h1>
+    <h4>Links</h4>
+    <ul>
+        <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+    </ul>
+
+        
+<div class= "code_container">
+
+<!-- MySQL -->
+<pre class="prettyprint">
+<code class="language-mysql" spellcheck="false">
+    // TRIGGERS STOCK
+    create database ventas
+    go
+    use ventas
+
+
+    go
+    CREATE TABLE articulo
+        (  idArticulo int primary key,
+        nombre varchar (100),
+        stock int 
+        )
+    go
+    create trigger trNoStockNegativo on articulo for insert, update
+    as
+        declare @texto varchar(300)
+        if ( select stock from inserted ) &lt; 0 
+        begin
+            set @texto = 'El stock del "'+(select nombre from inserted)+'" no puede quedar negativo'
+            raiserror (@texto,16,1)
+            rollback transaction
+        end
+    go
+
+    create table venta
+    (
+    idventa int identity primary key,
+    idArticulo int references articulo(idArticulo),
+    cantidad int constraint "Tiene que vender algo" check (cantidad >0)
+    )
+    go
+    insert into articulo values ( 1,'Platano',10)
+    insert into articulo values ( 2,'Manzana',7)
+    insert into articulo values ( 3,'Pera',2)
+
+    go
+    create trigger trNuevaVenta on venta for insert
+    as
+    declare @idArticuloVendido int
+    declare @cantidad int
+
+    set @idArticuloVendido =(select idArticulo from INSERTED) 
+    set @cantidad =(select cantidad from INSERTED)
+
+    update articulo set stock = stock - @cantidad where idArticulo = @idArticuloVendido
+
+    go
+
+    create trigger trBorrarventa on venta for delete 
+    as
+    declare @idArticuloVendido int
+    declare @cantidad int
+    
+    set @idArticuloVendido =(select idArticulo from DELETED)
+    set @cantidad =(select cantidad from DELETED)
+
+    update articulo set stock = stock + @cantidad where idArticulo =@idArticuloVendido
+    go
+
+    //-- modificar !!
+    create trigger trModificarVenta on venta for update
+    as
+    //-- eliminar venta anterior
+    declare @idArticuloVendido int
+    declare @cantidad int
+    
+    set @idArticuloVendido =(select idArticulo from DELETED)
+    set @cantidad =(select cantidad from DELETED)
+
+    update articulo set stock = stock + @cantidad where idArticulo =@idArticuloVendido
+
+    //-- venta nueva
+
+    set @idArticuloVendido =(select idArticulo from INSERTED) 
+    set @cantidad =(select cantidad from INSERTED)
+
+    update articulo set stock = stock - @cantidad where idArticulo = @idArticuloVendido
+
+    go
+
+    //-- todo en uno
+    create trigger trMantenerStock on venta for update,delete,insert
+    as
+
+    update articulo set stock = stock +(select cantidad from DELETED) 
+                            where idArticulo =(select idArticulo from DELETED)
+    update articulo set stock = stock -(select cantidad from INSERTED)
+                            where idArticulo = (select idArticulo from INSERTED) 
+
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

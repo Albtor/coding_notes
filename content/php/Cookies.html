@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP Cookies</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">PHP COOKIES</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="https://www.w3schools.com/php/php_cookies.asp" class="link_file" target="_Blank">W3 Schools</a></li>
+            <li class="link_list"><a href="http://localhost/Coding/Resources/CodingNotes/content/php/examples/Acceso/" class="link_file" target="_Blank">Example</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+
+<!-- PHP -->
+<pre class="prettyprint">
+<code class="language-php" spellcheck="false">
+    //PHP COOKIES &lt;
+    
+    $cookie_name = "user";
+    $cookie_value = "John Doe";
+    setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+    
+
+    if(!isset($_COOKIE[$cookie_name])) {
+    echo "Cookie named '" . $cookie_name . "' is not set!";
+    } else {
+    echo "Cookie '" . $cookie_name . "' is set!";
+    echo "Value is: " . $_COOKIE[$cookie_name];
+    }
+
+    //MODIFY 
+    setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
+    //DELETE // set the expiration date to one hour ago
+    setcookie("user", "", time() - 3600);
+</code>
+</pre>
+
+<!-- PHP -->
+<pre class="prettyprint">
+<code class="language-php" spellcheck="false">
+    //PHP COOKIES CURSO INEM &lt;
+    //IMPORTANTE: La funci�n setcookie() debe aparecer ANTES de la etiqueta html.
+    // Si $_COOKIE[] no tiene valor, se le otorga un valor nulo.
+    $sesion=isset($_COOKIE["visita"])?$_COOKIE["visita"]:null;
+
+    // Si la $sesion (la cookie) tiene ya un valor, se le incrementa el valor.
+    if($sesion!=null){
+        $sesion+=1;
+        setcookie("visita", $sesion);
+        echo "Cookie: Visita nº $sesion";
+    }
+    // En cambio, si no tiene valor, es decir, no se haya accedido a la p�gina
+    // nunca, se le da un valor principal a la cookie.
+    else{
+        setcookie("visita", 1);
+        echo "Cookie: Visita nº $sesion";
+    }
+
+</code>
+</pre>
+    
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

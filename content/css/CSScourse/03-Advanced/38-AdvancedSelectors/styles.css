@@ -1,0 +1,27 @@
+div > span{
+  background-color: red;
+}
+
+span{
+  background-color: green;
+}
+
+div + p{
+  background-color: yellow;
+}
+
+p:not(.green):not(.red){
+  background-color: blue;
+}
+
+input[type="text"]{
+  background-color: red;
+}
+
+input:not(:checked){
+  margin: 50px;
+}
+
+input[data-margin]{
+  margin: 100px;
+}

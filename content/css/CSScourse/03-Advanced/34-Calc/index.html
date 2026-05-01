@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>33-Custom properties / Css Variables</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body> 
+  <h1>Calc function</h1>
+  <ul>
+    <li>Arithmetic in CSS </li>
+    <li>accepts + / * -  (but addition/substraction needs to specify the  units 10px + 2px)</li>
+    <li>margin: calc(10px * 2); 20 Px of margin in the paragraph</li>
+    <li>combine units in one single value</li>
+    <li>.p2{
+      --margin: 30px;
+      margin: calc(var(--margin) * 2);
+  } . Here we specify the variable of 30px</li>
+  <li>.p3{
+    --spacer: 20;
+    margin: calc(var(--spacer) * 1px);
+} This way we don't specify the units but then multiply it for 1 pixels. BUt you can set to 1%, 1rem, etc</li>
+  </ul>
+    <h2>Heading</h2>
+    <p>Paragraph1</p>
+    <p class="p2">Paragraph2: 
+      .p2{
+          --margin: 30px;
+          margin: calc(var(--margin) * 2);
+      }
+    </p>
+    <p class="p3">Paragraph3: .p3{
+      --spacer: 20;
+      margin: calc(var(--spacer) * 2px);
+  }</p>
+  
+</body>
+</html>

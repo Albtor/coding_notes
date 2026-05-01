@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Advanced Concepts</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVASCRIPT ADVANCED CONCEPTS</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="#" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // 81- USE THE REST OPERATOR WITH FUNCTION PARAMETERS
+
+    // const sum2 = (function(){
+    //     return function sum2(x, y, z){
+    //         const args = [x, y, z];
+    //         return args.reduce((a,b) => a + b, 0);
+    //     };
+    // })();
+
+    const sum2 = (function(){
+        return function sum2(...args){
+            return args.reduce((a,b) => a + b, 0);
+        };
+    })();
+
+    console.log("Rest operator with function parameters: ...args");
+    console.log(sum2(1, 2, 3, 4));
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // 82- USE THE SPREAD OPERATOR TO EVALUATE ARRAYS IN PLACE ...
+    // const arr1 = ['JAN', 'FEB', 'MAR', 'APR', 'MAY'];
+    // let arr2;
+    // (function(){
+    //     arr2 = arr1;
+    //     arr1[0] = 'potato'
+    // })();
+
+    const arr1 = ['JAN', 'FEB', 'MAR', 'APR', 'MAY'];
+    let arr2;
+    (function(){
+        arr2 = [...arr1];
+        arr1[0] = 'potato'
+    })();
+    console.log(arr2);
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // 83- USE DESTRUCTURING ASSIGNMENT TO ASSIGN VARIABLES FROM OBJECTS
+
+    var voxel = {x: 3.6, y: 7.4, z: 6.54};
+    const {x : q, y:w, z: e } = voxel;
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // 84 - DESTRUCTURING ASSIGNMENT WITH NESTED OBJECTS
+    const LOCAL_FORECAST = {
+        today: {min: 72, max: 83},
+        tomorrow: {min: 73.3, max:84.6}
+    };
+
+    function getMaxOfTmrw(forecast){
+        "use strict";
+        // const maxOfTomorrow = undefined;
+        const { tomorrow: {max: maxOfTomorrow }} = forecast;
+        return maxOfTomorrow;
+    }
+    console.log("Destructuring Assignment with nested objects");
+    console.log(getMaxOfTmrw(LOCAL_FORECAST));
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // 85 - USE DESTRUCTURING ASSIGNMENT TO ASSIGN VARIABLES FROM ARRAYS
+
+    const [z, x] = [1,2,3,4,5,6];
+    console.log(z,x);
+
+    let a2 = 8, b2 = 6;
+    (() => {
+        "use strict";
+        [a2, b2] = [b2, a2]
+    })();
+    console.log(a2);
+    console.log(b2);
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // 86 - USE DESTRUCTURING ASSIGNMENT WITH THE REST OPERATOR
+
+    const source = [1,2,3,4,5,6,7,8,9];
+    function removeFirstTwo(list){
+
+        const [, , ...arr] = list;
+
+        return arr;
+    }
+
+    console.log("const [, , ...arr] = list;");
+    const arr = removeFirstTwo(source);
+    console.log(arr);
+    console.log(source);
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // 86 - USE DESTRUCTURING ASSIGNMENT TO PASS AN OBJECT AS A FUNCTION's PARAMETERS
+    const stats = {
+        max: 56.78,
+        standard_deviation: 4.34,
+        median: 34.54,
+        mode: 23.87,
+        min: -0.75,
+        average: 35.85
+    };
+    const half = (function() {
+        // return function half(stats){
+            return function half({max, min}){
+                return (max + min) / 2.0;
+            
+        };
+    })();
+    console.log(stats);
+    console.log(half(stats));
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // 87 - CREATE STRINGS USING TEMPLATE LITERALS
+    const person = {
+        name: "Zodiac Hasbro",
+        age: 56
+    };
+    // template literal with multi-line and string interpolation with back ticks
+    // ${} javascript
+    const greeting = `Hello, my name is ${person.name}!
+    I am ${person.age} years old.`;
+
+    console.log(greeting);
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // 88 - WRITE CONCISE OBJECT LITERAL DECLARATIONS USING SIMPLE FIELDS
+    // const createPerson = (name, age, gender) => {
+    //     return {
+    //         name: name,
+    //         age: age,
+    //         gender: gender
+    //     };
+    // };
+
+    const createPerson = (name, age, gender) => ({name, age, gender});
+    console.log(createPerson("Zodiac Hasbro", 56, "Male"));
+    
+</code>
+</pre>
+
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // 89 - WRITE CONCISE DECLARATIVE FUNCTIONS
+
+    // Long way
+    // const bicycle = {
+    //     gear: 2,
+    //     setGear: function(newGear){
+    //         "use strict";
+    //         this.gear = newGear;
+    //     }
+    // };
+
+    const bicycle = {
+        gear: 2,
+        setGear(newGear){
+            "use strict";
+            this.gear = newGear;
+        }
+    };
+
+    bicycle.setGear(3);
+    console.log(bicycle.gear);
+    
+</code>
+</pre>
+
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

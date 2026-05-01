@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SASS Mixins</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+    </a>
+    <h1 class="title_template">SASS - Mixins</h1>
+    <h4>Links</h4>
+    <ul>
+        <li class="link_list"><a href="#" class="link_file"></a></li>
+    </ul>
+
+        
+<div class= "code_container">
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+    // MIXINS 
+    Similar to functions, something that can be reused for different tags. They define styles
+
+    @mixin flexCenter {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .main {
+        @include flexCenter;}
+
+
+
+    //WITH ARGUMENTS, 
+    @mixin flexCenter($direction) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: $direction;
+      }
+
+    .main {
+        @include flexCenter(column);}
+</code>
+</pre>
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+    // MIXINS 2
+    @mixin theme($light-theme: true) {
+        @if $light-theme {
+          background: lighten($primary-color, 100%);
+          color: darken($text-color, 100%);
+        }
+      }
+
+    .light {
+    @include theme($light-theme: false);
+    }
+</code>
+</pre>
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+    // MIXINS 3
+    $mobile: 800px;
+    
+    @mixin mobile {
+        @media (max-width: $mobile) {
+          @content;
+        }
+      }
+
+    .main {
+        @include mobile {
+        flex-direction: column;
+      }}
+</code>
+</pre>
+    
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+body{
+    height: 300vh;
+}
+
+h1{
+    margin: 5vh;
+}
+
+
+/* POSITION ABSOLUTE */
+.parent1{
+    padding: .25rem;
+    background-color: lightskyblue;
+}
+.child1{
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    padding: .25rem;
+    background-color: lightcoral;
+}
+.child2{
+    padding: .5rem;
+    background-color: lightgreen;
+}
+.child3{
+    padding: .5rem;
+    background-color: peru;
+}
+
+.parent11{
+    padding: .25rem;
+    background-color: lightskyblue;
+    position: relative;
+}
+
+.child11{
+    position: absolute;
+    left: 240px;
+    bottom: 12px;
+    padding: .5rem;
+    background-color: lightcoral;
+}
+
+
+
+
+/* FIXED */
+.parent2{
+    padding: .25rem;
+    background-color: lightskyblue;
+    margin: 2px;
+    position: relative;
+    z-index: 4;
+}
+.child4{
+    position: fixed;
+    right: 30px;
+    top: 400px;
+    width: 300px;
+    padding: .5rem;
+    background-color: rgb(229, 241, 117);
+}
+
+
+/* STICKY */
+.parent3{
+    padding: .25rem;
+    background-color: lightskyblue;
+    margin: 2px;
+    position: relative;
+
+}
+.child7{
+    padding: .25rem;
+    background-color: lightcoral;
+    height: 40vh;
+}
+.child8{
+    position: sticky;
+    top: 10px;
+    left: 0;
+    padding: .25rem;
+    background-color: lightgreen;
+    height: 40vh;
+    font-size: 3em;
+}
+.child9{
+    padding: .25rem;
+    background-color: peru;
+    height: 60vh;
+}

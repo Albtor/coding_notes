@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruby Basics 2</title>
+    <link rel="stylesheet" href="../../css/file.css"> 
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+   
+</head>
+<body class="apis-bkg">
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Excel Icon" class="menu_img">
+    </a>
+    <h1 class="title_template">RUBY BASICS 2</h1>
+    <h4>Links </h4>
+        <ul>
+            <li class="link_list"> <a href="#" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+
+<div class= "code_container ">
+
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    // ARRAYS
+    friends = Array.new #with no values yet
+    friends = Array["Kevin", "Karen", "Oscar", 25, true]
+    puts friends 
+    puts friends[0]
+    puts friends[-1] # Stars counting from the end
+    puts friends[0,2] # Grabs 0 and 1, not position 2
+    friends[1] = "Dwight"
+
+    # METHODS
+    friends.length()
+    friends.include? "Karen" #checks if a value is in the array, returns boolean
+    friends.reverse()
+    friends.sort() #the data types should be the same, cannot be used in an array with integers and strings
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    // HASHES
+    Type of data structure, similar to arrays. Store multiple pieces of info
+    We can store a "key value pair" Example New York -> NY
+    Key => Value You must have unique keys
+
+    states = {
+        "Pennsylvania" => "PA",
+        "New York" => "NY",
+        "Oregon" => "OR"
+    }
+    puts states
+    puts states["Oregon"] #prints OR
+
+    You can create them also like :Pensilvania => "PA" or 1 => "PA"
+    puts states[:Pensilvania]
+    puts states[1]
+
+    When creating a hash you create a list of key value pairs
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    // METHODS OR FUNCTIONS
+
+    # define the method
+    def NameMethod
+        puts "Hi Mark, this is your method"
+    end
+
+    # call the method
+    NameMethod 
+
+    //Parameters(param)
+    def sayHi(name, age)
+        puts ("Hi " + name + ", you are " + age.to_s)
+    end
+    sayHi(Mike, 38)
+
+    # Default Values
+    def sayHi(name="noName", age=1)
+        puts ("Hi " + name + ", you are " + age.to_s)
+    end
+    sayHi(Mike)
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    //RETURN Types A funtion returns the last value unless there is a return
+
+    def cube(num)
+        num * num * num #returns the result
+    end
+
+    def cube(num)
+        return num * num * num
+    end
+
+    puts cube(2)
+
+    def cube(num)
+        return num * num * num, 70
+    end
+
+    puts cube(2)[1] #as the function returns 2 values, it returns an array
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

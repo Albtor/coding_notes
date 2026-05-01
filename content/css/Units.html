@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Units</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+    </a>
+    <h1 class="title_template">CSS - UNITS</h1>
+    <h4>Links</h4>
+    <ul>
+        <li class="link_list"><a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units" class="link_file">Mozilla Developer</a></li>
+    </ul>
+
+        
+<div class= "code_container">
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+    // UNITS
+    font-size: 12px; //Pixels: Fixed unit, depends on the screen resolution, doesn't change when zooming
+    withd: 100%; //% Depends of parent container
+    height: 100wh - 100ww;  //View height and width, depends on the screen size
+    padding: 1.1em; //Based on the parent font size. They can multiply. Use for padding to escale with the size of the element
+    border-radius: 2rem; // REM Root font size: 1= 100% of the size. Doesn't accumulate like em
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+    // UNITS
+    Relativas:
+    -em element:Usar para padding, border radius en botones así escala con el tamaño de la fuente
+    -rem: Font size of the root element.
+    -ex (X-height) Expresa el tamaño relatio a la letra x
+    -px: relativo a la resolucion del monitor. 
+    -ch: Relative to the width of 0
+    -lh: line height of the element
+    -vw: 1% screen width
+    -vh: 1% screen height
+    -vmin: 1% of the viewport's smaller dimension
+    -vmax: 1% of the viewport's larger dimension
+
+    Absolutas:
+    mm, cm, Q
+    in: inches: 1=2,54cm
+    pt: puntos 1=1/72in
+    pc: picas 1=12pt
+    px: pixels
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

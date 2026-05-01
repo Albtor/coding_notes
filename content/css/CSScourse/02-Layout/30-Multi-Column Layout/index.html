@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>30-Multi-Column Layout</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Columns</h1>
+  <ul>
+    <li>column-count: 2 </li>
+    <li>column-width: 100px</li>
+    <li>Can combine both, but if it doesn't fit the columns' width requested it will reduce the number of columns</li>
+    <li>Column-count: 3 column-width: 200px;</li>
+    <li>column-rule: 1px solid black - Its like border but just to separate columns. Too big, it overlaps the content.</li>
+    <li>column-span: all. (All, none) Span elements in different columns. 1em as default</li>
+    <li>column-fill: auto / balance; Auto requires height. Puts elements inside only one column, not half in one column and another half in another column</li>
+  </ul>
+ 
+  <h2>Div1. Column-count: 4. and column-rule to add separation "border" </h2>
+  <div class="parent">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat, soluta.
+    <hr>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, illo. Nesciunt ipsam perferendis beatae eius animi itaque minus iusto mollitia.
+    <hr>
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae quis dignissimos repellendus iure rem deserunt facilis, voluptate unde eius laboriosam nobis libero nesciunt laudantium suscipit a deleniti, odit distinctio? Ipsa!
+    <hr>
+    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel maxime placeat nostrum voluptas molestias quam?
+  </div>
+
+  <h2>Div2: column-width: 200px; column-count: 3; If you shrink the page the number of columns will decrease because there is a  width specified</h2>
+  <div class="parent2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat, soluta.
+    <hr>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, illo. Nesciunt ipsam perferendis beatae eius animi itaque minus iusto mollitia.
+    <hr>
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae quis dignissimos repellendus iure rem deserunt facilis, voluptate unde eius laboriosam nobis libero nesciunt laudantium suscipit a deleniti, odit distinctio? Ipsa!
+    <hr>
+    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel maxime placeat nostrum voluptas molestias quam?
+  </div>
+
+  <h2>Div3: column-width: 200px; column-count: 3; Span a h3 in different columns</h2>
+  <div class="parent2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat, soluta.
+    <hr>
+    <h3>Home</h3>
+    <hr>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, illo. Nesciunt ipsam perferendis beatae eius animi itaque minus iusto mollitia.
+    <hr>
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae quis dignissimos repellendus iure rem deserunt facilis, voluptate unde eius laboriosam nobis libero nesciunt laudantium suscipit a deleniti, odit distinctio? Ipsa!
+    <hr>
+    
+    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel maxime placeat nostrum voluptas molestias quam?
+  </div>
+
+  <h2>Div4: Column fill auto: every element is filled only inside one  column, not two</h2>
+  <div class="parent4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat, soluta.
+    <hr>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, illo. Nesciunt ipsam perferendis beatae eius animi itaque minus iusto mollitia.
+    <hr>
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae quis dignissimos repellendus iure rem deserunt facilis, voluptate unde eius laboriosam nobis libero nesciunt laudantium suscipit a deleniti, odit distinctio? Ipsa!
+    <hr>
+    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel maxime placeat nostrum voluptas molestias quam?
+  </div>
+</body>
+</html>

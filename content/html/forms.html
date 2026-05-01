@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Forms</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+        </a>
+        <h1 class="title_template">HTML - Forms</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- HTML -->
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //FORM BASIC
+    &lt;form action=&quot;/action_page.php&quot; method=&quot;post&quot;&gt;
+    &lt;label for=&quot;fname&quot;&gt;First name:&lt;/label&gt;&lt;br&gt;
+    &lt;input type=&quot;text&quot; id=&quot;fname&quot; name=&quot;fname&quot;&gt;&lt;br&gt;
+    &lt;label for=&quot;lname&quot;&gt;Last name:&lt;/label&gt;&lt;br&gt;
+    &lt;input type=&quot;text&quot; id=&quot;lname&quot; name=&quot;lname&quot;&gt;
+    &lt;/form&gt;
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //FORM RADIO BUTTONS
+    &lt;form action=&quot;/action_page.php&quot; method=&quot;post&quot;&gt;
+    &lt;input type=&quot;radio&quot; id=&quot;male&quot; name=&quot;gender&quot; value=&quot;male&quot;&gt;
+    &lt;label for=&quot;male&quot;&gt;Male&lt;/label&gt;&lt;br&gt;
+    &lt;input type=&quot;radio&quot; id=&quot;female&quot; name=&quot;gender&quot; value=&quot;female&quot;&gt;
+    &lt;label for=&quot;female&quot;&gt;Female&lt;/label&gt;&lt;br&gt;
+    &lt;input type=&quot;radio&quot; id=&quot;other&quot; name=&quot;gender&quot; value=&quot;other&quot;&gt;
+    &lt;label for=&quot;other&quot;&gt;Other&lt;/label&gt;
+    &lt;/form&gt;
+    
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //FORM FILES
+    &lt;input type=&quot;hidden&quot; name=&quot;MAX_FILE_SIZE&quot; value=&quot;2097152&quot;&gt;
+    &lt;input type=&quot;file&quot; name=&quot;curriculum&quot; &gt;
+</code>
+</pre>
+
+
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //FORM CHECKBOX
+    &lt;form action=&quot;/action_page.php&quot; method=&quot;post&quot;&gt;
+    &lt;input type=&quot;checkbox&quot; id=&quot;vehicle1&quot; name=&quot;vehicle1&quot; value=&quot;Bike&quot;&gt;
+    &lt;label for=&quot;vehicle1&quot;&gt; I have a bike&lt;/label&gt;&lt;br&gt;
+    &lt;input type=&quot;checkbox&quot; id=&quot;vehicle2&quot; name=&quot;vehicle2&quot; value=&quot;Car&quot;&gt;
+    &lt;label for=&quot;vehicle2&quot;&gt; I have a car&lt;/label&gt;&lt;br&gt;
+    &lt;input type=&quot;checkbox&quot; id=&quot;vehicle3&quot; name=&quot;vehicle3&quot; value=&quot;Boat&quot;&gt;
+    &lt;label for=&quot;vehicle3&quot;&gt; I have a boat&lt;/label&gt;
+    &lt;/form&gt;
+</code>
+</pre>
+    
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //FORM INPUT TYPES
+    &lt;input type=&quot;button&quot;&gt;
+    &lt;input type=&quot;checkbox&quot;&gt;
+    &lt;input type=&quot;color&quot;&gt;
+    &lt;input type=&quot;date&quot;&gt;
+    &lt;input type=&quot;datetime-local&quot;&gt;
+    &lt;input type=&quot;email&quot;&gt;
+    &lt;input type=&quot;file&quot;&gt;
+    &lt;input type=&quot;hidden&quot;&gt;
+    &lt;input type=&quot;image&quot;&gt;
+    &lt;input type=&quot;month&quot;&gt;
+    &lt;input type=&quot;number&quot;&gt;
+    &lt;input type=&quot;password&quot;&gt;
+    &lt;input type=&quot;radio&quot;&gt;
+    &lt;input type=&quot;range&quot;&gt;
+    &lt;input type=&quot;reset&quot;&gt;
+    &lt;input type=&quot;search&quot;&gt;
+    &lt;input type=&quot;submit&quot;&gt;
+    &lt;input type=&quot;tel&quot;&gt;
+    &lt;input type=&quot;text&quot;&gt;
+    &lt;input type=&quot;time&quot;&gt;
+    &lt;input type=&quot;url&quot;&gt;
+    &lt;input type=&quot;week&quot;&gt;
+</code>
+</pre>
+
+
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //OTHERS
+    &lt;input type=&quot;text&quot; id=&quot;fname&quot; name=&quot;fname&quot; value=&quot;John&quot; disabled&gt;
+    &lt;input type=&quot;text&quot; id=&quot;fname&quot; name=&quot;fname&quot; value=&quot;John&quot; readonly&gt;
+    &lt;input type=&quot;text&quot; id=&quot;fname&quot; name=&quot;fname&quot; size=&quot;50&quot;&gt;
+    &lt;input type=&quot;text&quot; id=&quot;pin&quot; name=&quot;pin&quot; maxlength=&quot;4&quot; size=&quot;4&quot;&gt;
+    &lt;input type=&quot;date&quot; id=&quot;datemax&quot; name=&quot;datemax&quot; max=&quot;1979-12-31&quot;&gt;
+    &lt;input type=&quot;file&quot; id=&quot;files&quot; name=&quot;files&quot; multiple&gt;
+    &lt;input type=&quot;text&quot; id=&quot;country_code&quot; name=&quot;country_code&quot;  pattern=&quot;[A-Za-z]{3}&quot; title=&quot;Three letter country code&quot;&gt;
+    &lt;input type=&quot;tel&quot; id=&quot;phone&quot; name=&quot;phone&quot; placeholder=&quot;123-45-678&quot; pattern=&quot;[0-9]{3}-[0-9]{2}-[0-9]{3}&quot;&gt;
+    &lt;input type=&quot;text&quot; id=&quot;username&quot; name=&quot;username&quot; required&gt;
+    &lt;input type=&quot;number&quot; id=&quot;points&quot; name=&quot;points&quot; step=&quot;3&quot;&gt;
+    &lt;input type=&quot;text&quot; id=&quot;fname&quot; name=&quot;fname&quot; autofocus&gt;
+    &lt;input type=&quot;email&quot; id=&quot;email&quot; name=&quot;email&quot; autocomplete=&quot;off&quot;&gt;
+
+    &lt;form&gt;
+        &lt;input list=&quot;browsers&quot;&gt;
+        &lt;datalist id=&quot;browsers&quot;&gt;
+        &lt;option value=&quot;Internet Explorer&quot;&gt;
+        &lt;option value=&quot;Firefox&quot;&gt;
+        &lt;option value=&quot;Chrome&quot;&gt;
+        &lt;option value=&quot;Opera&quot;&gt;
+        &lt;option value=&quot;Safari&quot;&gt;
+        &lt;/datalist&gt;
+    &lt;/form&gt;
+
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

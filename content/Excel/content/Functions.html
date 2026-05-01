@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel Funciones</title>
+    <link rel="stylesheet" href="../../../css/file.css">
+   
+</head>
+<body class="excel-bkg">
+<div class="main_container">
+
+    <a href="../Excel.html" class="menu_link">
+        <img src="../img/excel.png" alt="Excel Icon" class="menu_img">
+    </a>
+    <h1 class="title_template">EXCEL FUNCIONES</h1>
+
+<div class= "code_container ">
+
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //FUNCIONES BASICAS
+    SUMA, PROMEDIO, MIN, MAX
+    Asistente de Funciones: Fx o Formulas > Asistente de funciones. Buscador. Seleccion y aceptar. Categorías. Luego elegir celdas
+    Ventana argumentos de funcion: Numero 1 (negrita - obligatorio) Numero2 (opcional- para poner distintos rangos)
+    Haciendo click en el nombre accedemos a información detallada de la función
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //FUNCION SI
+    Asistente de funciones > Categoría Lógicas
+    Prueba Lógica:  Condición a evaluar. 
+    Manual =SI(b2>=5;"APROBADO";"SUSPENSO") --> Condicion Verdadera y Falsa
+    =SI(C2='APROBADO'; "BECA"; "NoBECA")
+    Varias alternativas.
+    Modificar una funcion ya creada: Modificar una y luego arrastra. O establecer en valores en otras celdas y en la funcion definirlas como referencia absoluta (F4)
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //ANIDAMIENTO DE FUNCIONES 
+    =SI(PROMEDIO(B2;C2)>=5;"APROBADO";"SUSPENSO")
+</code>
+</pre>
+
+
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //& | , Y / O
+    =SI(Y(B2>=5;C2>=5);"APROBADO";"SUSPENSO") //SI
+    =SI(O(B2>=5;C2>=5);"APROBADO";"SUSPENSO") //O 
+
+    COMBINANDO
+    =SI(O(Y(B11>=5;C11>=5);(F11>=2));"BECA";"SIN BECA") //Aprobar 2 parciales y hermanos >=2
+    =SI(D28&lt;5;"INSUFICIENTE";SI(D28&lt;6;"SUFICIENTE";SI(D28&lt;7;"BIEN";SI(D28&lt;9;"NOTABLE";SI(D28&lt;10;"SOBRESALIENTE";SI(D28=10;"MATRICULA"))))))
+</code>
+</pre>
+
+
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //CONTROL DE ERRORES (Video 13)
+    Función Agregar
+    =AGREGAR(9;6;G2:G5) //Usar tabulador para elegir las opciones
+
+    Restar fechas, como numeros o  /=DIAS360(C23-B23)
+
+    //CALCULAR % DE DESCUENTO
+    =SI(D23&lt;10;E23-(E23*10%);SI(D23&lt;15;E23-(E23*5%);E23-(E23*2%)))
+
+    //SI.ERROR
+    =SI.ERROR(SI(D26&lt;10;E26-(E26*10%);SI(D26&lt;15;E26-(E26*5%);E26-(E26*2%)));" ")
+    =SI.ERROR(SI(D27&lt;10;E27-(E27*10%);SI(D27&lt;15;E27-(E27*5%);E27-(E27*2%)));"NADA")
+</code>
+</pre>
+    
+<pre class="prettyprint">
+<code class="language-html" spellcheck="false">
+    //BUSCARV CONSULTAV - Funciones_7
+    Asintent de funciones. 3 campos obligatorios uno opcional
+    Valor buscado: la celda en la que intruduce el usuario el dato a Buscador
+    Matriz: Tabla sin los encabezados
+    Indicador Columnas: Que columna tiene el dato. Se especifica un número
+    Rango (opcional): valor logico verdadero: coincidencia cercana 1 o falso 0 coincidencia exacta
+    logico falso 0, coincidencia exacta
+    =BUSCARV(H1;A2:E5;2;0)
+
+    logico verdadero 1: coincidencia cercana , 
+    =BUSCARV(B14;$E$14:$F$18;2;1)
+
+    //CON VARIAS TABLAS
+    =BUSCARV(B28;E$37:F$39;2;0)*D28
+    
+    //COMPARAR 2 LISTADOS
+    
+    =SI.ERROR(BUSCARV(C41;$A$41:$A$44;1;FALSO);"NUEVO!")
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

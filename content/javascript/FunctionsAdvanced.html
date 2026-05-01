@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Functions Advanced</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVASCRIPT FUNCTIONS ADVANCED</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="#" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // 68 - GENERATE RANDOM FRACTIONS
+
+    function randomFraction(){
+
+        return Math.random(); 
+    }
+    console.log("Math.random()");
+    console.log(randomFraction());
+
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // 68 - GENERATE RANDOM WHOLE NUMBERS
+
+    var randomNumberBetween0and19 = Math.floor(Math.random() * 20);
+    function randomWholeNum(){
+
+        return Math.floor(Math.random() * 10); 
+    }
+    console.log("Math.floor(Math.random() * 10)");
+    console.log(randomWholeNum());
+
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // 68 - GENERATE RANDOM WHOLE NUMBERS WITHIN A RANGE
+
+    function ourRandomRange(ourMin, ourMax){
+        return Math.floor(Math.random() * (ourMax - ourMin +1)) + ourMin;
+    }
+    
+    console.log("Math.floor(Mathrandom() * (ourMax - ourMin +1)) + ourMin;");
+    console.log(ourRandomRange(1, 100))
+
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // 69 - PARSEINT FUNCTION
+    function convertToInteger1(str){
+
+        return parseInt(str);
+    }
+    console.log("parseInt('56')");
+    console.log(convertToInteger1("56"));
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // 70 - PARSEINT FUNCTION WITH RADIX
+
+    function convertToInteger(str){
+
+        return parseInt(str,2);
+    }
+
+    console.log("With redix: parseInt('56',2)");
+    console.log(convertToInteger("10011"));
+
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // 71 - USE THE CONDITIONAL (TERNARY) OPERATION
+    //  condition ? statement -if-true: statement-if-false
+
+    // function checkEqual(a,b) {
+    //     if (a === b){
+    //         return true;
+    //     }
+    //     else {
+    //         return false;
+    //     }
+    // }
+
+    function checkEqual(a,b) {
+        return a === b ? true : false;
+    }
+
+    console.log("Ternary opeartor");
+    console.log(checkEqual(1,2));
+
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // 72 - MULTIPLE CONDITIONAL (TERNARY) OPERATION
+
+    function checkSign(num){
+        return num > 0 ? "positive" : num &lt; 0 ? "negative" : "zero";
+    }
+
+    console.log("Multiple Ternary opeartor");
+    console.log(checkSign(10));
+
+</code>
+</pre>
+
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

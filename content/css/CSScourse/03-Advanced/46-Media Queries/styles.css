@@ -1,0 +1,44 @@
+div {
+    font-weight: bold;
+    font-size: 400%;
+    color: green;
+}
+
+/* to change stuff when printing */
+@media print{
+    div{
+        color: green;
+    }
+}
+
+@media (max-width: 700px) {
+    div{
+        color: blue;
+    }
+}
+
+@media (orientation: landscape) {
+    div {
+        color: yellow;
+    }
+}
+
+@media (min-width: 800px) and (max-width: 1000px){
+    div{
+        color: pink;
+    }
+}
+
+@media (min-width: 701px) and (max-width: 799px){
+    div{
+        color: rgb(12, 166, 212);
+    }
+}
+
+
+
+@media (max-width: 800px), (orientation: landscape){
+    .div2{
+        color: rgb(175, 44, 34);
+    }
+}

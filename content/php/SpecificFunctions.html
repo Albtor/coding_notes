@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP Specific Functions</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">PHP SPECIFIC FUNCTIONS</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+
+<div class= "code_container">
+
+<!-- PHP -->
+<pre class="prettyprint">
+    <code class="language-php" spellcheck="false">
+        //SI LA FUNCION ESTÁ EN OTRO ARCHIVO
+        include "functions.php";
+
+        $boolean = compruebaDni($dni);
+
+        if ($boolean == false){
+            //header('Location: e12_form.php');
+            $loginResultado = "Dni INcorrecto";
+            
+        }else {
+            $loginResultado = "Dni correcto";
+            
+        }
+</code>
+</pre>
+
+<!-- PHP -->
+<pre class="prettyprint">
+<code class="language-php" spellcheck="false">
+    //ESTRELLAS
+
+    include "functions.php";
+
+    $estrella = 5;
+    $estrellitas = rellena_star($estrella);
+
+    // str_pad() https://www.php.net/manual/es/function.str-pad.php
+    function rellena_star($n){
+        $icon ="";
+        while($n>0){
+        $icon .= '&lt;img src=&quot;img/star.png&quot; alt=&quot;&quot; width=&quot;10px&quot;, height=&quot;10px&quot;&gt;'; 
+        //La linea de arriba significa: $icon = $icon . '&lt;img src=&quot;img/star.png&quot; alt=&quot;&quot; width=&quot;10px&quot;, height=&quot;10px&quot;&gt;';
+        //return str_pad("",$n,"*");
+        $n--; //$n= $n-1;
+        }
+        return $icon;
+    }
+    
+</code>
+</pre>
+
+<!-- PHP -->
+<pre class="prettyprint">
+<code class="language-php" spellcheck="false">
+    //GENERA CÓDIGOS
+    Contenido en otro archivo
+
+    El c&oacute;digo 1 que he generado con el c&oacute;digo control es:  &lt;?php echo generaCodigo1(); ?&gt;   
+    El c&oacute;digo 2 que he generado con c&oacute;digo control camuflado es:  &lt;?php echo generaCodigo2(); ?&gt;   
+    El c&oacute;digo 3 que he generado con caracteres es:  &lt;?php echo generaCodigo3(); ?&gt;   
+    El c&oacute;digo 4 que he generado con caracteres dependiendo del email es:  &lt;?php echo generaCodigo4($email); ?&gt;  
+    El c&oacute;digo 3 OvlfTvdRnW-K es v&aacute;lido?:  &lt;?php echo compruebaCodigo3($codigo1); ?&gt;   
+    El c&oacute;digo 4 vn9cpHJRyfof es v&aacute;lido?:  &lt;?php echo compruebaCodigo4($codigo2); ?&gt;   
+
+
+    include_once "e14_funciones.php";
+    $codigo = $_GET['code'];
+    $codigo_bueno = compruebaCodigo3($codigo);
+    if (!$codigo_bueno):
+        header("Location: e14_error.php");
+        exit;
+    endif;
+
+
+
+</code>
+</pre>
+
+
+
+<!-- PHP -->
+<pre class="prettyprint">
+<code class="language-php" spellcheck="false">
+    //PHP DNI1 //FUNCION PARA COMPROBAR DNI O NIF EXTRANJERO
+    function compruebaDni($dni){
+        $dni = strtoupper($dni);
+        $letrasDni = array("T","R","W","A","G","M","Y","F","P","D","X","B","N","J","Z","S","Q","V","H","L","C","K","E");
+        $letrasExtranjeras = array ("X", "Y", "Z");
+
+        if (strlen($dni) != 9):
+            return FALSE;
+
+        else:
+            $primerCaracter = substr($dni, 0,1);
+
+            //DNI
+            if(is_numeric($primerCaracter)):
+
+                $comprueba = dniComprueba2($dni); 
+                return $comprueba;
+     
+            //NIF    
+            else:
+                $dni = substr($dni,1,8);
+                switch ($primerCaracter):
+                    case "X": 
+                        $primerCaracter = 0;   
+                        break;
+                    case "Y":
+                        $primerCaracter = 1;
+                        break;
+                    case "Z":
+                        $primerCaracter = 2;
+                        break;
+                    default:
+                        $comprueba = false;
+                        break;
+                    endswitch; 
+                    $dni = $primerCaracter.$dni;
+                    $comprueba = dniComprueba2($dni);
+            endif;     
+        endif;
+        return $comprueba;
+
+    }
+
+
+
+    //PHP DNI2 ;
+    function dniComprueba2($dni){
+        $letrasDni = array("T","R","W","A","G","M","Y","F","P","D","X","B","N","J","Z","S","Q","V","H","L","C","K","E");
+        $numero = substr($dni, 0, 8);
+        $letra = substr($dni, -1);
+
+        if ($letra == $letrasDni[$numero % 23]):
+            return TRUE;
+        else:
+            return FALSE;
+        endif;
+    }
+</code>
+</pre>
+
+<!-- PHP -->
+<pre class="prettyprint">
+<code class="language-php" spellcheck="false">
+    //EAN
+    function ean13_bueno($n){
+        if(is_numeric($n)):
+            return FALSE;
+        else:
+            $codigoControl = substr($n,-1);
+            $numero = substr($n,0,12);
+            $suma = 0;
+            for($i=1;i $i&lt= 11;$i++):
+                $digito = substr($numero,$i,1);
+                if($i%2==1):
+                    $suma = $suma + $digito;
+                else:
+                    $suma = ($suma + $digito)*3;
+                endif;
+                $dc_calculado=((ceil($suma/10)*10))-$suma;
+            endfor;
+            if($codigoControl == $dc_calculado):
+                return TRUE;
+            else:
+                return FALSE;
+            endif;
+        endif;
+    }
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

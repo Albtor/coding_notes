@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySQL Table Creation</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+    </a>
+    <h1 class="title_template">MySQL - TABLE CREATION</h1>
+    <h4>Links</h4>
+    <ul>
+        <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+    </ul>
+
+        
+<div class= "code_container">
+
+<!-- CSS -->
+
+<pre class="prettyprint">
+<code class="language-sql" spellcheck="false">
+    //
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
+    ON DELETE SET DEFAULT
+
+    INDEX - Para hacer búsquedas más rápidas
+    TABLAS TEMPORALES
+    CREATE TABLE #PEPE
+
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-sql" spellcheck="false">
+    //TABLE Creation
+    ALTER TABLE Alumno ADD notamedia float;
+    DROP TABLE Alumno;
+
+    CREATE TABLE Provincia
+    (
+    ID INT not null primary key,
+    nombre varchar(100) default 'nombre defecto'
+    );
+    /*
+    las claves principales no pueden ser NULAS
+    */
+    go
+    create table TablaAutoNumerico
+    ( id int not null identity (1,1) primary key, -- comentario
+    codigopostal int default 38010
+    );
+    go
+    create table ClaveVariosCampos --La clave principal son varios campos
+    ( id1 int not null,
+    id2 char(2) not null,
+    campoDeDatos varchar(10),
+    primary key (id1,id2) -- se pone indicando que son dos
+    );
+    go
+    create table TablaCheck -- Restricciones Check
+    ( nif char(9) not null primary key,
+    municipio int check ( municipio > 0),
+    codProvincia int check ( codprovincia between 1 and 55)
+    );
+    go
+    create table TablaValorUnico
+    ( nif char(9) not null primary key,
+    apellidos varchar(100) UNIQUE
+    );
+    GO
+    create table TablaRestriccionesConNombre
+    ( id char(10) not null CONSTRAINT YA_EXISTE_CLAVE primary key,
+    nombre varchar(100)
+    );
+    GO
+    create table TablaMasRestricciones
+    ( id1 int not null,
+    id2 int not null,
+    constraint YA_EXISTE_CLAVE2 primary key (id1,id2) -- no puede haber dos nombres de restriccion iguales
+    );
+    -- RELACIONES
+    -- OJO!! SE PONEN EN EL HIJO.. CADA HIJO DICE QUIEN ES SU PADRE
+    create table Municipio
+    ( id int not null constraint YA_EXISTE_MUNICIPIO primary key,
+    nombre varchar(100),
+    id_provincia int,
+    constraint TIENE_MUNICIPIOS FOREIGN KEY (id_provincia)
+    REFERENCES provincia (id)
+    );
+    create table Municipio2 -- restriccion a nivel columna
+    ( id int not null primary key,
+    nombre varchar(100),
+    id_provincia int references provincia(id),
+    otros varchar(10)
+    );
+    go
+    create table SiModificaPadreModificaHijo
+    ( id int not null primary key,
+    nombre char(100),
+    id_provincia int,
+    FOREIGN KEY (id_provincia) REFERENCES provincia (id)
+    on update cascade
+    );
+    go
+    create table SiBorraPadreBorraHijo
+    ( id int not null primary key,
+    nombre char(100),
+    id_provincia int,
+    FOREIGN KEY (id_provincia) REFERENCES provincia (id)
+    on delete cascade
+    );
+    go
+    create table SiBorraPadreHijoANulo
+    ( id int not null primary key,
+    nombre char(100),
+    id_provincia int,
+    FOREIGN KEY (id_provincia) REFERENCES provincia (id)
+    on delete set null
+    );
+    go
+    create table SiBorraPadreHijoaValorDefecto
+    ( id int not null primary key,
+    nombre char(100),
+    id_provincia int default 38,
+    FOREIGN KEY (id_provincia) REFERENCES provincia (id)
+    on delete set default
+    );
+    go
+    create table ActualizaHijoSiModificaPadre
+    ( id int not null primary key,
+    nombre char(100),
+    id_provincia int,
+    FOREIGN KEY (id_provincia) REFERENCES provincia (id)
+    on update cascade
+    on delete cascade
+    );
+    -- va una FOREIGN KEY por cada padre que tenga la tabla.
+    -- indices alternativos
+    go
+    CREATE INDEX AK_POR_NOMBRE on Municipio (nombre);
+    go
+    CREATE UNIQUE INDEX AK_POR_NOMBRE on Municipio2(nombre,otros);
+    go
+    --- SQL SERVER
+    create index AK_POR_PROV ON MUNICIPIO2(NOMBRE,OTROS,ID) ON
+    OTRO;
+    go
+    create table pepe
+    ( a int not null primary key)
+    on otro; -- se crea en otro grupo de ficheros
+    go
+
+    --TABLAS TEMPORALES
+    --create table #temporal
+    --create table ##pepe
+
+    select * into juan from pepe;
+    go
+    select * into #temporal from provincia;
+
+</code>
+</pre>
+
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Native </title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+        </a>
+        <h1 class="title_template">REACT NATIVE - Basics</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="https://reactnative.dev/" class="link_file" target="_Blank">React Native Documentation</a></li>
+            <li class="link_list"><a href="https://www.youtube.com/watch?v=obH0Po_RdWk&ab_channel=freeCodeCamp.org" class="link_file" target="_Blank">FreeCodeCamp tutorial</a></li>
+            <li class="link_list"><a href="https://www.youtube.com/watch?v=mJ3bGvy0WAY&ab_channel=JavaScriptMastery" class="link_file" target="_Blank">Youtube tutorial</a></li>
+            <li class="link_list"><a href="https://rapidapi.com/" class="link_file" target="_Blank">Rapid API</a></li>
+            <li class="link_list"><a href="https://www.youtube.com/watch?v=ZGIU5aIRi9M&t=744s&ab_channel=FullStackNiraj" class="link_file" target="_Blank">Android Studio Emulator and path</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- REACT NATIVE -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // NEEDS
+    node.js
+    React https://reactnative.dev/
+    expo cli vs react native cli
+
+    create: npx create-expo-app {appName} 
+    cd {appName}
+    npm start
+    expo start
+
+    Same internet connection for computer/mobile app.
+    Scan QR code
+    To use Android Studio emulator, need to add some paths to environment variables and reboot
+
+    - cd Busking
+    - npm start # you can open iOS, Android, or web from here, or run them directly with the commands below.
+    - npm run android
+    - npm run ios # requires an iOS device or macOS for access to an iOS simulator
+    - npm run web
+</code>
+</pre>
+
+<!-- REACT NATIVE -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // &lt; ANDROID STUDIO
+    EXPO setting Up
+    component import export
+    Basic Styling style.create
+    
+</code>
+</pre>
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // &lt; ANDROID STUDIO
+    https://www.youtube.com/watch?v=ZGIU5aIRi9M&t=744s&ab_channel=FullStackNiraj
+    Install Android Studio
+    Create virtual device
+    Add paths to environment variables
+    emulator -avd avd_name
+
+    Problems with the app, too slow: Go to Android studio and wipe data of the device
+
+    adb -s {device_name} reverse tcp:8081 tcp:8081
+    adb devices   -> to see names
+    
+</code>
+</pre>
+
+<!-- REACT NATIVE -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // &lt; STARTING WITH APP ESLINT & PRETTIER
+    https://eslint.org/
+    add eslint
+    npm install eslint --save-dev
+    npm install eslint --init  -> should create file eslint*.js
+    npm install @react-native-community/eslint--save-dev
+
+    in file, add new rules: https://eslint.org/docs/latest/rules
+
+    PRETTIER
+    npm install --save-dev --save-exact prettier
+    create file pretierrc.js in project
+    add 
+    module.exports = {
+        bracketSpacing: true,
+        singleQuote: true,
+        ...
+    }
+
+    insade packacke json
+    add in scripts_
+    "lint": "eslint ."
+    npm run lint
+</code>
+</pre>
+
+<!-- REACT NATIVE -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // &lt; APP
+    Ctrl+M to EXpo Go Menu
+    
+</code>
+</pre>
+<!-- REACT NATIVE -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // &lt; DEBUGGING
+
+    Ctrl + M
+    React native debugger
+    Doesn't work
+</code>
+</pre>
+<!-- REACT NATIVE -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // &lt; CSS
+    style={{backgroundColor: 'pink'}}
+    style={styles.wrapper}
+    const styles = StyleSheet.create({
+        wrapper: {
+        flex: 1,
+        backgroundColor: "#d6d45b",
+        },
+    });
+    Flex?
+    Absolute (no rem, em...) Density Independent Pixels
+
+    https://reactnative.dev/docs/getting-started
+    flex: 1, full area screen
+    
+</code>
+</pre>
+<!-- REACT NATIVE -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // &lt; ICONS
+    react-native-vector-icons: https://icons.expo.fyi/Index
+</code>
+</pre>
+<!-- REACT NATIVE -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // &lt; ORGANIZATION
+    1 component per file.
+    DRY: Don't repeat yourself
+    
+</code>
+</pre>
+<!-- REACT NATIVE -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // &lt; LISTS
+    Flatlist: standard list
+    SectionList: broken into sections
+    VirtualizedList
+    
+</code>
+</pre>
+<!-- REACT NATIVE -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // IMAGES
+    &lt;SafeAreaView style={styles.container}>
+        &lt;ImageBackground source={require("../../assets/sky.jpg")} resizeMode="cover" style={styles.image}>
+            &lt;Text>Upcoming weather&lt;/Text>
+    
+            &lt;FlatList data={DATA} renderItem={renderItem} keyExtractor={(item)=> item.dt_txt}
+                />
+        &lt;/ImageBackground>
+    &lt;/SafeAreaView>
+
+    image
+    image: {
+    height: 100,
+    width: 100,
+    },
+
+    background image
+    image: {
+    flex: 1
+    },
+    
+</code>
+</pre>
+<!-- REACT NATIVE -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // &lt; PROPS
+    properties, pass data from parent to child only this direction
+    inmutable
+    
+</code>
+</pre>
+<!-- REACT NATIVE -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // NAVIGATION
+    Ideally one folder for screens
+    EXpo
+    https://reactnavigation.org/docs/getting-started
+    npm install @react-navigation/native
+    npx expo install react-native-screens react-native-save-area-context
+    import { NavigationContainer } from "@react-navigation/native";
+    
+    npm install @react-navigation/bottom-tabs
+    import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+    
+    npm
+    
+</code>
+</pre>
+<!-- REACT NATIVE -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // &lt; DE
+    
+</code>
+</pre>
+<!-- REACT NATIVE -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // &lt; DE
+    
+</code>
+</pre>
+<!-- REACT NATIVE -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // &lt; DE
+    
+</code>
+</pre>
+<!-- REACT NATIVE -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // &lt; DE
+    
+</code>
+</pre>
+<!-- REACT NATIVE -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // &lt; DE
+    
+</code>
+</pre>
+<!-- REACT NATIVE -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // &lt; DE
+    
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

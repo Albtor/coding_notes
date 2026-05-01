@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Abstract Class</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVA ABSTRACT CLASS</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //ABSTRAC CLASS 
+    /*
+    Se usa para
+    Interfaz: pones definiciones
+    Clase abstracta: Puedes crear metodos
+    */
+
+    public abstract class AbstractClass {
+    
+   public String nombre = "por defecto";
+   
+   public void visualiza(){
+       System.out.println("Nombre = "+this.nombre);
+   }
+   
+   public abstract void cambiaNombre(String nuevo);
+    
+   public class Hijo1 extends AbstractClass{
+        @Override
+        public void cambiaNombre(String nuevo) {
+            String nombre = "Hijo1 "+nuevo;
+        }
+        
+        public void metodoNoAparece(){}
+    }
+   
+    public class Hijo2 extends AbstractClass{
+      @Override
+      public void cambiaNombre(String nuevo) {
+          String nombre = "Hijo2 "+nuevo;
+      }
+    }
+
+
+
+    public class Aplicacion{
+
+        public Aplicacion() {
+            Hijo1 a = new Hijo1();
+            Hijo2 b = new Hijo2();
+            
+            a.cambiaNombre("a");
+            b.cambiaNombre("b");
+            
+            ver(a);
+            ver(b);
+        }
+        
+        public void ver(AbstractClass param){
+            param.visualiza();
+            //No se puede usar ya que el parámetro es una clase Abstracta
+            //no un objeto Hijo1
+            //param.metodoNoAparece();
+
+            //Asi si porque hacemos un cast de Abstract Class a Hijo1
+            //Hijo 1 si tiene el método
+        ((Hijo1) param).metodoNoAparece(); 
+        }
+    }
+
+    }
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Casting</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVA CASTING</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //JAVA &lt;
+    //WIDENING -> AUTOMATICALLY
+    int myInt1 = 9;
+    double myDouble1 = myInt1;    
+    //NARROWING CASTING: Narrowing casting must be done manually by placing the type in parentheses in front of the value:     
+    double myDouble2 = 9.78;
+    int myInt2 = (int) myDouble2; 
+
+    int codigo=97;
+    char codigoASCII=(char)codigo;
+
+    //PARSING FROM STRING TO NUMBER
+    //De String a int:
+    String someString = "123";
+    int i = Integer.parseInt( someString );
+    
+    //De String a float:
+    String cadena2 = "1.23";
+    float flotante = Float.parseFloat(cadena2);
+    
+    
+    //De String a double:
+    String cadena3 = "12.3";
+    double decimal = Double.parseDouble(cadena3);
+        
+    //De String a short:
+    String cadena4 = "123";
+    short enteroShort = Short.parseShort(cadena4);
+    
+    //De String a byte:
+    String cadena5 = "123";
+    byte enteroByte = Byte.parseByte(cadena5);
+    
+    //De String a Long:
+    String cadena6 = "123";
+    long enteroLong = Long.parseLong(cadena6);
+    
+    //FROM NUMBER TO STRING
+    public void NumberToString(){
+    //Convertir número en cadena con método toString()
+    int numero1 = 720;
+    String cadena1 = Integer.toString(numero1);
+    
+    //Convertir número en cadena con método valueOf()
+    int numero2 = 728;
+    String cadena2 = String.valueOf(numero2);
+    
+    }
+    
+    
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

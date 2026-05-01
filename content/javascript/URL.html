@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Url</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVASCRIPT URL</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="#" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //URL
+    var whereWeAt = window.location.href;
+    var whereWeAt = window.location.hostname;
+    var whereWeAt = window.location.pathname;
+    var whereWeAt = window.location.hash
+    
+    window.location.assign("https://www.me.com");
+    window.location.replace("https://www.me.com");
+    window.location.reload(true);
+    window.location.reload(false);
+    
+    history.back();
+    history.forward();
+    history.go(-3); //goes backward 3 pages
+    history.go(2); //goes forward 2 pages
+
+    var whereUserCameFrom = document.referrer;
+
+    window.open();
+    window.close();
+    document.write();
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //BROWSER
+    var monkeyWindow = window.open("monk.html", "win1", "width=420,height=380", "left=200,top=100"); // Pixels
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //BROWSER POPUPS
+    var testPopUp = window.open("", "", "width=420,height=380", "left=200,top=100");
+    if(testPopUp === null || typeof(testPopUp === "undefined")){
+        alert("Disable popup blocker");
+    }testPop.close();
+    body -> onload="checkPopUpBlocker()"
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

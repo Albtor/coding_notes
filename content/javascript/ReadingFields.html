@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Xxxx</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVASCRIPT XXXXX</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="#" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+   
+    
+<div class= "code_container">
+
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //READ FIELD VALUES
+    &lt;form onSubmit="checkAddress('email')" id="field">
+
+    function checkAddress(email){
+        var val = document.getElementById('field').value;
+        if( val === ""){
+            alert("Email required");
+        }
+    }
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //SETTING FIELD VALUES
+    &lt;form onBlur="fillCity()" id="zip">
+
+    function fillCity(){
+        var zipEntered = document.getElementById('field').value;
+        document.getElementById('field').value = "Chicago"; //Se haria con un switch de varias ciudades pero se entiende
+    }
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    //READ AND SET PARAGRAPH TEXT
+    &lt;p onCick="fillCity()" id="textExtra">
+    &lt;form onCick="Expand()">
+    function Expand(){
+    document.getElementById('textExtra').innerHTML = "This is the full paragraph"
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

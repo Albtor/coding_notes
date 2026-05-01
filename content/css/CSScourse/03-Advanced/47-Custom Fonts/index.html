@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200&display=swap" rel="stylesheet">
+    <title>Custom Fonts</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+   <h1>Custom Fonts</h1>
+   <ul>
+       <li>fallback always. font-family: Monserrat, sans-serif, </li>
+       <li>Google fonts: embed (link or import)</li>
+       <li>link + font family in css - link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet"</li>
+       <li>in css @import - @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap'); + font-family</li>
+       <li>@font-face - font-family: 'Montserrat2';
+        src: 
+        url('fonts/fontawesome-webfont.woff2') format('woff2'),
+        url('fonts/fontawesome-webfont.woff');</li>
+        <li>font-display: block, <b>swap</b>, fallback, optional</li>
+        <li>fallback: if it takes x time to download the font, it will stay on the default one</li>
+   </ul>
+   <h3 class="jost">With font Jost</h3>
+   <p class="jost">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas fuga labore fugiat excepturi corrupti iure ab reiciendis veritatis, eum eligendi libero blanditiis rerum magni, vitae dolores nobis porro suscipit incidunt aut unde harum! Adipisci unde illum numquam, natus consequuntur hic excepturi modi, sed quaerat, ab neque facere aliquam repellat ex ducimus possimus voluptas corporis praesentium cum! Magnam porro a sapiente est placeat at, nesciunt modi mollitia odit voluptatem labore id quis qui ullam minima quae laboriosam officia magni ratione consectetur nam sit. Fugit quaerat deserunt obcaecati ipsa cum ea distinctio.</p>
+
+   <h3 class="fface">With font face</h3>
+   <p class="fface">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas fuga labore fugiat excepturi corrupti iure ab reiciendis veritatis, eum eligendi libero blanditiis rerum magni, vitae dolores nobis porro suscipit incidunt aut unde harum! Adipisci unde illum numquam, natus consequuntur hic excepturi modi, sed quaerat, ab neque facere aliquam repellat ex ducimus possimus voluptas corporis praesentium cum! Magnam porro a sapiente est placeat at, nesciunt modi mollitia odit voluptatem labore id quis qui ullam minima quae laboriosam officia magni ratione consectetur nam sit. Fugit quaerat deserunt obcaecati ipsa cum ea distinctio.</p>
+
+   <h3 class="Times">With Arial</h3>
+   <p class="Times">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas fuga labore fugiat excepturi corrupti iure ab reiciendis veritatis, eum eligendi libero blanditiis rerum magni, vitae dolores nobis porro suscipit incidunt aut unde harum! Adipisci unde illum numquam, natus consequuntur hic excepturi modi, sed quaerat, ab neque facere aliquam repellat ex ducimus possimus voluptas corporis praesentium cum! Magnam porro a sapiente est placeat at, nesciunt modi mollitia odit voluptatem labore id quis qui ullam minima quae laboriosam officia magni ratione consectetur nam sit. Fugit quaerat deserunt obcaecati ipsa cum ea distinctio.</p>
+</body>
+</html>

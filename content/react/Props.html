@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React PROPS</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+        </a>
+        <h1 class="title_template">REACT - PROPS</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // PROPS  &lt; = PROPERTIES
+
+
+    const firstBook = {
+    img: "https://images-na.ssl-images-amazon.com/images/I/51VQB3uWu+L._SX258_BO1,204,203,200_.jpg",
+    author: "Alice Schertle",
+    title: "Little Blue Truck's Springtime",
+    };
+
+    const Book3 = (props) => {
+    console.log(props);
+    return (
+    &lt;article className="book">
+        &lt;img src={props.img} alt="image book" />
+        &lt;h1>{props.title}&lt;/h1>
+        &lt;h4 className="author">{props.author}📘&lt;/h4>
+    &lt;/article>
+    );
+    };
+
+    //Booklist
+    function BooklistProps() {
+    return (
+    &lt;section className="booklist">
+        &lt;Book3 img={firstBook.img} title={firstBook.title} author={firstBook.author} />
+    
+    &lt;/section>
+    );
+    }
+
+</code>
+</pre>
+
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // PROPS  &lt; = DIFFERENT WAYS TO PASS PROPS
+
+    const Book3 = (props) => {
+    return (
+    &lt;article className="book">
+    &lt;img src={props.img} alt="image book" />
+    &lt;h1>{props.title}&lt;/h1>
+    &lt;h4 className="author">{props.author}📘&lt;/h4>
+    &lt;/article>
+    );
+    };
+
+    const Book5 = (props) => {
+    const {img, title, author} = props;
+    return (
+    &lt;article className="book">
+    &lt;img src={img} alt="image book" />
+    &lt;h1>{title}&lt;/h1>
+    &lt;h4 className="author">{author}📘&lt;/h4>
+    &lt;/article>
+    );
+    };
+
+
+    const Book6 = ({img, title, author}) => {
+    return (
+    &lt;article className="book">
+    &lt;img src={img} alt="image book" />
+    &lt;h1>{title}&lt;/h1>
+    &lt;h4 className="author">{author}📘&lt;/h4>
+    &lt;/article>
+    );
+    };
+
+
+    ////Adding a children
+    const Book6 = ({ img, title, author, children }) => {
+    //children
+    return (
+    &lt;article className="book">
+        &lt;img src={img} alt="image book" />
+        &lt;h1>{title}&lt;/h1>
+        &lt;h4 className="author">{author}📘&lt;/h4>
+        {children}
+    &lt;/article>
+    );
+    };
+
+
+    const Book6 = ({img, title, author:}) => {
+</code>
+</pre>
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    //  LIST ARRAY
+
+const names = ["john", "peter", "susan"];
+const newName = names.map((name) => {
+console.log(name);
+return &lt;h1>{name}&lt;/h1>
+});
+
+function BooklistProps() {
+return &lt;section className="booklist">{newName}&lt;/section>;
+}
+
+
+//RETURN COMPONENT
+//Booklist
+function BooklistProps() {
+return (
+&lt;section className="booklist">
+    {books.map((book) => {
+    const { img, title, author } = book;
+    return &lt;Book7 book={book}>&lt;/Book7>;
+    })}
+    ;
+&lt;/section>
+);
+}
+//props.book
+const Book7 = (props) => {
+const { img, title, author } = props.book;
+return (
+&lt;article className="book">
+    &lt;img src={img} alt="image book" />
+    &lt;h1>{title}&lt;/h1>
+    &lt;h4 className="author">{author}📘&lt;/h4>
+&lt;/article>
+);
+};
+
+   
+</code>
+</pre>
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    //  KEY PROP
+    Need to pass a key or id, unique property or it will give error in the console.
+    &lt;Book7 key={book.id} book={book}>&lt;/Book7>;
+
+
+   
+</code>
+</pre>
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // PROPS USING SPREAD OPERATOR   ...
+    // return &lt;Book7 key={book.id} {...book}>&lt;/Book7>;
+
+   
+</code>
+</pre>
+
+<!-- REACT -->
+<pre class="prettyprint">
+<code class="language-js" spellcheck="false">
+    // PROPS  &lt; = PROPERTIES
+    //Concept: Object that has propierties of the object. Like params but you don't need to specify them all
+    
+    app.js
+    import React from 'react';
+    import ContactCard from './components/ContactCard';
+
+
+    function App() {
+    return (
+        &lt;div className="contacts">
+        &lt;ContactCard 
+        contact={{name:"Mr Whiskerson1",imgUrl:"https://baconmockup.com/640/360",phone:"+345555888",email:"whiska@gmail.co"}} />
+        &lt;ContactCard 
+        contact={{name:"Mr Whiskerson2",imgUrl:"https://baconmockup.com/640/360",phone:"+345555888",email:"whiska@gmail.co"}} />
+        &lt;ContactCard 
+        contact={{name:"Mr Whiskerson3",imgUrl:"https://baconmockup.com/640/360",phone:"+345555888",email:"whiska@gmail.co"}} />
+        &lt;ContactCard 
+        contact={{name:"Mr Whiskerson4",imgUrl:"https://baconmockup.com/640/360",phone:"+345555888",email:"whiska@gmail.co"}} />
+        
+        {/* &lt;ContactCard name="Mr Whiskerson4"
+                    imgUrl="https://baconmockup.com/640/360" 
+                    phone="+345555888"
+                    email="whiska@gmail.co"
+                    /> */}
+        &lt;/div>
+    );
+    }
+
+    export default App;
+
+
+    contactCard.js
+    //EVERY COMPONENT NEEDS TO IMPORT REACT
+    import React from 'react'
+
+    function ContactCard(props){
+        return (
+            &lt;div className="contact-card">
+                &lt;img src={props.contact.imgUrl} alt="img"/>
+                &lt;h3>Name: {props.contact.name}&lt;/h3>
+                &lt;p>Phone: {props.contact.phone}&lt;/p>
+                &lt;p>Email: {props.contact.email}&lt;/p>
+            &lt;/div>
+        )
+    }
+
+    export default ContactCard
+
+    OR
+
+    import React from 'react';
+import ContactCard from './components/ContactCard';
+
+
+function App() {
+  return (
+    &lt;div className="contacts">
+    &lt;ContactCard 
+    contact={{name:"Mr Whiskerson1",imgUrl:"https://baconmockup.com/200/100",
+    question:"What's the best thing about Switzerland? ",
+    punchLine:"I don't kwnow but the flag is a big plus"}} />
+    &lt;ContactCard 
+    contact={{name:"Mr Whiskerson2",imgUrl:"https://baconmockup.com/200/100",
+    question:"",
+    punchLine:"He'll stop at nothing to avoid them!"}} />
+    &lt;ContactCard 
+    contact={{name:"Mr Whiskerson3",imgUrl:"https://baconmockup.com/200/100",
+    question:"Hear bout the new restaurant called Karma?",
+    punchLine:"There's no menu: You get what you deserve"}} />
+    &lt;ContactCard 
+    contact={{name:"Mr Whiskerson4",imgUrl:"https://baconmockup.com/200/100",
+    question:"Did you hear about the claustrophobic astronaut?",
+    punchLine:"He just needed a little space"}} />
+    
+    {/* &lt;ContactCard name="Mr Whiskerson4"
+                 imgUrl="https://baconmockup.com/200/100" 
+                 question="Hey"
+                 punchLine="You"
+                 /> */}
+    &lt;/div>
+  );
+}
+
+export default App;
+
+
+
+//EVERY COMPONENT NEEDS TO IMPORT REACT
+import React from 'react'
+
+function ContactCard(props){
+    return (
+        &lt;div className="contact-card">
+            &lt;img src={props.contact.imgUrl} alt="img"/>
+            &lt;h3 style={{display: props.contact.question ? "block" : "none"}}>Question: {props.contact.question}&lt;/h3>
+            &lt;h3 color={{color: props.contact.question ? "#888888" : "#2FAjN2"}}>PunchLine: {props.contact.punchLine}&lt;/h3>
+        &lt;/div>
+    )
+}
+
+export default ContactCard
+    
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySQL - Types</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+        </a>
+        <h1 class="title_template">MYSQL - TYPES</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- MYSQL -->
+<pre class="prettyprint">
+<code class="language-mysql" spellcheck="false">
+    //Types
+    Id INT PRIMARY KEY,
+    Fecha DATE default getdate(),
+    FechaHora DATETIME default getdate(),
+    Precio FLOAT not null,
+    Dni CHAR(9) UNIQUE,
+    Nombre VARCHAR(25) not null,
+    Apellidos VARCHAR(30) not null,
+    Municipio VARCHAR(40),
+    Matricula VARCHAR(12) UNIQUE,
+    Stock INT default 0 CHECK (Stock >= 0),
+    Peso INT not null,
+    PesoGr AS (Peso/100)
+</code>
+</pre>
+<pre class="prettyprint">
+<code class="language-mysql" spellcheck="false">
+    // 
+    You can create your own in the databases
+    There might be differences in different databases
+
+    identity (1,1) autonumerico empieza en 1 y va saltando de 1 en 1.  (1,2) Seria, 1,3,5...
+    UNIQUE (no duplicable)
+    constranint "PK DUplicada" (for restrictions like primary key or unique)
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Classes</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVASCRIPT CLASSES</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="#" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // 90 - Use class syntax to Define a constructor function
+
+    // var SpaceShuttle = function(targetPlanet){
+    //     this.targetPlanet = targetPlanet;
+    // }
+
+    class SpaceShuttle {
+        constructor(targetPlanet){
+            this.targetPlanet = targetPlanet; 
+        }
+    }
+    console.log("Constructor");
+    var zeus = new SpaceShuttle('Jupiter');
+    console.log(zeus.targetPlanet);
+    
+</code>
+</pre>
+<!-- JAVASCRIPT -->
+<pre class="prettyprint">
+<code class="language-javascript" spellcheck="false">
+    // 91 - GETTERS AND SETTERS
+
+    class Book {
+        constructor(author){
+            this._author = author;
+        }
+
+        get writer(){
+            return this._author;
+        }
+
+        set writer(updatedAuthor){
+            this._author = updatedAuthor;
+        }
+    }
+
+    function makeClass(){
+        class Thermostat{
+            constructor(temp){
+                this._temp = 5/9 * (temp - 32);
+            }
+
+            get temperature(){
+                return this._temp;
+            }
+
+            set temperature(updatedTemp){
+                this._temp = updatedTemp;
+            }
+        }
+        return Thermostat;
+    }
+
+    const Thermostat = makeClass();
+    const thermos = new Thermostat(76);
+    let temp = thermos.temperature;
+    thermos.temperature = 26;
+    temp = thermos.temperature;
+    console.log("Getters and Setters");
+    console.log(temp);
+    
+</code>
+</pre>
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Threads</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVA THREADS</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // THREADS O HILOS
+    Thread / Runnable
+
+    Class Thread {}
+    Thread.sleep(4)
+
+    // Crear hilos:
+    //Clase con interfaz Runnable, write code in run method, instanciate class y almacenar instancia en variable de tipo Runnable
+    //crear instancia de la clase Thread
+    //Poner en marcha hilo de ejecución
+</code>
+</pre>
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //1- Clase con interfaz Runnable
+    
+    class PelotaHilos implements Runnable{
+        public PelotaHilos(Peloga unaPelota, Component unComponente){
+            pelota = unaPelota;
+            componente = unComponente;
+        }
+
+        public void run(){
+            for(int i = 0; i &lt;=1000; i++){
+                system.out.print(i);
+
+                try{Thread.sleep(5)}
+                catch(InterruptedException e){e.printStackTrace();}
+            }
+        }
+        private Pelota pelota;
+        private Component componente;
+    }
+
+    Runnable r = new PelotaHilos(pelota, lamina);
+    Thread t = newThread(r);
+    t.start();
+
+</code>
+</pre>
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //
+
+</code>
+</pre>
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    
+
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

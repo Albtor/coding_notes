@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RubyOnRails Crud</title>
+    <link rel="stylesheet" href="../../css/file.css"> 
+    <link rel="shortcut icon" type="image/png" href="../../img/api2.png">
+   
+</head>
+<body class="apis-bkg">
+<div class="main_container">
+
+    <a href="../../Solutions.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code Icon" class="menu_img">
+    </a>
+    <h1 class="title_template">RUBY ON RAILS - CRUD</h1>
+    <h4>Links </h4>
+        <ul>
+            <li class="link_list"> <a href="#" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+
+<div class= "code_container ">
+
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    // CREATE A CRUD DATABASE 
+    Create Schema  / Migration
+    rails g scaffold friends first_name:string last_name:string email:string phone:string twitter:string
+    -> This creates a model, a database table called "friends" with the columns and the types
+    It creates many things: migration, routes,
+    in db folder there is a migrate folder with the data of the table
+
+    PUSH the migration live
+    rails db:migrate
+    -> Creates a schema file in migrate folder
+
+    Now in views there's a friends directory
+    it will create a scaffolds.scss that could conflict with Bootstrap, then delete
+
+    This creates a fully functioning CRUD automatically that works. Creates the pages, methods, database
+    in routes (config) it will add automatically  resources :friends
+    In the video example, it creates new links in the navBar to add friends, edit friends, read friends
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    // STYLE APP WITH BOOTSTRAP &lt;
+    Tables, buttons
+    Alerts when user has been CREATED
+    _Alerts.html.erb copy the alert code
+    &lt;%= notice %>
+    &lt;%= if notice %>
+        &lt;%= render 'layouts/alerts' %>
+    &lt;%= end %>
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    // GEM FILES &lt;
+    Ruby Gems we will use Devise
+    Add to the Gemfile file: gem 'devise', '~> 4.8'
+
+    Go to terminal> bundle install 
+    rails generate devise:install -> It would inform of things we have to add/change
+    go to congif > environments development.rb and production.rb (when uploading web to heroku)
+
+    add rails g devise:views
+
+    rails generate devise USER - generate a user's table with name user (name can be changed)
+
+    Push the migration:
+     rails db:migrate
+
+     LOGIN SIGN UP SIGN IN SIGN OUT
+     &lt;%= if user_signed_in? %>
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    //STYLE DEVISE VIEWS &lt;
+    Log in log out etc
+    carpeta views > devise
+    
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-rb" spellcheck="false">
+    // &lt;
+</code>
+</pre>
+
+    
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

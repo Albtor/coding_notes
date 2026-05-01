@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS PseudoElements / Clases</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+<div class="main_container">
+
+    <a href="../../index.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code icon" class="menu_img">
+    </a>
+    <h1 class="title_template">CSS - PSEUDOELEMENTS / CLASSES</h1>
+    <h4>Links</h4>
+    <ul>
+        <li class="link_list"><a href="https://www.w3schools.com/css/css_pseudo_elements.asp" class="link_file">W3 Schools</a></li>
+        <li class="link_list"><a href="https://flukeout.github.io/#" class="link_file">CSS Dinner</a></li>
+        <li class="link_list"><a href="https://www.iessanclemente.net/recurso/labs/chapter2/lab.selectors.html" class="link_file">Selectors Lab</a></li>
+        <li class="link_list"><a href="https://codigofacilito.com/articulos/selectores-de-css" class="link_file">Selectores CSS</a></li>
+        <li class="link_list"><a href="https://css-tricks.com/useful-nth-child-recipies/" class="link_file">CSS TRICKS Useful :nth-child Recipes</a></li>
+        <li class="link_list"><a href="" class="link_file"></a></li>
+    </ul>
+
+        
+<div class= "code_container">
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+    // PSEUDOELEMENTS
+    p::first-letter {color: #ff0000;}
+    p::first-line { font-variant: small-caps;}
+    ::marker {color: red; font-size: 23px;} /*For lists*/
+    ::selection
+
+</code>
+</pre>
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-css language-html" spellcheck="false">
+    // PSEUDOELEMENTS BEFORE AND AFTER
+    /* para introducir elementos no indexados, texto o lineas, fondo de color*/
+    p::before
+    p::after
+    They need the value content:""; to be displayed
+    p.example::before {
+        display: block;
+        content: 'before';
+        color: yellow;
+        background-color: grey;
+        width: 25px;
+        height: 25px;
+    }
+    &lt;div data-text=&quot;Hi&quot; class=&quot;box2&quot;&gt;&lt;/div&gt;
+    .box2::before{
+        display: block;
+        content: attr(data-text);
+        color: yellow;
+        background-color: grey;
+        width: 25px;
+        height: 25px;
+      
+      }
+
+    data-xxxxxx="mensaje enviado"
+    content: attr('data-xxxx');
+
+</code>
+</pre>
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+    // PSEUDOCLASSES
+    :hover  
+    :active
+    :focus 
+    :visited
+    :link
+    :required
+    :disabled
+    :checked
+    :not(p)
+    :root
+
+    :first-child
+    :last-child
+    :last-of-type
+    :nth-child(n); 	p:nth-child(2);  Selects every p element that is the second child of its parent
+    :nth-last-child(n) same but from the end
+    :nth-of-type(n) Selects every p element that is the second p element of its parent
+    :nth-last-of-type(n)  same but from the end
+    :only-of-type Selects every p element that is the only p element of its parent
+    :only-child Selects every p that is the only child of its parent
+</code>
+</pre>
+
+
+<!-- CSS -->
+<pre class="prettyprint">
+<code class="language-css" spellcheck="false">
+    // PSEUDOCLASSES
+    :hover  /*Subtle effects*/
+    :focus /*For outline better. outline: 2px solid var(--color); outline-offset: 5px;  Not so subtle as hover */
+    button:focus{box-shadow: 0 0 0 10px rgba(0,0,0,.15);} //cannot set outline in Buttons
+    Mozilla ::moz-focus-inner{border:0;} /*To eliminate inner outline in Mozilla*/
+    button:focus{
+        box-shadow: 
+        0 0 0 5px white,
+        0 0 0 10px var(--color);
+        ;
+    }
+</code>
+</pre>
+    
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

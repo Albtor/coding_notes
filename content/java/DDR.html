@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java DDR</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVA DDR</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // CONFIG  Pasos para crear un proyecto en Netbeans
+
+    --module-path "C:\datos\javafx-sdk-17.0.0.1\lib" --add-modules javafx.controls,javafx.fxml
+    --module-path "/usr/lib/jvm/javafx-sdk-17.0.0.1/lib/" --add-modules javafx.controls,javafx.fxml
+
+    ---------------
+    JAVAFX LIBRARY
+    ---------------
+    Tools Linbreria Global: poner nombre y agregar los archivos JAR
+    Plugings instalar JavaFX
+
+    ---------------------------
+    CREATE PROJECT IN NETBEANS
+    ---------------------------
+    Crear proyecto ANT
+    Java with Ant - Java application (normal not JavaFX + JavaFX Application)
+
+    Empty FXML + Controller
+
+    --------------
+    Propierties 3 things to do:
+    --------------
+    *Libraries: 
+    Compile Classpath JAVAFX17
+    Run Modulepath JAVAFX17
+    - Compiletest Modulepath JAVAFX17
+
+    *Build / Compile Compile_on_save: works if JAVAFX17 is on the run
+
+    *Run VM options: 
+    --module-path "C:\datos\javafx-sdk-17.0.0.1\lib" --add-modules javafx.controls,javafx.fxml
+    --module-path "/usr/lib/jvm/javafx-sdk-17.0.0.1/lib/" --add-modules javafx.controls,javafx.fxml
+
+    ---------------------------
+    fxml file
+    ---------------------------
+    Once made changes in Scene builder
+    right click on fxml file and "make controller" ; this adds the info to the controller
+</code>
+</pre>
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // EXAMPLE DDR
+    package modelo;
+
+    import java.io.IOException;
+    import javafx.application.Application;
+    import javafx.fxml.FXMLLoader;
+    import javafx.scene.Scene;
+    import javafx.scene.layout.Pane;
+    import javafx.stage.Stage;
+
+
+    public class Main extends Application{
+        
+        public static void main(String args[]) {
+        launch(args);
+        }
+
+        @Override
+        public void start(Stage primaryStage) throws Exception {
+            try{
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(Main.class.getResource(".fxml"));
+                Pane ventana = (Pane) loader.load();
+                
+                Scene scene = new Scene(ventana);
+                primaryStage.setTitle("New one");
+                primaryStage.setScene(scene);
+                primaryStage.show(); 
+                
+            }catch(IOException e){
+                System.out.println(e.getMessage());
+            }
+        
+        
+        }
+        
+    }
+</code>
+</pre>
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // EXAMPLE PROYECTO 1
+    package proyecto1;
+
+    import java.io.IOException;
+    import javafx.application.Application;
+    import javafx.fxml.FXMLLoader;
+    import javafx.scene.Parent;
+    import javafx.scene.Scene;
+    import javafx.stage.Stage;
+
+
+    public class Principal  extends Application{
+
+
+        public static void main(String args[]) {
+        launch(args);
+        }
+
+        @Override
+        public void start(Stage stage) throws Exception {
+            
+            try{
+            Parent root = FXMLLoader.load(getClass().getResource(".fxml"));
+                Scene scene = new Scene(root);
+                stage.setTitle("Welcome to the Jungle");
+                stage.setScene(scene);
+                stage.show(); 
+            }catch(IOException e){
+                System.out.println(e.getMessage());
+            }
+            
+        }
+    }
+</code>
+</pre>
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //TRY CATCH ALERTS
+try{
+
+}catch (NumberFormatException e){
+    System.out.println(e.getMessage());
+    Alert alert = new Alert(Alert.AlertType.ERROR);
+    alert.setHeaderText(null);
+    alert.setTitle("Error");
+    alert.setContentText("Formato incorrecto");
+    alert.showAndWait();
+}
+
+</code>
+</pre>
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //RADIO BUTTONS toggle DDR04
+    public void initialize(URL url, ResourceBundle rb) {
+    ToggleGroup tg = new ToggleGroup();
+        this.rdSum.setToggleGroup(tg);
+        this.rdRes.setToggleGroup(tg);
+        this.rdMul.setToggleGroup(tg);
+        this.rdDiv.setToggleGroup(tg); 
+    }
+
+    //this.rdRes.isSelected()
+</code>
+</pre>
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //TRICKS COMPONENTS
+    this.txtResult.setText(op.suma()+ ""); //For numbers
+    this.txtOp1.getText();
+    int op1 = Integer.parseInt(this.txtOp1.getText());
+
+    //COMBO BOX
+    Vehiculo v = this.cmbVehiculos.getValue();
+
+    Vehiculo v = new Vehiculo();
+    ObservableList<Vehiculo> obsVehiculos = v.getVehiculos();
+    this.cmbVehiculos.setItems(obsVehiculos); // How we define what appears-> method to string in class
+    
+
+    //METODO TOSTRING() Transformar un a String un Objeto
+    @Override //Ejemplo de clientes
+    public String toString(){
+        return NyA;
+    }
+
+    //other
+    ArrayList&lt;String> list = new ArrayList&lt;>; 
+    Collections.addAll(ist, new String[]{"Opcion1", "Opcion2"});
+    comboboxname.getItemms().addAll(list);
+
+</code>
+</pre>
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    // TABLES
+    private TableView<Persona> tblPersonas;
+    private ObservableList<Persona> personas;
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        personas = FXCollections.observableArrayList();
+        
+        this.colNom.setCellValueFactory(new PropertyValueFactory("nombre"));
+        this.colApe.setCellValueFactory(new PropertyValueFactory("apellidos"));
+        this.colEdad.setCellValueFactory(new PropertyValueFactory("edad"));
+    }   
+
+    Al añadir personas:
+    if(!this.personas.contains(p)){
+        this.personas.add(p);
+        this.tblPersonas.setItems(personas);
+    } else {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText(null);
+        alert.setTitle("Error");
+        alert.setContentText("La persona existe");
+        alert.showAndWait();
+    }
+
+
+    //Eliminar refrescar
+    this.personas.remove(p); //borrar
+    this.tblPersonas.refresh(); //refresh
+</code>
+</pre>
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //SQL Tricks
+    consulta += "and s.fecha_alquiler >= '"+ fechaAlquiler.toString() +"' "; 
+
+    Update different than Select
+
+</code>
+</pre>
+   
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //DDR
+    DDR-01-BasicWindow
+    DDR-02-BasicComponents
+    DDR-03-Suma
+    DDR-04-Calculator. ToggleRadioButtons
+    DDR-05-TablaAgregaRegistros en tabla sin BD
+    DDR-06-TablaCRUD_noCon CRUD but not with Database
+    DDR-07-TablaAgrega_otherWindow Añadimos registros desde otra ventana sin BD
+    DDR-08-TablaCRUD_otherWindow CRUD desde otra ventana sin BD
+    DDR-09-Filtrar_Ordenar_Registros Crud + tabla con filtro de búsqueda
+    DDR-10-VehiculosDesign_Navegabilidad All windows for Vehiculos Proyect, cuando se abra una se cierre la otra. No va a haber 2 pantallas al mismo tiempo
+    DDR-11-BD_Connect Conectar a BBDD Xamp y cargar info en COmbobox
+    DDR-11-InsertandoRegistros Adding new Servicios (missing)
+    DDR-12-InsertandoRegistrosBD
+    DDR-13-TableBD
+    DDR-14-FiltrandoServicios
+    DDR-15-ActualizandoVehiculo
+</code>
+</pre>
+
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

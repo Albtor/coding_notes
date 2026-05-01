@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java JAXB</title>
+    <link rel="stylesheet" href="../../css/file.css">
+    <link rel="shortcut icon" type="image/png" href="../../img/code.png">
+</head>
+<body>
+    <div class="main_container">
+
+        <a href="../../index.html" class="menu_link">
+            <img src="../../img/code.svg" alt="Van icon" class="menu_img">
+        </a>
+        <h1 class="title_template">JAVA JAXB</h1>
+        <h4>Links</h4>
+        <ul>
+            <li class="link_list"><a href="" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+    
+   
+    
+<div class= "code_container">
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //Uso de JAXB En Netbeans
+    Click derecho proyecto > New > Jaxb Binding
+    Set name and schema file or URL, finish. Usually a XSD file
+    This generates a package with the classes
+</code>
+</pre>
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //JAVA &lt;
+    public class Tarea {
+
+ 
+        public  Tarea() throws MalformedURLException, IOException {
+          Grupo documento;
+            try {
+                JAXBContext context = JAXBContext.newInstance(Grupo.class);
+                Unmarshaller convertidorDeXMLToObjecto = context.createUnmarshaller();
+     
+                  // partir de un documento XML obtenemos el objeto.
+                URL url = new URL("http://www.ferminvelez.es/E2/grupo.xml"); // ojo poner el protocolo (http)           
+                URLConnection conexion= url.openConnection();     
+         
+             documento = (Grupo) convertidorDeXMLToObjecto.unmarshal( conexion.getInputStream()); // solo le decimos donde sacar los datos = DE LA URL              
+            System.out.println("Alumnos del grupo:");
+    
+             List&lt;Alumno> alumnos= documento.getListaAlumnos(); //obtener el listado de alumnos del grupo
+             for ( int i=0; i &lt;alumnos.size(); i++) verUnAlumno(alumnos.get(i));//imprimir cada alumno   
+             
+            }
+            
+            catch (JAXBException ex) {  System.out.println("JAXBE : "+ex.getMessage());  }
+        }
+        
+      
+         static void verUnAlumno(Alumno a)
+        {
+            System.out.print ("Nombre: "+a.getNombre()+" ");
+            System.out.print ("\tApellido: "+a.getNombrePadre()+"\tID: "+a.getId()+"\tNota Media: "+a.getNotaMedia()+"\n");   
+         
+        }
+
+    }
+</code>
+</pre>
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //GENERATED GRUPO
+    import java.util.ArrayList;
+import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlType;
+
+
+/**
+ * &lt;p>Java class for grupo complex type.
+ * 
+ * &lt;p>The following schema fragment specifies the expected content contained within this class.
+ * 
+ * &lt;pre>
+ * &lt;complexType name="grupo">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;sequence>
+ *         &lt;element name="listaAlumnos" type="{}alumno" maxOccurs="unbounded" minOccurs="0"/>
+ *       &lt;/sequence>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * &lt;/pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "grupo", propOrder = {
+    "listaAlumnos"
+})
+
+//FALTA EL @Xml root element???
+public class Grupo {
+
+    protected List&lt;Alumno> listaAlumnos;
+
+    public List&lt;Alumno> getListaAlumnos() {
+        if (listaAlumnos == null) {
+            listaAlumnos = new ArrayList&lt;Alumno>();
+        }
+        return this.listaAlumnos;
+    }
+
+}
+
+</code>
+</pre>
+
+<!-- JAVA -->
+<pre class="prettyprint" >
+<code class="language-java" spellcheck="false" >
+    //ALUMNO GENERATED
+
+    package generated;
+
+    import javax.xml.bind.annotation.XmlAccessType;
+    import javax.xml.bind.annotation.XmlAccessorType;
+    import javax.xml.bind.annotation.XmlType;
+
+    
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "alumno", propOrder = {
+        "nombre",
+        "nombrePadre",
+        "id",
+        "notaMedia"
+    })
+    public class Alumno {
+
+        protected String nombre;
+        protected String nombrePadre;
+        protected int id;
+        protected double notaMedia;
+
+        /**
+        * Gets the value of the nombre property.
+        * 
+        * @return
+        *     possible object is
+        *     {@link String }
+        *     
+        */
+        public String getNombre() {
+            return nombre;
+        }
+
+        /**
+        * Sets the value of the nombre property.
+        * 
+        * @param value
+        *     allowed object is
+        *     {@link String }
+        *     
+        */
+        public void setNombre(String value) {
+            this.nombre = value;
+        }
+
+        /**
+        * Gets the value of the nombrePadre property.
+        * 
+        * @return
+        *     possible object is
+        *     {@link String }
+        *     
+        */
+        public String getNombrePadre() {
+            return nombrePadre;
+        }
+
+        /**
+        * Sets the value of the nombrePadre property.
+        * 
+        * @param value
+        *     allowed object is
+        *     {@link String }
+        *     
+        */
+        public void setNombrePadre(String value) {
+            this.nombrePadre = value;
+        }
+
+        /**
+        * Gets the value of the id property.
+        * 
+        */
+        public int getId() {
+            return id;
+        }
+
+        /**
+        * Sets the value of the id property.
+        * 
+        */
+        public void setId(int value) {
+            this.id = value;
+        }
+
+        /**
+        * Gets the value of the notaMedia property.
+        * 
+        */
+        public double getNotaMedia() {
+            return notaMedia;
+        }
+
+        /**
+        * Sets the value of the notaMedia property.
+        * 
+        */
+        public void setNotaMedia(double value) {
+            this.notaMedia = value;
+        }
+
+    }
+
+</code>
+</pre>
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

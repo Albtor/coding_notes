@@ -1,0 +1,132 @@
+/* GENERAL ANIMATION */
+
+/* div {
+    display: inline-block;
+} */
+.div1 {
+    background-color: red;
+    height: 100px;
+    width: 100px;
+    color: white;
+    margin-bottom: 1em;
+}
+
+.div1:hover {
+    animation: color-change 1s linear .5s both 4 alternate;
+}
+
+
+
+@keyframes color-change {
+    0% {
+        background-color: black;
+
+    }
+
+    100% {
+        background-color: lightgreen;
+        color: black;
+    }
+}
+
+
+.div2 {
+    background-color: green;
+    height: 100px;
+    width: 100px;
+    color: white;
+    margin-bottom: 1em;
+    animation: color-change2 1s linear .5s forwards alternate infinite;
+}
+
+.div2:hover {
+    animation-play-state: paused;
+    color: black;
+}
+
+@keyframes color-change2 {
+
+    100% {
+        background-color: rgb(204, 171, 26);
+
+    }
+}
+
+
+.div3 {
+    background-color: rgb(212, 115, 36);
+    height: 100px;
+    width: 100px;
+    color: white;
+    margin-bottom: 1em;
+    animation-name: color-change3, size-change;
+    animation-delay: .5s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    
+}
+
+.div3:hover {
+    animation-play-state: paused;
+}
+
+@keyframes color-change3 {
+
+    100% {
+        background-color: rgb(228, 118, 186);
+        color: black;
+    }
+}
+
+/* from / to are same as 0% 100% */
+@keyframes size-change {
+    /* from{
+
+    } */
+    to {
+        width: 120px;
+   
+    }
+}
+
+
+
+.div4 {
+    background-color: rgb(31, 11, 11);
+    height: 100px;
+    width: 100px;
+    color: white;
+    margin-bottom: 1em;
+    animation-name: custom;
+    animation-delay: .5s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+}
+
+@keyframes custom {
+    from {
+        font-size:1rem;
+    }
+
+    25% {
+        font-size:2rem;
+        height: 50px;
+    }
+
+    50% {
+        font-size:2.5rem;
+        color: limegreen;
+    }
+
+    75% {
+        font-size:1.5rem;
+    }
+
+    to  {
+        font-size:1rem;
+    }
+}
