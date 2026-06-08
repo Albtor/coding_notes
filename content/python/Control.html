@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Conditional Statements</title>
+    <link rel="stylesheet" href="../../css/file.css"> 
+    <link rel="shortcut icon" type="image/png" href="../../img/api2.png">
+   
+</head>
+<body class="apis-bkg">
+<div class="main_container">
+
+    <a href="../../Solutions.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code Icon" class="menu_img">
+    </a>
+    <h1 class="title_template">PYTHON CONDITIONAL STATEMENTS</h1>
+    <h4>Links </h4>
+        <ul>
+            <li class="link_list"> <a href="#" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+
+<div class= "code_container ">
+
+<pre class="prettyprint">
+<code class="language-py" spellcheck="false">
+    # IF 
+    is_male = False
+    is_tall = False
+
+    if is_male and is_tall:
+        print("You are a tall male")
+    elif is_male and not(is_tall):
+        print("Male not tall")
+    elif not(is_male) and is_tall:
+        print("Not male but tall")
+    else:
+        print("Not a male and not tall")
+
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-py" spellcheck="false">
+    # COMPARISON OPERATORS
+    def max_num(num1, num2, num3):
+        if num1 >= num2 and num1 >= num3:
+            return num1
+        elif num2 >= num1 and num2 >= num3:
+            return num2
+        else:
+            return num3
+
+    print(max_num(3, 40, 5))
+    # other operators: == , !=, 
+</pre>
+
+<pre class="prettyprint">
+<code class="language-py" spellcheck="false">
+    # BETTER CALCULATOR
+
+    num1 = float(input("Enter first number: "))
+    op = input("Enter operator : "))
+    num2 = float(input("Enter second number: "))
+
+    if op == "+":
+        print(num1 + num2)
+    elif op == "-":
+        print(num1 - num2)
+    elif op == "*":
+        print(num1 * num2)
+    elif op == "/":
+        print(num1 / num2)
+    else
+        print("Operator not valid")
+    result = int(num1) + int(num2) # problem is that it won't allow to use decimals
+    # result = float(num1) + float(num2)
+    
+    print(result)
+</code>
+</pre>
+
+
+<pre class="prettyprint">
+<code class="language-py" spellcheck="false">
+    # WHILE
+    i = 1
+    while i >= 10:
+        print(i)
+        i += 1
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-py" spellcheck="false">
+    # SECRET WORK GAME
+    secret_word = "giraffe"
+    guess = ""
+    guess_limit = 3
+    guess_count = 0
+    out_of_guesses = False
+
+    while guess != secret_word and not(out_of_guesses):
+        if guess_count &lt; guess_limit:
+            guess = input("Enter guess:")
+            guess_count += 1
+        else:
+            out_of_guesses = True
+
+    if out_of_guesses:
+        print("You lose")
+    else:
+        print("You win!")
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-py" spellcheck="false">
+    # FOR LOOP
+    for letter in "Giraffe Academy":
+        print(letter)
+
+    friends = ["Kim", "Joanna", "Leslie"]
+    
+    for index in range(10) #also in range (3, 10)
+        print(index)
+    for index in range(len(friends))
+        print(friends[index])
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-py" spellcheck="false">
+    # EXPONENT FUNCTION
+    def raise_to_power(base_num, pow_num):
+        result = 1
+        for index in range(pow_num):
+            result = result * base_num
+
+    print(raise_to_power(2, 3))
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-py" spellcheck="false">
+    # 2D LISTS
+
+    number_grid = [
+        [1,2,3],
+        [4,5,6],
+        [7,8,9],
+        [0]
+    ]
+
+    print(number_grid[0][0])
+
+    # nested for LOOP
+    for row in number_grid:
+        for col in row:
+            print(col)
+</code>
+</pre>
+
+
+    
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

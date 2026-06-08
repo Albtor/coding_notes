@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Lists, Functions</title>
+    <link rel="stylesheet" href="../../css/file.css"> 
+    <link rel="shortcut icon" type="image/png" href="../../img/api2.png">
+   
+</head>
+<body class="apis-bkg">
+<div class="main_container">
+
+    <a href="../../Solutions.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code Icon" class="menu_img">
+    </a>
+    <h1 class="title_template">PYTHON LISTS, FUNCTIONS</h1>
+    <h4>Links </h4>
+        <ul>
+            <li class="link_list"> <a href="#" class="link_file" target="_Blank">Link</a></li>
+        </ul>
+
+<div class= "code_container ">
+
+<pre class="prettyprint">
+<code class="language-py" spellcheck="false">
+    # LISTS ARRAYS
+    friends = ["Kevin", "Karen", "Jim", "Oscar", "Toby", 2, True] # we can mix
+    print(friends)
+    print(friends[0])
+    print(friends[-1]) # last element of the list
+    print(friends[1:8]) # Shows Elements from 1 to 7
+    friends[0] = "Mike"
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-py" spellcheck="false">
+    # LIST FUNCTIONS
+    Characteristics: Mutable
+    lucky_numbers = [3, 7, 6, 9, 8. 23]
+    friends = ["Kevin", "Karen", "Jim", "Oscar", "Toby"] 
+
+    friends.extend(lucky_numbers) # appends a new list inside a list
+    friends.append("Mike") # add at the end
+    friends.insert(1, "Mike") # insert a value at a specific place, doesn't delete others, moves them 1 position
+    friends.remove("Jim")
+    del frinends[1]
+    friends.clear() # clears the list, removes all Elements
+    friends.pop() # removes last element of a List
+    friends.index("Oscar") # gives the index if exists
+    frinds.count("Jim") # tells how many times the value is in the List
+    friends.sort() #sorts list in alphabetical order
+    friends.reverse() # reverses the order
+    friends2 = friends.copy() # copies the list 
+
+    friends_new = friends[1:4] Slices and takes elements from 1 to 3
+    friends_new = friends[:4] Slices and takes elements from beginning to 3
+
+
+    for friend in friends:
+        if friend == "Sarah":
+            print("Success")
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-py" spellcheck="false">
+    # 2D LISTS
+
+    number_grid = [
+        [1,2,3],
+        [4,5,6],
+        [7,8,9],
+        [0]
+    ]
+
+    print(number_grid[0][0])
+
+    # nested for LOOP
+    for row in number_grid:
+        for col in row:
+            print(col)
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-py" spellcheck="false">
+    # TUPLES they are inmutable, no changes, updates, modifications, delete
+    coordinates = (4, 5)
+    States = ("Delaware", "Pennsylvania", "New Jersey")
+    print(coordinates[0])
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-py" spellcheck="false">
+    # DICTIONARIES
+    monthConversions = {
+        "Jan": "January",
+        "Feb": "February"
+        "Mar": "March"
+    }
+    print(monthConversions["Jan"])
+    print(monthConversions.get["Jan"])
+
+
+    
+    monthConversions["Apr"] = "April" // Adding items
+    del monthConversions["Apr"]
+
+    for value in monthConversions.values():
+    for value in monthConversions.keys():
+    for key, value in monthConversions.items(): //gets key and value, name is customizable
+</code> 
+</pre>
+<pre class="prettyprint">
+<code class="language-py" spellcheck="false">
+    # DICTIONARIES objects
+    customers = [
+        {
+            "id": "1232",
+            "name": "John"
+            "last_name": "Sey"
+        },
+        {
+            "id": "1233",
+            "name": "Jack"
+            "last_name": "Bay"
+        },
+    ]
+    
+
+    indexes
+    customers[0]
+    len(customers) // know the length
+    new_dictionary = {
+    "id": "1236",
+    "name": "Sun"
+    "last_name": "Shao"
+    },
+    customers.append(new_dictionary) 
+</code> 
+</pre>
+
+<pre class="prettyprint">
+<code class="language-py" spellcheck="false">
+    # DICTIONARIES + LISTS
+    customers = [
+        {
+            "id": "1232",
+            "name": "John"
+            "last_name": "Sey",
+            "discounts": ["standard", "volume", "loyalty"]
+        },
+    ]
+
+    if "loyalty" in customers["discounts"]:
+    
+
+    indexes
+    customers[0]
+    len(customers) // know the length
+    new_dictionary = {
+    "id": "1236",
+    "name": "Sun"
+    "last_name": "Shao"
+    },
+    customers.append(new_dictionary) 
+</code> 
+</pre>
+    
+<pre class="prettyprint">
+<code class="language-py" spellcheck="false">
+    # DICTIONARIES
+    customers = {
+        "id01":{
+            "phone": "1232",
+            "name": "John"
+            "last_name": "Sey"
+            },
+        "id02":{
+            "phone": "1233",
+            "name": "Jack"
+            "last_name": "Bay"
+            },
+    }
+
+    print(customers[2]["address"])
+</code>
+</pre>
+<pre class="prettyprint">
+<code class="language-py" spellcheck="false">
+    # FUNCTIONS need to be indented correctly. Named in lowercase with underscore if more than one name
+    def say_hi(name, age):
+        print("Hello you" + name + ", you are " + age)
+    
+    sayhi("Alberto", 30)
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-py" spellcheck="false">
+    # FUNCTIONS WITH RETURN (after the return you can't add anything)
+
+    def cube(num):
+        return num*num*num
+    
+    print(cube(3))
+</code>
+</pre>
+    
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>

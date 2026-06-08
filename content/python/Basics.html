@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Basics</title>
+    <link rel="stylesheet" href="../../css/file.css"> 
+    <link rel="shortcut icon" type="image/png" href="../../img/api2.png">
+   
+</head>
+<body class="apis-bkg">
+<div class="main_container">
+
+    <a href="../../Solutions.html" class="menu_link">
+        <img src="../../img/code.svg" alt="Code Icon" class="menu_img">
+    </a>
+    <h1 class="title_template">PYTHON BASICS</h1>
+    <h4>Links </h4>
+        <ul>
+            <li class="link_list"> <a href="https://www.python.org/downloads/" class="link_file" target="_Blank">Python Downloads</a></li>
+        </ul>
+
+<div class= "code_container ">
+
+<pre class="prettyprint">
+<code class="language-py" spellcheck="false">
+    # INSTALLATION
+    # Download file from Python.org / IDE Pycharm (jetbrains)
+
+    # SETUP
+    # Create new proyect. Interpreter, choose the right version of Python regarding the version you have installed new python file
+
+    # FIRST PROGRAM : in ide click run button
+    print("Hello world")
+    print("   /|")
+    print("  / |")
+    print(" /  |")
+    print("/___|")
+    print("|* *|")
+    print("| > |")
+    print(" \O/")
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-py" spellcheck="false">
+    # coments
+    ´´´
+    Multiple line comments
+    ´´´
+
+    # DATA VARIABLES
+    character_name = "John"
+    character_age = 66
+    character_heigh = 1.85
+    is_Male = True 
+
+    print("His name is "+ character_name +". He is " + character_age + "years old.")
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-py" spellcheck="false">
+    # STRINGS
+    print("Giraffe\nAcademy")
+    print("Giraffe\"Academy") # prints ""
+    phrase = "Giraffe Academy"
+    print(phrase)
+    print(phrase +" is cool")
+
+    # FUNCTIONS
+    len(phrase) # giving the length of the string
+    phrase[0] # first character of the string
+    phrase.index("G") # Returns the index of the first character match 
+    phrase.replace ("Giraffe", "Elephant") # Replaces certain strings
+    phrase.lower() # to lowercase
+    phrase.upper() # to uppercase
+    phrase.isupper() # checks, gives true or false
+    phrase.upper().isupper() # converts and then checks
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-py" spellcheck="false">
+    # NUMBERS
+    print(3 + 4.5)
+    my_num = str(5) # converts number into string
+    print(my_num + "my favorite number") # to print with another string, the number must be parsed as string
+
+    # FUNCTIONS
+    abs(-6) # absolute number, transforms -5 into 5
+    pow(3,2) # 3 to 2
+    max(8, 6) # returns the higher number. opposite is: min
+    round(8.3) 
+   
+
+    # Other functions needs to import
+    from math import *
+    floor(8.8) # returns 8
+    ceil(8.3) # returns 9
+    sqrt(36) # square root
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-py" spellcheck="false">
+    # INPUT FROM USERS
+    name = input("Enter your name: ")
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-py" spellcheck="false">
+    # CALCULATOR
+    num1 = input("Enter a number: ")
+    num1 = input("Enter another number: ")
+    result = int(num1) + int(num2) # problem is that it won't allow to use decimals
+    # result = float(num1) + float(num2)
+    
+    print(result)
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-py" spellcheck="false">
+    # Mad Libs game
+    color = input("Enter a color: ")
+    plural_noun = input("Enter a plural_noun: ")
+    celebrity = input("Enter a celebrity: ")
+
+    print("Roses are "+ color)
+    print(plural_noun + " are blue")
+    print("I love " + celebrity) 
+</code>
+</pre>
+
+<pre class="prettyprint">
+<code class="language-py" spellcheck="false">
+    # TRANSFORMATION
+    int(monthly_income)
+    float(monthly_income)
+    string(monthly_income)
+
+    city.lower()
+    city.upper()
+    city.title() - Add capital letter at the beginning of words
+</code>
+</pre>
+
+
+    
+
+</div>
+</div>
+  
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/prettify_css.js"></script>
+</body>
+</html>
